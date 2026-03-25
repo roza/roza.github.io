@@ -4,5 +4,22 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+## Whoami
+
+
+Gérard Rozsavolgyi, enseignant en BTS à  Marie-Curie, vacataire à Polytech Marseille
+
+## Compétences 
+
+### Informatique
+
+- Développement Web  : HTML/CSS/JS
+- Dev Web côté serveur : PHP/Java/Python Django/Python Flask
+- Dev hybride (mobile etc.) : Flutter
+- Système/DevOps  : Git, Bash, Docker, KBS
+
+### Maths
+
+Maths CPGE (ouvrages)
+
+
