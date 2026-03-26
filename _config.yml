@@ -25,6 +25,7 @@ comments: false
 # Navigation
 navigation_pages:
   - about.md
+  - categories.md
 
 paginate: 10
 paginate_path: /page:num/
@@ -47,6 +48,18 @@ defaults:
       layout: post
       comments: false
       toc: true
+
+plugins:
+  - jekyll-archives
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 exclude:
   - "*.gem"
