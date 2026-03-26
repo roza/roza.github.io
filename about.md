@@ -1,15 +1,13 @@
 ---
-# the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
+layout: page
+title: "À propos"
 ---
 
 ## Whoami
 
+Gérard Rozsavolgyi, enseignant en BTS à Marie-Curie, vacataire à Polytech Marseille
 
-Gérard Rozsavolgyi, enseignant en BTS à  Marie-Curie, vacataire à Polytech Marseille
-
-## Compétences 
+## Compétences
 
 ### Informatique
 
@@ -21,5 +19,3 @@ Gérard Rozsavolgyi, enseignant en BTS à  Marie-Curie, vacataire à Polytech Ma
 ### Maths
 
 Maths CPGE (ouvrages)
-
-

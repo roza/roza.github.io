@@ -1,4 +1,231 @@
 ---
 layout: home
-# Index page
+paginate: true
 ---
+
+<style>
+/* --- Grille --- */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+  margin-bottom: 2rem;
+}
+.courses-grid--centered {
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Carte --- */
+.course-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px;
+  background: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-color: #4f4f8a;
+  text-decoration: none;
+}
+
+/* --- Icône --- */
+.icon-wrap {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+.icon-wrap img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+.icon-dark {
+  background: #2d2d3e;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* --- Textes --- */
+.courses-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.25rem;
+}
+.course-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.course-desc {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.course-btn {
+  font-size: 10px;
+  background: rgba(99,102,241,0.25);
+  color: #a5b4fc;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.course-btn--maths {
+  background: rgba(109,40,217,0.3);
+  color: #c4b5fd;
+}
+.course-btn--cogn {
+  background: rgba(13,148,136,0.25);
+  color: #5eead4;
+}
+
+/* --- Séparateur "Autres thèmes" --- */
+.other-separator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0.5rem 0 1.5rem;
+}
+.other-separator::before,
+.other-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+.other-separator span {
+  font-size: 11px;
+  color: #9ca3af;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+</style>
+
+<img src="/assets/images/banner.svg"
+     alt="Cours en ligne - Gérard Rozsavolgyi"
+     style="width:100%;display:block;margin-bottom:2rem;">
+
+<section>
+  <h2 class="courses-section-title">
+    Cours disponibles
+  </h2>
+  <div class="courses-grid">
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" loading="lazy">
+      </div>
+      <span class="course-title">PHP</span>
+      <span class="course-desc">Développement Web côté serveur</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap icon-dark">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Bash" loading="lazy">
+      </div>
+      <span class="course-title">Bash</span>
+      <span class="course-desc">Scripting &amp; ligne de commande</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy">
+      </div>
+      <span class="course-title">JavaScript</span>
+      <span class="course-desc">Scripting &amp; développement frontend</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" loading="lazy">
+      </div>
+      <span class="course-title">Docker</span>
+      <span class="course-desc">Conteneurisation et déploiement</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap icon-dark">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="Django" loading="lazy">
+      </div>
+      <span class="course-title">Django</span>
+      <span class="course-desc">Framework Python pour le Web</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" loading="lazy">
+      </div>
+      <span class="course-title">Flutter</span>
+      <span class="course-desc">Développement mobile multiplateforme</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" loading="lazy">
+      </div>
+      <span class="course-title">Java</span>
+      <span class="course-desc">Programmation orientée objet</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="/assets/images/tdd.svg" alt="TDD">
+      </div>
+      <span class="course-title">TDD</span>
+      <span class="course-desc">Test-Driven Development</span>
+      <span class="course-btn">→ Accéder</span>
+    </a>
+
+  </div>
+</section>
+
+<div class="other-separator">
+  <span>Autres thèmes</span>
+</div>
+
+<section>
+  <div class="courses-grid courses-grid--centered">
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="/assets/images/maths.svg" alt="Maths">
+      </div>
+      <span class="course-title">Maths</span>
+      <span class="course-desc">CPGE · Analyse · Algèbre</span>
+      <span class="course-btn course-btn--maths">→ Accéder</span>
+    </a>
+
+    <a href="#" class="course-card">
+      <div class="icon-wrap">
+        <img src="/assets/images/cognition.svg" alt="Cognition">
+      </div>
+      <span class="course-title">Cognition</span>
+      <span class="course-desc">Sciences cognitives · Mémoire</span>
+      <span class="course-btn course-btn--cogn">→ Accéder</span>
+    </a>
+
+  </div>
+</section>

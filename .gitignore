@@ -25,3 +25,9 @@ package-lock.json
 # Misc
 _sass/vendors
 assets/js/dist
+
+# Outils locaux
+.superpowers/
+.claude/
+docs/superpowers/
+Gemfile.ori
