@@ -4,3 +4,5 @@ source "https://rubygems.org"
 
 gem "jekyll-theme-so-simple", "~> 3.2"
 
+gem "html-proofer", "~> 5.0", group: :test
+
