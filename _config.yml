@@ -26,6 +26,7 @@ comments: false
 navigation_pages:
   - about.md
   - categories.md
+  - publications.md
 
 paginate: 10
 paginate_path: /page:num/
