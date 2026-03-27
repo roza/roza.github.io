@@ -1,0 +1,46 @@
+dunod:
+  - title: "Maths MPSI-MP2I"
+    authors: "S. Gugger, C. Chalons, A. Khelif, V. Petrov, G. Rozsavolgyi"
+    cover: "https://www.dunod.com/sites/default/files/styles/moyen_desktop/public/thumbnails/image/9782100826179-001-X.jpeg"
+    url: "https://www.dunod.com/prepas-concours/maths-mpsi-mp2i"
+
+  - title: "Maths PCSI"
+    authors: "S. Gugger, C. Chalons, A. Khelif, V. Petrov, G. Rozsavolgyi"
+    cover: "https://www.dunod.com/sites/default/files/styles/moyen_desktop/public/thumbnails/image/9782100828302-001-X.jpeg"
+    url: "https://www.dunod.com/prepas-concours/maths-pcsi-0"
+
+  - title: "Maths PC/PC*"
+    authors: "S. Gugger, H. Lemberg, G. Rozsavolgyi, L. Pater"
+    cover: "https://www.dunod.com/sites/default/files/styles/moyen_desktop/public/thumbnails/image/9782100841721-001-X.jpeg"
+    url: "https://www.dunod.com/prepas-concours/maths-pcpc"
+
+  - title: "Maths MP/MP*-MPI/MPI*"
+    authors: "S. Gugger, G. Rozsavolgyi, L. Pater, H. Lemberg"
+    cover: "https://www.dunod.com/sites/default/files/styles/moyen_desktop/public/thumbnails/image/9782100841714-001-X.jpeg"
+    url: "https://www.dunod.com/prepas-concours/maths-mpmp-mpimpi"
+
+  - title: "Informatique tout-en-un MP2I-MPI"
+    authors: "F. Becker, O. Bournez, J.-L. Carré, M. Liedloff, G. Rozsavolgyi et al."
+    cover: "https://www.dunod.com/sites/default/files/styles/moyen_desktop/public/thumbnails/image/9782100851768-001-X.jpeg"
+    url: "https://www.dunod.com/prepas-concours/informatique-tout-en-un-mp2i-mpi"
+
+hatier:
+  - title: "Prépabac NSI 1re générale"
+    authors: "G. Rozsavolgyi"
+    cover: "https://www.editions-hatier.fr/sites/default/files/styles/livre_couverture_recherche/public/couvertures/couverture_8297112.jpg"
+    url: "https://www.editions-hatier.fr/recherche?mots=rozsavolgyi"
+
+  - title: "Prépabac NSI Tle — Bac 2024"
+    authors: "G. Rozsavolgyi"
+    cover: "https://www.editions-hatier.fr/sites/default/files/styles/livre_couverture_recherche/public/couvertures/couverture_3598464.jpg"
+    url: "https://www.editions-hatier.fr/recherche?mots=rozsavolgyi"
+
+  - title: "Prépabac NSI Tle — Bac 2026"
+    authors: "G. Rozsavolgyi"
+    cover: "https://www.editions-hatier.fr/sites/default/files/styles/livre_couverture_recherche/public/couvertures/couverture_8297235.jpg"
+    url: "https://www.editions-hatier.fr/recherche?mots=rozsavolgyi"
+
+  - title: "Fiches bac NSI Tle — Bac 2026"
+    authors: "G. Rozsavolgyi"
+    cover: "https://www.editions-hatier.fr/sites/default/files/styles/livre_couverture_recherche/public/couvertures/couverture_2853132.jpg"
+    url: "https://www.editions-hatier.fr/recherche?mots=rozsavolgyi"
