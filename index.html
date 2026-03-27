@@ -115,6 +115,60 @@ paginate: true
   text-transform: uppercase;
   white-space: nowrap;
 }
+
+/* --- Encart Publications --- */
+.publi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 10px;
+  padding: 16px;
+  text-decoration: none;
+  max-width: 480px;
+  margin: 0 auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.publi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-color: #4f4f8a;
+  text-decoration: none;
+}
+.publi-covers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  flex-shrink: 0;
+}
+.publi-covers img {
+  width: 30px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+.publi-text { flex: 1; }
+.publi-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+}
+.publi-sub {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+.publi-btn {
+  font-size: 10px;
+  background: rgba(99,102,241,0.25);
+  color: #a5b4fc;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
 </style>
 
 <img src="/assets/images/banner.svg"
@@ -228,4 +282,25 @@ paginate: true
     </a>
 
   </div>
+</section>
+
+<div class="other-separator" style="margin-top:2rem;">
+  <span>Publications</span>
+</div>
+
+<section style="margin-bottom:2rem;">
+  <a href="/publications/" class="publi-card">
+    <div class="publi-covers">
+      {% assign all_covers = site.data.books.dunod | concat: site.data.books.hatier %}
+      {% for book in all_covers limit:6 %}
+      <img src="{{ book.cover }}" alt="{{ book.title }}" loading="lazy">
+      {% endfor %}
+    </div>
+    <div class="publi-text">
+      {% assign total = site.data.books.dunod.size | plus: site.data.books.hatier.size %}
+      <div class="publi-title">Ouvrages publiés</div>
+      <div class="publi-sub">{{ total }} livres co-écrits · Dunod · Hatier</div>
+      <span class="publi-btn">→ Voir les publications</span>
+    </div>
+  </a>
 </section>
