@@ -1,10 +1,8 @@
 ---
-title: "Principaux cours en ligne"
+title: "Parcours"
 date: 2026-03-15 10:00:00 +0100
 categories: [Cours, Livres]
 tags: [linux, apache, mysql, php, ubuntu, Flutter, PHP, Java, Python, Django, Maths]
 ---
 
-## Contexte
-
-Blabla
+Enseignant à l'IUT d'Orléans/Université d'Orléans pendant plus de 25 ans, puis 2 ans en prépa MP2I à Valbonne et maintenant en BTS SIO à Marseille. Intervenant à Polytech Marseille.
