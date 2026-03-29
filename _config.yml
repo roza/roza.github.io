@@ -2,7 +2,7 @@ theme: jekyll-theme-so-simple
 
 title: "Gérard Rozsavolgyi Github Page"
 tagline: "Page de présentation - cours en ligne"
-description: "Page de présentation de Gérard Rozsavolgyi, Cours en ligne git, bash, PHP, Docker, Django etc."
+description: "Page de présentation de Gérard Rozsavolgyi, Publications, Cours en ligne Git, Bash, JS, PHP, Docker, Django etc."
 baseurl: ""
 url: "https://roza.github.io"
 lang: fr-FR
