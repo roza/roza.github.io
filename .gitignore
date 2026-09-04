@@ -31,3 +31,4 @@ assets/js/dist
 .claude/
 docs/superpowers/
 Gemfile.ori
+.DS_Store
