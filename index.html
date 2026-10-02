@@ -56,6 +56,15 @@ paginate: true
   padding: 4px;
   box-sizing: border-box;
 }
+/* Carte à deux icônes côte à côte (ex. Java + Flutter) */
+.icon-pair {
+  width: auto;
+  gap: 8px;
+}
+.icon-pair img {
+  width: 44px;
+  height: 44px;
+}
 
 /* --- Textes --- */
 .courses-section-title {
@@ -208,8 +217,8 @@ paginate: true
     </a>
 
     <a href="https://unix-bash-6d2aba.gitlab.io" class="course-card">
-      <div class="icon-wrap icon-dark">
-        <img src="/assets/images/icons/bash-original.svg" alt="Bash" loading="lazy">
+      <div class="icon-wrap">
+        <img src="/assets/images/icons/linux-original.svg" alt="Linux" loading="lazy">
       </div>
       <span class="course-title">Unix, Bash, réseau, numération</span>
       <span class="course-desc">Linux, commandes, Scripting &amp; etc.</span>
@@ -244,20 +253,21 @@ paginate: true
     </a>
 
     <a href="https://roza.gitlab.io/bloc2-slam2/" class="course-card">
-      <div class="icon-wrap">
+      <div class="icon-wrap icon-pair">
+        <img src="/assets/images/icons/java-original.svg" alt="Java" loading="lazy">
         <img src="/assets/images/icons/flutter-original.svg" alt="Flutter" loading="lazy">
       </div>
       <span class="course-title">TDD Java et Flutter</span>
-      <span class="course-desc">Tests, Dart et développement mobile multiplateforme</span>
+      <span class="course-desc">Java, tests, Dart et développement mobile multiplateforme</span>
       <span class="course-btn">→ Accéder</span>
     </a>
 
-    <a href="https://roza.gitlab.io/bloc2-slam2/" class="course-card">
+    <a href="https://roza.gitlab.io/cyber-slam/" class="course-card">
       <div class="icon-wrap">
-        <img src="/assets/images/icons/java-original.svg" alt="Java" loading="lazy">
+        <img src="/assets/images/icons/cyber-shield.svg" alt="Cybersécurité" loading="lazy">
       </div>
-      <span class="course-title">Java</span>
-      <span class="course-desc">Programmation orientée objet</span>
+      <span class="course-title">Cybersécurité</span>
+      <span class="course-desc">Sécurité applicative, RGPD &amp; épreuve E7</span>
       <span class="course-btn">→ Accéder</span>
     </a>
 
