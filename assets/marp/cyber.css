@@ -1,0 +1,164 @@
+/* @theme cyber */
+/*
+ * Thème des diaporamas du cours de cybersécurité (BTS SIO 2A SLAM).
+ * Couleurs du site compagnon et des PDF des TP. Dans un deck :
+ *
+ *   ---
+ *   marp: true
+ *   theme: cyber
+ *   paginate: true
+ *   ---
+ *
+ *   <!-- _class: titre -->     diapo de titre
+ *   <!-- _class: partie -->    intercalaire de partie
+ *   > texte                    encadré vert
+ *   > **Piège.** texte         encadré jaune (citation qui commence par du gras
+ *   > ⚠️ **Piège.** texte          ou par un emoji)
+ *
+ * Aperçu VS Code : réglage markdown.marp.themes (voir .vscode/settings.json).
+ * Export en ligne de commande : marp --theme-set marp/cyber.css …
+ */
+
+@import 'default';
+
+:root {
+  --vert: #0b6e4f;
+  --vert-clair: #3ddc97;
+  --vert-fond: #eef7f3;
+  --bleu: #0b4f6c;
+  --bleu-code: #0b5d8a;
+  --texte: #1f2933;
+  --jaune-fond: #fff8e1;
+  --jaune: #d4a017;
+}
+
+section {
+  font-family: 'Source Sans 3', 'Source Sans Pro', 'Segoe UI', Helvetica, Arial, sans-serif;
+  color: var(--texte);
+}
+
+h1, h2, h3 {
+  font-family: 'Avenir Next', 'Avenir', 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+h1 {
+  color: var(--vert);
+  border-bottom: 3px solid var(--vert-clair);
+  padding-bottom: 0.15em;
+}
+
+h2 {
+  color: var(--bleu);
+}
+
+strong {
+  color: var(--bleu);
+}
+
+/* Code */
+code, pre, pre code {
+  font-family: 'Cascadia Code', 'Geist Mono', Menlo, Consolas, monospace;
+}
+
+code {
+  background: #eef3f8;
+  color: var(--bleu-code);
+  border-radius: 4px;
+}
+
+pre {
+  background: #f6f6f6;
+  border-left: 5px solid var(--vert);
+  border-radius: 4px;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+}
+
+/* Tableaux */
+table th {
+  background: var(--vert);
+  color: #fff;
+  border-color: var(--vert);
+}
+
+table th strong,
+table th em,
+table th code {
+  color: #fff;
+  background: none;
+}
+
+table td {
+  border-color: #cfe3da;
+}
+
+table tr:nth-child(2n) td {
+  background: var(--vert-fond);
+}
+
+/* Encadrés : citation simple en vert, citation qui commence par du gras en jaune */
+blockquote {
+  background: var(--vert-fond);
+  border-left: 6px solid var(--vert);
+  border-radius: 6px;
+  padding: 0.4em 1em;
+  color: var(--texte);
+}
+
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+blockquote:has(> p:first-child > strong:first-child),
+blockquote:has(> p:first-child > img.emoji:first-child) {
+  background: var(--jaune-fond);
+  border-left-color: var(--jaune);
+}
+
+/* Pagination */
+section::after {
+  color: var(--vert);
+  font-weight: 600;
+}
+
+/* Diapo de titre */
+section.titre {
+  background: linear-gradient(135deg, var(--vert), var(--bleu));
+  color: #fff;
+}
+
+section.titre h1 {
+  color: #fff;
+  border-bottom-color: var(--vert-clair);
+}
+
+section.titre h2,
+section.titre em,
+section.titre strong {
+  color: #d8f5e8;
+}
+
+section.titre::after {
+  color: #d8f5e8;
+}
+
+/* Intercalaire de partie */
+section.partie {
+  background: var(--vert);
+  justify-content: center;
+}
+
+section.partie h1 {
+  color: #fff;
+  border-bottom: none;
+  font-size: 1.8em;
+}
+
+section.partie::after {
+  color: #d8f5e8;
+}
