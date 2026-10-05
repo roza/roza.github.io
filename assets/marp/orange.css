@@ -1,0 +1,166 @@
+/* @theme orange */
+/*
+ * Thème des diaporamas du bloc 2 (BTS SIO 2 SLAM : Dart, Flutter...).
+ * Dans un deck :
+ *
+ *   ---
+ *   marp: true
+ *   theme: orange
+ *   paginate: true
+ *   ---
+ *
+ *   <!-- _class: titre -->     diapo de titre (fond orange)
+ *   <!-- _paginate: false -->
+ *   <!-- _class: partie -->    intercalaire de partie
+ *   > texte                    encadré orange clair
+ *   > **Piège.** texte         encadré jaune (citation qui commence par du gras
+ *   > ⚠️ texte                  ou par un emoji)
+ *
+ * Mêmes police et tailles que le thème default : passer un deck à ce thème
+ * ne déplace pas son contenu (le liseré est dessiné par-dessus la diapo).
+ *
+ * Aperçu VS Code : réglage markdown.marp.themes (voir .vscode/settings.json).
+ * Export en ligne de commande : marp/marp-orange deck.md
+ */
+
+@import 'default';
+
+:root {
+  --orange: #f57c00;
+  --orange-fonce: #e65100;
+  --orange-fond: #fff3e0;
+  --bleu: #0175c2;
+  --bleu-fonce: #0b3d66;
+  --bleu-fond: #eef5fb;
+  --texte: #1f2933;
+  --jaune-fond: #fff8e1;
+  --jaune: #d4a017;
+}
+
+section {
+  font-size: 28px;
+  color: var(--texte);
+  /* le liseré : une bande orange à gauche, sans réduire la place du texte */
+  box-shadow: inset 14px 0 0 var(--orange);
+}
+
+h1, h2 {
+  color: var(--bleu);
+}
+
+h3 {
+  color: var(--bleu-fonce);
+}
+
+strong {
+  color: var(--bleu-fonce);
+}
+
+/* Code */
+code {
+  background: var(--bleu-fond);
+  color: var(--bleu-fonce);
+  border-radius: 4px;
+}
+
+pre {
+  background: #f6f6f6;
+  border-left: 5px solid var(--bleu);
+  border-radius: 4px;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+}
+
+/* Tableaux */
+table {
+  font-size: 24px;
+}
+
+table th {
+  background: var(--bleu);
+  color: #fff;
+  border-color: var(--bleu);
+}
+
+table th strong,
+table th em,
+table th code {
+  color: #fff;
+  background: none;
+}
+
+table td {
+  border-color: #c9dcec;
+}
+
+table tr:nth-child(2n) td {
+  background: var(--bleu-fond);
+}
+
+/* Encadrés : citation simple en orange clair, citation qui commence par
+   du gras ou par un emoji en jaune */
+blockquote {
+  background: var(--orange-fond);
+  border-left: 6px solid var(--orange);
+  border-radius: 6px;
+  padding: 0.4em 1em;
+  color: var(--texte);
+}
+
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+blockquote:has(> p:first-child > strong:first-child),
+blockquote:has(> p:first-child > img.emoji:first-child) {
+  background: var(--jaune-fond);
+  border-left-color: var(--jaune);
+}
+
+/* Pagination */
+section::after {
+  color: var(--orange-fonce);
+  font-weight: 600;
+}
+
+/* Diapo de titre : fond orange */
+section.titre {
+  background: linear-gradient(135deg, var(--orange), var(--orange-fonce));
+  box-shadow: inset 14px 0 0 var(--bleu);
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+}
+
+section.titre h1,
+section.titre h2,
+section.titre strong {
+  color: #fff;
+}
+
+section.titre h2 {
+  font-weight: 500;
+}
+
+section.titre em {
+  color: #fff3e0;
+}
+
+section.titre::after {
+  color: #fff3e0;
+}
+
+/* Intercalaire de partie */
+section.partie {
+  background: var(--orange-fond);
+  text-align: center;
+  justify-content: center;
+}
+
+section.partie h1 {
+  font-size: 1.8em;
+}
