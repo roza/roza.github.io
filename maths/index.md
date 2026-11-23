@@ -1,6 +1,8 @@
 ---
 layout: page
 title: "Maths"
+seo_title: "Maths : la preuve RH/GRH d'Alpöge, lue sur l'export Lean"
+description: "Lectures mathématiques : la preuve Lean de l'hypothèse de Riemann et de GRH (Dirichlet) d'Alpöge, lue au niveau des déclarations (synthèse, carte, outils)."
 permalink: /maths/
 ---
 
