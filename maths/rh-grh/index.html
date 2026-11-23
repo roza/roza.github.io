@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>La preuve RH/GRH d’Alpöge : une lecture structurelle</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
+  <style>
+    body { max-width: 52em; margin: 0 auto; padding: 1.5em 1em; font-family: Georgia, "Times New Roman", serif; line-height: 1.55; color: #1a1a1a; background: #fff; }
+    h1, h2, h3 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.25; }
+    h1 { font-size: 1.9em; } h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: .2em; }
+    table { border-collapse: collapse; margin: 1em 0; font-size: .92em; display: block; overflow-x: auto; }
+    th, td { border: 1px solid #ccc; padding: .3em .6em; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .glossaire td { padding-top: .45em; padding-bottom: .45em; }
+    .glossaire td:last-child, .glossaire th:last-child { padding-left: 1.2em; }
+    code { font-size: .88em; background: #f5f5f5; padding: 0 .2em; border-radius: 3px; }
+    pre { overflow-x: auto; background: #f7f7f7; padding: .8em; }
+    pre.mermaid { background: none; text-align: center; overflow-x: auto; }
+    blockquote { border-left: 4px solid #c9d3e6; margin: 1em 0; padding: .2em 1em; background: #f6f8fc; }
+    nav#TOC { font-size: .9em; background: #fafafa; border: 1px solid #e5e5e5; padding: .5em 1em; }
+    a { color: #1f4f9a; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #161616; color: #e6e6e6; } a { color: #8ab4f8; }
+      th { background: #262626; } th, td { border-color: #444; }
+      code, pre { background: #222; } blockquote { background: #1d2330; border-color: #3b4a66; }
+      nav#TOC { background: #1d1d1d; border-color: #333; } h2 { border-color: #333; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false }, theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" });
+  </script>
+</head>
+<body>
+<nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
+<header id="title-block-header">
+<h1 class="title">La preuve RH/GRH d’Alpöge : une lecture
+structurelle</h1>
+</header>
+<p><em>Document de travail, version 1.0 du 23 novembre 2026. Rédigé avec
+l’assistance de Claude (Anthropic).</em></p>
+<p>En novembre 2026, L. Alpöge a annoncé une preuve formelle en Lean,
+trouvée avec Claude, de l’hypothèse de Riemann et de l’hypothèse de
+Riemann généralisée pour les fonctions L de Dirichlet. Sa validité
+formelle a été vérifiée par d’autres (compilation complète, axiomes
+standard, rejeu par plusieurs noyaux). Ces pages cherchent à
+<strong>comprendre</strong> la preuve. Elles s’appuient sur une analyse
+de l’export de la preuve <strong>au niveau des déclarations</strong> :
+fermeture exacte des dépendances, arbre des dominateurs, poids de chaque
+étape.</p>
+<h2 id="synthèse">Synthèse</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>HTML</th>
+<th>PDF</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Français</td>
+<td><a href="synthese.html">synthese.html</a></td>
+<td><a href="synthese.pdf">synthese.pdf</a></td>
+<td><a href="synthese.md">synthese.md</a></td>
+</tr>
+<tr>
+<td>English</td>
+<td><a href="synthese_en.html">synthese_en.html</a></td>
+<td><a href="synthese_en.pdf">synthese_en.pdf</a></td>
+<td><a href="synthese_en.md">synthese_en.md</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="notes-de-travail-et-outils">Notes de travail et outils</h2>
+<ul>
+<li><a href="carte.html">Carte de la preuve</a> (<a
+href="carte.md">source</a>) : notes de travail détaillées, avec les noms
+des déclarations Lean (en français). Certaines lectures y ont été
+corrigées depuis ; la synthèse fait foi.</li>
+<li><a href="tools/">Outils d’analyse de l’export</a> : lecture en flux
+de l’export, dépendances, dominateurs, réimpression des énoncés.</li>
+<li><a href="analysis/">Données</a> : épine dorsale et rapport ; l’arbre
+des dominateurs (<code>decl_domtree.tsv.gz</code>, 28 Mo) est publié en
+<a
+href="https://github.com/roza/roza.github.io/releases/tag/rh-grh-data-v1.0">release
+GitHub</a>.</li>
+</ul>
+<h2 id="autres-synthèses-publiées">Autres synthèses publiées</h2>
+<ul>
+<li>M. Rubinstein, <em>The Alpöge–Claude proof of the Riemann hypothesis
+explained for the Riemann zeta function</em> (document de travail) : <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/</a></li>
+<li>S. Slijepčević, <em>Outline of Alpöge’s proof of the generalised
+Riemann hypothesis</em> : <a href="https://cantabpi.com/grh.pdf"
+class="uri">https://cantabpi.com/grh.pdf</a></li>
+<li>R. Zhang, <em>A preliminary note on Alpöge’s proposed proof of the
+generalized Riemann hypothesis</em> : <a
+href="https://www.ihes.fr/~rzhang/files/GRH%20note.pdf"
+class="uri">https://www.ihes.fr/~rzhang/files/GRH%20note.pdf</a></li>
+<li><em>Three simplifications in the Alpöge–Claude argument for
+Dirichlet GRH</em>, hexagon:2611.00828 : <a
+href="https://hexagonmath.org/2611.00828v1"
+class="uri">https://hexagonmath.org/2611.00828v1</a></li>
+<li><code>RH-Alpoge-Reconstruction</code> : <a
+href="https://github.com/jimjamzola/RH-Alpoge-Reconstruction"
+class="uri">https://github.com/jimjamzola/RH-Alpoge-Reconstruction</a></li>
+<li>M. Lerma, <em>A Schematic RH Proof for Dummies</em> : <a
+href="https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf"
+class="uri">https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf</a></li>
+</ul>
+<h2 id="sources-primaires">Sources primaires</h2>
+<ul>
+<li>L. Alpöge, note d’annonce : <a href="https://alpo.ge/remark.pdf"
+class="uri">https://alpo.ge/remark.pdf</a></li>
+<li>A. Sutherland, vérification et export de la preuve : <a
+href="https://math.mit.edu/~drew/grh/"
+class="uri">https://math.mit.edu/~drew/grh/</a></li>
+</ul>
+</body>
+</html>

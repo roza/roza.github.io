@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Alpöge GRH synthesis</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
+  <style>
+    body { max-width: 52em; margin: 0 auto; padding: 1.5em 1em; font-family: Georgia, "Times New Roman", serif; line-height: 1.55; color: #1a1a1a; background: #fff; }
+    h1, h2, h3 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.25; }
+    h1 { font-size: 1.9em; } h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: .2em; }
+    table { border-collapse: collapse; margin: 1em 0; font-size: .92em; display: block; overflow-x: auto; }
+    th, td { border: 1px solid #ccc; padding: .3em .6em; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .glossaire td { padding-top: .45em; padding-bottom: .45em; }
+    .glossaire td:last-child, .glossaire th:last-child { padding-left: 1.2em; }
+    code { font-size: .88em; background: #f5f5f5; padding: 0 .2em; border-radius: 3px; }
+    pre { overflow-x: auto; background: #f7f7f7; padding: .8em; }
+    pre.mermaid { background: none; text-align: center; overflow-x: auto; }
+    blockquote { border-left: 4px solid #c9d3e6; margin: 1em 0; padding: .2em 1em; background: #f6f8fc; }
+    nav#TOC { font-size: .9em; background: #fafafa; border: 1px solid #e5e5e5; padding: .5em 1em; }
+    a { color: #1f4f9a; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #161616; color: #e6e6e6; } a { color: #8ab4f8; }
+      th { background: #262626; } th, td { border-color: #444; }
+      code, pre { background: #222; } blockquote { background: #1d2330; border-color: #3b4a66; }
+      nav#TOC { background: #1d1d1d; border-color: #333; } h2 { border-color: #333; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false }, theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" });
+  </script>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#alpöges-proof-of-the-generalized-riemann-hypothesis"
+id="toc-alpöges-proof-of-the-generalized-riemann-hypothesis">Alpöge’s
+proof of the generalized Riemann hypothesis</a>
+<ul>
+<li><a
+href="#preliminaries-dirichlet-characters-l-functions-the-riemann-hypothesis"
+id="toc-preliminaries-dirichlet-characters-l-functions-the-riemann-hypothesis">Preliminaries:
+Dirichlet characters, L-functions, the Riemann hypothesis</a></li>
+<li><a href="#two-page-summary" id="toc-two-page-summary">Two-page
+summary</a></li>
+</ul></li>
+<li><a href="#part-i.-the-proof" id="toc-part-i.-the-proof">Part I. The
+proof</a>
+<ul>
+<li><a href="#from-rh-to-an-inequality-about-primes"
+id="toc-from-rh-to-an-inequality-about-primes">1. From RH to an
+inequality about primes</a></li>
+<li><a href="#one-auxiliary-field-per-scale"
+id="toc-one-auxiliary-field-per-scale">2. One auxiliary field per
+scale</a></li>
+<li><a href="#the-model-stepanovs-proof-for-curves"
+id="toc-the-model-stepanovs-proof-for-curves">3. The model: Stepanov’s
+proof for curves</a></li>
+<li><a
+href="#the-source-of-divisibility-differentiating-a-theta-series-at-a-cm-point"
+id="toc-the-source-of-divisibility-differentiating-a-theta-series-at-a-cm-point">4.
+The source of divisibility: differentiating a theta series at a CM
+point</a></li>
+<li><a href="#multiplicity-a-chain-of-m-theta-lifts"
+id="toc-multiplicity-a-chain-of-m-theta-lifts">5. Multiplicity: a chain
+of m theta lifts</a></li>
+<li><a
+href="#the-archimedean-side-lattices-slopes-and-the-product-formula"
+id="toc-the-archimedean-side-lattices-slopes-and-the-product-formula">6.
+The archimedean side: lattices, slopes and the product formula</a></li>
+<li><a href="#where-the-½-comes-from" id="toc-where-the-½-comes-from">7.
+Where the ½ comes from</a></li>
+<li><a href="#the-losses-and-the-theories-they-call-on"
+id="toc-the-losses-and-the-theories-they-call-on">8. The losses, and the
+theories they call on</a></li>
+</ul></li>
+<li><a href="#part-ii.-map-of-the-code"
+id="toc-part-ii.-map-of-the-code">Part II. Map of the code</a></li>
+<li><a href="#part-iii.-assessment" id="toc-part-iii.-assessment">Part
+III. Assessment</a>
+<ul>
+<li><a href="#what-is-new-i" id="toc-what-is-new-i">What is new
+⟦I⟧</a></li>
+<li><a href="#what-is-classical-or-classical-recombined"
+id="toc-what-is-classical-or-classical-recombined">What is classical, or
+classical recombined</a></li>
+<li><a href="#what-is-not-yet-understood"
+id="toc-what-is-not-yet-understood">What is not yet understood</a></li>
+<li><a href="#what-is-proved-exactly"
+id="toc-what-is-proved-exactly">What is proved, exactly</a></li>
+<li><a href="#appendix-a.-genesis-what-the-sources-say"
+id="toc-appendix-a.-genesis-what-the-sources-say">Appendix A. Genesis:
+what the sources say</a></li>
+<li><a href="#appendix-b.-glossary"
+id="toc-appendix-b.-glossary">Appendix B. Glossary</a></li>
+<li><a href="#appendix-c.-mathematical-consequences"
+id="toc-appendix-c.-mathematical-consequences">Appendix C. Mathematical
+consequences</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+<li><a href="#version-history" id="toc-version-history">Version
+history</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="alpöges-proof-of-the-generalized-riemann-hypothesis">Alpöge’s
+proof of the generalized Riemann hypothesis</h1>
+<p><em>Version 1.0, 23 November 2026. Working document: it will be
+corrected as the readings progress (history at the end). Translated from
+the French original: <a href="synthese.html">version
+française</a>.</em></p>
+<p><em><strong>Gérard Rozsavolgyi</strong>, guiding <strong>Claude
+(Anthropic)</strong>. The export-analysis scripts, the reading of the
+code and the drafting were done by Claude under the author’s direction,
+then reviewed. Sources: the proof export published by A. Sutherland [Su]
+(<code>solution.ndjson.zst</code>: 1,468,418 declarations, exactly the
+closure of the statements of <code>Main</code>), the author’s note [A],
+and the other published readings [Z], [S], [R], [H], [G] (see
+References). More detailed working notes, with Lean names, in French: <a
+href="carte.html">map of the proof</a>. Analysis tools: <a
+href="tools/">tools/</a>.</em></p>
+<blockquote>
+<p><strong>Intended reader.</strong> A mathematician who knows number
+fields, Dirichlet L-functions and a little <span
+class="math inline">\(p\)</span>-adic analysis, but is a specialist
+neither in analytic number theory, nor in automorphic forms, nor in
+Arakelov geometry. The <strong>preliminaries</strong> recall Dirichlet
+L-functions and the statement of GRH. <strong>Part I</strong> presents
+the proof without Lean vocabulary. <strong>Part II</strong> says where
+each step lives in the code and how much it weighs. <strong>Part
+III</strong> takes stock.</p>
+<p><strong>Status.</strong> Formal validity is not in question: full
+compilation, standard axioms, replay by several independent kernels
+(checks published by Sutherland [Su] and Rubinstein [R], as of
+23/11/2026). This text aims to <strong>understand</strong>. Claims are
+read off the statements in the export, except those marked ⟦I⟧, which
+are interpretations.</p>
+</blockquote>
+<hr />
+<h2
+id="preliminaries-dirichlet-characters-l-functions-the-riemann-hypothesis">Preliminaries:
+Dirichlet characters, L-functions, the Riemann hypothesis</h2>
+<p><em>What follows is classical (Davenport, </em>Multiplicative Number
+Theory<em>, ch. 4–9 and 19). It fixes the notation for the rest of the
+text.</em></p>
+<p><strong>Dirichlet characters.</strong> A Dirichlet character of
+modulus <span class="math inline">\(N\ge1\)</span> is a group
+homomorphism <span class="math inline">\(\chi:(\mathbb Z/N\mathbb
+Z)^\times\to\mathbb C^\times\)</span>, extended to ℤ by <span
+class="math inline">\(\chi(n)=\chi(n\bmod N)\)</span> if <span
+class="math inline">\(\gcd(n,N)=1\)</span> and <span
+class="math inline">\(\chi(n)=0\)</span> otherwise. It is completely
+multiplicative and <span class="math inline">\(N\)</span>-periodic, with
+values in the roots of unity (and 0).</p>
+<ul>
+<li>Its <strong>order</strong> <span class="math inline">\(o\)</span> is
+its order in the group of characters: <span
+class="math inline">\(\chi^o=1\)</span>. Characters of order 2 are the
+<strong>quadratic</strong> characters, for instance the Legendre symbol
+<span class="math inline">\((\cdot/p)\)</span> or <span
+class="math inline">\(\chi_{-4}(n)=(-1)^{(n-1)/2}\)</span> for odd <span
+class="math inline">\(n\)</span>.</li>
+<li>It is <strong>even</strong> or <strong>odd</strong> according as
+<span class="math inline">\(\chi(-1)=+1\)</span> or <span
+class="math inline">\(-1\)</span>; write <span
+class="math inline">\(\kappa\in\{0,1\}\)</span> with <span
+class="math inline">\(\chi(-1)=(-1)^\kappa\)</span>.</li>
+<li>It is <strong>primitive</strong> if it does not come from a
+character of modulus <span class="math inline">\(N&#39;&lt;N\)</span>,
+<span class="math inline">\(N&#39;\mid N\)</span>. Every χ is
+<strong>induced</strong> by a unique primitive character <span
+class="math inline">\(\chi^\ast\)</span>, whose modulus <span
+class="math inline">\(f\mid N\)</span> is the
+<strong>conductor</strong>: <span
+class="math inline">\(\chi(n)=\chi^\ast(n)\)</span> for <span
+class="math inline">\(\gcd(n,N)=1\)</span>. The <strong>trivial</strong>
+character of modulus <span class="math inline">\(N\)</span> is induced
+by the character <span class="math inline">\(1\)</span> of modulus
+1.</li>
+<li><strong>Orthogonality</strong>: for <span
+class="math inline">\(\gcd(n,N)=1\)</span>, <span
+class="math inline">\(\frac1{\varphi(N)}\sum_{\chi\bmod
+N}\chi(n)=1\)</span> if <span class="math inline">\(n\equiv1\pmod
+N\)</span> and <span class="math inline">\(0\)</span> otherwise. This is
+the tool that isolates an arithmetic progression or, in § 2, a Frobenius
+class.</li>
+</ul>
+<p><strong>The function <span
+class="math inline">\(L(s,\chi)\)</span>.</strong> For <span
+class="math inline">\(\operatorname{Re}s&gt;1\)</span>, <span
+class="math display">\[L(s,\chi)=\sum_{n\ge1}\frac{\chi(n)}{n^{s}}=\prod_{p}\Big(1-\frac{\chi(p)}{p^{s}}\Big)^{-1},\]</span>
+the series and the (Euler) product converging absolutely. For <span
+class="math inline">\(\chi=1\)</span> this is <span
+class="math inline">\(\zeta(s)\)</span>. We write <span
+class="math inline">\(L(s,\chi)\)</span>; Mathlib and Part II write
+<span class="math inline">\(L(\chi,s)\)</span>
+(<code>LFunction χ s</code>), which is the same function.</p>
+<ul>
+<li><strong>Logarithmic derivative.</strong> Differentiating the
+logarithm of the Euler product, <span
+class="math display">\[-\frac{L&#39;}{L}(s,\chi)=\sum_{n\ge1}\frac{\Lambda(n)\chi(n)}{n^{s}},\qquad
+\Lambda(n)=\begin{cases}\log p &amp; n=p^k,\ k\ge1,\\
+0&amp;\text{otherwise}\end{cases}\]</span> (<span
+class="math inline">\(\Lambda\)</span> is the <strong>von
+Mangoldt</strong> function). This is <strong>the</strong> bridge between
+zeros and primes: a zero of <span class="math inline">\(L\)</span> of
+order <span class="math inline">\(m\)</span> is a simple pole of <span
+class="math inline">\(-L&#39;/L\)</span> with residue <span
+class="math inline">\(-m\)</span>.</li>
+<li><strong>Continuation and functional equation.</strong> If χ is
+primitive and <span class="math inline">\(\chi\neq1\)</span>, <span
+class="math inline">\(L(s,\chi)\)</span> extends to an
+<strong>entire</strong> function; <span
+class="math inline">\(\zeta\)</span> extends to a meromorphic function
+with a single pole, simple, at <span class="math inline">\(s=1\)</span>.
+For χ primitive of conductor <span class="math inline">\(N\)</span>, the
+completed function <span class="math display">\[\xi(s,\chi)=\Big(\frac
+N\pi\Big)^{(s+\kappa)/2}\,\Gamma\Big(\frac{s+\kappa}2\Big)\,L(s,\chi)\]</span>
+satisfies <span
+class="math inline">\(\xi(s,\chi)=\varepsilon(\chi)\,\xi(1-s,\bar\chi)\)</span>,
+with <span class="math inline">\(|\varepsilon(\chi)|=1\)</span> (a ratio
+of Gauss sums). The symmetry <span
+class="math inline">\(s\leftrightarrow1-s\)</span> exchanges χ and <span
+class="math inline">\(\bar\chi\)</span>.</li>
+<li><strong>Zeros.</strong> The Euler product forbids zeros for <span
+class="math inline">\(\operatorname{Re}s&gt;1\)</span>, and Hadamard–de
+la Vallée Poussin exclude them on <span
+class="math inline">\(\operatorname{Re}s=1\)</span>. The poles of Γ give
+the <strong>trivial zeros</strong> <span
+class="math inline">\(s=-\kappa,-\kappa-2,-\kappa-4,\dots\)</span> (for
+ζ: <span class="math inline">\(-2,-4,\dots\)</span>). All others, the
+<strong>non-trivial zeros</strong> <span
+class="math inline">\(\rho=\beta+i\gamma\)</span>, lie in the
+<strong>critical strip</strong> <span
+class="math inline">\(0&lt;\beta&lt;1\)</span>. There are infinitely
+many, about <span
+class="math inline">\(\frac{T}{2\pi}\log\frac{NT}{2\pi}\)</span> with
+height <span class="math inline">\(0&lt;\gamma\le T\)</span>. By the
+functional equation and conjugation (<span
+class="math inline">\(\overline{L(\bar s,\chi)}=L(s,\bar\chi)\)</span>),
+if ρ is a zero of <span class="math inline">\(L(s,\chi)\)</span> then so
+is <span class="math inline">\(1-\bar\rho\)</span>: the set of
+non-trivial zeros is <strong>symmetric about the critical line</strong>
+<span class="math inline">\(\operatorname{Re}s=\tfrac12\)</span>.</li>
+<li><strong>Non-primitive characters.</strong> If χ is induced by <span
+class="math inline">\(\chi^\ast\)</span>, <span
+class="math inline">\(L(s,\chi)=L(s,\chi^\ast)\prod_{p\mid
+N}(1-\chi^\ast(p)p^{-s})\)</span>: the extra factors vanish only on
+<span class="math inline">\(\operatorname{Re}s=0\)</span>.</li>
+</ul>
+<p><strong>RH and GRH.</strong></p>
+<ul>
+<li><strong>RH</strong>: all non-trivial zeros of ζ have real part <span
+class="math inline">\(\tfrac12\)</span>.</li>
+<li><strong>GRH for χ</strong> (the generalized Riemann hypothesis, here
+for Dirichlet L-functions): all non-trivial zeros of <span
+class="math inline">\(L(s,\chi^\ast)\)</span> have real part <span
+class="math inline">\(\tfrac12\)</span>.</li>
+</ul>
+<p>By the symmetry <span
+class="math inline">\(\rho\leftrightarrow1-\bar\rho\)</span>, this is
+the same as saying that <strong>there is no zero in the half-plane <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span></strong>:
+a zero to the left of the critical line has a mirror image to the right.
+The theorem is stated in this form, which mentions neither trivial zeros
+nor primitivity, including in Lean: <em>for every character χ and every
+<span class="math inline">\(s\)</span> with <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>, <span
+class="math inline">\(L(s,\chi)\neq0\)</span></em>.</p>
+<p><strong>Translation into primes.</strong> Let <span
+class="math inline">\(\psi(x,\chi)=\sum_{n\le
+x}\Lambda(n)\chi(n)\)</span> be the <strong>Chebyshev function</strong>
+twisted by χ (<span class="math inline">\(\psi(x)=\psi(x,1)\)</span>).
+The Riemann–von Mangoldt <strong>explicit formula</strong> writes it as
+a sum of waves indexed by the zeros: <span
+class="math display">\[\psi(x,\chi)=\delta_\chi\,x-\sum_{\rho}\frac{x^\rho}{\rho}+(\text{terms
+bounded by }O(\log x)),\qquad
+\delta_\chi=\begin{cases}1&amp;\chi=1\\0&amp;\chi\ne1\end{cases}\]</span>
+A zero <span class="math inline">\(\rho=\beta+i\gamma\)</span> produces
+an oscillation of amplitude <span
+class="math inline">\(x^\beta\)</span>. Hence, for every ε &gt; 0: <span
+class="math display">\[\text{GRH for }\chi\iff\psi(x,\chi)-\delta_\chi
+x=O_\varepsilon\big(x^{1/2+\varepsilon}\big).\]</span> The direction ⇐
+is the only one the proof needs. It comes from <span
+class="math inline">\(-\frac{L&#39;}{L}(s,\chi)=s\int_1^\infty\psi(x,\chi)\,x^{-s-1}\,dx\)</span>:
+a bound <span class="math inline">\(O(x^{\theta})\)</span> makes the
+integral converge, hence <span class="math inline">\(L&#39;/L\)</span>
+holomorphic, for <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span>.
+<strong>Proving GRH means bounding sums over primes with a square-root
+error.</strong></p>
+<p><em>Notation.</em> Below, the letter ψ <strong>on its own</strong>
+denotes a primitive character (the one being treated), and <span
+class="math inline">\(\psi(x,\chi)\)</span> the Chebyshev function; γ
+denotes Euler’s constant <span
+class="math inline">\(0.5772\ldots\)</span>, except in <span
+class="math inline">\(\rho=\beta+i\gamma\)</span>.</p>
+<hr />
+<h2 id="two-page-summary">Two-page summary</h2>
+<p><strong>Theorem.</strong> For every Dirichlet character χ, <span
+class="math inline">\(L(s,\chi)\neq 0\)</span> for <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>. In
+particular, the Riemann hypothesis holds.</p>
+<p><strong>The proof in six steps.</strong></p>
+<p><strong>1. A one-sided bound suffices.</strong> It suffices to bound
+from above a combination <strong>with non-negative coefficients</strong>
+of prime sums twisted by the powers of χ, with an error <span
+class="math inline">\(x^{1/2+\varepsilon}\)</span>, and only on
+<strong>windows</strong> of scales <span
+class="math inline">\([Y,Y^{3/2}]\)</span>.</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>Twisted Chebyshev sum</em>: <span
+class="math inline">\(\sum_{n\le x}\Lambda(n)\chi(n)\)</span>, where
+<span class="math inline">\(\Lambda(n)=\log p\)</span> if <span
+class="math inline">\(n=p^k\)</span> and <span
+class="math inline">\(0\)</span> otherwise. GRH for χ is equivalent to
+this sum being <span
+class="math inline">\(O(x^{1/2+\varepsilon})\)</span>.</li>
+<li><em>Landau positivity</em>: a Dirichlet series with coefficients
+<span class="math inline">\(\ge0\)</span> has a singularity at the real
+point of its abscissa of convergence. For a non-negative combination, an
+<strong>upper bound</strong> therefore suffices to exclude zeros,
+without a lower bound.</li>
+</ul>
+</blockquote>
+<p><strong>2. One auxiliary field per scale.</strong> At each scale
+<span class="math inline">\(x\)</span>, one chooses a large auxiliary
+field, the <strong>host</strong>, and counts there the <strong>inert
+primes</strong>, weighted according to their Frobenius. By orthogonality
+this count brings out χ, but also <strong>parasitic</strong> characters,
+which are neutralized by choosing the parameters of the host <strong>on
+average</strong>.</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>CM field</em>: a totally imaginary quadratic extension of a
+totally real field, for instance <span class="math inline">\(\mathbb
+Q(\zeta_n)\)</span> or <span class="math inline">\(\mathbb
+Q(\sqrt{-d})\)</span>.</li>
+<li><em>Host</em>: an abelian CM field <span
+class="math inline">\(E\subset\mathbb Q(\zeta_{Qqd})\)</span> of degree
+<span class="math inline">\(\approx x^{2}\)</span>, built on two
+auxiliary primes <span class="math inline">\(q,d\)</span>. It contains
+<span class="math inline">\(\sqrt{-q}\)</span>, <span
+class="math inline">\(\sqrt{-d}\)</span> and the field cut out by χ. Its
+Galois group is abelian and explicit, so any count of primes by
+Frobenius decomposes into sums twisted by its characters, χ among
+them.</li>
+<li><em>Inert prime</em>: <span class="math inline">\(p\)</span> is
+inert in <span class="math inline">\(\mathbb Q(\sqrt{-d})\)</span> if
+<span class="math inline">\(p\mathcal O\)</span> stays prime there, with
+residue field <span class="math inline">\(\mathbb F_{p^2}\)</span>. This
+is equivalent to <span
+class="math inline">\(\big(\tfrac{-d}{p}\big)=-1\)</span> and concerns
+about half of all primes.</li>
+<li><em>Choice on average</em>: one cannot control a given quadratic
+character, since that would be GRH. But in a family of size <span
+class="math inline">\(\exp(Y^{\varepsilon/5})\)</span>, <strong>almost
+all</strong> pairs <span class="math inline">\((q,d)\)</span> have good
+sums (large sieve). So some exist.</li>
+</ul>
+</blockquote>
+<p><strong>3. The engine: a Stepanov-type argument.</strong> “A function
+vanishing to high order” is replaced by “a theta series whose
+<strong>derivatives of order <span class="math inline">\(a\)</span> at a
+CM point</strong> are divisible by <span
+class="math inline">\(p^{a\,p/(p^2-1)}\)</span>”, for each inert prime
+<span class="math inline">\(p\)</span>. This is a <span
+class="math inline">\(p\)</span>-adic lemma on formal groups (“Theorem
+A”, of Dwork and Legendre type).</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>Stepanov’s method</em>: for a curve over <span
+class="math inline">\(\mathbb F_q\)</span>, one builds an auxiliary
+function vanishing to order <span class="math inline">\(a\)</span> at
+each rational point. Then <span class="math inline">\(a\cdot\#C(\mathbb
+F_q)\le\deg f\)</span>, and optimizing in <span
+class="math inline">\(a\)</span> gives <span
+class="math inline">\(q+O(\sqrt q)\)</span>. Over ℤ, “vanishing to order
+<span class="math inline">\(a\)</span>” becomes “being divisible by
+<span class="math inline">\(p^{v}\)</span>”.</li>
+<li><em>Theta series</em>: the generating series <span
+class="math inline">\(\theta_L(z)=\sum_{v\in L}e^{2\pi i H(v)z}\)</span>
+of representations by a quadratic or Hermitian form <span
+class="math inline">\(H\)</span>; it is an automorphic form.</li>
+<li><em>CM point</em>: a point of a moduli space of abelian varieties
+(modular curve, Shimura variety) corresponding to a variety with
+<strong>complex multiplication</strong>, whose endomorphism ring is
+unusually large. The typical example is <span
+class="math inline">\(\mathbb C/\mathbb Z[i]\)</span>, at <span
+class="math inline">\(\tau=i\)</span>. Modular forms take algebraic
+values there.</li>
+<li><em>Supersingular reduction, formal group</em>: at an inert <span
+class="math inline">\(p\)</span>, the reduction mod <span
+class="math inline">\(p\)</span> of the CM curve is supersingular. Its
+formal group, a group law given by a power series, has height 2, with
+logarithm <span class="math inline">\(\sum_e X^{p^{2e}}/p^e\)</span>.
+This rigidity makes divisibility computable.</li>
+<li><em>The rate <span class="math inline">\(p/(p^2-1)\)</span></em>:
+<span class="math inline">\(D^af(0)=a!\cdot\mathrm{coeff}_a(f)\)</span>.
+By Legendre, <span class="math inline">\(v_p(a!)\approx
+a/(p-1)\)</span>, and the denominators of the formal group cost at most
+<span class="math inline">\(a/(p^2-1)\)</span>. And <span
+class="math inline">\(\frac1{p-1}-\frac1{p^2-1}=\frac{p}{p^2-1}=\frac1p+\frac1{p^3}+\cdots\)</span>.</li>
+</ul>
+</blockquote>
+<p><strong>4. Multiplicity: a chain of lifts.</strong> A single
+differentiation is not enough. One chains <span
+class="math inline">\(m\)</span> <strong>theta lifts</strong> between
+unitary groups of increasing rank, and each adds its layer of
+divisibility. The length <span class="math inline">\(m\)</span> of the
+chain plays the role of the order of vanishing.</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>Unitary group</em> <span class="math inline">\(U(X)\)</span>:
+the group of isometries of a Hermitian space <span
+class="math inline">\(X\)</span> over a CM field. If <span
+class="math inline">\(X\)</span> is <strong>definite</strong> (positive
+at the infinite places), the group is compact at infinity and its spaces
+of automorphic forms are finite-dimensional.</li>
+<li><em>Theta lift</em> (Weil, Howe, Kudla): it carries an automorphic
+form <span class="math inline">\(f\)</span> on <span
+class="math inline">\(U(X)\)</span> to a form on another unitary group
+<span class="math inline">\(U(X&#39;)\)</span> by integrating it against
+a theta series in two variables, the “kernel”: <span
+class="math inline">\(\theta(f)(h)=\int f(g)\,\Theta(g,h)\,dg\)</span>
+(over an adelic quotient).</li>
+<li><em>Period</em>: the integral of an automorphic form over a subgroup
+(here a Bessel period, in the sense of Gan–Gross–Prasad). By the
+<strong>seesaw</strong> identities (Kudla), the period of the iterated
+lift is computed on the starting group, through the <span
+class="math inline">\(m\)</span> successive kernels.</li>
+</ul>
+</blockquote>
+<p><strong>5. The archimedean side: the slope inequality.</strong>
+Divisibility forces the periods to be multiples of large prime powers. A
+<strong>slope inequality</strong> (Bost) prevents these periods from
+being too large at the infinite places. By the product formula, the two
+constraints are compatible only if the sum over primes is small. The
+archimedean terms (Siegel masses, Rallis formulas, CM periods) reproduce
+exactly the expected main term.</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>Hermitian lattice</em>: a projective <span
+class="math inline">\(\mathcal O_K\)</span>-module <span
+class="math inline">\(L\)</span> with Hermitian norms at the infinite
+places.</li>
+<li><em>Slope</em>: <span
+class="math inline">\(\widehat\mu(L)=-\log\operatorname{covol}(L)/\operatorname{rank}(L)\)</span>,
+up to normalization. Dividing <span class="math inline">\(L\)</span> by
+<span class="math inline">\(p^{v}\)</span> increases it by <span
+class="math inline">\(v\log p\)</span>: <strong>a difference of slopes
+is a sum of <span class="math inline">\(\log p\)</span></strong>.</li>
+<li><em>Slope inequality</em>: for <span
+class="math inline">\(\varphi:E\to F\)</span> injective, <span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>,
+where <span class="math inline">\(h(\varphi)\)</span> measures the norm
+of <span class="math inline">\(\varphi\)</span> at the infinite places.
+It is an arithmetic version of Siegel’s lemma and of Minkowski: a
+lattice cannot be very “tight” if it maps without much dilation into a
+known lattice. Divisibility raises the slope, and the inequality caps
+it.</li>
+<li><em>Product formula</em>: for <span
+class="math inline">\(\alpha\ne0\)</span> in a number field, <span
+class="math inline">\(\prod_v|\alpha|_v=1\)</span>. Being highly
+divisible at <span class="math inline">\(p\)</span> forces being large
+elsewhere.</li>
+</ul>
+</blockquote>
+<p><strong>6. Where the ½ comes from.</strong> The error has two terms:
+<span class="math inline">\(x/m\)</span>, which decreases with the
+length <span class="math inline">\(m\)</span> of the chain, and a loss
+<span class="math inline">\(m\)</span>, which grows with it. The optimum
+<span class="math inline">\(m\approx\sqrt x\)</span> gives the exponent
+<span class="math inline">\(\tfrac12\)</span>.</p>
+<blockquote>
+<p><strong>Definitions.</strong></p>
+<ul>
+<li><em>Balance</em>: the relative error is <span
+class="math inline">\(\approx x/m+m\ge2\sqrt x\)</span>, with equality
+at <span class="math inline">\(m=\sqrt x\)</span>. The method stops
+exactly at <span class="math inline">\(\sqrt x\)</span>, the true size
+of the fluctuations (Littlewood). <span class="math inline">\(m\)</span>
+is the <strong>length of the chain</strong>, not a rank.</li>
+<li><em>The losses to be paid</em>: denominators of Hecke projections,
+bounded via Tate–Shafarevich groups; lattice automorphisms (Siegel
+masses); a quasi-orthogonality of periods; a covolume. See § 8.</li>
+</ul>
+</blockquote>
+<p>Everything else, i.e. more than 99 % of the 17 million lines, serves
+to <strong>build</strong> the objects to which this mechanism applies:
+unitary groups, lattices, theta kernels, Galois representations, bounds
+on Tate–Shafarevich groups. It also serves to <strong>control the
+losses</strong>.</p>
+<pre class="mermaid">flowchart TB
+    RH["RH and GRH for Dirichlet"] --&gt; CRIT["One-sided bound on prime sums&lt;br/&gt;on windows (Landau)"]
+    CRIT --&gt; HOST["Abelian CM host field at scale x&lt;br/&gt;inert primes; parasites neutralized on average"]
+    HOST --&gt; STEP["Stepanov-type argument"]
+    STEP --&gt; DIV["Divisibility of periods&lt;br/&gt;m theta lifts&lt;br/&gt;× Theorem A (Dwork, Legendre)"]
+    STEP --&gt; SLOPE["Slope inequality (Bost)&lt;br/&gt;archimedean bound"]
+    DIV --&gt; BAL["Balance x/m + m, hence ½"]
+    SLOPE --&gt; BAL
+    DIV -.-&gt; COST["Losses to control:&lt;br/&gt;denominators (Tate–Shafarevich),&lt;br/&gt;automorphisms (Siegel masses)"]
+    SLOPE -.-&gt; QO["Quasi-orthogonality (theorem S),&lt;br/&gt;covolume (Arakelov)"]
+    COST -.-&gt; PIL["Pillars: Galois representations,&lt;br/&gt;partial local Langlands"]</pre>
+<p><em>Reading the diagram: a solid arrow means “reduces to” or “rests
+on”; a dashed arrow leads to the losses to be controlled and to the
+theories that control them.</em></p>
+<hr />
+<h1 id="part-i.-the-proof">Part I. The proof</h1>
+<h2 id="from-rh-to-an-inequality-about-primes">1. From RH to an
+inequality about primes</h2>
+<p>This section reduces GRH to <strong>a single inequality</strong>,
+with no fine arithmetic at all: only classical complex analysis (Perron,
+Landau). It takes five steps. In the code, this is the light part: about
+73,000 declarations, mostly Mathlib analysis (Part II).</p>
+<h3 id="reduction-to-primitive-characters-grouped-into-levels">1.1
+Reduction to primitive characters, grouped into levels</h3>
+<p>If χ is induced by <span class="math inline">\(\chi^\ast\)</span>, of
+modulus <span class="math inline">\(N\)</span>, <span
+class="math display">\[L(s,\chi)=L(s,\chi^\ast)\prod_{p\mid
+N}\big(1-\chi^\ast(p)p^{-s}\big).\]</span> Each factor has modulus <span
+class="math inline">\(\ge 1-p^{-\operatorname{Re}s}&gt;0\)</span> if
+<span class="math inline">\(\operatorname{Re}s&gt;0\)</span>: it does
+not vanish to the right of the imaginary axis. The zeros of <span
+class="math inline">\(L(s,\chi)\)</span> in <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span> are
+therefore those of <span class="math inline">\(L(s,\chi^\ast)\)</span>,
+and it suffices to treat <strong>primitive</strong> characters. RH is
+the case <span class="math inline">\(\chi^\ast=1\)</span> (modulus 1),
+i.e. ζ; trivial characters of modulus <span
+class="math inline">\(N\)</span> reduce to it.</p>
+<p>The proof does not treat an isolated character but a whole
+<strong>level</strong> at once. For ψ primitive of order <span
+class="math inline">\(o\)</span>, write <span
+class="math display">\[K_\psi=\{\chi_0=1,\
+\chi_1,\dots,\chi_{o-1}\},\qquad \chi_j=\text{the primitive character
+inducing }\psi^j .\]</span> This is a set of <span
+class="math inline">\(o\)</span> primitive characters, <strong>closed
+under conjugation</strong> (<span
+class="math inline">\(\overline{\psi^j}=\psi^{o-j}\)</span>), containing
+1. One proves in one go that <strong>neither ζ nor any of the <span
+class="math inline">\(L(s,\chi_j)\)</span></strong> vanishes for <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>. For RH
+alone, <span class="math inline">\(\psi=1\)</span>, <span
+class="math inline">\(o=1\)</span> and <span
+class="math inline">\(K_\psi=\{1\}\)</span>.</p>
+<h3 id="smoothing-the-riesz-weighted-chebyshev-sum">1.2 Smoothing: the
+Riesz-weighted Chebyshev sum</h3>
+<p>The function <span class="math inline">\(\psi(x,\chi)\)</span> from
+the preliminaries has two defects: it jumps at every prime power, and
+its explicit formula <span class="math inline">\(\sum_\rho
+x^\rho/\rho\)</span> converges only conditionally (since <span
+class="math inline">\(\sum 1/|\rho|\)</span> diverges). The proof uses
+instead the <strong>Riesz weight</strong> <span
+class="math inline">\((y/n-1)_+\)</span>: <span
+class="math display">\[S(y,\chi)=\sum_{n\le
+y}\Lambda(n)\chi(n)\Big(\frac yn-1\Big)=\int_1^y\Big(\sum_{n\le
+t}\frac{\Lambda(n)\chi(n)}{n}\Big)\,dt .\]</span> It is an
+antiderivative (an average): it is continuous, and each integration
+gains a factor <span class="math inline">\(1/|\rho|\)</span> in the
+explicit formula.</p>
+<p><strong>Perron’s formula.</strong> For <span
+class="math inline">\(c&gt;1\)</span> and <span
+class="math inline">\(y&gt;0\)</span>, computing the residues at <span
+class="math inline">\(s=1\)</span> and <span
+class="math inline">\(s=0\)</span> gives <span
+class="math display">\[\frac1{2\pi
+i}\int_{c-i\infty}^{c+i\infty}\frac{(y/n)^s}{s(s-1)}\,ds=\Big(\frac
+yn-1\Big)_+ ,\]</span> hence, summing against <span
+class="math inline">\(\Lambda(n)\chi(n)\)</span> and using the
+logarithmic derivative, <span
+class="math display">\[S(y,\chi)=\frac1{2\pi
+i}\int_{(c)}\Big(-\frac{L&#39;}{L}(s,\chi)\Big)\frac{y^s}{s(s-1)}\,ds
+.\]</span> The kernel decays like <span
+class="math inline">\(|s|^{-2}\)</span>: the integral converges
+<strong>absolutely</strong>, and the contour can be shifted to the left,
+picking up residues.</p>
+<ul>
+<li><strong>At <span class="math inline">\(s=1\)</span>.</strong> For
+<span class="math inline">\(\chi\neq1\)</span>, <span
+class="math inline">\(L(1,\chi)\ne0\)</span> (Dirichlet), and the
+residue is <span
+class="math inline">\(-y\,\frac{L&#39;}{L}(1,\chi)\)</span>. For ζ, the
+pole of <span
+class="math inline">\(-\zeta&#39;/\zeta=\frac1{s-1}-\gamma+\cdots\)</span>
+meets that of the kernel: a double pole, with residue <span
+class="math inline">\(y\log y-(1+\gamma)\,y\)</span>.</li>
+<li><strong>At each non-trivial zero ρ of multiplicity <span
+class="math inline">\(m_\rho\)</span></strong>: <span
+class="math inline">\(-L&#39;/L\)</span> has residue <span
+class="math inline">\(-m_\rho\)</span>, giving the term <span
+class="math inline">\(-m_\rho\,y^\rho/(\rho(\rho-1))\)</span>.</li>
+<li><strong>At <span class="math inline">\(s=0\)</span> and at the
+trivial zeros</strong>: terms <span class="math inline">\(O(\log
+y)\)</span>.</li>
+</ul>
+<p>One therefore removes the main term, which defines <span
+class="math display">\[g(y,\chi)=S(y,\chi)+y\,\frac{L&#39;}{L}(1,\chi)\quad(\chi\ne1),\qquad
+G(y)=S(y,1)-y\log y+(1+\gamma)\,y ,\]</span> and one obtains the
+<strong>smoothed explicit formula</strong>: <span
+class="math display">\[g(y,\chi)=-\sum_\rho
+m_\rho\,\frac{y^\rho}{\rho(\rho-1)}+O(\log y),\]</span> and likewise for
+<span class="math inline">\(G\)</span> with the zeros of ζ. The series
+converges <strong>absolutely</strong>, since <span
+class="math inline">\(\sum_\rho1/|\rho|^2&lt;\infty\)</span>. Two
+consequences:</p>
+<ol type="1">
+<li><strong>GRH ⇒ <span
+class="math inline">\(g(y,\chi)=O(y^{1/2})\)</span></strong>, without
+even an <span class="math inline">\(\varepsilon\)</span>: this is the
+target size.</li>
+<li><strong>Conversely</strong>, by Mellin transform, <span
+class="math inline">\(\int_1^\infty
+g(y,\chi)\,y^{-s-1}dy=-\frac{1}{s(s-1)}\frac{L&#39;}{L}(s,\chi)+(\text{rational
+function with poles at }0,1)\)</span>. A zero ρ appears there as a
+<strong>pole</strong>. A bound <span
+class="math inline">\(|g(y,\chi)|=O(y^\theta)\)</span> makes the
+integral converge for <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span> and excludes
+any zero with real part <span
+class="math inline">\(&gt;\theta\)</span>.</li>
+</ol>
+<p>Point 2 requires a bound <strong>in absolute value</strong>: one
+would have to control the fluctuations of <span
+class="math inline">\(g\)</span> upwards <strong>and</strong> downwards.
+The rest of the reduction removes one of these two requirements.</p>
+<h3 id="combining-a-sum-with-non-negative-coefficients">1.3 Combining: a
+sum with non-negative coefficients</h3>
+<p>For ψ primitive of order <span class="math inline">\(o\)</span>, form
+<span
+class="math display">\[G_\psi(y)=G(y)+\frac{1}{3o+1}\sum_{j=1}^{o-1}\operatorname{Re}g(y,\chi_j).\]</span>
+Since <span class="math inline">\(K_\psi\)</span> is closed under
+conjugation and <span
+class="math inline">\(g(y,\bar\chi)=\overline{g(y,\chi)}\)</span>, the
+sum of the real parts equals the sum of the <span
+class="math inline">\(g(y,\chi_j)\)</span> themselves. <span
+class="math inline">\(G_\psi\)</span> is thus the Riesz sum, main term
+removed, of the Dirichlet series <span
+class="math display">\[D_\psi(s)=-\frac{\zeta&#39;}{\zeta}(s)-\frac1{3o+1}\sum_{j=1}^{o-1}\frac{L&#39;}{L}(s,\chi_j)=\sum_{n\ge1}\frac{c_n}{n^s},\qquad
+c_n=\Lambda(n)\Big(1+\frac1{3o+1}\sum_{j=1}^{o-1}\chi_j(n)\Big).\]</span></p>
+<p><strong>The coefficients are non-negative.</strong> If <span
+class="math inline">\(n\)</span> is coprime to the conductor of ψ, <span
+class="math inline">\(\chi_j(n)=\psi(n)^j\)</span>, and the geometric
+sum <span class="math inline">\(\sum_{j=1}^{o-1}\psi(n)^j\)</span>
+equals <span class="math inline">\(o-1\)</span> if <span
+class="math inline">\(\psi(n)=1\)</span> and <span
+class="math inline">\(-1\)</span> otherwise. Hence <span
+class="math display">\[c_n=\Lambda(n)\cdot\begin{cases}\dfrac{4o}{3o+1}&amp;\text{if
+}\psi(n)=1,\\[8pt]\dfrac{3o}{3o+1}&amp;\text{otherwise.}\end{cases}\]</span>
+For powers of primes <span class="math inline">\(p\)</span> dividing the
+conductor, bound each <span
+class="math inline">\(|\chi_j(n)|\le1\)</span>: <span
+class="math inline">\(c_n\ge\Lambda(n)\,\frac{2o+2}{3o+1}&gt;0\)</span>.
+In every case <span class="math inline">\(c_n\ge0\)</span>, and <span
+class="math inline">\(c_n=0\)</span> only if <span
+class="math inline">\(\Lambda(n)=0\)</span>.</p>
+<p><strong>Where <span class="math inline">\(1/(3o+1)\)</span> comes
+from.</strong> The 4 : 3 profile is not arbitrary; it can be read off
+the construction of § 2 (read on the code). Primes are sampled there
+according to their class modulo a subgroup of index <span
+class="math inline">\(o\)</span> of a Frobenius group, with proportion
+<span class="math inline">\(4/(3o+1)\)</span> for the neutral class and
+<span class="math inline">\(3/(3o+1)\)</span> for each of the <span
+class="math inline">\(o-1\)</span> others. The total is <span
+class="math inline">\((4+3(o-1))/(3o+1)=1\)</span>. The Fourier
+coefficients of this distribution are <span
+class="math inline">\(1\)</span> for the trivial character and <span
+class="math inline">\(\frac{4-3}{3o+1}=\frac1{3o+1}\)</span> for all
+others: exactly the weights of <span
+class="math inline">\(G_\psi\)</span>, and <span
+class="math inline">\(c_n/\Lambda(n)\)</span> is <span
+class="math inline">\(o\)</span> times the proportion of the class of
+<span class="math inline">\(n\)</span>. A uniform distribution would
+give zero weights and would not see the <span
+class="math inline">\(\chi_j\)</span>; a strictly positive distribution
+guarantees positivity. Why 4 : 3 rather than another mixture, the code
+does not say ⟦I⟧: positivity alone does not force it.</p>
+<p><strong>No cancellation between zeros.</strong> The Mellin transform
+of <span class="math inline">\(G_\psi\)</span> is <span
+class="math inline">\(D_\psi(s)/(s(s-1))\)</span>, up to a rational
+function. Its poles in <span
+class="math inline">\(0&lt;\operatorname{Re}s&lt;1\)</span> are the
+zeros ρ of ζ or of one of the <span
+class="math inline">\(L(s,\chi_j)\)</span>, with weight <span
+class="math display">\[w_\rho=m_\rho(\zeta)+\frac1{3o+1}\sum_{j=1}^{o-1}m_\rho(\chi_j)\;&gt;\;0
+.\]</span> All multiplicities enter with a <span
+class="math inline">\(+\)</span> sign: a zero of one of the functions
+cannot be masked by another. This is the idea of de la Vallée Poussin,
+who combined <span
+class="math inline">\(\zeta(\sigma)^3|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|\)</span>
+thanks to <span
+class="math inline">\(3+4\cos\theta+\cos2\theta=2(1+\cos\theta)^2\ge0\)</span>.</p>
+<h3 id="why-an-upper-bound-suffices-landaus-argument">1.4 Why an upper
+bound suffices: Landau’s argument</h3>
+<p><strong>Landau’s theorem.</strong> Let <span
+class="math inline">\(f\ge0\)</span> on <span
+class="math inline">\([1,\infty)\)</span> and <span
+class="math inline">\(H(s)=\int_1^\infty f(y)\,y^{-s-1}dy\)</span>, with
+abscissa of convergence <span class="math inline">\(\sigma_c\)</span>.
+Then <span class="math inline">\(H\)</span> has <strong>no</strong>
+holomorphic continuation to a neighbourhood of the <strong>real</strong>
+point <span class="math inline">\(s=\sigma_c\)</span>. (Proof: expand
+<span class="math inline">\(H\)</span> in a Taylor series at a real
+point <span class="math inline">\(a&gt;\sigma_c\)</span>. The
+derivatives <span class="math inline">\((-1)^kH^{(k)}(a)=\int f(y)(\log
+y)^ky^{-a-1}dy\)</span> are non-negative; if the series converged a
+little beyond <span class="math inline">\(\sigma_c\)</span>, it could be
+interchanged with the integral, which would then converge beyond <span
+class="math inline">\(\sigma_c\)</span>.)</p>
+<p><strong>Application.</strong> Suppose <span
+class="math inline">\(G_\psi(y)\le y^\theta\)</span> for <span
+class="math inline">\(y\ge y_0\)</span>, with <span
+class="math inline">\(\theta&lt;1\)</span>. Put <span
+class="math inline">\(f(y)=y^\theta-G_\psi(y)\ge0\)</span>. Its
+transform is <span
+class="math display">\[H(s)=\frac{y_0^{\theta-s}}{s-\theta}-\int_{y_0}^\infty
+G_\psi(y)\,y^{-s-1}dy=\frac{1}{s-\theta}-\frac{D_\psi(s)}{s(s-1)}+(\text{a
+function holomorphic for }\operatorname{Re}s&gt;0),\]</span> where
+“holomorphic” includes the cancellation of the pole at <span
+class="math inline">\(s=1\)</span> by the main terms. Suppose for
+contradiction that <span
+class="math inline">\(\sigma_c&gt;\theta\)</span>. By Landau, <span
+class="math inline">\(\sigma_c\)</span> is a singularity, hence a pole
+of <span class="math inline">\(D_\psi/(s(s-1))\)</span>: a <strong>real
+zero</strong> <span
+class="math inline">\(\beta=\sigma_c\in(\theta,1)\)</span>. Its residue
+in <span class="math inline">\(D_\psi(s)/(s(s-1))\)</span> is <span
+class="math inline">\(-w_\beta/(\beta(\beta-1))=w_\beta/(\beta(1-\beta))&gt;0\)</span>.
+As <span class="math inline">\(\sigma\to\beta^+\)</span>, <span
+class="math inline">\(H(\sigma)\to-\infty\)</span>, contradicting <span
+class="math inline">\(H(\sigma)=\int f\,y^{-\sigma-1}\ge0\)</span>.
+Hence <span class="math inline">\(\sigma_c\le\theta\)</span>: <span
+class="math inline">\(H\)</span> is holomorphic on <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span>, and so is
+<span class="math inline">\(D_\psi\)</span>. <strong>Neither ζ nor any
+<span class="math inline">\(L(s,\chi_j)\)</span> has a zero with real
+part <span class="math inline">\(&gt;\theta\)</span>.</strong></p>
+<p><strong>Intuitive reading.</strong> In the explicit formula, a real
+zero β contributes <span
+class="math inline">\(+w_\beta\,y^\beta/(\beta(1-\beta))\)</span>: it
+<strong>pushes <span class="math inline">\(G_\psi\)</span>
+upwards</strong>, and an upper bound sees it directly. A complex zero
+<span class="math inline">\(\beta+i\gamma\)</span> contributes an
+oscillation of amplitude <span class="math inline">\(\asymp
+y^\beta\)</span>, as <span class="math inline">\(\cos(\gamma\log
+y+\varphi)\)</span>. It goes up half the time, and the positivity of the
+<span class="math inline">\(w_\rho\)</span> prevents the oscillations of
+different zeros from cancelling each other durably. Landau’s theorem
+makes this “every oscillation eventually goes up” rigorous. <strong>One
+never needs a lower bound on <span
+class="math inline">\(G_\psi\)</span>.</strong> This is essential for
+what follows: the arithmetic method (§§ 3–7) provides an
+<strong>inequality</strong>, not an asymptotic equality.</p>
+<h3 id="on-windows-only">1.5 On windows only</h3>
+<p>The method of §§ 2–7 does not provide the bound for
+<strong>all</strong> large <span class="math inline">\(y\)</span>, but
+only on ranges of scales where a host field could be built (§ 2): <span
+class="math inline">\(q\)</span> and <span
+class="math inline">\(d\)</span> must be chosen depending on the range.
+The proof therefore establishes a <strong>windowed</strong> form of
+Landau. As read on the export, in contrapositive form:</p>
+<blockquote>
+<p><strong>Window criterion.</strong> Let <span
+class="math inline">\(\lambda&gt;1\)</span> and <span
+class="math inline">\(0&lt;\theta&lt;1\)</span>. If ζ or one of the
+<span class="math inline">\(L(s,\chi_j)\)</span> has a zero with real
+part <span class="math inline">\(&gt;\theta\)</span>, then for every
+sufficiently large <span class="math inline">\(Y\)</span> there is <span
+class="math inline">\(y\in[Y,Y^\lambda]\)</span> with <span
+class="math inline">\(G_\psi(y)&gt;y^\theta\)</span>.</p>
+</blockquote>
+<p>In other words, a zero beyond θ shows up in <strong>every</strong>
+sufficiently remote window <span
+class="math inline">\([Y,Y^\lambda]\)</span>, not just “somewhere at
+infinity”. It therefore suffices to bound <span
+class="math inline">\(G_\psi\)</span> on a sequence of windows <span
+class="math inline">\([Y_k,Y_k^\lambda]\)</span>, <span
+class="math inline">\(Y_k\to\infty\)</span>. The criterion holds for
+every <span class="math inline">\(\lambda&gt;1\)</span>; the rest of the
+proof applies it with ranges <span
+class="math inline">\([Y,Y^{3/2}]\)</span> or <span
+class="math inline">\([Y,Y^2]\)</span>.</p>
+<p><strong>How one localizes ⟦I⟧.</strong> Landau’s proof uses only the
+derivatives <span class="math inline">\((-1)^kH^{(k)}(a)=\int f(y)(\log
+y)^ky^{-a-1}dy\)</span>. In the variable <span
+class="math inline">\(u=\log y\)</span>, the kernel <span
+class="math inline">\(u^ke^{-au}\)</span> is a <strong>gamma
+density</strong>, with mean <span class="math inline">\(\approx
+k/a\)</span> and relative width <span class="math inline">\(\approx
+k^{-1/2}\)</span>. Taking <span class="math inline">\(k\asymp\log
+Y\)</span>, the mass concentrates in <span
+class="math inline">\(u\in[\log Y,\lambda\log Y]\)</span>, i.e. in the
+window. The remainder, exponentially small in <span
+class="math inline">\(k\)</span> (hence a negative power of <span
+class="math inline">\(Y\)</span>), is absorbed by the trivial bound
+<span class="math inline">\(G_\psi(y)=O(y)\)</span> (Mertens).
+Slijepčević considers this windowed form new. In this proof it is
+indispensable: without it one would need a single host for all scales,
+which the averaged choice of § 2 does not provide. A later text
+(hexagon:2611.00828) proposes, however, to replace it with a classical
+oscillation theorem, that of Kaczorowski–Pintz.</p>
+<h3 id="conclusion">1.6 Conclusion</h3>
+<p>Applying 1.4 and 1.5 with <span
+class="math inline">\(\theta=\tfrac12+C\varepsilon\)</span> for each
+<span class="math inline">\(\varepsilon&gt;0\)</span>, then letting
+<span class="math inline">\(\varepsilon\to0\)</span>, one obtains the
+absence of zeros for <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>,
+simultaneously for ζ and for all the <span
+class="math inline">\(L(s,\chi_j)\)</span>, <span
+class="math inline">\(\chi_j\in K_\psi\)</span>. Since every primitive
+character belongs to its own level <span
+class="math inline">\(K_\psi\)</span>, this gives GRH for all Dirichlet
+characters.</p>
+<blockquote>
+<p><strong>Conclusion.</strong> Everything reduces to proving, for each
+primitive ψ, each sufficiently small ε &gt; 0 and each scale <span
+class="math inline">\(x\)</span> in a sequence of windows <span
+class="math inline">\([Y_k,Y_k^\lambda]\)</span>, <span
+class="math inline">\(Y_k\to\infty\)</span>: <span
+class="math display">\[\boxed{\;G_\psi(x)\;\le\;x^{1/2+C\varepsilon}\;}\]</span>
+This is a <strong>one-sided upper bound</strong> on a weighted sum of
+<span class="math inline">\(\log p\)</span>, with <strong>non-negative
+coefficients</strong>, with a square-root error. §§ 2–7 do nothing
+else.</p>
+</blockquote>
+<h2 id="one-auxiliary-field-per-scale">2. One auxiliary field per
+scale</h2>
+<p><strong>The host.</strong> At scale <span
+class="math inline">\(x\)</span>, one chooses two primes <span
+class="math inline">\(q\equiv 3\pmod 8\)</span> and <span
+class="math inline">\(d\equiv7\pmod{16}\)</span>, then an abelian CM
+field <span class="math display">\[E\subset\mathbb Q(\zeta_{Qqd}),\qquad
+\sqrt{-q},\sqrt{-d}\in E,\qquad [E:\mathbb Q]\approx
+x^{2+8\varepsilon},\]</span> containing the field cut out by ψ. The
+Galois group <span class="math inline">\(\{\pm1\}^2\times A\)</span> and
+the Artin map are described explicitly. Precisely (read on the export):
+<span class="math inline">\(|A|=c\cdot2^e\)</span> with <span
+class="math inline">\(x^{2+8\varepsilon}\le
+c\cdot2^e\le2x^{2+8\varepsilon}\)</span>, so <span
+class="math inline">\([E:\mathbb Q]=4|A|\)</span> lies between <span
+class="math inline">\(4x^{2+8\varepsilon}\)</span> and <span
+class="math inline">\(8x^{2+8\varepsilon}\)</span>. This is <strong>the
+same field</strong> that carries the Tate–Shafarevich bound of § 8
+(a).</p>
+<p><strong>The identity.</strong> One considers the primes <span
+class="math inline">\(p\)</span> <strong>inert</strong> in <span
+class="math inline">\(\mathbb Q(\sqrt{-d})\)</span>, weighted according
+to their Frobenius class in <span class="math inline">\(E\)</span>. By
+orthogonality of the characters of <span
+class="math inline">\(\mathrm{Gal}(E/\mathbb Q)\)</span>, the sum of
+<span class="math inline">\(\log p\)</span> over these primes is a
+combination of the <span class="math inline">\(g(\cdot,\chi)\)</span>
+for the characters χ of <span class="math inline">\(E\)</span>. After
+averaging over translates and choosing the weights, one recovers exactly
+<span class="math inline">\(G_\psi(x)\)</span>, with the weight <span
+class="math inline">\(1/(3o+1)\)</span> (hence that weight). One also
+gets <strong>parasitic characters</strong>, essentially twists by <span
+class="math inline">\((q/\cdot)\)</span>, <span
+class="math inline">\((d/\cdot)\)</span> and their product.</p>
+<p><strong>The parasites, on average.</strong> For a given quadratic
+character, one cannot show that <span
+class="math inline">\(g(y,\chi)=O(y^{1/2+\varepsilon})\)</span>: that is
+GRH itself. But <span class="math inline">\(q\)</span> and <span
+class="math inline">\(d\)</span> can be chosen in a family of size <span
+class="math inline">\(\exp(Y^{\varepsilon/5})\)</span>,
+<strong>gigantic</strong> compared with the scales. A mean-square
+argument, of large-sieve type, shows that <strong>almost all</strong>
+pairs <span class="math inline">\((q,d)\)</span> have square-root sums
+over the whole range <span class="math inline">\([Y,Y^A]\)</span> (<span
+class="math inline">\(A\)</span> fixed), and no zero near <span
+class="math inline">\(s=1\)</span>. So some exist. This argument is
+unconditional and serves only to <strong>clear the ground</strong>.</p>
+<blockquote>
+<p><strong>What remains.</strong> Bound the sum over the inert primes of
+<span class="math inline">\(E\)</span>, prime by prime, with an error
+<span class="math inline">\(x^{1/2+O(\varepsilon)}\)</span>. This is the
+heart of the proof.</p>
+</blockquote>
+<h2 id="the-model-stepanovs-proof-for-curves">3. The model: Stepanov’s
+proof for curves</h2>
+<p>Let <span class="math inline">\(C\)</span> be a curve of genus <span
+class="math inline">\(g\)</span> over <span
+class="math inline">\(\mathbb F_q\)</span>. Stepanov (1969), then
+Bombieri, bound <span class="math inline">\(N=\#C(\mathbb F_q)\)</span>
+as follows:</p>
+<ol type="1">
+<li>one builds an auxiliary function <span
+class="math inline">\(f\)</span>, of controlled degree, that
+<strong>vanishes to order at least <span
+class="math inline">\(a\)</span></strong> at each rational point; it is
+produced by linear algebra, a Siegel lemma;</li>
+<li>then <span class="math inline">\(a\cdot N\le\deg f\)</span>;</li>
+<li>one optimizes <span class="math inline">\(a\)</span> and obtains
+<span class="math inline">\(N\le q+O(g\sqrt q)\)</span>.</li>
+</ol>
+<p>The exponent ½ comes from the <strong>balance</strong> between the
+order of vanishing and the degree.</p>
+<p><strong>The difficulty over ℤ.</strong> “Vanishing to order <span
+class="math inline">\(a\)</span>” requires differentiating, and one does
+not differentiate an integer. Alpöge (note, § 1): “multiplicity is hard
+to find over the integers, corresponding to something like
+differentiating whole numbers”. The proof replaces vanishing by
+<strong>divisibility</strong>. A non-zero algebraic integer divisible by
+<span class="math inline">\(p^v\)</span> has norm <span
+class="math inline">\(\ge p^v\)</span>. If its archimedean size is also
+known to be small, the <strong>product formula</strong> bounds <span
+class="math inline">\(v\)</span>. This is the pattern of
+auxiliary-function methods in transcendence (Thue–Siegel–Bombieri), in
+its modern form due to <strong>Bost</strong>: slope inequalities.</p>
+<h2
+id="the-source-of-divisibility-differentiating-a-theta-series-at-a-cm-point">4.
+The source of divisibility: differentiating a theta series at a CM
+point</h2>
+<h3 id="the-statement">4.1 The statement</h3>
+<p>Take a theta series of a Hermitian lattice, written near a CM point
+in the <strong>coordinates of a formal group</strong>. At a prime <span
+class="math inline">\(p\)</span> inert in the CM field, the reduction is
+<strong>supersingular</strong> and the formal group has <strong>height
+2</strong>. Its logarithm has the form <span
+class="math display">\[\log_F(X)=\sum_{e\ge0}\frac{X^{p^{2e}}}{p^{e}},\]</span>
+up to a Frobenius twist on the index. The project proves the following
+statement, which it calls “Theorem A”:</p>
+<blockquote>
+<p><strong>Theorem A</strong> (simplified form). Let <span
+class="math inline">\(\Theta\)</span> be a theta series, renormalized by
+a suitable exponential, in formal-group coordinates at the CM point.
+Then its derivatives of order <span class="math inline">\(a\)</span> at
+the CM point satisfy <span
+class="math display">\[v_p\big(D^{a}\Theta(0)\big)\;\ge\;a\cdot\frac{p}{p^2-1}\;-\;O(\log
+a)\;=\;a\Big(\frac1p+\frac1{p^3}+\frac1{p^5}+\cdots\Big)-O(\log
+a).\]</span></p>
+</blockquote>
+<p>This is the sentence in Alpöge’s note: “<span
+class="math inline">\(D^a\,\Omega\cdot\theta(0)\)</span> is divisible by
+<span class="math inline">\(p^{a/p+a/p^3+\cdots-O(\log a)}\)</span>”.
+But the exponent concerns the <strong>renormalized object, in
+formal-group coordinates</strong>, not the naive theta series
+differentiated in the analytic coordinate. On that naive model, for
+ℤ[i], Rubinstein [R] does not recover the announced exponent (exponents
+6, 2, 1 for <span class="math inline">\(p=3,7,11\)</span>).</p>
+<h3 id="why-pp2-1-i">4.2 Why <span
+class="math inline">\(p/(p^2-1)\)</span> ⟦I⟧</h3>
+<p>The number <span class="math inline">\(p/(p^2-1)\)</span> is a
+difference of two rates. We have <span class="math inline">\(D^a
+f(0)=a!\cdot[\text{coefficient of degree }a]\)</span>, and:</p>
+<ul>
+<li><strong>Legendre</strong>: <span
+class="math inline">\(v_p(a!)=\dfrac{a-s_p(a)}{p-1}\ge\dfrac{a}{p-1}-O(\log
+a)\)</span>. Differentiation provides about <span
+class="math inline">\(a/(p-1)\)</span>.</li>
+<li><strong>The denominators</strong>: the change of variables through
+the height-2 formal group, whose logarithm has terms <span
+class="math inline">\(X^{p^{2e}}/p^e\)</span>, and the renormalizing
+exponential cost at most <span class="math inline">\(a/(p^2-1)\)</span>
+on the coefficient of degree <span class="math inline">\(a\)</span>. The
+project establishes this weight bound, <span
+class="math inline">\(\rho(p)=1/(p^2-1)\)</span> per degree, for the
+exponential series (“lemma S”).</li>
+<li><strong>Balance</strong>: <span
+class="math inline">\(\dfrac{1}{p-1}-\dfrac{1}{p^2-1}=\dfrac{p}{p^2-1}\)</span>,
+which is exactly the observed gain.</li>
+</ul>
+<p>The <span class="math inline">\(O(\log a)\)</span> loss comes from
+the digit sum <span class="math inline">\(s_p(a)\)</span> in Legendre
+and from the number of “layers” <span class="math inline">\(p^e\le
+a\)</span>.</p>
+<h3 id="how-theorem-a-is-proved">4.3 How Theorem A is proved</h3>
+<p>The proof takes about 0.02 % of the volume. It proceeds in three
+stages.</p>
+<ol type="1">
+<li><strong>Reduction to a generic point.</strong> One wants to bound
+the coefficients of a polynomial in the coordinates of a “frame”,
+i.e. vectors along which one differentiates. One replaces it by its
+value at a <strong>residually generic</strong> point: a point whose
+coordinates have algebraically independent reductions, so that any
+polynomial non-zero mod <span class="math inline">\(p\)</span> has
+absolute value 1 there. At such a point the absolute value equals the
+<strong>Gauss norm</strong>, the maximum of the coefficients. Such a
+point exists in a field of rational functions with the Gauss absolute
+value.</li>
+<li><strong>Reduction to a monomial.</strong> The jet of the frame is
+expressed through products of minors, hence determinants, of the
+derivatives of <span class="math inline">\(\Theta\)</span> along the
+frame. One reduces to bounding <span
+class="math inline">\(|\kappa!\cdot\mathrm{coeff}_\kappa(\cdots)|\)</span>
+for a single multi-index <span
+class="math inline">\(\kappa\)</span>.</li>
+<li><strong>The monomial case.</strong> One combines:
+<ul>
+<li>the integrality of the starting series;</li>
+<li>the <strong>inverse of the formal-group logarithm</strong>;</li>
+<li>the weight bound <span class="math inline">\(\rho(p)\)</span> for
+the renormalizing exponential. It rests on a <strong>Dwork-type
+integrality</strong> hypothesis, and <strong>Dwork’s lemma</strong> is
+proved in the project: <span class="math inline">\(\exp(P)\)</span> is
+<span class="math inline">\(p\)</span>-integral if and only if <span
+class="math inline">\(P^{\sigma}(X^p)-pP\in pW[[X]]\)</span>;</li>
+<li>a <strong>Frobenius-twisted quasi-orthogonality</strong> condition
+on the frame vectors, <span class="math inline">\(\sum_a
+x_a^{p^{j}}x&#39;_a\equiv0 \pmod p\)</span>.</li>
+</ul>
+A combinatorial labelling of the odd shifts <span
+class="math inline">\(j\)</span> with <span class="math inline">\(p^j\le
+a\)</span> (only these contribute a term <span
+class="math inline">\(a/p^j\)</span>) costs <span
+class="math inline">\(O(\log a)\)</span> extra rows. This is the origin
+of the logarithmic loss.</li>
+</ol>
+<h3 id="odd-exponents-and-frobenius">4.4 Odd exponents and
+Frobenius</h3>
+<p>At an inert <span class="math inline">\(p\)</span>, Frobenius acts on
+the embeddings of the CM field by a shift. The gain <span
+class="math inline">\(a/p^{e}\)</span> is realized only at <strong>odd
+exponents</strong>. It is read off the weights attached to the place
+<span class="math inline">\(t+e\cdot h_p\)</span> of the
+<strong>Frobenius orbit</strong> of <span
+class="math inline">\(p\)</span>: one gets <span
+class="math inline">\(a/p^e\)</span> if the weight at that place is not
+too large, and nothing otherwise. Hence a combinatorial constraint. The
+“selected” places, where the weights are large, must meet each short
+segment of a Frobenius orbit in at most two points. The proof achieves
+this with <strong>Behrend</strong>’s construction of sets without 3-term
+arithmetic progressions, present in the closure. Alpöge (note, step 19):
+“precise choice of the Iwasawa tower, specifically using Behrend!!”.</p>
+<h2 id="multiplicity-a-chain-of-m-theta-lifts">5. Multiplicity: a chain
+of m theta lifts</h2>
+<p>A single differentiation at a single CM point does not provide
+enough. One must repeat, just as Stepanov requires vanishing at
+<strong>all</strong> points. The tool is the <strong>theta
+correspondence</strong>: an automorphic form on a unitary group <span
+class="math inline">\(U(X_0)\)</span> lifts, by integration against a
+theta kernel, to a form on <span class="math inline">\(U(X_1)\)</span>,
+of larger rank, and so on: <span class="math display">\[U(X_0)\to
+U(X_1)\to\cdots\to U(X_m),\qquad \dim X_j=k+j(t+1).\]</span> All
+Hermitian spaces are <strong>definite</strong>, which makes the groups
+compact at infinity and the spaces of forms finite-dimensional.</p>
+<p><strong>What the code says.</strong></p>
+<ul>
+<li>The <strong>period</strong> of a form (a Bessel period, in the sense
+of Gan–Gross–Prasad) factors through the <strong>composite of the <span
+class="math inline">\(m\)</span> kernels</strong>: <span
+class="math display">\[\mathrm{Pt}(\varphi)=\mathrm{PtL}\big(K_m\cdots
+K_1\,\varphi\big).\]</span> This is the matrix form of the
+<strong>seesaw</strong> identities (Kudla): the period of the iterated
+lift is a period on the starting group.</li>
+<li>At each step <span class="math inline">\(j\to j+1\)</span>, the
+local operator applied to the kernel <span
+class="math inline">\(K_j\)</span> <strong>gains</strong> a valuation at
+least equal to the Legendre gain of § 4 for that lift, minus a loss
+<span class="math inline">\(\mathrm{dG}_j\ge
+v_p(|\mathrm{Stab}_\Gamma(L)|)\)</span>. This loss is the <span
+class="math inline">\(p\)</span>-part of the order of the lattice’s
+automorphism group: a <strong>Siegel mass</strong> denominator.</li>
+<li>The lattice one works on is <strong>generated</strong> by applying,
+at each point of the Frobenius orbit, a local operator <strong>iterated
+m times</strong>, once per lift.</li>
+<li>In total, for each inert prime <span
+class="math inline">\(p\)</span>: <span
+class="math display">\[v_p(\text{period})\;\ge\;\sum_{j=1}^{m}\mathrm{gain}_j(p)\;-\;\text{losses}(p),\qquad
+\mathrm{gain}_j(p)\approx\sum_{e\
+\text{odd}}\Big(\frac{a}{p^{e}}-\mathrm{cap}_j(p,e)\Big)_+ ,\]</span>
+where <span class="math inline">\(\mathrm{cap}_j\)</span> is the
+Harish-Chandra-type weight of the <span
+class="math inline">\(j\)</span>-th lift.</li>
+</ul>
+<p><strong>The comparison with primes is almost an identity.</strong>
+The Riesz-weighted prime sum to be bounded is, term by term, <span
+class="math inline">\(\sum_{i\
+\text{odd}}\big(a/p^i-w_j(p,i)\big)_+\)</span>. It has <strong>the same
+form</strong>, with <strong>the same weights</strong>: the proof chooses
+the weights of the lifts so that they coincide with those of the prime
+sums. The condition linking the two sides says that, for each inert
+prime <span class="math inline">\(p\)</span>, <span
+class="math display">\[\sum_{j=1}^m(\text{contribution of }p\text{ to
+the }j\text{-th term of the
+sum})\;-\;\text{losses}\;\le\;\sum_{j=1}^m\mathrm{gain}_j(p).\]</span></p>
+<blockquote>
+<p><strong>Where is the difficulty?</strong> Once the weights are
+aligned, the inequality “primes ≤ gains” is almost an identity. All the
+difficulty lies in <strong>building</strong> lattices, kernels and
+periods that <strong>realize</strong> these gains, and in
+<strong>controlling the losses</strong>.</p>
+</blockquote>
+<h2 id="the-archimedean-side-lattices-slopes-and-the-product-formula">6.
+The archimedean side: lattices, slopes and the product formula</h2>
+<p><strong>Hermitian lattices and slopes.</strong> Over a number field
+<span class="math inline">\(K\)</span>, a Hermitian lattice is a
+projective <span class="math inline">\(\mathcal O_K\)</span>-module with
+norms at the infinite places. Its <strong>Arakelov degree</strong> is
+<span
+class="math inline">\(\widehat{\deg}=-\log\operatorname{covol}\)</span>,
+and its <strong>slope</strong> is <span
+class="math inline">\(\widehat\mu=\widehat{\deg}/\mathrm{rank}\)</span>.
+The key point is this: if <span class="math inline">\(L&#39;\)</span> is
+obtained by <strong>dividing</strong> <span
+class="math inline">\(L\)</span> by an ideal <span
+class="math inline">\(I\)</span>, i.e. <span
+class="math inline">\(L=I\cdot L&#39;\)</span>, then <span
+class="math display">\[\widehat\mu(L&#39;)-\widehat\mu(L)\;=\;\sum_{\mathfrak
+p}v_{\mathfrak p}(I^{-1})\log N\mathfrak
+p\quad(\text{normalized}).\]</span> <strong>A difference of slopes is a
+sum of <span class="math inline">\(\log p\)</span> over
+primes.</strong></p>
+<p><strong>The division.</strong> To each word <span
+class="math inline">\(u\)</span>, which indexes a form of the family,
+one attaches a lattice of forms <span class="math inline">\(N_u\)</span>
+and the period pairing <span class="math inline">\(B_u:N_u\to
+R^\vee\)</span>, with values in an integral target lattice. The
+divisibility of § 5 makes it possible to <strong>divide</strong> <span
+class="math inline">\(N_u\)</span> while keeping <span
+class="math inline">\(B_u\)</span> <strong>integral</strong>. Two
+statements, read on the export, fit together:</p>
+<ul>
+<li><strong>The abstract lemma</strong> (proved in the project). If the
+valuations of the periods are <span
+class="math inline">\(\ge\sigma(w)\)</span> at each place <span
+class="math inline">\(w\)</span>, with <span
+class="math inline">\(\sigma(w)\)</span> <strong>real</strong>, then the
+lattice shifted by <span class="math inline">\(\tau(w)\)</span> at <span
+class="math inline">\(w\)</span> still maps into the integers for every
+integer <span
+class="math inline">\(\tau(w)\le\lceil\sigma(w)\rceil\)</span>. The
+bound <span class="math inline">\(\lceil\sigma\rceil\)</span> is
+optimal: a valuation is an integer, so <span
+class="math inline">\(v\ge\sigma\)</span> is equivalent to <span
+class="math inline">\(v\ge\lceil\sigma\rceil\)</span>.</li>
+<li><strong>The construction.</strong> It divides by the fractional
+ideal <span class="math inline">\(I_u=\prod_w w^{-\lfloor
+e_w\,\sigma_u(w)\rfloor}\)</span>, where <span
+class="math inline">\(e_w\)</span> is the ramification index: it takes
+the <strong>floor</strong>, a cautious choice that stays within the
+lemma (<span
+class="math inline">\(\lfloor\cdot\rfloor\le\lceil\cdot\rceil\)</span>).
+The slope of <span class="math inline">\(N_u\)</span> then rises by
+exactly <span
+class="math display">\[\widehat\mu(N_u)-\widehat\mu(N_u^{\mathrm{before}})\;=\;\sum_w
+2\,\frac{\log Nw}{[K:\mathbb Q]}\,\big\lfloor
+e_w\,\sigma_u(w)\big\rfloor .\]</span></li>
+</ul>
+<p>The rounding loss is accounted for explicitly. The gap between this
+jump and its unrounded value, <span class="math inline">\(\sum_w
+2\,\frac{\log Nw}{[K:\mathbb Q]}\,e_w\,\sigma_u(w)\)</span>, is at most
+<span class="math inline">\(2\sum_w\frac{\log Nw}{[K:\mathbb
+Q]}\)</span>, the sum running only over the places where <span
+class="math inline">\(\sigma_u(w)\neq0\)</span>: less than one unit per
+active place. That sum is itself bounded by logarithms of the parameters
+of the host and of the chain. Altogether this gives an error of at most
+<span class="math inline">\(C\,X&#39;&#39;\)</span>, with <span
+class="math inline">\(X&#39;&#39;=x\,n\,e^{x^{\varepsilon/3}}\)</span>,
+where <span class="math inline">\(n\)</span> is the order of the group
+<span class="math inline">\(A\)</span> of § 2. On the export, <span
+class="math inline">\([E:\mathbb Q]=4n\)</span> exactly, and <span
+class="math inline">\(n\le 2x^{2+8\varepsilon}\)</span> (§ 2). It forms
+one of the linking conditions feeding the final inequality (Part
+II).</p>
+<p><strong>It is negligible.</strong> One unit of the prime sum is worth
+<span class="math inline">\(b=e^{x^\varepsilon}\)</span> in slope: the
+Riesz weights are of order <span class="math inline">\(b\)</span>, and
+the parameters satisfy <span class="math inline">\(a=x\,b\)</span>. In
+units of <span class="math inline">\(G_\psi\)</span>, the rounding
+therefore weighs at most <span
+class="math inline">\(C\,x\,n\,e^{x^{\varepsilon/3}-x^{\varepsilon}}\)</span>.
+This tends to 0 faster than any power of <span
+class="math inline">\(x\)</span>, while the final error budget is <span
+class="math inline">\(x^{1/2+C\varepsilon}\)</span>. The other remainder
+in the same condition is of order <span class="math inline">\(b\)</span>
+(up to logarithmic and size factors): the rounding is smaller by a
+factor <span
+class="math inline">\(e^{-x^{\varepsilon}(1-o(1))}\)</span>.</p>
+<p><strong>The slope inequality (Bost).</strong> For <span
+class="math inline">\(\varphi:E\to F\)</span> injective of height <span
+class="math inline">\(h(\varphi)\)</span>, <span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>.
+This is an arithmetic generalization of Siegel’s lemma and of Minkowski.
+It is applied to the <span class="math inline">\(B_u\)</span>. The
+slopes of the divided lattices, which contain the prime sums, are thus
+bounded by:</p>
+<ul>
+<li>the slope of the target lattice, computed by <strong>exact
+volumes</strong>: Siegel masses, class numbers, Γ factors;</li>
+<li>the heights <span class="math inline">\(h(B_u)\)</span>, small
+thanks to a <strong>quasi-orthogonality</strong>: the periods of
+different forms are almost orthogonal. This is the project’s “theorem
+S”, a Petersson- or Kuznetsov-type formula for Bessel coefficients on
+unitary groups, with an error <span
+class="math inline">\(1+b^{-6}\)</span>;</li>
+<li>a <strong>covolume bound</strong> for lattices of automorphic forms,
+obtained by Arakelov geometry on integral models of Shimura varieties.
+It uses Hironaka, Moriwaki, arithmetic Hilbert–Samuel and toroidal
+compactifications.</li>
+</ul>
+<p><strong>The balance.</strong> Divisibility at the finite places and
+size at the infinite places, combined by the product formula: <span
+class="math display">\[\sum_{p\ \text{inert}}(\text{contribution of
+}p)\;\le\;(\text{explicit archimedean
+terms})\;+\;\text{losses}.\]</span> The archimedean terms (Rallis
+formulas for the norms of theta lifts, CM periods via Chowla–Selberg,
+Siegel masses) reproduce <strong>exactly the main term</strong> of the
+Chebyshev sum. Only the error remains.</p>
+<h2 id="where-the-½-comes-from">7. Where the ½ comes from</h2>
+<p>The error per lift, divided by the natural size of the term, is, up
+to a factor <span class="math inline">\(x^{O(\varepsilon)}\)</span>:
+<span
+class="math display">\[\frac{\text{error}}{\text{term}}\;\lesssim\;\underbrace{\frac{x}{m}}_{\text{trivial
+error spread over }m\text{ lifts}}\;+\;\underbrace{m}_{\text{loss per
+lift, linear in }m}\;+\;\sqrt x .\]</span> Since <span
+class="math inline">\(x/m+m\ge2\sqrt x\)</span>, with equality at <span
+class="math inline">\(m=\sqrt x\)</span>, the project imposes <span
+class="math display">\[x^{1/2-\varepsilon}\le m\le
+x^{1/2+\varepsilon/2},\]</span> and the error is <span
+class="math inline">\(x^{1/2+O(\varepsilon)}\)</span>. The method stops
+exactly at <span class="math inline">\(\sqrt x\)</span>, which is the
+true size of the fluctuations: Littlewood showed that <span
+class="math inline">\(\psi(x)-x\)</span> is not <span
+class="math inline">\(o(\sqrt x)\)</span>. Alpöge’s note: “for the von
+Mangoldt sum of length <span class="math inline">\(X\)</span>, Claude’s
+suggested length of chain of theta lifts, in view of each mimicking
+multiplicity, was <span class="math inline">\(\sqrt X\)</span>. (And
+yet, what else could it be?)”.</p>
+<p><em>Caution</em>: <span class="math inline">\(m\)</span> is the
+<strong>length of the chain</strong>, not the rank of the lattices. The
+base rank <span class="math inline">\(k\)</span> satisfies <span
+class="math inline">\(k\ge x\,m\)</span>, i.e. at least <span
+class="math inline">\(x^{3/2}\)</span>.</p>
+<h2 id="the-losses-and-the-theories-they-call-on">8. The losses, and the
+theories they call on</h2>
+<p>The mechanism of §§ 4–7 fits in a few pages. The rest of the proof
+pays three bills.</p>
+<p><strong>(a) Hecke denominators, and Tate–Shafarevich groups.</strong>
+To isolate the useful forms, one projects onto Hecke eigenspaces. This
+projection does not preserve integral lattices. Its
+<strong>denominators</strong> come from <strong>congruences</strong>
+between systems of eigenvalues, hence from extensions of Galois
+representations, and they eat up the divisibility gained. The proof
+bounds them by the length of <strong>Tate–Shafarevich</strong> groups of
+Tate twists over the host: <span
+class="math display">\[\sum_\ell\log\ell\sum_{1\le
+e&lt;x^{401}}\operatorname{len}\,\mathrm{Sha}^1_\ell\big(E,\mathbb
+Q_\ell/\mathbb Z_\ell(-e)\big)\;\le\;\exp(x^\varepsilon/2).\]</span>
+This is a bound <strong>polynomial in the conductor</strong>, effective
+and uniform in ℓ. It is obtained by <strong>Eisenstein
+congruences</strong> on <span class="math inline">\(U(3)\)</span> and
+<span class="math inline">\(\mathrm{GSp}_4\)</span>, in the style of
+Ribet and Mazur–Wiles, with Kato’s Euler system, Soulé-type bounds and
+Ferrero–Washington (<span class="math inline">\(\mu=0\)</span>). The
+part of opposite parity goes through Bernoulli numbers. The constant 401
+bounds the range of twists. Alpöge: “fight for a significant weakening
+of Vandiver”. This step weighs 8 % of the volume.</p>
+<p><strong>(b) Galois representations.</strong> The congruences require
+Galois representations attached to polarized automorphic forms on
+unitary groups, with local-global compatibility. The project builds them
+<strong>without the étale cohomology of Shimura varieties</strong>: -
+first by theta lifting; - then by <strong>geometric realization in
+weight 1</strong> in coherent cohomology (holomorphic Lefschetz
+formula); - finally by <strong>ℓ-adic congruences</strong>.</p>
+<p>This step weighs 6 % of the volume.</p>
+<p><strong>(c) The local Langlands correspondence, only partly.</strong>
+It is proved only in <strong>depth zero</strong> (Green’s theory of the
+characters of <span class="math inline">\(\mathrm{GL}_n(\mathbb
+F_q)\)</span>), with arbitrary values elsewhere. The proof queries the
+correspondence only at places where this version suffices.</p>
+<p><strong>And the manufacture of the objects</strong> (36 % of the
+volume): families of definite Hermitian spaces with prescribed
+signatures, discrete-series parameters, theta kernels with integral
+coefficients, rationality of periods (test vectors, Siegel–Weil),
+quasi-orthogonality, covolume.</p>
+<hr />
+<h1 id="part-ii.-map-of-the-code">Part II. Map of the code</h1>
+<p><em>The names below make it possible to find each step in the export.
+Percentages are shares of the dominated proof volume, computed from the
+dominator tree; they do not add up.</em></p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step (Part I)</th>
+<th>Main declarations</th>
+<th style="text-align: right;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statement, reduction</td>
+<td><code>riemannHypothesis</code>, <code>allChi</code>,
+<code>EveryCharacter</code>, <code>imprimitive</code></td>
+<td style="text-align: right;">99.3 % (all)</td>
+</tr>
+<tr>
+<td>§ 1 Landau on windows</td>
+<td><code>FormB</code>, <code>zeroFreeOn_of_tiedWin_cyc</code>,
+<code>level_gm_le_on_family_scales</code></td>
+<td style="text-align: right;">&lt; 0.1 %</td>
+</tr>
+<tr>
+<td>§ 2 Host, pairs on average</td>
+<td><code>supplyChi</code>, <code>PairEx</code>,
+<code>QH.pair_share</code>, <code>QH.bad_share</code></td>
+<td style="text-align: right;">≈ 0.1 %</td>
+</tr>
+<tr>
+<td>§ 4 Theorem A, Dwork</td>
+<td><code>DworkPowerSeriesWeights.thmAGauss</code>,
+<code>theorem_A_one_monomial_log_loss</code>, <code>lemmaS</code>,
+<code>FormalGroupSystem.Pf.sx_dwork</code></td>
+<td style="text-align: right;">≈ 0.02 %</td>
+</tr>
+<tr>
+<td>§ 5 Chain and gains</td>
+<td><code>FormalGroupSystem.LowTermBound</code>,
+<code>PointsLemma</code>, <code>G.NP</code>, <code>yProd</code>,
+<code>gainP</code>, <code>LinkG_at</code></td>
+<td style="text-align: right;">≈ 0.1 %</td>
+</tr>
+<tr>
+<td>§ 6 Division, slopes</td>
+<td><code>divClausesR_of</code>, <code>DivIntoDualShift</code>,
+<code>mu_diff</code>, <code>Frame_at</code>, <code>HypHigh</code></td>
+<td style="text-align: right;">≈ 0.1 %</td>
+</tr>
+<tr>
+<td>§ 6 Theorem S</td>
+<td><code>GlobalTheory.CarrierGap.offDiag</code></td>
+<td style="text-align: right;">1.4 %</td>
+</tr>
+<tr>
+<td>§ 6 Covolume</td>
+<td><code>topCovolSlim2_use_alt_alt</code></td>
+<td style="text-align: right;">7.1 %</td>
+</tr>
+<tr>
+<td>§ 8 (a) Tate–Shafarevich</td>
+<td><code>VWin := ∀ ψ, VWinAt ψ 401</code>,
+<code>vwin_of_row</code></td>
+<td style="text-align: right;">8.2 %</td>
+</tr>
+<tr>
+<td>§ 8 (b) Galois</td>
+<td><code>galoisLocalGlobalStrong_recParameter</code>
+(<code>Row0b</code>)</td>
+<td style="text-align: right;">6.3 %</td>
+</tr>
+<tr>
+<td>§ 8 (c) Local Langlands</td>
+<td><code>recTExists</code></td>
+<td style="text-align: right;">small</td>
+</tr>
+<tr>
+<td>§ 8 Manufacture</td>
+<td><code>nonempty_hyps_definite_side_of_closed_bound</code></td>
+<td style="text-align: right;">35.8 %</td>
+</tr>
+<tr>
+<td>Automorphic core (total)</td>
+<td><code>every_character_of_theta_integrals_local_matching</code></td>
+<td style="text-align: right;">41.5 %</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Facts established on the export.</strong></p>
+<ul>
+<li><strong>Closure.</strong> The environment of <code>Main</code> has
+2.70 M constants; 1.48 M are used (55 %), 86 % of which belong to the
+project. The export contains only those. The axioms are standard.</li>
+<li><strong>“Literature” scaffolding off the path.</strong>
+<code>LitN</code>, <code>published_inputs_combined</code>,
+<code>Published.LocalLanglandsGL</code> do not appear in the export. The
+structure <code>OpenLiteratureStatements</code> is built
+<strong>anonymously</strong> from proved theorems; 255 of the 259
+theorems <code>X_of_literature</code> do not use their hypothesis. A
+single <code>Published.*</code> statement is empty:
+<code>UnusedSlot72 := True</code>, under the name “simple pole of
+Siegel–Eisenstein”.</li>
+<li><strong>No literature statement enters as an axiom.</strong>
+Everything is proved in the project.</li>
+</ul>
+<p><strong>What each step reads on the export</strong> (details in the
+<a href="carte.html">map of the proof</a>, § 11, in French).</p>
+<ul>
+<li><strong>The Legendre gain.</strong> <code>gam p = p/(p^2−1)</code>;
+<code>gB = gam(p)·Σα − Σ_e min(α/p^{2e+1}, cap) − de</code>.</li>
+<li><strong>The automorphism loss.</strong>
+<code>dG_spec : v_p(|Stab_Γ(L)|) ≤ dG j</code>.</li>
+<li><strong>The chain of lifts.</strong> <code>lifts D = Icc 1 m</code>;
+<code>yProd</code> iterates <code>yv</code> m times;
+<code>ColChain</code> factors the period through
+<code>chainMat K_1 … K_m</code>.</li>
+<li><strong>Rounding in the division.</strong> <code>round_le</code>:
+<span class="math inline">\(|\Delta\widehat\mu-\sum_w\)</span>
+<code>sz w (sg u w)</code><span class="math inline">\(|\le
+2\sum_{w:\,\mathrm{sg}\neq0}\)</span> <code>lwP w</code>;
+<code>nprimeMu_at</code> bounds the right-hand side by <span
+class="math inline">\(2(X&#39;&#39;\log4+\log T+\log g_0+\log g_1+\log
+d+\log D_\Gamma)\)</span>; hence <code>NprimeMuR L C</code> (error <span
+class="math inline">\(\le C\cdot X&#39;&#39;\)</span>), required by
+<code>LinkMu</code> and used in <code>places_at_of</code>. Scales
+(<code>Scale</code>): <span
+class="math inline">\(b=e^{x^\varepsilon}\)</span>, <span
+class="math inline">\(a=x\,b\)</span>, <span
+class="math inline">\(b&#39;=a/e^{x^{\varepsilon/3}}\)</span>, <span
+class="math inline">\(w&#39;&#39;=b&#39;/(x\,n)\)</span>, so <span
+class="math inline">\(X&#39;&#39;=a/w&#39;&#39;=x\,n\,e^{x^{\varepsilon/3}}\)</span>,
+with <code>n = Frame.ord</code>. Size of <span
+class="math inline">\(n\)</span>: <code>HC.Der.finrank_E</code> gives
+<span class="math inline">\([E:\mathbb Q]=4\,\)</span><code>ord</code>
+(the Galois group is <span class="math inline">\((\mathbb
+Z^\times)^2\times\mathbb Z/\mathrm{ord}\)</span>, <code>card_GG</code>);
+<code>Ranks.mk</code> imposes <span
+class="math inline">\(2\,\)</span><code>ord</code><span
+class="math inline">\(\le k\)</span>, and
+<code>size_window_at_five</code> establishes <code>Win_at L 5</code>,
+hence <span class="math inline">\(k\le x^5\)</span> and <span
+class="math inline">\(n\le x^5/2\)</span>. More precisely, the
+construction of the family (<code>T3.supplyOfAdmOf</code>, on the path
+of <code>riemannHypothesis</code> via <code>supplyOfAdm</code> →
+<code>supplyChi</code> → … → <code>everyCharacter</code>) calls
+<code>Top.winPairs</code> and sets <code>hord : ord = c·2^e</code>,
+where <code>WinDatum</code> imposes <span
+class="math inline">\(x^{2+8\varepsilon}\le
+c\cdot2^e\le2x^{2+8\varepsilon}\)</span>; its conclusion
+(<code>HostExW</code>) contains the Ш bound <code>VVle</code> for
+<strong>the same</strong> field <code>E</code>. In
+<code>Lnk.Places_at</code>, the rounding defect satisfies
+<code>Rd ≤ RX ≤ C·X''</code>, next to
+<code>LT ≤ C·|TT|·m·(a/k + b')·log T</code>; with <span
+class="math inline">\(k\ge x\,m\)</span> (<code>Win_at</code>), <span
+class="math inline">\(m\,a/k\le b\)</span>: <code>LT</code> is of order
+<span class="math inline">\(b\)</span>.</li>
+<li><strong>The size condition.</strong> <code>Win_at</code> imposes
+<code>x^{1/2−ε} ≤ m ≤ x^{1/2+ε/2}</code> and <code>x·m ≤ k</code>.</li>
+</ul>
+<hr />
+<h1 id="part-iii.-assessment">Part III. Assessment</h1>
+<h2 id="what-is-new-i">What is new ⟦I⟧</h2>
+<ol type="1">
+<li><strong>An automorphic multiplicity: Stepanov over the
+integers.</strong> Stepanov’s order of vanishing is replaced by the
+<span class="math inline">\(p\)</span>-adic divisibility of derivatives
+of theta series at CM points, at the Legendre rate <span
+class="math inline">\(p/(p^2-1)\)</span>, accumulated along a chain of
+<span class="math inline">\(\approx\sqrt x\)</span> theta lifts. This is
+the central idea. According to Alpöge’s note, it combines the author’s
+analogy (Stepanov, a Fourier toy model, Bost) and a suggestion of the
+agent (the length <span class="math inline">\(\sqrt X\)</span>). On the
+division of roles, see Appendix A.</li>
+<li><strong>A concrete arithmetic positivity.</strong> Weil’s positivity
+(Castelnuovo, Hodge index), which makes RH work over function fields,
+finds here an effective arithmetic analogue: Bost’s slope inequality on
+lattices of explicit automorphic forms.</li>
+<li><strong>The exponent ½ by optimization</strong>, as in a Siegel
+lemma, and not through the functional equation.</li>
+<li><strong>Intermediate results of independent value</strong>:
+<ul>
+<li>Tate–Shafarevich bounds polynomial in the conductor, effective and
+uniform;</li>
+<li>Landau on windows;</li>
+<li>Galois representations through theta and weight 1, without Shimura
+varieties;</li>
+<li>a quantitative Petersson formula for Bessel coefficients of unitary
+groups.</li>
+</ul></li>
+</ol>
+<h2 id="what-is-classical-or-classical-recombined">What is classical, or
+classical recombined</h2>
+<p>Explicit formula, Landau positivity, large sieve, theta
+correspondence and Siegel–Weil, Rallis formulas, Chowla–Selberg, Dwork’s
+lemma, Legendre, Behrend, Hironaka, Moriwaki, Faltings–Chai, Eisenstein
+congruences, Kato’s Euler system, Ferrero–Washington.</p>
+<h2 id="what-is-not-yet-understood">What is not yet understood</h2>
+<ul>
+<li><strong>Why aligned weights exist.</strong> The weights of the lifts
+must coincide with those of the prime sums, and the Ш bound must fit in
+the budget. The construction of the families that achieve this takes 36
+% of the volume and has not been read in detail.</li>
+<li><strong>The internal proof of quasi-orthogonality</strong> (lower
+bounds for Poincaré series, 5.1 M lines) and that of the covolume
+bound.</li>
+<li><strong>The deformation part</strong> of the Tate–Shafarevich
+bounds, and the automorphy statements for <span
+class="math inline">\(\mathrm{GSp}_4\)</span> and <span
+class="math inline">\(U(3)\)</span>.</li>
+<li><strong>What is really necessary.</strong> Alpöge expects quick
+simplifications. The constants (401, <span
+class="math inline">\(1/52\)</span>, the gap <span
+class="math inline">\(120n^3\)</span>, …) do not seem forced.</li>
+</ul>
+<h2 id="what-is-proved-exactly">What is proved, exactly</h2>
+<p>GRH for <strong>all Dirichlet L-functions</strong>, hence RH, and RH
+for the Dedekind zeta functions of <strong>abelian fields</strong>.
+<strong>Not</strong> GRH for non-abelian fields, Artin L-functions or
+general automorphic L-functions. See Appendix C.</p>
+<hr />
+<h2 id="appendix-a.-genesis-what-the-sources-say">Appendix A. Genesis:
+what the sources say</h2>
+<p><em>This appendix is limited to facts measurable on the artifact and
+to what the author’s note states. It does not attempt to attribute
+ideas.</em></p>
+<p><strong>The artifact</strong> (measurements on the code and the
+export):</p>
+<ul>
+<li>17.4 M lines, no comments, no version history;</li>
+<li>stacked regenerations (<code>_alt_alt_alt…</code>) and numbered
+slots whose names are contradicted by their content
+(<code>UnusedSlot80</code>: 2,121 declarations used);</li>
+<li>52,764 defensive tactics <code>first | … | …</code>;</li>
+<li>a short, readable specification (<code>Statements.lean</code>,
+<code>Main.lean</code>).</li>
+</ul>
+<p>Nothing in the artifact makes it possible to establish who wrote
+what.</p>
+<p><strong>The split between mechanism and construction</strong>
+(measured with the dominator tree). The mechanism of Part I weighs
+<strong>less than 0.5 % of the volume</strong>: Landau on windows,
+Theorem A and the rate <span class="math inline">\(p/(p^2-1)\)</span>,
+division of lattices and the slope inequality, the balance <span
+class="math inline">\(x/m+m\)</span>. The rest builds the objects and
+controls the losses: unitary groups, integral theta kernels,
+quasi-orthogonality, covolume, Tate–Shafarevich bounds, Galois
+representations.</p>
+<p><strong>What the note says</strong>
+(<code>alpo.ge/remark.pdf</code>). It gives a 20-step chronology, from 6
+October to 16 November 2026, which it presents as “a rough timeline
+Claude provided after a thorough search”. Correspondence with the
+reconstructed proof:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>In the reconstructed proof</th>
+<th>Steps of the note</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stepanov analogy</td>
+<td>1, 4</td>
+<td>6/10</td>
+</tr>
+<tr>
+<td>Divisibility of <span
+class="math inline">\(D^a\Omega\theta(0)\)</span> at the CM point
+(Theorem A)</td>
+<td>2</td>
+<td>9/10</td>
+</tr>
+<tr>
+<td>Bost’s slope inequality</td>
+<td>13</td>
+<td>6/10</td>
+</tr>
+<tr>
+<td>Iwasawa tower, Behrend</td>
+<td>11, 19</td>
+<td>6/10 and 19/10</td>
+</tr>
+<tr>
+<td>Positivity, Guinand–Weil sign</td>
+<td>5, 6</td>
+<td>8/10 and 20/10</td>
+</tr>
+<tr>
+<td>Chain of theta lifts</td>
+<td>3, 8</td>
+<td>19/10 then 15/11</td>
+</tr>
+<tr>
+<td>Norms of lifts, seesaw, cost per lift, integral structures, Ш,
+covolumes</td>
+<td>9, 10, 12, 14, 15, 17, 18</td>
+<td>almost all on 15/11</td>
+</tr>
+</tbody>
+</table>
+<p>On the division of roles, the note says in particular: “The simple,
+new, Fourier-analytic ideas in the toy setting led us to examine
+chaining theta lifts”; the chain length <span
+class="math inline">\(\sqrt X\)</span> is “Claude’s suggested length of
+chain of theta lifts”; “Claude far outpaced me near the finish line”.
+The author also writes of having “little mastery of automorphic forms on
+higher rank groups”, and of having produced an exposition of more than
+250,000 pages, not published. The note also cites outside contributions
+(results by OpenAI, colleagues consulted).</p>
+<p>Two observations on the export complement the note: Theorem A (step
+2), the slope inequality (step 13) and Behrend’s construction (step 19)
+correspond to declarations in the closure; the “Fourier toy model” of
+step 3 (“qN = Mk + R”, quadric, sixfold cover) does not appear as such,
+which Rubinstein also observes.</p>
+<hr />
+<h2 id="appendix-b.-glossary">Appendix B. Glossary</h2>
+<p><em>Minimal definitions, in the sense in which they are used in this
+text.</em></p>
+<div class="glossaire">
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primitive Dirichlet character</strong></td>
+<td>A character χ mod N that does not come from a character of smaller
+modulus; N is then the <strong>conductor</strong></td>
+</tr>
+<tr>
+<td><strong><span class="math inline">\(\Lambda(n)\)</span></strong>
+(von Mangoldt)</td>
+<td><span class="math inline">\(\log p\)</span> if <span
+class="math inline">\(n=p^k\)</span>, <span
+class="math inline">\(0\)</span> otherwise</td>
+</tr>
+<tr>
+<td><strong><span class="math inline">\(\psi(x,\chi)\)</span></strong>,
+Chebyshev function</td>
+<td><span class="math inline">\(\displaystyle\psi(x,\chi)=\sum_{n\le
+x}\Lambda(n)\chi(n)\)</span>; GRH for <span
+class="math inline">\(\chi\)</span> <span
+class="math inline">\(\iff\)</span> <span
+class="math inline">\(\psi(x,\chi)=O(x^{1/2+\varepsilon})\)</span> (for
+<span class="math inline">\(\chi\neq1\)</span>)</td>
+</tr>
+<tr>
+<td><strong>Explicit formula</strong></td>
+<td>Expression of <span class="math inline">\(\psi(x,\chi)\)</span> as a
+sum over the zeros <span class="math inline">\(\rho\)</span> of <span
+class="math inline">\(L(s,\chi)\)</span>: <span
+class="math inline">\(\displaystyle\psi(x,\chi)\approx-\sum_\rho
+\frac{x^\rho}{\rho}\)</span></td>
+</tr>
+<tr>
+<td><strong>Landau’s theorem</strong></td>
+<td>A Dirichlet series with coefficients ≥ 0 has a singularity at the
+real point of its abscissa of convergence; hence an upper bound
+suffices</td>
+</tr>
+<tr>
+<td><strong>Large sieve</strong></td>
+<td>Mean-square inequalities over a family of characters; they show that
+almost all characters of a large family have small sums</td>
+</tr>
+<tr>
+<td><strong>CM field</strong></td>
+<td>Totally imaginary quadratic extension of a totally real field
+(e.g. ℚ(√−d))</td>
+</tr>
+<tr>
+<td><strong>Hermitian form, unitary group</strong></td>
+<td>Hermitian sesquilinear form on <span
+class="math inline">\(E^n\)</span> (<span
+class="math inline">\(E\)</span> CM); the unitary group is its group of
+isometries. <strong>Definite</strong>: positive at all infinite
+places</td>
+</tr>
+<tr>
+<td><strong>Siegel mass</strong></td>
+<td><span
+class="math inline">\(\displaystyle\sum_{[L]}\frac{1}{\lvert\mathrm{Aut}(L)\rvert}\)</span>
+over the classes of lattices in a genus; Siegel’s formula computes it
+exactly</td>
+</tr>
+<tr>
+<td><strong>Theta series, Siegel–Weil</strong></td>
+<td>The theta series of a lattice is the generating series of its
+representation numbers; Siegel–Weil: average over the genus = Eisenstein
+series</td>
+</tr>
+<tr>
+<td><strong>Theta correspondence (lift)</strong></td>
+<td>Procedure that carries automorphic forms from one unitary group to
+another via the Weil representation; <strong>stable range</strong>: when
+the second group is large enough</td>
+</tr>
+<tr>
+<td><strong>Hermitian lattice</strong></td>
+<td>Finitely generated projective <span class="math inline">\(\mathcal
+O_K\)</span>-module with Hermitian norms at the infinite places (a
+“vector bundle” on <span
+class="math inline">\(\operatorname{Spec}\mathcal O_K\)</span>)</td>
+</tr>
+<tr>
+<td><strong>Arakelov degree</strong></td>
+<td><span
+class="math inline">\(\widehat{\deg}(L)=-\log\operatorname{covol}(L)\)</span>,
+normalized; decomposes into finite local contributions (<span
+class="math inline">\(\times\log p\)</span>) and archimedean ones</td>
+</tr>
+<tr>
+<td><strong>Slope, Harder–Narasimhan</strong></td>
+<td><span
+class="math inline">\(\widehat\mu=\widehat{\deg}/\mathrm{rank}\)</span>;
+<span class="math inline">\(\widehat\mu_{\max}\)</span> is the largest
+slope of a sublattice (first step of the Harder–Narasimhan
+filtration)</td>
+</tr>
+<tr>
+<td><strong>Slope inequality (Bost)</strong></td>
+<td>For <span class="math inline">\(\varphi:E\to F\)</span> injective,
+<span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>,
+where <span class="math inline">\(h(\varphi)\)</span> is the height of
+<span class="math inline">\(\varphi\)</span>; generalizes Minkowski</td>
+</tr>
+<tr>
+<td><strong>Attached Galois representation</strong></td>
+<td><span class="math inline">\(r:\mathrm{Gal}(\overline
+E/E)\to\mathrm{GL}_n(\overline{\mathbb Q}_\ell)\)</span> whose Frobenius
+eigenvalues at unramified p equal the Satake parameters of the
+automorphic form at p</td>
+</tr>
+<tr>
+<td><strong>Weil–Deligne representation</strong></td>
+<td>“linearized” version of a local Galois representation (Weil +
+monodromy); the Galois side of local Langlands</td>
+</tr>
+<tr>
+<td><strong>Local Langlands</strong></td>
+<td>Bijection between irreducible representations of <span
+class="math inline">\(\mathrm{GL}_n(K)\)</span> (<span
+class="math inline">\(K\)</span> local) and n-dimensional Weil–Deligne
+representations, preserving certain invariants</td>
+</tr>
+<tr>
+<td><strong>Depth zero, tame</strong></td>
+<td>Representation of <span
+class="math inline">\(\mathrm{GL}_n(K)\)</span> with vectors fixed by
+the first congruence subgroup; Galois side: trivial wild inertia</td>
+</tr>
+<tr>
+<td><strong>Green’s theory</strong></td>
+<td>Description of the irreducible characters of <span
+class="math inline">\(\mathrm{GL}_n(\mathbb F_q)\)</span>; the “regular
+characters” <span class="math inline">\(\theta\)</span> of <span
+class="math inline">\(\mathbb F_{q^n}^\times\)</span> parametrize the
+cuspidal ones</td>
+</tr>
+<tr>
+<td><strong>Holomorphic Lefschetz formula</strong></td>
+<td>Trace of a correspondence on coherent (Hodge) cohomology = sum over
+fixed points of local terms</td>
+</tr>
+<tr>
+<td><strong>Arakelov geometry</strong></td>
+<td>Geometry of varieties over Spec ℤ completed by metrics at the
+infinite places; degrees, heights, arithmetic volumes</td>
+</tr>
+<tr>
+<td><strong>Stepanov’s method</strong></td>
+<td>Bounding the number of points of a curve over <span
+class="math inline">\(\mathbb F_q\)</span> by an auxiliary function
+vanishing to high order at each point; gives RH for curves (Stepanov,
+Bombieri)</td>
+</tr>
+<tr>
+<td><strong>Formal group, height</strong></td>
+<td>Group law given by a formal power series <span
+class="math inline">\(F(X,Y)\)</span>; over <span
+class="math inline">\(\mathbb Z_p\)</span>, that of a
+<strong>supersingular</strong> elliptic curve has height 2, with a
+logarithm of the type <span class="math inline">\(\sum_e
+X^{p^{2e}}/p^e\)</span></td>
+</tr>
+<tr>
+<td><strong>CM point</strong></td>
+<td>Point of a Shimura variety corresponding to an abelian variety with
+complex multiplication; its reduction at an inert prime is
+supersingular</td>
+</tr>
+<tr>
+<td><strong>Legendre’s formula</strong></td>
+<td><span class="math inline">\(v_p(a!)=\sum_{e\ge1}\lfloor
+a/p^e\rfloor=(a-s_p(a))/(p-1)\)</span>; here its analogues restricted to
+odd exponents give the rate <span
+class="math inline">\(p/(p^2-1)\)</span></td>
+</tr>
+<tr>
+<td><strong>Dwork’s lemma</strong></td>
+<td><span class="math inline">\(p\)</span>-adic integrality criterion:
+<span class="math inline">\(\exp(P)\in 1+X\,W[[X]]\)</span> if and only
+if <span class="math inline">\(P^{\sigma}(X^p)-pP\in pW[[X]]\)</span>;
+used for Artin–Hasse exponentials and formal groups</td>
+</tr>
+<tr>
+<td><strong>Gauss norm</strong></td>
+<td>Norm of a <span class="math inline">\(p\)</span>-adic polynomial
+equal to the maximum of the norms of its coefficients; it is
+multiplicative and equals the value at a residually generic point</td>
+</tr>
+<tr>
+<td><strong>Bessel period (GGP)</strong></td>
+<td>Integral of an automorphic form over a subgroup, against a character
+of a unipotent and a form on a smaller group; Kudla’s seesaw identities
+relate those of theta lifts</td>
+</tr>
+<tr>
+<td><strong>Tate–Shafarevich group</strong></td>
+<td>Kernel of the restriction <span
+class="math inline">\(H^1(G_{E,S},\mathbb Q_\ell/\mathbb
+Z_\ell(-e))\to\prod_{v\mid\ell}H^1(E_v,\cdot)\)</span>: global classes
+that are locally trivial</td>
+</tr>
+<tr>
+<td><strong>Eisenstein congruence</strong></td>
+<td>Congruence mod ℓ between a cusp form and an Eisenstein series; it
+builds, or here bounds, Selmer classes (Ribet, Mazur–Wiles)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="appendix-c.-mathematical-consequences">Appendix C. Mathematical
+consequences</h2>
+<p><strong>What is proved, exactly.</strong> GRH for <strong>all
+Dirichlet L-functions</strong>, hence RH. The Dedekind zeta function of
+an <strong>abelian field</strong> factors as a product of Dirichlet
+L-functions; <strong>GRH therefore holds for all abelian number
+fields</strong>, in particular quadratic and cyclotomic ones. It is
+<strong>not</strong> proved for non-abelian fields, nor for Artin or
+general automorphic L-functions. This boundary decides most of the
+consequences.</p>
+<h3 id="c.1-classical-consequences-of-rh-for-ζ">C.1 Classical
+consequences of RH (for ζ)</h3>
+<ul>
+<li><strong>Optimal prime number theorem</strong> (von Koch): <span
+class="math inline">\(\pi(x)=\operatorname{li}(x)+O(\sqrt x\log
+x)\)</span>. Explicit form (Schoenfeld): <span
+class="math inline">\(|\pi(x)-\operatorname{li}(x)|&lt;\dfrac{\sqrt
+x\,\log x}{8\pi}\)</span> for <span class="math inline">\(x\ge
+2657\)</span>.</li>
+<li><strong>Gaps between primes</strong> (Cramér): <span
+class="math inline">\(p_{n+1}-p_n=O(\sqrt{p_n}\,\log p_n)\)</span>.
+There is a prime in every interval <span
+class="math inline">\([x,\,x+C\sqrt x\log x]\)</span>.</li>
+<li><strong>Mertens function</strong>: <span
+class="math inline">\(\displaystyle M(x)=\sum_{n\le
+x}\mu(n)=O(x^{1/2+\varepsilon})\)</span>, together with all equivalent
+reformulations of RH (Riesz, Nyman–Beurling, Li’s criterion…).</li>
+<li><strong>Lindelöf hypothesis</strong>: <span
+class="math inline">\(\zeta(\tfrac12+it)\ll_\varepsilon
+|t|^{\varepsilon}\)</span>. It follows from RH.</li>
+<li><strong>Robin’s criterion</strong>: <span
+class="math inline">\(\sigma(n)&lt;e^{\gamma}\,n\log\log n\)</span> for
+all <span class="math inline">\(n&gt;5040\)</span>. Sutherland’s page
+mentions “Robin1984” files and a combined arithmetic export, which
+suggests a formal derivation of this criterion (content not read
+here).</li>
+</ul>
+<h3
+id="c.2-consequences-of-grh-for-dirichlet-primes-in-progressions-and-algorithmics">C.2
+Consequences of GRH for Dirichlet: primes in progressions and
+algorithmics</h3>
+<ul>
+<li><strong>Primes in arithmetic progressions</strong>: <span
+class="math inline">\(\pi(x;q,a)=\dfrac{\operatorname{li}(x)}{\varphi(q)}+O\big(\sqrt
+x\,\log(qx)\big)\)</span>, uniformly in <span
+class="math inline">\(q\)</span>.</li>
+<li><strong>Least prime in a progression</strong>: <span
+class="math inline">\(p(q,a)\ll(\varphi(q)\log q)^2\)</span>, i.e., for
+all practical purposes, Linnik’s constant equal to 2.</li>
+<li><strong>Least quadratic non-residue</strong>: <span
+class="math inline">\(n_p&lt;2(\log p)^2\)</span> (Ankeny, Bach). Small
+primitive roots also follow (Shoup).</li>
+<li><strong>Deterministic algorithms</strong>:
+<ul>
+<li><strong>Miller’s primality test</strong>: it suffices to test bases
+<span class="math inline">\(\le 2(\log n)^2\)</span>, giving a
+deterministic polynomial-time test. AKS already was one unconditionally,
+but Miller is much faster;</li>
+<li>deterministic computation of square roots mod <span
+class="math inline">\(p\)</span>, and other algorithms that depended on
+GRH.</li>
+</ul></li>
+<li><strong>No more Siegel zero</strong> for Dirichlet L-functions,
+which <strong>makes effective</strong> results that were ineffective
+until now:
+<ul>
+<li>Siegel’s theorem <span class="math inline">\(h(-d)\gg_\varepsilon
+d^{1/2-\varepsilon}\)</span>, whose constant becomes computable;</li>
+<li>Littlewood’s lower bound <span class="math inline">\(h(-d)\gg\sqrt
+d/\log\log d\)</span>;</li>
+<li>the Siegel–Walfisz theorem and what depends on it.</li>
+</ul></li>
+<li><strong>Quadratic and cyclotomic fields</strong> (abelian case):
+<ul>
+<li>Bach’s bound: the class group is generated by prime ideals of norm
+<span class="math inline">\(\le 12(\log|d|)^2\)</span>. The computation
+of class groups and units becomes proved, no longer merely
+conditional;</li>
+<li>effective Chebotarev (Lagarias–Odlyzko) <strong>for abelian
+extensions of <span class="math inline">\(\mathbb
+Q\)</span></strong>.</li>
+</ul></li>
+</ul>
+<h3 id="c.3-what-does-not-follow">C.3 What does not follow</h3>
+<p>Several famous consequences of “GRH” actually assume GRH for
+<strong>non-abelian</strong> fields, or for more general
+L-functions:</p>
+<ul>
+<li><strong>Artin’s primitive root conjecture</strong> (Hooley, 1967):
+it uses GRH for the Kummer fields <span class="math inline">\(\mathbb
+Q(\zeta_k,a^{1/k})\)</span>, which are not abelian. <strong>Not
+covered</strong>;</li>
+<li><strong>general effective Chebotarev</strong>, Bach’s bound for
+non-abelian fields, the Euclidean property of rings of integers
+(Weinberger) in general. <strong>Not covered</strong>;</li>
+<li>GRH for modular forms, elliptic curves (ranks, Birch and
+Swinnerton-Dyer…), automorphic L-functions of <span
+class="math inline">\(\mathrm{GL}_n\)</span> and Artin L-functions.
+<strong>Not covered</strong>;</li>
+<li>questions that do not follow from RH: twin primes, binary Goldbach,
+pair correlation (Montgomery), simplicity of zeros, linear independence
+of their ordinates. <strong>Unchanged</strong>.</li>
+</ul>
+<p>For each result “conditional on GRH” in the literature, one must
+therefore check <strong>which</strong> GRH is assumed.</p>
+<h3 id="c.4-methodological-consequences-speculative-i">C.4
+Methodological consequences (speculative ⟦I⟧)</h3>
+<ul>
+<li><strong>A method, more than a result.</strong> Nothing a priori
+forces the argument to stay with Dirichlet: multiplicity through chains
+of theta lifts, Bost slopes, unitary groups over CM fields, averaged
+choice of auxiliary characters. An extension to <strong>Hecke
+characters</strong> (and thus to GRH for more fields), or even to <span
+class="math inline">\(\mathrm{GL}_2\)</span>, would be the natural goal.
+Nothing in the export establishes it; it is an open question.</li>
+<li><strong>Intermediate results useful in themselves</strong>:
+<ul>
+<li>Galois representations through theta, weight 1 and congruences,
+without Shimura varieties;</li>
+<li>an explicit local Langlands correspondence in depth zero;</li>
+<li>a quantitative Petersson formula for Bessel coefficients of unitary
+groups;</li>
+<li>zero density and zero-free regions proved formally.</li>
+</ul></li>
+<li><strong>A formal library</strong>: Hironaka, Moriwaki,
+Grothendieck–Messing, toroidal compactifications, etc. now exist in
+Lean, even if in a barely readable form.</li>
+<li><strong>Immediate formal consequences</strong>: the final statements
+use Mathlib’s definitions. Every Lean theorem stated “under the
+hypothesis <code>RiemannHypothesis</code>” becomes unconditional by
+instantiating it with <code>riemannHypothesis</code>.</li>
+</ul>
+<h3 id="c.5-consequences-for-the-discipline">C.5 Consequences for the
+discipline</h3>
+<ul>
+<li><strong>Part of the literature becomes unconditional</strong>, but
+only the part that depends on GRH for Dirichlet or for abelian fields.
+This sorting remains to be done, paper by paper.</li>
+<li><strong>Research shifts</strong>: from statements “under GRH”
+towards the finer questions that RH does not settle (statistical
+distribution of zeros, moments, correlation conjectures), and towards
+<strong>extending the method</strong> to other L-functions.</li>
+<li><strong>An epistemic precedent</strong>: a central result is certain
+before it is understood, which raises the question of an “explanatory
+proof” (Part III).</li>
+</ul>
+<h2 id="references">References</h2>
+<p><strong>The proof and its verification</strong></p>
+<ul>
+<li>[A] L. Alpöge, announcement note, 20/11/2026: <a
+href="https://alpo.ge/remark.pdf"
+class="uri">https://alpo.ge/remark.pdf</a></li>
+<li>[Su] A. Sutherland, verification page and proof export
+(<code>solution.ndjson.zst</code>, <code>challenge.ndjson.zst</code>):
+<a href="https://math.mit.edu/~drew/grh/"
+class="uri">https://math.mit.edu/~drew/grh/</a></li>
+<li>[R] M. Rubinstein, verification page: <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/</a></li>
+</ul>
+<p><strong>Other published syntheses and readings</strong> (all written
+with AI tools, to varying degrees)</p>
+<ul>
+<li>[R] M. Rubinstein (with Claude, Codex and Gemini), <em>The
+Alpöge–Claude proof of the Riemann hypothesis explained for the Riemann
+zeta function</em>, working draft, 21–22/11/2026: <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper.pdf"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper.pdf</a>.
+The most detailed exposition, restricted to ζ, in the style of classical
+analytic number theory.</li>
+<li>[S] S. Slijepčević, <em>Outline of Alpöge’s proof of the generalised
+Riemann hypothesis</em>, hexagon:2611.00812: <a
+href="https://cantabpi.com/grh.pdf"
+class="uri">https://cantabpi.com/grh.pdf</a></li>
+<li>[Z] R. Zhang, <em>A preliminary note on Alpöge’s proposed proof of
+the generalized Riemann hypothesis</em>, hexagon:2611.00809: <a
+href="https://www.ihes.fr/~rzhang/files/GRH%20note.pdf"
+class="uri">https://www.ihes.fr/~rzhang/files/GRH%20note.pdf</a></li>
+<li>[H] twinheterodox, <em>Three simplifications in the Alpöge–Claude
+argument for Dirichlet GRH</em>, hexagon:2611.00828: <a
+href="https://hexagonmath.org/2611.00828v1"
+class="uri">https://hexagonmath.org/2611.00828v1</a></li>
+<li>[G] <code>RH-Alpoge-Reconstruction</code> (textual reading of the
+source): <a
+href="https://github.com/jimjamzola/RH-Alpoge-Reconstruction"
+class="uri">https://github.com/jimjamzola/RH-Alpoge-Reconstruction</a></li>
+<li>M. Lerma, <em>A Schematic RH Proof for Dummies</em> (popular
+account): <a
+href="https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf"
+class="uri">https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf</a></li>
+</ul>
+<p><strong>Classical references</strong></p>
+<ul>
+<li>H. Davenport, <em>Multiplicative Number Theory</em>, 3rd ed.,
+Springer, 2000.</li>
+<li>J.-B. Bost, “Périodes et isogénies des variétés abéliennes sur les
+corps de nombres”, Séminaire Bourbaki, exp. 795, 1995 (slope
+inequalities).</li>
+<li>S. A. Stepanov, “On the number of points of a hyperelliptic curve
+over a finite prime field”, <em>Izv. Akad. Nauk SSSR</em> 33, 1969; E.
+Bombieri, “Counting points on curves over finite fields (d’après S. A.
+Stepanov)”, Séminaire Bourbaki, exp. 430, 1973.</li>
+</ul>
+<h2 id="version-history">Version history</h2>
+<ul>
+<li><strong>1.0</strong> (23/11/2026): first published version.
+Preliminaries on L-functions; detailed § 1; comparison with [R] and [H];
+Appendix A reduced to facts.</li>
+</ul>
+<hr />
+<p><em>Method: streaming read of the export (62 GB decompressed) with <a
+href="tools/deps.c"><code>tools/deps.c</code></a>; declaration graph,
+dominators (Cooper–Harvey–Kennedy) and reverse index with <a
+href="tools/analyse_export.py"><code>analyse_export.py</code></a>, <a
+href="tools/revindex.py"><code>revindex.py</code></a> and <a
+href="tools/query.py"><code>query.py</code></a>; re-printing of
+statements with <a href="tools/show.py"><code>show.py</code></a>. Every
+negative conclusion (“X is not used”) is established on the export and
+not by text search. The tools and this text were written with Claude
+(Anthropic).</em></p>
+</body>
+</html>

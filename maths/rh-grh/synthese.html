@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Synthèse RH/GRH</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
+  <style>
+    body { max-width: 52em; margin: 0 auto; padding: 1.5em 1em; font-family: Georgia, "Times New Roman", serif; line-height: 1.55; color: #1a1a1a; background: #fff; }
+    h1, h2, h3 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.25; }
+    h1 { font-size: 1.9em; } h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: .2em; }
+    table { border-collapse: collapse; margin: 1em 0; font-size: .92em; display: block; overflow-x: auto; }
+    th, td { border: 1px solid #ccc; padding: .3em .6em; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .glossaire td { padding-top: .45em; padding-bottom: .45em; }
+    .glossaire td:last-child, .glossaire th:last-child { padding-left: 1.2em; }
+    code { font-size: .88em; background: #f5f5f5; padding: 0 .2em; border-radius: 3px; }
+    pre { overflow-x: auto; background: #f7f7f7; padding: .8em; }
+    pre.mermaid { background: none; text-align: center; overflow-x: auto; }
+    blockquote { border-left: 4px solid #c9d3e6; margin: 1em 0; padding: .2em 1em; background: #f6f8fc; }
+    nav#TOC { font-size: .9em; background: #fafafa; border: 1px solid #e5e5e5; padding: .5em 1em; }
+    a { color: #1f4f9a; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #161616; color: #e6e6e6; } a { color: #8ab4f8; }
+      th { background: #262626; } th, td { border-color: #444; }
+      code, pre { background: #222; } blockquote { background: #1d2330; border-color: #3b4a66; }
+      nav#TOC { background: #1d1d1d; border-color: #333; } h2 { border-color: #333; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false }, theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" });
+  </script>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#la-preuve-de-lhypothèse-de-riemann-généralisée-dalpöge"
+id="toc-la-preuve-de-lhypothèse-de-riemann-généralisée-dalpöge">La
+preuve de l’hypothèse de Riemann généralisée d’Alpöge</a>
+<ul>
+<li><a
+href="#prémisses-caractères-de-dirichlet-fonctions-l-hypothèse-de-riemann"
+id="toc-prémisses-caractères-de-dirichlet-fonctions-l-hypothèse-de-riemann">Prémisses
+: caractères de Dirichlet, fonctions L, hypothèse de Riemann</a></li>
+<li><a href="#résumé-en-deux-pages" id="toc-résumé-en-deux-pages">Résumé
+en deux pages</a></li>
+</ul></li>
+<li><a href="#partie-i.-la-preuve" id="toc-partie-i.-la-preuve">Partie
+I. La preuve</a>
+<ul>
+<li><a href="#de-rh-à-une-inégalité-sur-les-nombres-premiers"
+id="toc-de-rh-à-une-inégalité-sur-les-nombres-premiers">1. De RH à une
+inégalité sur les nombres premiers</a></li>
+<li><a href="#un-corps-auxiliaire-par-échelle"
+id="toc-un-corps-auxiliaire-par-échelle">2. Un corps auxiliaire par
+échelle</a></li>
+<li><a href="#le-modèle-la-preuve-de-stepanov-pour-les-courbes"
+id="toc-le-modèle-la-preuve-de-stepanov-pour-les-courbes">3. Le modèle :
+la preuve de Stepanov pour les courbes</a></li>
+<li><a
+href="#la-source-de-la-divisibilité-dériver-une-série-thêta-en-un-point-cm"
+id="toc-la-source-de-la-divisibilité-dériver-une-série-thêta-en-un-point-cm">4.
+La source de la divisibilité : dériver une série thêta en un point
+CM</a></li>
+<li><a href="#la-multiplicité-une-chaîne-de-m-relèvements-thêta"
+id="toc-la-multiplicité-une-chaîne-de-m-relèvements-thêta">5. La
+multiplicité : une chaîne de m relèvements thêta</a></li>
+<li><a href="#du-côté-archimédien-réseaux-pentes-et-formule-du-produit"
+id="toc-du-côté-archimédien-réseaux-pentes-et-formule-du-produit">6. Du
+côté archimédien : réseaux, pentes et formule du produit</a></li>
+<li><a href="#doù-vient-le-½" id="toc-doù-vient-le-½">7. D’où vient le
+½</a></li>
+<li><a href="#les-pertes-et-les-théories-quelles-mobilisent"
+id="toc-les-pertes-et-les-théories-quelles-mobilisent">8. Les pertes, et
+les théories qu’elles mobilisent</a></li>
+</ul></li>
+<li><a href="#partie-ii.-carte-du-code"
+id="toc-partie-ii.-carte-du-code">Partie II. Carte du code</a></li>
+<li><a href="#partie-iii.-bilan" id="toc-partie-iii.-bilan">Partie III.
+Bilan</a>
+<ul>
+<li><a href="#ce-qui-est-nouveau-i" id="toc-ce-qui-est-nouveau-i">Ce qui
+est nouveau ⟦I⟧</a></li>
+<li><a href="#ce-qui-est-classique-ou-classique-recombiné"
+id="toc-ce-qui-est-classique-ou-classique-recombiné">Ce qui est
+classique, ou classique recombiné</a></li>
+<li><a href="#ce-quon-ne-comprend-pas-encore"
+id="toc-ce-quon-ne-comprend-pas-encore">Ce qu’on ne comprend pas
+encore</a></li>
+<li><a href="#ce-qui-est-démontré-exactement"
+id="toc-ce-qui-est-démontré-exactement">Ce qui est démontré,
+exactement</a></li>
+<li><a href="#annexe-a.-genèse-ce-que-disent-les-sources"
+id="toc-annexe-a.-genèse-ce-que-disent-les-sources">Annexe A. Genèse :
+ce que disent les sources</a></li>
+<li><a href="#annexe-b.-glossaire" id="toc-annexe-b.-glossaire">Annexe
+B. Glossaire</a></li>
+<li><a href="#annexe-c.-conséquences-mathématiques"
+id="toc-annexe-c.-conséquences-mathématiques">Annexe C. Conséquences
+mathématiques</a></li>
+<li><a href="#références" id="toc-références">Références</a></li>
+<li><a href="#historique-des-versions"
+id="toc-historique-des-versions">Historique des versions</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="la-preuve-de-lhypothèse-de-riemann-généralisée-dalpöge">La
+preuve de l’hypothèse de Riemann généralisée d’Alpöge</h1>
+<p><em>Version 1.0, 23 novembre 2026. Document de travail : il sera
+corrigé à mesure que les lectures avancent (historique en fin de
+document). <a href="synthese_en.html">English version</a>.</em></p>
+<p><em><strong>Gérard Rozsavolgyi</strong>, guidant <strong>Claude
+(Anthropic)</strong>. Les scripts d’analyse de l’export, la lecture du
+code et la rédaction ont été faits par Claude sous sa direction, puis
+relus. Sources : l’export de la preuve publié par A. Sutherland [Su]
+(<code>solution.ndjson.zst</code> : 1 468 418 déclarations, soit
+exactement la fermeture des énoncés de <code>Main</code>), la note de
+l’auteur [A], et les autres lectures publiées [Z], [S], [R], [H], [G]
+(voir les Références). Notes de travail plus détaillées, avec les noms
+Lean : <a href="carte.html">carte de la preuve</a>. Outils d’analyse :
+<a href="tools/">tools/</a>.</em></p>
+<blockquote>
+<p><strong>À qui s’adresse ce texte.</strong> À un mathématicien qui
+connaît les corps de nombres, les fonctions L de Dirichlet et un peu
+d’analyse <span class="math inline">\(p\)</span>-adique, mais qui n’est
+spécialiste ni de théorie analytique des nombres, ni de formes
+automorphes, ni de géométrie d’Arakelov. Les <strong>prémisses</strong>
+rappellent les fonctions L de Dirichlet et l’énoncé de GRH. La
+<strong>partie I</strong> expose la preuve sans vocabulaire Lean. La
+<strong>partie II</strong> dit où chaque étape se trouve dans le code et
+ce qu’elle pèse. La <strong>partie III</strong> fait le bilan.</p>
+<p><strong>Statut.</strong> La validité formelle n’est pas en cause :
+compilation complète, axiomes standard, rejeu par plusieurs noyaux
+indépendants (vérifications publiées par Sutherland [Su] et Rubinstein
+[R], état au 23/11/2026). Ce texte cherche à
+<strong>comprendre</strong>. Les affirmations sont lues sur les énoncés
+de l’export, sauf celles marquées ⟦I⟧, qui sont des interprétations.</p>
+</blockquote>
+<hr />
+<h2
+id="prémisses-caractères-de-dirichlet-fonctions-l-hypothèse-de-riemann">Prémisses
+: caractères de Dirichlet, fonctions L, hypothèse de Riemann</h2>
+<p><em>Ce qui suit est classique (Davenport, </em>Multiplicative Number
+Theory<em>, chap. 4 à 9 et 19). On fixe les notations du reste du
+texte.</em></p>
+<p><strong>Caractères de Dirichlet.</strong> Un caractère de Dirichlet
+de module <span class="math inline">\(N\ge1\)</span> est un morphisme de
+groupes <span class="math inline">\(\chi:(\mathbb Z/N\mathbb
+Z)^\times\to\mathbb C^\times\)</span>, prolongé à ℤ par <span
+class="math inline">\(\chi(n)=\chi(n\bmod N)\)</span> si <span
+class="math inline">\(\gcd(n,N)=1\)</span> et <span
+class="math inline">\(\chi(n)=0\)</span> sinon. C’est une fonction
+complètement multiplicative et <span
+class="math inline">\(N\)</span>-périodique, à valeurs dans les racines
+de l’unité (et 0).</p>
+<ul>
+<li>Son <strong>ordre</strong> <span class="math inline">\(o\)</span>
+est son ordre dans le groupe des caractères : <span
+class="math inline">\(\chi^o=1\)</span>. Les caractères d’ordre 2 sont
+les caractères <strong>quadratiques</strong>, par exemple le symbole de
+Legendre <span class="math inline">\((\cdot/p)\)</span> ou <span
+class="math inline">\(\chi_{-4}(n)=(-1)^{(n-1)/2}\)</span> pour <span
+class="math inline">\(n\)</span> impair.</li>
+<li>Il est <strong>pair</strong> ou <strong>impair</strong> selon que
+<span class="math inline">\(\chi(-1)=+1\)</span> ou <span
+class="math inline">\(-1\)</span> ; on note <span
+class="math inline">\(\kappa\in\{0,1\}\)</span> avec <span
+class="math inline">\(\chi(-1)=(-1)^\kappa\)</span>.</li>
+<li>Il est <strong>primitif</strong> s’il ne provient pas d’un caractère
+de module <span class="math inline">\(N&#39;&lt;N\)</span>, <span
+class="math inline">\(N&#39;\mid N\)</span>. Tout χ est
+<strong>induit</strong> par un unique caractère primitif <span
+class="math inline">\(\chi^\ast\)</span>, de module <span
+class="math inline">\(f\mid N\)</span> appelé
+<strong>conducteur</strong> : <span
+class="math inline">\(\chi(n)=\chi^\ast(n)\)</span> pour <span
+class="math inline">\(\gcd(n,N)=1\)</span>. Le caractère
+<strong>trivial</strong> de module <span
+class="math inline">\(N\)</span> est induit par le caractère <span
+class="math inline">\(1\)</span> de module 1.</li>
+<li><strong>Orthogonalité</strong> : pour <span
+class="math inline">\(\gcd(n,N)=1\)</span>, <span
+class="math inline">\(\frac1{\varphi(N)}\sum_{\chi\bmod
+N}\chi(n)=1\)</span> si <span class="math inline">\(n\equiv1\pmod
+N\)</span> et <span class="math inline">\(0\)</span> sinon. C’est
+l’outil qui isole une progression arithmétique, ou, au § 2, une classe
+de Frobenius.</li>
+</ul>
+<p><strong>La fonction <span
+class="math inline">\(L(s,\chi)\)</span>.</strong> Pour <span
+class="math inline">\(\operatorname{Re}s&gt;1\)</span>, <span
+class="math display">\[L(s,\chi)=\sum_{n\ge1}\frac{\chi(n)}{n^{s}}=\prod_{p}\Big(1-\frac{\chi(p)}{p^{s}}\Big)^{-1},\]</span>
+la série et le produit (d’Euler) convergeant absolument. Pour <span
+class="math inline">\(\chi=1\)</span>, c’est <span
+class="math inline">\(\zeta(s)\)</span>. On écrit <span
+class="math inline">\(L(s,\chi)\)</span> ; Mathlib et la partie II
+écrivent <span class="math inline">\(L(\chi,s)\)</span>
+(<code>LFunction χ s</code>), c’est la même fonction.</p>
+<ul>
+<li><strong>Dérivée logarithmique.</strong> En dérivant le logarithme du
+produit d’Euler, <span
+class="math display">\[-\frac{L&#39;}{L}(s,\chi)=\sum_{n\ge1}\frac{\Lambda(n)\chi(n)}{n^{s}},\qquad
+\Lambda(n)=\begin{cases}\log p &amp; n=p^k,\ k\ge1,\\
+0&amp;\text{sinon}\end{cases}\]</span> (<span
+class="math inline">\(\Lambda\)</span> est la fonction de <strong>von
+Mangoldt</strong>). C’est <strong>le</strong> pont entre zéros et
+nombres premiers : un zéro de <span class="math inline">\(L\)</span>
+d’ordre <span class="math inline">\(m\)</span> est un pôle simple de
+<span class="math inline">\(-L&#39;/L\)</span>, de résidu <span
+class="math inline">\(-m\)</span>.</li>
+<li><strong>Prolongement et équation fonctionnelle.</strong> Si χ est
+primitif et <span class="math inline">\(\chi\neq1\)</span>, <span
+class="math inline">\(L(s,\chi)\)</span> se prolonge en une fonction
+<strong>entière</strong> ; <span class="math inline">\(\zeta\)</span> se
+prolonge en une fonction méromorphe avec un seul pôle, simple, en <span
+class="math inline">\(s=1\)</span>. Pour χ primitif de conducteur <span
+class="math inline">\(N\)</span>, la fonction complétée <span
+class="math display">\[\xi(s,\chi)=\Big(\frac
+N\pi\Big)^{(s+\kappa)/2}\,\Gamma\Big(\frac{s+\kappa}2\Big)\,L(s,\chi)\]</span>
+vérifie <span
+class="math inline">\(\xi(s,\chi)=\varepsilon(\chi)\,\xi(1-s,\bar\chi)\)</span>,
+avec <span class="math inline">\(|\varepsilon(\chi)|=1\)</span> (un
+quotient de sommes de Gauss). La symétrie <span
+class="math inline">\(s\leftrightarrow1-s\)</span> échange χ et <span
+class="math inline">\(\bar\chi\)</span>.</li>
+<li><strong>Zéros.</strong> Le produit d’Euler interdit les zéros pour
+<span class="math inline">\(\operatorname{Re}s&gt;1\)</span>, et
+Hadamard–de la Vallée Poussin les excluent sur <span
+class="math inline">\(\operatorname{Re}s=1\)</span>. Les pôles de Γ
+donnent les <strong>zéros triviaux</strong> <span
+class="math inline">\(s=-\kappa,-\kappa-2,-\kappa-4,\dots\)</span> (pour
+ζ : <span class="math inline">\(-2,-4,\dots\)</span>). Tous les autres,
+les <strong>zéros non triviaux</strong> <span
+class="math inline">\(\rho=\beta+i\gamma\)</span>, sont dans la
+<strong>bande critique</strong> <span
+class="math inline">\(0&lt;\beta&lt;1\)</span>. Il y en a une infinité,
+environ <span
+class="math inline">\(\frac{T}{2\pi}\log\frac{NT}{2\pi}\)</span> de
+hauteur <span class="math inline">\(0&lt;\gamma\le T\)</span>. Par
+l’équation fonctionnelle et la conjugaison (<span
+class="math inline">\(\overline{L(\bar s,\chi)}=L(s,\bar\chi)\)</span>),
+si ρ est un zéro de <span class="math inline">\(L(s,\chi)\)</span>,
+alors <span class="math inline">\(1-\bar\rho\)</span> en est un aussi :
+l’ensemble des zéros non triviaux est <strong>symétrique par rapport à
+la droite critique</strong> <span
+class="math inline">\(\operatorname{Re}s=\tfrac12\)</span>.</li>
+<li><strong>Caractères non primitifs.</strong> Si χ est induit par <span
+class="math inline">\(\chi^\ast\)</span>, <span
+class="math inline">\(L(s,\chi)=L(s,\chi^\ast)\prod_{p\mid
+N}(1-\chi^\ast(p)p^{-s})\)</span> : les facteurs ajoutés ne s’annulent
+que sur <span class="math inline">\(\operatorname{Re}s=0\)</span>.</li>
+</ul>
+<p><strong>RH et GRH.</strong></p>
+<ul>
+<li><strong>RH</strong> : tous les zéros non triviaux de ζ ont une
+partie réelle <span class="math inline">\(\tfrac12\)</span>.</li>
+<li><strong>GRH pour χ</strong> (hypothèse de Riemann généralisée, ici
+pour les fonctions L de Dirichlet) : tous les zéros non triviaux de
+<span class="math inline">\(L(s,\chi^\ast)\)</span> ont une partie
+réelle <span class="math inline">\(\tfrac12\)</span>.</li>
+</ul>
+<p>Grâce à la symétrie <span
+class="math inline">\(\rho\leftrightarrow1-\bar\rho\)</span>, il revient
+au même de dire qu’<strong>il n’y a aucun zéro dans le demi-plan <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span></strong> :
+un zéro à gauche de la droite critique en a un miroir à droite. C’est
+sous cette forme, qui ne parle ni de zéros triviaux ni de primitivité,
+que le théorème est énoncé, y compris dans Lean : <em>pour tout
+caractère χ et tout <span class="math inline">\(s\)</span> avec <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>, <span
+class="math inline">\(L(s,\chi)\neq0\)</span></em>.</p>
+<p><strong>Traduction en termes de nombres premiers.</strong> Notons
+<span class="math inline">\(\psi(x,\chi)=\sum_{n\le
+x}\Lambda(n)\chi(n)\)</span> la <strong>fonction de Tchebychev</strong>
+tordue par χ (<span class="math inline">\(\psi(x)=\psi(x,1)\)</span>).
+La <strong>formule explicite</strong> de Riemann–von Mangoldt l’écrit
+comme une somme d’ondes indexées par les zéros : <span
+class="math display">\[\psi(x,\chi)=\delta_\chi\,x-\sum_{\rho}\frac{x^\rho}{\rho}+(\text{termes
+bornés par }O(\log x)),\qquad
+\delta_\chi=\begin{cases}1&amp;\chi=1\\0&amp;\chi\ne1\end{cases}\]</span>
+Un zéro <span class="math inline">\(\rho=\beta+i\gamma\)</span> produit
+une oscillation d’amplitude <span
+class="math inline">\(x^\beta\)</span>. D’où l’équivalence, pour tout ε
+&gt; 0 : <span class="math display">\[\text{GRH pour
+}\chi\iff\psi(x,\chi)-\delta_\chi
+x=O_\varepsilon\big(x^{1/2+\varepsilon}\big).\]</span> Le sens ⇐ est le
+seul dont la preuve a besoin. Il vient de <span
+class="math inline">\(-\frac{L&#39;}{L}(s,\chi)=s\int_1^\infty\psi(x,\chi)\,x^{-s-1}\,dx\)</span>
+: une borne <span class="math inline">\(O(x^{\theta})\)</span> rend
+l’intégrale convergente, donc <span
+class="math inline">\(L&#39;/L\)</span> holomorphe, pour <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span>.
+<strong>Démontrer GRH, c’est majorer des sommes sur les nombres premiers
+avec une erreur en racine carrée.</strong></p>
+<p><em>Notation.</em> Dans la suite, la lettre ψ <strong>seule</strong>
+désigne un caractère primitif (celui que l’on traite), et <span
+class="math inline">\(\psi(x,\chi)\)</span> la fonction de Tchebychev ;
+γ désigne la constante d’Euler <span
+class="math inline">\(0{,}5772\ldots\)</span>, sauf dans <span
+class="math inline">\(\rho=\beta+i\gamma\)</span>.</p>
+<hr />
+<h2 id="résumé-en-deux-pages">Résumé en deux pages</h2>
+<p><strong>Théorème.</strong> Pour tout caractère de Dirichlet χ, <span
+class="math inline">\(L(s,\chi)\neq 0\)</span> pour <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>. En
+particulier, l’hypothèse de Riemann est vraie.</p>
+<p><strong>La preuve en six étapes.</strong></p>
+<p><strong>1. Une majoration d’un seul côté suffit.</strong> Il suffit
+de majorer une combinaison <strong>à coefficients positifs</strong> de
+sommes de nombres premiers tordues par les puissances de χ, avec une
+erreur <span class="math inline">\(x^{1/2+\varepsilon}\)</span>, et
+seulement sur des <strong>fenêtres</strong> d’échelles <span
+class="math inline">\([Y,Y^{3/2}]\)</span>.</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Somme de Tchebychev tordue</em> : <span
+class="math inline">\(\sum_{n\le x}\Lambda(n)\chi(n)\)</span>, où <span
+class="math inline">\(\Lambda(n)=\log p\)</span> si <span
+class="math inline">\(n=p^k\)</span> et <span
+class="math inline">\(0\)</span> sinon. GRH pour χ équivaut à ce que
+cette somme soit <span
+class="math inline">\(O(x^{1/2+\varepsilon})\)</span>.</li>
+<li><em>Positivité à la Landau</em> : une série de Dirichlet à
+coefficients <span class="math inline">\(\ge0\)</span> a une singularité
+au point réel de son abscisse de convergence. Pour une combinaison
+positive, une <strong>majoration</strong> suffit donc à exclure les
+zéros, sans minoration.</li>
+</ul>
+</blockquote>
+<p><strong>2. Un corps auxiliaire par échelle.</strong> À chaque échelle
+<span class="math inline">\(x\)</span>, on choisit un grand corps
+auxiliaire, l’<strong>hôte</strong>, et l’on y compte les
+<strong>premiers inertes</strong>, pondérés selon leur Frobenius. Par
+orthogonalité, ce comptage fait apparaître χ, mais aussi des caractères
+<strong>parasites</strong>, que l’on neutralise par un choix <strong>en
+moyenne</strong> des paramètres de l’hôte.</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Corps CM</em> : extension quadratique totalement imaginaire d’un
+corps totalement réel, par exemple <span class="math inline">\(\mathbb
+Q(\zeta_n)\)</span> ou <span class="math inline">\(\mathbb
+Q(\sqrt{-d})\)</span>.</li>
+<li><em>Hôte</em> : un corps CM abélien <span
+class="math inline">\(E\subset\mathbb Q(\zeta_{Qqd})\)</span>, de degré
+<span class="math inline">\(\approx x^{2}\)</span>, construit sur deux
+premiers auxiliaires <span class="math inline">\(q,d\)</span>. Il
+contient <span class="math inline">\(\sqrt{-q}\)</span>, <span
+class="math inline">\(\sqrt{-d}\)</span> et le corps découpé par χ. Son
+groupe de Galois est abélien et explicite, si bien que tout comptage de
+premiers selon leur Frobenius se décompose en sommes tordues par ses
+caractères, parmi lesquels χ.</li>
+<li><em>Premier inerte</em> : <span class="math inline">\(p\)</span> est
+inerte dans <span class="math inline">\(\mathbb Q(\sqrt{-d})\)</span> si
+<span class="math inline">\(p\mathcal O\)</span> y reste premier, de
+corps résiduel <span class="math inline">\(\mathbb F_{p^2}\)</span>.
+Cela équivaut à <span
+class="math inline">\(\big(\tfrac{-d}{p}\big)=-1\)</span> et concerne
+environ la moitié des premiers.</li>
+<li><em>Choix en moyenne</em> : on ne sait pas contrôler un caractère
+quadratique donné, puisque ce serait GRH. Mais dans une famille de
+taille <span class="math inline">\(\exp(Y^{\varepsilon/5})\)</span>,
+<strong>presque toutes</strong> les paires <span
+class="math inline">\((q,d)\)</span> ont de bonnes sommes (grand
+crible). Il en existe donc.</li>
+</ul>
+</blockquote>
+<p><strong>3. Le moteur : un argument à la Stepanov.</strong> On
+remplace « une fonction qui s’annule à un ordre élevé » par « une série
+thêta dont les <strong>dérivées d’ordre <span
+class="math inline">\(a\)</span> en un point CM</strong> sont divisibles
+par <span class="math inline">\(p^{a\,p/(p^2-1)}\)</span> », pour chaque
+premier <span class="math inline">\(p\)</span> inerte. C’est un lemme
+<span class="math inline">\(p\)</span>-adique sur les groupes formels («
+Théorème A », de type Dwork et Legendre).</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Méthode de Stepanov</em> : pour une courbe sur <span
+class="math inline">\(\mathbb F_q\)</span>, on construit une fonction
+auxiliaire qui s’annule à l’ordre <span class="math inline">\(a\)</span>
+en chaque point rationnel. Alors <span
+class="math inline">\(a\cdot\#C(\mathbb F_q)\le\deg f\)</span>, et
+l’optimisation en <span class="math inline">\(a\)</span> donne <span
+class="math inline">\(q+O(\sqrt q)\)</span>. Sur ℤ, « s’annuler à
+l’ordre <span class="math inline">\(a\)</span> » devient « être
+divisible par <span class="math inline">\(p^{v}\)</span> ».</li>
+<li><em>Série thêta</em> : série génératrice <span
+class="math inline">\(\theta_L(z)=\sum_{v\in L}e^{2\pi i H(v)z}\)</span>
+des représentations par une forme quadratique ou hermitienne <span
+class="math inline">\(H\)</span> ; c’est une forme automorphe.</li>
+<li><em>Point CM</em> : point d’un espace de modules de variétés
+abéliennes (courbe modulaire, variété de Shimura) correspondant à une
+variété à <strong>multiplication complexe</strong>, dont l’anneau
+d’endomorphismes est anormalement grand. L’exemple type est <span
+class="math inline">\(\mathbb C/\mathbb Z[i]\)</span>, en <span
+class="math inline">\(\tau=i\)</span>. Les formes modulaires y prennent
+des valeurs algébriques.</li>
+<li><em>Réduction supersingulière, groupe formel</em> : en <span
+class="math inline">\(p\)</span> inerte, la courbe CM réduite modulo
+<span class="math inline">\(p\)</span> est supersingulière. Son groupe
+formel, une loi de groupe donnée par une série entière, est de hauteur
+2, de logarithme <span class="math inline">\(\sum_e
+X^{p^{2e}}/p^e\)</span>. Cette rigidité rend la divisibilité
+calculable.</li>
+<li><em>Le taux <span class="math inline">\(p/(p^2-1)\)</span></em> : on
+a <span
+class="math inline">\(D^af(0)=a!\cdot\mathrm{coeff}_a(f)\)</span>. Par
+Legendre, <span class="math inline">\(v_p(a!)\approx a/(p-1)\)</span>,
+et les dénominateurs du groupe formel coûtent au plus <span
+class="math inline">\(a/(p^2-1)\)</span>. Or <span
+class="math inline">\(\frac1{p-1}-\frac1{p^2-1}=\frac{p}{p^2-1}=\frac1p+\frac1{p^3}+\cdots\)</span>.</li>
+</ul>
+</blockquote>
+<p><strong>4. La multiplicité : une chaîne de relèvements.</strong> Une
+seule dérivation ne suffit pas. On enchaîne <span
+class="math inline">\(m\)</span> <strong>relèvements thêta</strong>
+entre groupes unitaires de rangs croissants, et chacun ajoute sa couche
+de divisibilité. La longueur <span class="math inline">\(m\)</span> de
+la chaîne joue le rôle de l’ordre d’annulation.</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Groupe unitaire</em> <span class="math inline">\(U(X)\)</span> :
+groupe des isométries d’un espace hermitien <span
+class="math inline">\(X\)</span> sur un corps CM. Si <span
+class="math inline">\(X\)</span> est <strong>défini</strong> (positif
+aux places infinies), le groupe est compact à l’infini et ses espaces de
+formes automorphes sont de dimension finie.</li>
+<li><em>Relèvement thêta</em> (Weil, Howe, Kudla) : il transporte une
+forme automorphe <span class="math inline">\(f\)</span> sur <span
+class="math inline">\(U(X)\)</span> vers une forme sur un autre groupe
+unitaire <span class="math inline">\(U(X&#39;)\)</span>, en l’intégrant
+contre une série thêta à deux variables, le « noyau » : <span
+class="math inline">\(\theta(f)(h)=\int f(g)\,\Theta(g,h)\,dg\)</span>
+(sur un quotient adélique).</li>
+<li><em>Période</em> : intégrale d’une forme automorphe sur un
+sous-groupe (ici une période de Bessel, au sens de Gan–Gross–Prasad).
+Par les identités <strong>seesaw</strong> (Kudla), la période du
+relèvement itéré se calcule sur le groupe de départ, à travers les <span
+class="math inline">\(m\)</span> noyaux successifs.</li>
+</ul>
+</blockquote>
+<p><strong>5. Le côté archimédien : l’inégalité de pentes.</strong> La
+divisibilité force les périodes à être des multiples de grandes
+puissances de premiers. Une <strong>inégalité de pentes</strong> (Bost)
+empêche ces périodes d’être trop grosses aux places infinies. Par la
+formule du produit, les deux contraintes ne sont compatibles que si la
+somme sur les premiers est petite. Les termes archimédiens (masses de
+Siegel, formules de Rallis, périodes CM) reproduisent exactement le
+terme principal attendu.</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Réseau hermitien</em> : un <span class="math inline">\(\mathcal
+O_K\)</span>-module projectif <span class="math inline">\(L\)</span>
+muni de normes hermitiennes aux places infinies.</li>
+<li><em>Pente</em> : <span
+class="math inline">\(\widehat\mu(L)=-\log\operatorname{covol}(L)/\operatorname{rang}(L)\)</span>,
+à une normalisation près. Diviser <span class="math inline">\(L\)</span>
+par <span class="math inline">\(p^{v}\)</span> l’augmente de <span
+class="math inline">\(v\log p\)</span> : <strong>une différence de
+pentes est une somme de <span class="math inline">\(\log
+p\)</span></strong>.</li>
+<li><em>Inégalité de pentes</em> : pour <span
+class="math inline">\(\varphi:E\to F\)</span> injectif, <span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>,
+où <span class="math inline">\(h(\varphi)\)</span> mesure la norme de
+<span class="math inline">\(\varphi\)</span> aux places infinies. C’est
+une version arithmétique du lemme de Siegel et de Minkowski : un réseau
+ne peut pas être très « serré » s’il s’envoie sans trop dilater dans un
+réseau connu. La divisibilité augmente la pente, et l’inégalité la
+plafonne.</li>
+<li><em>Formule du produit</em> : pour <span
+class="math inline">\(\alpha\ne0\)</span> dans un corps de nombres,
+<span class="math inline">\(\prod_v|\alpha|_v=1\)</span>. Être très
+divisible en <span class="math inline">\(p\)</span> oblige à être grand
+ailleurs.</li>
+</ul>
+</blockquote>
+<p><strong>6. D’où vient le ½.</strong> L’erreur a deux termes : <span
+class="math inline">\(x/m\)</span>, qui décroît avec la longueur <span
+class="math inline">\(m\)</span> de la chaîne, et une perte <span
+class="math inline">\(m\)</span>, qui croît avec elle. L’optimum <span
+class="math inline">\(m\approx\sqrt x\)</span> donne l’exposant <span
+class="math inline">\(\tfrac12\)</span>.</p>
+<blockquote>
+<p><strong>Définitions.</strong></p>
+<ul>
+<li><em>Équilibre</em> : l’erreur relative vaut <span
+class="math inline">\(\approx x/m+m\ge2\sqrt x\)</span>, avec égalité
+pour <span class="math inline">\(m=\sqrt x\)</span>. La méthode bute
+exactement sur <span class="math inline">\(\sqrt x\)</span>, la vraie
+taille des fluctuations (Littlewood). <span
+class="math inline">\(m\)</span> est la <strong>longueur de la
+chaîne</strong>, pas un rang.</li>
+<li><em>Les pertes à payer</em> : les dénominateurs des projections de
+Hecke, bornés par des groupes de Tate–Shafarevich ; les automorphismes
+des réseaux (masses de Siegel) ; une quasi-orthogonalité des périodes ;
+un covolume. Voir § 8.</li>
+</ul>
+</blockquote>
+<p>Tout le reste, soit plus de 99 % des 17 millions de lignes, sert à
+<strong>fabriquer</strong> les objets auxquels ce mécanisme s’applique :
+groupes unitaires, réseaux, noyaux thêta, représentations galoisiennes,
+bornes de groupes de Tate–Shafarevich. Il sert aussi à <strong>contrôler
+les pertes</strong>.</p>
+<pre class="mermaid">flowchart TB
+    RH["RH et GRH pour Dirichlet"] --&gt; CRIT["Majoration unilatérale de sommes de premiers&lt;br/&gt;sur des fenêtres (Landau)"]
+    CRIT --&gt; HOST["Corps hôte CM abélien à l'échelle x&lt;br/&gt;premiers inertes ; parasites neutralisés en moyenne"]
+    HOST --&gt; STEP["Argument à la Stepanov"]
+    STEP --&gt; DIV["Divisibilité des périodes&lt;br/&gt;m relèvements thêta&lt;br/&gt;× Théorème A (Dwork, Legendre)"]
+    STEP --&gt; SLOPE["Inégalité de pentes (Bost)&lt;br/&gt;borne archimédienne"]
+    DIV --&gt; BAL["Équilibre x/m + m, d'où ½"]
+    SLOPE --&gt; BAL
+    DIV -.-&gt; COST["Pertes à contrôler :&lt;br/&gt;dénominateurs (Tate–Shafarevich),&lt;br/&gt;automorphismes (masses de Siegel)"]
+    SLOPE -.-&gt; QO["Quasi-orthogonalité (théorème S),&lt;br/&gt;covolume (Arakelov)"]
+    COST -.-&gt; PIL["Piliers : représentations galoisiennes,&lt;br/&gt;Langlands local partiel"]</pre>
+<p><em>Lecture du schéma : une flèche pleine signifie « se ramène à » ou
+« repose sur » ; une flèche en pointillés mène aux pertes à contrôler et
+aux théories qui les contrôlent.</em></p>
+<hr />
+<h1 id="partie-i.-la-preuve">Partie I. La preuve</h1>
+<h2 id="de-rh-à-une-inégalité-sur-les-nombres-premiers">1. De RH à une
+inégalité sur les nombres premiers</h2>
+<p>Ce paragraphe ramène GRH à <strong>une seule inégalité</strong>, sans
+aucune arithmétique fine : uniquement de l’analyse complexe classique
+(Perron, Landau). Il tient en cinq étapes. Dans le code, c’est la partie
+légère : environ 73 000 déclarations, pour l’essentiel l’analyse de
+Mathlib (partie II).</p>
+<h3 id="réduction-aux-caractères-primitifs-groupés-par-niveaux">1.1
+Réduction aux caractères primitifs, groupés par niveaux</h3>
+<p>Si χ est induit par <span class="math inline">\(\chi^\ast\)</span>,
+de module <span class="math inline">\(N\)</span>, <span
+class="math display">\[L(s,\chi)=L(s,\chi^\ast)\prod_{p\mid
+N}\big(1-\chi^\ast(p)p^{-s}\big).\]</span> Chaque facteur a pour module
+<span class="math inline">\(\ge 1-p^{-\operatorname{Re}s}&gt;0\)</span>
+si <span class="math inline">\(\operatorname{Re}s&gt;0\)</span> : il ne
+s’annule pas à droite de l’axe imaginaire. Les zéros de <span
+class="math inline">\(L(s,\chi)\)</span> dans <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span> sont donc
+ceux de <span class="math inline">\(L(s,\chi^\ast)\)</span>, et il
+suffit de traiter les caractères <strong>primitifs</strong>. RH est le
+cas <span class="math inline">\(\chi^\ast=1\)</span> (module 1),
+c’est-à-dire ζ ; les caractères triviaux de module <span
+class="math inline">\(N\)</span> s’y ramènent.</p>
+<p>La preuve ne traite pas un caractère isolé, mais tout un
+<strong>niveau</strong> à la fois. Pour ψ primitif d’ordre <span
+class="math inline">\(o\)</span>, on note <span
+class="math display">\[K_\psi=\{\chi_0=1,\
+\chi_1,\dots,\chi_{o-1}\},\qquad \chi_j=\text{le caractère primitif qui
+induit }\psi^j .\]</span> C’est un ensemble de <span
+class="math inline">\(o\)</span> caractères primitifs, <strong>stable
+par conjugaison</strong> (<span
+class="math inline">\(\overline{\psi^j}=\psi^{o-j}\)</span>), qui
+contient 1. On démontrera d’un coup que <strong>ni ζ ni aucun des <span
+class="math inline">\(L(s,\chi_j)\)</span></strong> ne s’annule pour
+<span class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>.
+Pour RH seule, <span class="math inline">\(\psi=1\)</span>, <span
+class="math inline">\(o=1\)</span> et <span
+class="math inline">\(K_\psi=\{1\}\)</span>.</p>
+<h3 id="lisser-la-somme-de-tchebychev-pondérée-de-riesz">1.2 Lisser : la
+somme de Tchebychev pondérée de Riesz</h3>
+<p>La fonction <span class="math inline">\(\psi(x,\chi)\)</span> des
+prémisses a deux défauts : elle saute en chaque puissance de premier, et
+sa formule explicite <span class="math inline">\(\sum_\rho
+x^\rho/\rho\)</span> ne converge que conditionnellement (car <span
+class="math inline">\(\sum 1/|\rho|\)</span> diverge). La preuve utilise
+plutôt le <strong>poids de Riesz</strong> <span
+class="math inline">\((y/n-1)_+\)</span> : <span
+class="math display">\[S(y,\chi)=\sum_{n\le
+y}\Lambda(n)\chi(n)\Big(\frac yn-1\Big)=\int_1^y\Big(\sum_{n\le
+t}\frac{\Lambda(n)\chi(n)}{n}\Big)\,dt .\]</span> C’est une primitive
+(une moyenne) : elle est continue, et chaque intégration fait gagner un
+facteur <span class="math inline">\(1/|\rho|\)</span> dans la formule
+explicite.</p>
+<p><strong>La formule de Perron.</strong> Pour <span
+class="math inline">\(c&gt;1\)</span> et <span
+class="math inline">\(y&gt;0\)</span>, le calcul des résidus en <span
+class="math inline">\(s=1\)</span> et <span
+class="math inline">\(s=0\)</span> donne <span
+class="math display">\[\frac1{2\pi
+i}\int_{c-i\infty}^{c+i\infty}\frac{(y/n)^s}{s(s-1)}\,ds=\Big(\frac
+yn-1\Big)_+ ,\]</span> d’où, en sommant contre <span
+class="math inline">\(\Lambda(n)\chi(n)\)</span> et en utilisant la
+dérivée logarithmique, <span
+class="math display">\[S(y,\chi)=\frac1{2\pi
+i}\int_{(c)}\Big(-\frac{L&#39;}{L}(s,\chi)\Big)\frac{y^s}{s(s-1)}\,ds
+.\]</span> Le noyau décroît comme <span
+class="math inline">\(|s|^{-2}\)</span> : l’intégrale converge
+<strong>absolument</strong>, et on peut déplacer le contour vers la
+gauche en ramassant les résidus.</p>
+<ul>
+<li><strong>En <span class="math inline">\(s=1\)</span>.</strong> Pour
+<span class="math inline">\(\chi\neq1\)</span>, <span
+class="math inline">\(L(1,\chi)\ne0\)</span> (Dirichlet), et le résidu
+vaut <span class="math inline">\(-y\,\frac{L&#39;}{L}(1,\chi)\)</span>.
+Pour ζ, le pôle de <span
+class="math inline">\(-\zeta&#39;/\zeta=\frac1{s-1}-\gamma+\cdots\)</span>
+rencontre celui du noyau : pôle double, de résidu <span
+class="math inline">\(y\log y-(1+\gamma)\,y\)</span>.</li>
+<li><strong>En chaque zéro non trivial ρ, de multiplicité <span
+class="math inline">\(m_\rho\)</span></strong> : <span
+class="math inline">\(-L&#39;/L\)</span> a un résidu <span
+class="math inline">\(-m_\rho\)</span>, d’où le terme <span
+class="math inline">\(-m_\rho\,y^\rho/(\rho(\rho-1))\)</span>.</li>
+<li><strong>En <span class="math inline">\(s=0\)</span> et aux zéros
+triviaux</strong> : des termes <span class="math inline">\(O(\log
+y)\)</span>.</li>
+</ul>
+<p>On retire donc le terme principal, ce qui définit <span
+class="math display">\[g(y,\chi)=S(y,\chi)+y\,\frac{L&#39;}{L}(1,\chi)\quad(\chi\ne1),\qquad
+G(y)=S(y,1)-y\log y+(1+\gamma)\,y ,\]</span> et l’on obtient la
+<strong>formule explicite lissée</strong> : <span
+class="math display">\[g(y,\chi)=-\sum_\rho
+m_\rho\,\frac{y^\rho}{\rho(\rho-1)}+O(\log y),\]</span> et de même pour
+<span class="math inline">\(G\)</span> avec les zéros de ζ. La série
+converge <strong>absolument</strong>, puisque <span
+class="math inline">\(\sum_\rho1/|\rho|^2&lt;\infty\)</span>. Deux
+conséquences :</p>
+<ol type="1">
+<li><strong>GRH ⇒ <span
+class="math inline">\(g(y,\chi)=O(y^{1/2})\)</span></strong>, sans même
+de <span class="math inline">\(\varepsilon\)</span> : c’est la taille
+visée.</li>
+<li><strong>Réciproquement</strong>, par transformation de Mellin, <span
+class="math inline">\(\int_1^\infty
+g(y,\chi)\,y^{-s-1}dy=-\frac{1}{s(s-1)}\frac{L&#39;}{L}(s,\chi)+(\text{fraction
+rationnelle à pôles en }0,1)\)</span>. Un zéro ρ y apparaît comme un
+<strong>pôle</strong>. Une borne <span
+class="math inline">\(|g(y,\chi)|=O(y^\theta)\)</span> rend l’intégrale
+convergente pour <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span>, et exclut
+tout zéro de partie réelle <span
+class="math inline">\(&gt;\theta\)</span>.</li>
+</ol>
+<p>Le point 2 demande une borne <strong>en valeur absolue</strong> : il
+faudrait contrôler les fluctuations de <span
+class="math inline">\(g\)</span> vers le haut <strong>et</strong> vers
+le bas. La suite de la réduction supprime une de ces deux exigences.</p>
+<h3 id="combiner-une-somme-à-coefficients-positifs">1.3 Combiner : une
+somme à coefficients positifs</h3>
+<p>Pour ψ primitif d’ordre <span class="math inline">\(o\)</span>, on
+forme <span
+class="math display">\[G_\psi(y)=G(y)+\frac{1}{3o+1}\sum_{j=1}^{o-1}\operatorname{Re}g(y,\chi_j).\]</span>
+Comme <span class="math inline">\(K_\psi\)</span> est stable par
+conjugaison et <span
+class="math inline">\(g(y,\bar\chi)=\overline{g(y,\chi)}\)</span>, la
+somme des parties réelles est la somme des <span
+class="math inline">\(g(y,\chi_j)\)</span> elles-mêmes. <span
+class="math inline">\(G_\psi\)</span> est donc la somme de Riesz, terme
+principal ôté, de la série de Dirichlet <span
+class="math display">\[D_\psi(s)=-\frac{\zeta&#39;}{\zeta}(s)-\frac1{3o+1}\sum_{j=1}^{o-1}\frac{L&#39;}{L}(s,\chi_j)=\sum_{n\ge1}\frac{c_n}{n^s},\qquad
+c_n=\Lambda(n)\Big(1+\frac1{3o+1}\sum_{j=1}^{o-1}\chi_j(n)\Big).\]</span></p>
+<p><strong>Les coefficients sont positifs.</strong> Si <span
+class="math inline">\(n\)</span> est premier au conducteur de ψ, <span
+class="math inline">\(\chi_j(n)=\psi(n)^j\)</span>, et la somme
+géométrique <span
+class="math inline">\(\sum_{j=1}^{o-1}\psi(n)^j\)</span> vaut <span
+class="math inline">\(o-1\)</span> si <span
+class="math inline">\(\psi(n)=1\)</span>, et <span
+class="math inline">\(-1\)</span> sinon. D’où <span
+class="math display">\[c_n=\Lambda(n)\cdot\begin{cases}\dfrac{4o}{3o+1}&amp;\text{si
+}\psi(n)=1,\\[8pt]\dfrac{3o}{3o+1}&amp;\text{sinon.}\end{cases}\]</span>
+Pour les puissances des premiers <span class="math inline">\(p\)</span>
+qui divisent le conducteur, on borne chaque <span
+class="math inline">\(|\chi_j(n)|\le1\)</span> : <span
+class="math inline">\(c_n\ge\Lambda(n)\,\frac{2o+2}{3o+1}&gt;0\)</span>.
+Dans tous les cas <span class="math inline">\(c_n\ge0\)</span>, et <span
+class="math inline">\(c_n=0\)</span> seulement si <span
+class="math inline">\(\Lambda(n)=0\)</span>.</p>
+<p><strong>D’où vient <span
+class="math inline">\(1/(3o+1)\)</span>.</strong> Le profil 4 : 3 n’est
+pas arbitraire, il se lit sur la construction du § 2 (lu sur le code).
+Les premiers y sont échantillonnés selon leur classe modulo un
+sous-groupe d’indice <span class="math inline">\(o\)</span> d’un groupe
+de Frobenius, avec la proportion <span
+class="math inline">\(4/(3o+1)\)</span> pour la classe neutre et <span
+class="math inline">\(3/(3o+1)\)</span> pour chacune des <span
+class="math inline">\(o-1\)</span> autres. Le total vaut <span
+class="math inline">\((4+3(o-1))/(3o+1)=1\)</span>. Les coefficients de
+Fourier de cette distribution valent <span
+class="math inline">\(1\)</span> pour le caractère trivial et <span
+class="math inline">\(\frac{4-3}{3o+1}=\frac1{3o+1}\)</span> pour tous
+les autres : ce sont exactement les poids de <span
+class="math inline">\(G_\psi\)</span>, et <span
+class="math inline">\(c_n/\Lambda(n)\)</span> est <span
+class="math inline">\(o\)</span> fois la proportion de la classe de
+<span class="math inline">\(n\)</span>. Une distribution uniforme
+donnerait des poids nuls et ne verrait pas les <span
+class="math inline">\(\chi_j\)</span> ; une distribution strictement
+positive garantit la positivité. Pourquoi 4 : 3 plutôt qu’un autre
+mélange, le code ne le dit pas ⟦I⟧ : la positivité seule ne l’impose
+pas.</p>
+<p><strong>Pas de compensation entre zéros.</strong> La transformée de
+Mellin de <span class="math inline">\(G_\psi\)</span> est <span
+class="math inline">\(D_\psi(s)/(s(s-1))\)</span>, à une fraction
+rationnelle près. Ses pôles dans <span
+class="math inline">\(0&lt;\operatorname{Re}s&lt;1\)</span> sont les
+zéros ρ de ζ ou de l’un des <span
+class="math inline">\(L(s,\chi_j)\)</span>, avec le poids <span
+class="math display">\[w_\rho=m_\rho(\zeta)+\frac1{3o+1}\sum_{j=1}^{o-1}m_\rho(\chi_j)\;&gt;\;0
+.\]</span> Toutes les multiplicités entrent avec un signe <span
+class="math inline">\(+\)</span> : un zéro de l’une des fonctions ne
+peut pas être masqué par une autre. C’est l’idée de de la Vallée
+Poussin, qui combinait <span
+class="math inline">\(\zeta(\sigma)^3|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|\)</span>
+grâce à <span
+class="math inline">\(3+4\cos\theta+\cos2\theta=2(1+\cos\theta)^2\ge0\)</span>.</p>
+<h3 id="pourquoi-une-majoration-suffit-largument-de-landau">1.4 Pourquoi
+une majoration suffit : l’argument de Landau</h3>
+<p><strong>Théorème de Landau.</strong> Soit <span
+class="math inline">\(f\ge0\)</span> sur <span
+class="math inline">\([1,\infty)\)</span> et <span
+class="math inline">\(H(s)=\int_1^\infty f(y)\,y^{-s-1}dy\)</span>,
+d’abscisse de convergence <span class="math inline">\(\sigma_c\)</span>.
+Alors <span class="math inline">\(H\)</span> n’a <strong>pas</strong> de
+prolongement holomorphe au voisinage du point <strong>réel</strong>
+<span class="math inline">\(s=\sigma_c\)</span>. (Preuve : on développe
+<span class="math inline">\(H\)</span> en série de Taylor en un point
+réel <span class="math inline">\(a&gt;\sigma_c\)</span>. Les dérivées
+<span class="math inline">\((-1)^kH^{(k)}(a)=\int f(y)(\log
+y)^ky^{-a-1}dy\)</span> sont positives ; si la série convergeait un peu
+au-delà de <span class="math inline">\(\sigma_c\)</span>, on pourrait
+l’intervertir avec l’intégrale, qui convergerait donc au-delà de <span
+class="math inline">\(\sigma_c\)</span>.)</p>
+<p><strong>Application.</strong> Supposons <span
+class="math inline">\(G_\psi(y)\le y^\theta\)</span> pour <span
+class="math inline">\(y\ge y_0\)</span>, avec <span
+class="math inline">\(\theta&lt;1\)</span>. On pose <span
+class="math inline">\(f(y)=y^\theta-G_\psi(y)\ge0\)</span>. Sa
+transformée est <span
+class="math display">\[H(s)=\frac{y_0^{\theta-s}}{s-\theta}-\int_{y_0}^\infty
+G_\psi(y)\,y^{-s-1}dy=\frac{1}{s-\theta}-\frac{D_\psi(s)}{s(s-1)}+(\text{fonction
+holomorphe pour }\operatorname{Re}s&gt;0),\]</span> où « holomorphe »
+inclut la compensation du pôle en <span
+class="math inline">\(s=1\)</span> par les termes principaux. Supposons
+par l’absurde <span class="math inline">\(\sigma_c&gt;\theta\)</span>.
+D’après Landau, <span class="math inline">\(\sigma_c\)</span> est une
+singularité, donc un pôle de <span
+class="math inline">\(D_\psi/(s(s-1))\)</span> : un <strong>zéro
+réel</strong> <span
+class="math inline">\(\beta=\sigma_c\in(\theta,1)\)</span>. Son résidu
+dans <span class="math inline">\(D_\psi(s)/(s(s-1))\)</span> est <span
+class="math inline">\(-w_\beta/(\beta(\beta-1))=w_\beta/(\beta(1-\beta))&gt;0\)</span>.
+Quand <span class="math inline">\(\sigma\to\beta^+\)</span>, <span
+class="math inline">\(H(\sigma)\to-\infty\)</span>, ce qui contredit
+<span class="math inline">\(H(\sigma)=\int
+f\,y^{-\sigma-1}\ge0\)</span>. Donc <span
+class="math inline">\(\sigma_c\le\theta\)</span> : <span
+class="math inline">\(H\)</span> est holomorphe sur <span
+class="math inline">\(\operatorname{Re}s&gt;\theta\)</span>, et donc
+<span class="math inline">\(D_\psi\)</span> aussi. <strong>Ni ζ ni aucun
+<span class="math inline">\(L(s,\chi_j)\)</span> n’a de zéro de partie
+réelle <span class="math inline">\(&gt;\theta\)</span>.</strong></p>
+<p><strong>Lecture intuitive.</strong> Dans la formule explicite, un
+zéro réel β contribue <span
+class="math inline">\(+w_\beta\,y^\beta/(\beta(1-\beta))\)</span> : il
+<strong>pousse <span class="math inline">\(G_\psi\)</span> vers le
+haut</strong>, et une majoration le voit directement. Un zéro complexe
+<span class="math inline">\(\beta+i\gamma\)</span> contribue une
+oscillation d’amplitude <span class="math inline">\(\asymp
+y^\beta\)</span>, en <span class="math inline">\(\cos(\gamma\log
+y+\varphi)\)</span>. Elle monte la moitié du temps, et la positivité des
+<span class="math inline">\(w_\rho\)</span> empêche les oscillations de
+différents zéros de se neutraliser durablement. Le théorème de Landau
+rend ce « toute oscillation finit par monter » rigoureux. <strong>On n’a
+jamais besoin de minorer <span
+class="math inline">\(G_\psi\)</span>.</strong> C’est essentiel pour la
+suite : la méthode arithmétique (§§ 3 à 7) fournit une
+<strong>inégalité</strong>, pas une égalité asymptotique.</p>
+<h3 id="sur-des-fenêtres-seulement">1.5 Sur des fenêtres seulement</h3>
+<p>La méthode des §§ 2 à 7 ne fournit pas la majoration pour
+<strong>tout</strong> <span class="math inline">\(y\)</span> grand, mais
+seulement sur des plages d’échelles où l’on a pu construire un corps
+hôte (§ 2) : il faut choisir <span class="math inline">\(q\)</span> et
+<span class="math inline">\(d\)</span> en fonction de la plage. La
+preuve démontre donc une forme de Landau <strong>en fenêtres</strong>.
+Lu sur l’export, dans le sens contraposé :</p>
+<blockquote>
+<p><strong>Critère en fenêtres.</strong> Soit <span
+class="math inline">\(\lambda&gt;1\)</span> et <span
+class="math inline">\(0&lt;\theta&lt;1\)</span>. Si ζ ou l’un des <span
+class="math inline">\(L(s,\chi_j)\)</span> a un zéro de partie réelle
+<span class="math inline">\(&gt;\theta\)</span>, alors pour tout <span
+class="math inline">\(Y\)</span> assez grand, il existe <span
+class="math inline">\(y\in[Y,Y^\lambda]\)</span> tel que <span
+class="math inline">\(G_\psi(y)&gt;y^\theta\)</span>.</p>
+</blockquote>
+<p>Autrement dit, un zéro au-delà de θ se voit dans
+<strong>chaque</strong> fenêtre <span
+class="math inline">\([Y,Y^\lambda]\)</span> assez loin, et pas
+seulement « quelque part à l’infini ». Il suffit donc de majorer <span
+class="math inline">\(G_\psi\)</span> sur une suite de fenêtres <span
+class="math inline">\([Y_k,Y_k^\lambda]\)</span>, <span
+class="math inline">\(Y_k\to\infty\)</span>. Le critère vaut pour tout
+<span class="math inline">\(\lambda&gt;1\)</span> ; la suite de la
+preuve l’applique avec des plages <span
+class="math inline">\([Y,Y^{3/2}]\)</span> ou <span
+class="math inline">\([Y,Y^2]\)</span>.</p>
+<p><strong>Comment on localise ⟦I⟧.</strong> La preuve de Landau
+n’utilise que les dérivées <span
+class="math inline">\((-1)^kH^{(k)}(a)=\int f(y)(\log
+y)^ky^{-a-1}dy\)</span>. En variable <span class="math inline">\(u=\log
+y\)</span>, le noyau <span class="math inline">\(u^ke^{-au}\)</span> est
+une <strong>densité gamma</strong>, de moyenne <span
+class="math inline">\(\approx k/a\)</span> et de largeur relative <span
+class="math inline">\(\approx k^{-1/2}\)</span>. En prenant <span
+class="math inline">\(k\asymp\log Y\)</span>, la masse se concentre dans
+<span class="math inline">\(u\in[\log Y,\lambda\log Y]\)</span>,
+c’est-à-dire dans la fenêtre. Le reste, exponentiellement petit en <span
+class="math inline">\(k\)</span> (donc une puissance négative de <span
+class="math inline">\(Y\)</span>), est absorbé par la borne triviale
+<span class="math inline">\(G_\psi(y)=O(y)\)</span> (Mertens).
+Slijepčević juge cette forme en fenêtres nouvelle. Dans cette preuve,
+elle est indispensable : sans elle, il faudrait un même hôte pour toutes
+les échelles, ce que le choix en moyenne du § 2 ne fournit pas. Un texte
+ultérieur (hexagon:2611.00828) propose toutefois de la remplacer par un
+théorème d’oscillation classique, celui de Kaczorowski–Pintz.</p>
+<h3 id="bilan">1.6 Bilan</h3>
+<p>En appliquant 1.4 et 1.5 avec <span
+class="math inline">\(\theta=\tfrac12+C\varepsilon\)</span> pour chaque
+<span class="math inline">\(\varepsilon&gt;0\)</span>, puis en faisant
+<span class="math inline">\(\varepsilon\to0\)</span>, on obtient
+l’absence de zéros pour <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span>,
+simultanément pour ζ et pour tous les <span
+class="math inline">\(L(s,\chi_j)\)</span>, <span
+class="math inline">\(\chi_j\in K_\psi\)</span>. Comme tout caractère
+primitif appartient à son propre niveau <span
+class="math inline">\(K_\psi\)</span>, cela donne GRH pour tous les
+caractères de Dirichlet.</p>
+<blockquote>
+<p><strong>Bilan.</strong> Tout se ramène à démontrer, pour chaque ψ
+primitif, chaque ε &gt; 0 assez petit et chaque échelle <span
+class="math inline">\(x\)</span> d’une suite de fenêtres <span
+class="math inline">\([Y_k,Y_k^\lambda]\)</span>, <span
+class="math inline">\(Y_k\to\infty\)</span> : <span
+class="math display">\[\boxed{\;G_\psi(x)\;\le\;x^{1/2+C\varepsilon}\;}\]</span>
+C’est une <strong>majoration unilatérale</strong> d’une somme pondérée
+de <span class="math inline">\(\log p\)</span>, à <strong>coefficients
+positifs</strong>, avec une erreur en racine carrée. Les §§ 2 à 7 ne
+font rien d’autre.</p>
+</blockquote>
+<h2 id="un-corps-auxiliaire-par-échelle">2. Un corps auxiliaire par
+échelle</h2>
+<p><strong>L’hôte.</strong> À l’échelle <span
+class="math inline">\(x\)</span>, on choisit deux premiers <span
+class="math inline">\(q\equiv 3\pmod 8\)</span> et <span
+class="math inline">\(d\equiv7\pmod{16}\)</span>, puis un corps CM
+abélien <span class="math display">\[E\subset\mathbb
+Q(\zeta_{Qqd}),\qquad \sqrt{-q},\sqrt{-d}\in E,\qquad [E:\mathbb
+Q]\approx x^{2+8\varepsilon},\]</span> qui contient le corps découpé par
+ψ. Le groupe de Galois <span class="math inline">\(\{\pm1\}^2\times
+A\)</span> et l’application d’Artin sont décrits explicitement.
+Précisément (lu sur l’export) : <span
+class="math inline">\(|A|=c\cdot2^e\)</span> avec <span
+class="math inline">\(x^{2+8\varepsilon}\le
+c\cdot2^e\le2x^{2+8\varepsilon}\)</span>, donc <span
+class="math inline">\([E:\mathbb Q]=4|A|\)</span> est compris entre
+<span class="math inline">\(4x^{2+8\varepsilon}\)</span> et <span
+class="math inline">\(8x^{2+8\varepsilon}\)</span>. C’est <strong>le
+même corps</strong> qui porte la borne de Tate–Shafarevich du § 8
+(a).</p>
+<p><strong>L’identité.</strong> On considère les premiers <span
+class="math inline">\(p\)</span> <strong>inertes</strong> dans <span
+class="math inline">\(\mathbb Q(\sqrt{-d})\)</span>, pondérés selon leur
+classe de Frobenius dans <span class="math inline">\(E\)</span>. Par
+orthogonalité des caractères de <span
+class="math inline">\(\mathrm{Gal}(E/\mathbb Q)\)</span>, la somme de
+<span class="math inline">\(\log p\)</span> sur ces premiers s’écrit
+comme une combinaison des <span
+class="math inline">\(g(\cdot,\chi)\)</span> pour les caractères χ de
+<span class="math inline">\(E\)</span>. Après une moyenne sur des
+translatés et un choix des poids, on retrouve exactement <span
+class="math inline">\(G_\psi(x)\)</span>, avec le poids <span
+class="math inline">\(1/(3o+1)\)</span> (d’où ce poids). On retrouve
+aussi des <strong>caractères parasites</strong>, essentiellement des
+torsions par <span class="math inline">\((q/\cdot)\)</span>, <span
+class="math inline">\((d/\cdot)\)</span> et leur produit.</p>
+<p><strong>Les parasites, en moyenne.</strong> Pour un caractère
+quadratique donné, on ne sait pas montrer que <span
+class="math inline">\(g(y,\chi)=O(y^{1/2+\varepsilon})\)</span> : c’est
+GRH elle-même. Mais on peut choisir <span
+class="math inline">\(q\)</span> et <span
+class="math inline">\(d\)</span> dans une famille de taille <span
+class="math inline">\(\exp(Y^{\varepsilon/5})\)</span>,
+<strong>gigantesque</strong> devant les échelles. Un argument de moyenne
+quadratique, de type grand crible, montre que <strong>presque
+toutes</strong> les paires <span class="math inline">\((q,d)\)</span>
+ont des sommes en racine carrée sur toute la plage <span
+class="math inline">\([Y,Y^A]\)</span> (<span
+class="math inline">\(A\)</span> fixé), et aucun zéro près de <span
+class="math inline">\(s=1\)</span>. Il en existe donc. Cet argument est
+inconditionnel et ne sert qu’à <strong>dégager le terrain</strong>.</p>
+<blockquote>
+<p><strong>Ce qui reste.</strong> Majorer la somme sur les premiers
+inertes de <span class="math inline">\(E\)</span>, par <span
+class="math inline">\(p\)</span>, avec une erreur <span
+class="math inline">\(x^{1/2+O(\varepsilon)}\)</span>. C’est le cœur de
+la preuve.</p>
+</blockquote>
+<h2 id="le-modèle-la-preuve-de-stepanov-pour-les-courbes">3. Le modèle :
+la preuve de Stepanov pour les courbes</h2>
+<p>Soit <span class="math inline">\(C\)</span> une courbe de genre <span
+class="math inline">\(g\)</span> sur <span class="math inline">\(\mathbb
+F_q\)</span>. Stepanov (1969), puis Bombieri, majorent <span
+class="math inline">\(N=\#C(\mathbb F_q)\)</span> ainsi :</p>
+<ol type="1">
+<li>on construit une fonction auxiliaire <span
+class="math inline">\(f\)</span>, de degré contrôlé, qui
+<strong>s’annule à l’ordre au moins <span
+class="math inline">\(a\)</span></strong> en chaque point rationnel ; on
+la fabrique par algèbre linéaire, c’est un lemme de Siegel ;</li>
+<li>alors <span class="math inline">\(a\cdot N\le\deg f\)</span> ;</li>
+<li>on optimise <span class="math inline">\(a\)</span>, et on obtient
+<span class="math inline">\(N\le q+O(g\sqrt q)\)</span>.</li>
+</ol>
+<p>L’exposant ½ vient de l’<strong>équilibre</strong> entre l’ordre
+d’annulation et le degré.</p>
+<p><strong>La difficulté sur ℤ.</strong> « S’annuler à l’ordre <span
+class="math inline">\(a\)</span> » demande de dériver, et l’on ne dérive
+pas un entier. Alpöge (note, § 1) : « multiplicity is hard to find over
+the integers, corresponding to something like differentiating whole
+numbers ». La preuve remplace l’annulation par la
+<strong>divisibilité</strong>. Un entier algébrique non nul divisible
+par <span class="math inline">\(p^v\)</span> a une norme <span
+class="math inline">\(\ge p^v\)</span>. Si l’on sait aussi que sa taille
+archimédienne est petite, la <strong>formule du produit</strong> borne
+<span class="math inline">\(v\)</span>. C’est le schéma des méthodes de
+fonctions auxiliaires en transcendance (Thue–Siegel–Bombieri), dans sa
+forme moderne due à <strong>Bost</strong> : les inégalités de
+pentes.</p>
+<h2
+id="la-source-de-la-divisibilité-dériver-une-série-thêta-en-un-point-cm">4.
+La source de la divisibilité : dériver une série thêta en un point
+CM</h2>
+<h3 id="lénoncé">4.1 L’énoncé</h3>
+<p>Prenons une série thêta d’un réseau hermitien, écrite près d’un point
+CM dans les <strong>coordonnées d’un groupe formel</strong>. En un
+premier <span class="math inline">\(p\)</span> inerte dans le corps CM,
+la réduction est <strong>supersingulière</strong> et le groupe formel
+est de <strong>hauteur 2</strong>. Son logarithme a la forme <span
+class="math display">\[\log_F(X)=\sum_{e\ge0}\frac{X^{p^{2e}}}{p^{e}},\]</span>
+à une torsion de Frobenius près sur l’indice. Le projet démontre
+l’énoncé suivant, qu’il appelle « Théorème A » :</p>
+<blockquote>
+<p><strong>Théorème A</strong> (forme simplifiée). Soit <span
+class="math inline">\(\Theta\)</span> une série thêta, renormalisée par
+une exponentielle convenable, en coordonnées de groupe formel au point
+CM. Alors ses dérivées d’ordre <span class="math inline">\(a\)</span> au
+point CM vérifient <span
+class="math display">\[v_p\big(D^{a}\Theta(0)\big)\;\ge\;a\cdot\frac{p}{p^2-1}\;-\;O(\log
+a)\;=\;a\Big(\frac1p+\frac1{p^3}+\frac1{p^5}+\cdots\Big)-O(\log
+a).\]</span></p>
+</blockquote>
+<p>C’est la phrase de la note d’Alpöge : « <span
+class="math inline">\(D^a\,\Omega\cdot\theta(0)\)</span> is divisible by
+<span class="math inline">\(p^{a/p+a/p^3+\cdots-O(\log a)}\)</span> ».
+Mais l’exposant porte sur l’objet <strong>renormalisé, en coordonnées de
+groupe formel</strong>, et non sur la série thêta naïve dérivée en
+coordonnée analytique. Sur ce modèle naïf, pour ℤ[i], Rubinstein [R] ne
+retrouve pas l’exposant annoncé (exposants 6, 2, 1 pour <span
+class="math inline">\(p=3,7,11\)</span>).</p>
+<h3 id="pourquoi-pp2-1-i">4.2 Pourquoi <span
+class="math inline">\(p/(p^2-1)\)</span> ⟦I⟧</h3>
+<p>Le nombre <span class="math inline">\(p/(p^2-1)\)</span> est une
+différence de deux taux. On a <span class="math inline">\(D^a
+f(0)=a!\cdot[\text{coefficient de degré }a]\)</span>, et :</p>
+<ul>
+<li><strong>Legendre</strong> : <span
+class="math inline">\(v_p(a!)=\dfrac{a-s_p(a)}{p-1}\ge\dfrac{a}{p-1}-O(\log
+a)\)</span>. La dérivation fournit environ <span
+class="math inline">\(a/(p-1)\)</span>.</li>
+<li><strong>Les dénominateurs</strong> : le changement de variables par
+le groupe formel de hauteur 2, dont le logarithme a des termes <span
+class="math inline">\(X^{p^{2e}}/p^e\)</span>, et l’exponentielle de
+renormalisation coûtent au plus <span
+class="math inline">\(a/(p^2-1)\)</span> sur le coefficient de degré
+<span class="math inline">\(a\)</span>. Le projet établit cette borne de
+poids, <span class="math inline">\(\rho(p)=1/(p^2-1)\)</span> par degré,
+pour la série exponentielle (lemme « S »).</li>
+<li><strong>Bilan</strong> : <span
+class="math inline">\(\dfrac{1}{p-1}-\dfrac{1}{p^2-1}=\dfrac{p}{p^2-1}\)</span>,
+ce qui est exactement le gain observé.</li>
+</ul>
+<p>La perte <span class="math inline">\(O(\log a)\)</span> vient du
+chiffre <span class="math inline">\(s_p(a)\)</span> dans Legendre et du
+nombre de « couches » <span class="math inline">\(p^e\le a\)</span>.</p>
+<h3 id="comment-le-théorème-a-est-démontré">4.3 Comment le Théorème A
+est démontré</h3>
+<p>La preuve occupe environ 0,02 % du volume. Elle se fait en trois
+temps.</p>
+<ol type="1">
+<li><strong>Réduction à un point générique.</strong> On veut borner les
+coefficients d’un polynôme en les coordonnées d’un « repère »,
+c’est-à-dire de vecteurs le long desquels on dérive. On le remplace par
+sa valeur en un point <strong>résiduellement générique</strong> : un
+point dont les coordonnées ont des réductions algébriquement
+indépendantes, de sorte que tout polynôme non nul modulo <span
+class="math inline">\(p\)</span> y est de valeur absolue 1. En un tel
+point, la valeur absolue est égale à la <strong>norme de Gauss</strong>,
+le maximum des coefficients. Un tel point existe dans un corps de
+fractions rationnelles muni de la valeur absolue de Gauss.</li>
+<li><strong>Réduction à un monôme.</strong> Le jet du repère s’exprime
+par des produits de mineurs, donc de déterminants, des dérivées de <span
+class="math inline">\(\Theta\)</span> le long du repère. On se ramène à
+borner <span
+class="math inline">\(|\kappa!\cdot\mathrm{coeff}_\kappa(\cdots)|\)</span>
+pour un seul multi-indice <span
+class="math inline">\(\kappa\)</span>.</li>
+<li><strong>Le cas d’un monôme.</strong> On combine :
+<ul>
+<li>l’intégralité de la série de départ ;</li>
+<li>l’<strong>inverse du logarithme</strong> de groupe formel ;</li>
+<li>la borne de poids <span class="math inline">\(\rho(p)\)</span> pour
+l’exponentielle de renormalisation. Elle repose sur une hypothèse
+d’<strong>intégralité de type Dwork</strong>, et le <strong>lemme de
+Dwork</strong> est démontré dans le projet : <span
+class="math inline">\(\exp(P)\)</span> est <span
+class="math inline">\(p\)</span>-entière si et seulement si <span
+class="math inline">\(P^{\sigma}(X^p)-pP\in pW[[X]]\)</span> ;</li>
+<li>une condition de <strong>quasi-orthogonalité tordue par
+Frobenius</strong> sur les vecteurs du repère, <span
+class="math inline">\(\sum_a x_a^{p^{j}}x&#39;_a\equiv0 \pmod
+p\)</span>.</li>
+</ul>
+Un étiquetage combinatoire des décalages impairs <span
+class="math inline">\(j\)</span> tels que <span
+class="math inline">\(p^j\le a\)</span> (seuls ceux-là apportent un
+terme <span class="math inline">\(a/p^j\)</span>) coûte <span
+class="math inline">\(O(\log a)\)</span> lignes supplémentaires. C’est
+l’origine de la perte logarithmique.</li>
+</ol>
+<h3 id="les-exposants-impairs-et-le-frobenius">4.4 Les exposants impairs
+et le Frobenius</h3>
+<p>En <span class="math inline">\(p\)</span> inerte, le Frobenius agit
+sur les plongements du corps CM par décalage. Le gain <span
+class="math inline">\(a/p^{e}\)</span> ne se réalise qu’aux
+<strong>exposants impairs</strong>. Il se lit sur les poids attachés à
+la place <span class="math inline">\(t+e\cdot h_p\)</span> de
+l’<strong>orbite de Frobenius</strong> de <span
+class="math inline">\(p\)</span> : on obtient <span
+class="math inline">\(a/p^e\)</span> si le poids à cette place n’est pas
+trop grand, et rien sinon. D’où une contrainte combinatoire. Les places
+« sélectionnées », où les poids sont grands, doivent rencontrer chaque
+segment court d’orbite de Frobenius en au plus deux points. La preuve
+l’obtient avec la construction de <strong>Behrend</strong> d’ensembles
+sans progression arithmétique de longueur 3, présente dans la fermeture.
+Alpöge (note, étape 19) : « precise choice of the Iwasawa tower,
+specifically using Behrend!! ».</p>
+<h2 id="la-multiplicité-une-chaîne-de-m-relèvements-thêta">5. La
+multiplicité : une chaîne de m relèvements thêta</h2>
+<p>Une seule dérivation en un seul point CM ne fournit pas assez. Il
+faut répéter, comme Stepanov exige l’annulation en <strong>tous</strong>
+les points. L’outil est la <strong>correspondance thêta</strong> : une
+forme automorphe sur un groupe unitaire <span
+class="math inline">\(U(X_0)\)</span> se relève, par intégration contre
+un noyau thêta, en une forme sur <span
+class="math inline">\(U(X_1)\)</span>, de rang plus grand, et ainsi de
+suite : <span class="math display">\[U(X_0)\to U(X_1)\to\cdots\to
+U(X_m),\qquad \dim X_j=k+j(t+1).\]</span> Tous les espaces hermitiens
+sont <strong>définis</strong>, ce qui rend les groupes compacts à
+l’infini et les espaces de formes de dimension finie.</p>
+<p><strong>Ce que dit le code.</strong></p>
+<ul>
+<li>La <strong>période</strong> d’une forme (une période de Bessel, au
+sens de Gan–Gross–Prasad) se factorise par la <strong>composée des <span
+class="math inline">\(m\)</span> noyaux</strong> : <span
+class="math display">\[\mathrm{Pt}(\varphi)=\mathrm{PtL}\big(K_m\cdots
+K_1\,\varphi\big).\]</span> C’est la forme matricielle des identités
+<strong>seesaw</strong> (Kudla) : la période du relèvement itéré est une
+période sur le groupe de départ.</li>
+<li>À chaque pas <span class="math inline">\(j\to j+1\)</span>,
+l’opérateur local appliqué au noyau <span
+class="math inline">\(K_j\)</span> <strong>gagne</strong> une valuation
+au moins égale au gain de Legendre du § 4 pour ce relèvement, diminuée
+d’une perte <span class="math inline">\(\mathrm{dG}_j\ge
+v_p(|\mathrm{Stab}_\Gamma(L)|)\)</span>. Cette perte est la partie <span
+class="math inline">\(p\)</span> de l’ordre du groupe d’automorphismes
+du réseau : un dénominateur de <strong>masse de Siegel</strong>.</li>
+<li>Le réseau sur lequel on travaille est <strong>engendré</strong> par
+l’application, en chaque point de l’orbite de Frobenius, d’un opérateur
+local <strong>itéré m fois</strong>, une fois par relèvement.</li>
+<li>Au total, pour chaque premier inerte <span
+class="math inline">\(p\)</span> : <span
+class="math display">\[v_p(\text{période})\;\ge\;\sum_{j=1}^{m}\mathrm{gain}_j(p)\;-\;\text{pertes}(p),\qquad
+\mathrm{gain}_j(p)\approx\sum_{e\
+\text{impair}}\Big(\frac{a}{p^{e}}-\mathrm{cap}_j(p,e)\Big)_+ ,\]</span>
+où <span class="math inline">\(\mathrm{cap}_j\)</span> est le poids, de
+type Harish-Chandra, du <span class="math inline">\(j\)</span>-ième
+relèvement.</li>
+</ul>
+<p><strong>La comparaison avec les premiers est presque une
+identité.</strong> La somme sur les premiers à majorer, pondérée de
+Riesz, s’écrit terme à terme <span class="math inline">\(\sum_{i\
+\text{impair}}\big(a/p^i-w_j(p,i)\big)_+\)</span>. C’est <strong>la même
+forme</strong>, avec <strong>les mêmes poids</strong> : la preuve
+choisit les poids des relèvements pour qu’ils coïncident avec ceux des
+sommes de premiers. La condition qui relie les deux côtés dit que, pour
+chaque premier inerte <span class="math inline">\(p\)</span>, <span
+class="math display">\[\sum_{j=1}^m(\text{contribution de }p\text{ au
+}j\text{-ième terme de la
+somme})\;-\;\text{pertes}\;\le\;\sum_{j=1}^m\mathrm{gain}_j(p).\]</span></p>
+<blockquote>
+<p><strong>Où est la difficulté ?</strong> Une fois les poids alignés,
+l’inégalité « premiers ≤ gains » est presque une identité. Toute la
+difficulté est de <strong>construire</strong> des réseaux, des noyaux et
+des périodes qui <strong>réalisent</strong> ces gains, et de
+<strong>contrôler les pertes</strong>.</p>
+</blockquote>
+<h2 id="du-côté-archimédien-réseaux-pentes-et-formule-du-produit">6. Du
+côté archimédien : réseaux, pentes et formule du produit</h2>
+<p><strong>Réseaux hermitiens et pentes.</strong> Sur un corps de
+nombres <span class="math inline">\(K\)</span>, un réseau hermitien est
+un <span class="math inline">\(\mathcal O_K\)</span>-module projectif
+muni de normes aux places infinies. Son <strong>degré
+d’Arakelov</strong> est <span
+class="math inline">\(\widehat{\deg}=-\log\operatorname{covol}\)</span>,
+et sa <strong>pente</strong> est <span
+class="math inline">\(\widehat\mu=\widehat{\deg}/\mathrm{rang}\)</span>.
+Le point clé est le suivant : si <span
+class="math inline">\(L&#39;\)</span> est obtenu en
+<strong>divisant</strong> <span class="math inline">\(L\)</span> par un
+idéal <span class="math inline">\(I\)</span>, c’est-à-dire <span
+class="math inline">\(L=I\cdot L&#39;\)</span>, alors <span
+class="math display">\[\widehat\mu(L&#39;)-\widehat\mu(L)\;=\;\sum_{\mathfrak
+p}v_{\mathfrak p}(I^{-1})\log N\mathfrak
+p\quad(\text{normalisé}).\]</span> <strong>Une différence de pentes est
+une somme de <span class="math inline">\(\log p\)</span> sur des
+premiers.</strong></p>
+<p><strong>La division.</strong> À chaque mot <span
+class="math inline">\(u\)</span>, qui indexe une forme de la famille, on
+associe un réseau de formes <span class="math inline">\(N_u\)</span> et
+l’accouplement des périodes <span class="math inline">\(B_u:N_u\to
+R^\vee\)</span>, à valeurs dans un réseau cible entier. La divisibilité
+du § 5 permet de <strong>diviser</strong> <span
+class="math inline">\(N_u\)</span> tout en gardant <span
+class="math inline">\(B_u\)</span> <strong>entier</strong>. Deux
+énoncés, lus sur l’export, s’emboîtent :</p>
+<ul>
+<li><strong>Le lemme abstrait</strong> (démontré dans le projet). Si les
+valuations des périodes sont <span
+class="math inline">\(\ge\sigma(w)\)</span> en chaque place <span
+class="math inline">\(w\)</span>, avec <span
+class="math inline">\(\sigma(w)\)</span> <strong>réel</strong>, alors le
+réseau décalé de <span class="math inline">\(\tau(w)\)</span> en <span
+class="math inline">\(w\)</span> s’envoie encore dans les entiers pour
+tout entier <span
+class="math inline">\(\tau(w)\le\lceil\sigma(w)\rceil\)</span>. La borne
+<span class="math inline">\(\lceil\sigma\rceil\)</span> est optimale :
+une valuation est un entier, donc <span
+class="math inline">\(v\ge\sigma\)</span> équivaut à <span
+class="math inline">\(v\ge\lceil\sigma\rceil\)</span>.</li>
+<li><strong>La construction.</strong> Elle divise par l’idéal
+fractionnaire <span class="math inline">\(I_u=\prod_w w^{-\lfloor
+e_w\,\sigma_u(w)\rfloor}\)</span>, où <span
+class="math inline">\(e_w\)</span> est l’indice de ramification : elle
+prend la <strong>partie entière inférieure</strong>, un choix prudent
+qui reste dans le cadre du lemme (<span
+class="math inline">\(\lfloor\cdot\rfloor\le\lceil\cdot\rceil\)</span>).
+La pente de <span class="math inline">\(N_u\)</span> monte alors
+exactement de <span
+class="math display">\[\widehat\mu(N_u)-\widehat\mu(N_u^{\mathrm{avant}})\;=\;\sum_w
+2\,\frac{\log Nw}{[K:\mathbb Q]}\,\big\lfloor
+e_w\,\sigma_u(w)\big\rfloor .\]</span></li>
+</ul>
+<p>La perte d’arrondi est comptée explicitement. L’écart entre ce saut
+et sa valeur sans arrondi, <span class="math inline">\(\sum_w
+2\,\frac{\log Nw}{[K:\mathbb Q]}\,e_w\,\sigma_u(w)\)</span>, est au plus
+<span class="math inline">\(2\sum_w\frac{\log Nw}{[K:\mathbb
+Q]}\)</span>, la somme portant sur les seules places où <span
+class="math inline">\(\sigma_u(w)\neq0\)</span> : moins d’une unité par
+place active. Cette somme est elle-même majorée par des logarithmes des
+paramètres de l’hôte et de la chaîne. Le tout donne une erreur au plus
+<span class="math inline">\(C\,X&#39;&#39;\)</span>, avec <span
+class="math inline">\(X&#39;&#39;=x\,n\,e^{x^{\varepsilon/3}}\)</span>,
+où <span class="math inline">\(n\)</span> est l’ordre du groupe <span
+class="math inline">\(A\)</span> du § 2. Sur l’export, <span
+class="math inline">\([E:\mathbb Q]=4n\)</span> exactement, et <span
+class="math inline">\(n\le 2x^{2+8\varepsilon}\)</span> (§ 2). Elle
+forme l’une des conditions de liaison qui alimentent l’inégalité finale
+(partie II).</p>
+<p><strong>Elle est négligeable.</strong> Une unité de la somme de
+premiers vaut <span class="math inline">\(b=e^{x^\varepsilon}\)</span>
+en pente : les poids de Riesz sont d’ordre <span
+class="math inline">\(b\)</span>, et les paramètres vérifient <span
+class="math inline">\(a=x\,b\)</span>. En unités de <span
+class="math inline">\(G_\psi\)</span>, l’arrondi pèse donc au plus <span
+class="math inline">\(C\,x\,n\,e^{x^{\varepsilon/3}-x^{\varepsilon}}\)</span>.
+Cette quantité tend vers 0 plus vite que toute puissance de <span
+class="math inline">\(x\)</span>, alors que le budget d’erreur final est
+<span class="math inline">\(x^{1/2+C\varepsilon}\)</span>. L’autre reste
+de la même condition est, lui, d’ordre <span
+class="math inline">\(b\)</span> (à des facteurs logarithmiques et de
+taille près) : l’arrondi est plus petit d’un facteur <span
+class="math inline">\(e^{-x^{\varepsilon}(1-o(1))}\)</span>.</p>
+<p><strong>L’inégalité de pentes (Bost).</strong> Pour <span
+class="math inline">\(\varphi:E\to F\)</span> injectif de hauteur <span
+class="math inline">\(h(\varphi)\)</span>, on a <span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>.
+C’est une généralisation arithmétique du lemme de Siegel et de
+Minkowski. On l’applique aux <span class="math inline">\(B_u\)</span>.
+Les pentes des réseaux divisés, qui contiennent les sommes de premiers,
+sont donc majorées par :</p>
+<ul>
+<li>la pente du réseau cible, calculée par des <strong>volumes
+exacts</strong> : masses de Siegel, nombres de classes, facteurs Γ
+;</li>
+<li>les hauteurs <span class="math inline">\(h(B_u)\)</span>, petites
+grâce à une <strong>quasi-orthogonalité</strong> : les périodes de
+formes différentes sont presque orthogonales. C’est le « théorème S » du
+projet, une formule de type Petersson ou Kuznetsov pour des coefficients
+de Bessel sur les groupes unitaires, avec une erreur <span
+class="math inline">\(1+b^{-6}\)</span> ;</li>
+<li>une <strong>borne de covolume</strong> des réseaux de formes
+automorphes, obtenue par géométrie d’Arakelov sur des modèles entiers de
+variétés de Shimura. Elle utilise Hironaka, Moriwaki, Hilbert–Samuel
+arithmétique et les compactifications toroïdales.</li>
+</ul>
+<p><strong>Le bilan.</strong> Divisibilité aux places finies et taille
+aux places infinies, combinées par la formule du produit : <span
+class="math display">\[\sum_{p\ \text{inerte}}(\text{contribution de
+}p)\;\le\;(\text{termes archimédiens
+explicites})\;+\;\text{pertes}.\]</span> Les termes archimédiens
+(formules de Rallis pour les normes des relèvements thêta, périodes CM
+par Chowla–Selberg, masses de Siegel) reproduisent <strong>exactement le
+terme principal</strong> de la somme de Tchebychev. Il ne reste que
+l’erreur.</p>
+<h2 id="doù-vient-le-½">7. D’où vient le ½</h2>
+<p>L’erreur par relèvement, divisée par la taille naturelle du terme,
+s’écrit à un facteur <span
+class="math inline">\(x^{O(\varepsilon)}\)</span> près : <span
+class="math display">\[\frac{\text{erreur}}{\text{terme}}\;\lesssim\;\underbrace{\frac{x}{m}}_{\text{erreur
+triviale répartie sur }m\text{
+relèvements}}\;+\;\underbrace{m}_{\text{perte par relèvement, linéaire
+en }m}\;+\;\sqrt x .\]</span> Comme <span
+class="math inline">\(x/m+m\ge2\sqrt x\)</span>, avec égalité pour <span
+class="math inline">\(m=\sqrt x\)</span>, le projet impose <span
+class="math display">\[x^{1/2-\varepsilon}\le m\le
+x^{1/2+\varepsilon/2},\]</span> et l’erreur vaut <span
+class="math inline">\(x^{1/2+O(\varepsilon)}\)</span>. La méthode bute
+exactement sur <span class="math inline">\(\sqrt x\)</span>, qui est la
+vraie taille des fluctuations : Littlewood a montré que <span
+class="math inline">\(\psi(x)-x\)</span> n’est pas <span
+class="math inline">\(o(\sqrt x)\)</span>. Alpöge, dans sa note : « for
+the von Mangoldt sum of length <span class="math inline">\(X\)</span>,
+Claude’s suggested length of chain of theta lifts, in view of each
+mimicking multiplicity, was <span class="math inline">\(\sqrt
+X\)</span>. (And yet, what else could it be?) ».</p>
+<p><em>Attention</em> : <span class="math inline">\(m\)</span> est la
+<strong>longueur de la chaîne</strong>, pas le rang des réseaux. Le rang
+de base <span class="math inline">\(k\)</span> vérifie <span
+class="math inline">\(k\ge x\,m\)</span>, soit au moins <span
+class="math inline">\(x^{3/2}\)</span>.</p>
+<h2 id="les-pertes-et-les-théories-quelles-mobilisent">8. Les pertes, et
+les théories qu’elles mobilisent</h2>
+<p>Le mécanisme des §§ 4 à 7 tient en quelques pages. Le reste de la
+preuve paie trois factures.</p>
+<p><strong>(a) Les dénominateurs de Hecke, et les groupes de
+Tate–Shafarevich.</strong> Pour isoler les formes utiles, on projette
+sur des espaces propres de Hecke. Cette projection ne préserve pas les
+réseaux entiers. Ses <strong>dénominateurs</strong> viennent des
+<strong>congruences</strong> entre systèmes de valeurs propres, donc
+d’extensions de représentations galoisiennes, et ils mangent la
+divisibilité gagnée. La preuve les borne par la longueur de groupes de
+<strong>Tate–Shafarevich</strong> de torsions de Tate sur l’hôte : <span
+class="math display">\[\sum_\ell\log\ell\sum_{1\le
+e&lt;x^{401}}\operatorname{len}\,\mathrm{Sha}^1_\ell\big(E,\mathbb
+Q_\ell/\mathbb Z_\ell(-e)\big)\;\le\;\exp(x^\varepsilon/2).\]</span>
+C’est une borne <strong>polynomiale en le conducteur</strong>, effective
+et uniforme en ℓ. Elle est obtenue par des <strong>congruences
+d’Eisenstein</strong> sur <span class="math inline">\(U(3)\)</span> et
+<span class="math inline">\(\mathrm{GSp}_4\)</span>, à la Ribet et
+Mazur–Wiles, avec le système d’Euler de Kato, des bornes de type Soulé
+et Ferrero–Washington (<span class="math inline">\(\mu=0\)</span>). La
+partie de parité opposée passe par des nombres de Bernoulli. La
+constante 401 borne la plage des torsions. Alpöge : « fight for a
+significant weakening of Vandiver ». Cette étape pèse 8 % du volume.</p>
+<p><strong>(b) Les représentations galoisiennes.</strong> Les
+congruences demandent des représentations galoisiennes attachées aux
+formes automorphes polarisées des groupes unitaires, avec compatibilité
+local-global. Le projet les construit <strong>sans la cohomologie étale
+des variétés de Shimura</strong> : - d’abord par relèvement thêta ; -
+puis par <strong>réalisation géométrique en poids 1</strong> dans la
+cohomologie cohérente (formule de Lefschetz holomorphe) ; - enfin par
+<strong>congruences ℓ-adiques</strong>.</p>
+<p>Cette étape pèse 6 % du volume.</p>
+<p><strong>(c) La correspondance de Langlands locale, en partie
+seulement.</strong> Elle n’est démontrée qu’en <strong>profondeur
+zéro</strong> (théorie de Green des caractères de <span
+class="math inline">\(\mathrm{GL}_n(\mathbb F_q)\)</span>), avec des
+valeurs arbitraires ailleurs. La preuve n’interroge la correspondance
+qu’en des places où cette version suffit.</p>
+<p><strong>Et la fabrication des objets</strong> (36 % du volume) :
+familles d’espaces hermitiens définis aux signatures prescrites,
+paramètres de séries discrètes, noyaux thêta à coefficients entiers,
+rationalité des périodes (vecteurs tests, Siegel–Weil),
+quasi-orthogonalité, covolume.</p>
+<hr />
+<h1 id="partie-ii.-carte-du-code">Partie II. Carte du code</h1>
+<p><em>Les noms ci-dessous permettent de retrouver chaque étape dans
+l’export. Les pourcentages sont des parts du volume de preuve dominé,
+calculées par arbre des dominateurs ; ils ne s’additionnent
+pas.</em></p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>Étape (partie I)</th>
+<th>Déclarations principales</th>
+<th style="text-align: right;">Poids</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Énoncé, réduction</td>
+<td><code>riemannHypothesis</code>, <code>allChi</code>,
+<code>EveryCharacter</code>, <code>imprimitive</code></td>
+<td style="text-align: right;">99,3 % (tout)</td>
+</tr>
+<tr>
+<td>§ 1 Landau sur fenêtres</td>
+<td><code>FormB</code>, <code>zeroFreeOn_of_tiedWin_cyc</code>,
+<code>level_gm_le_on_family_scales</code></td>
+<td style="text-align: right;">&lt; 0,1 %</td>
+</tr>
+<tr>
+<td>§ 2 Hôte, paires en moyenne</td>
+<td><code>supplyChi</code>, <code>PairEx</code>,
+<code>QH.pair_share</code>, <code>QH.bad_share</code></td>
+<td style="text-align: right;">≈ 0,1 %</td>
+</tr>
+<tr>
+<td>§ 4 Théorème A, Dwork</td>
+<td><code>DworkPowerSeriesWeights.thmAGauss</code>,
+<code>theorem_A_one_monomial_log_loss</code>, <code>lemmaS</code>,
+<code>FormalGroupSystem.Pf.sx_dwork</code></td>
+<td style="text-align: right;">≈ 0,02 %</td>
+</tr>
+<tr>
+<td>§ 5 Chaîne et gains</td>
+<td><code>FormalGroupSystem.LowTermBound</code>,
+<code>PointsLemma</code>, <code>G.NP</code>, <code>yProd</code>,
+<code>gainP</code>, <code>LinkG_at</code></td>
+<td style="text-align: right;">≈ 0,1 %</td>
+</tr>
+<tr>
+<td>§ 6 Division, pentes</td>
+<td><code>divClausesR_of</code>, <code>DivIntoDualShift</code>,
+<code>mu_diff</code>, <code>Frame_at</code>, <code>HypHigh</code></td>
+<td style="text-align: right;">≈ 0,1 %</td>
+</tr>
+<tr>
+<td>§ 6 Théorème S</td>
+<td><code>GlobalTheory.CarrierGap.offDiag</code></td>
+<td style="text-align: right;">1,4 %</td>
+</tr>
+<tr>
+<td>§ 6 Covolume</td>
+<td><code>topCovolSlim2_use_alt_alt</code></td>
+<td style="text-align: right;">7,1 %</td>
+</tr>
+<tr>
+<td>§ 8 (a) Tate–Shafarevich</td>
+<td><code>VWin := ∀ ψ, VWinAt ψ 401</code>,
+<code>vwin_of_row</code></td>
+<td style="text-align: right;">8,2 %</td>
+</tr>
+<tr>
+<td>§ 8 (b) Galois</td>
+<td><code>galoisLocalGlobalStrong_recParameter</code>
+(<code>Row0b</code>)</td>
+<td style="text-align: right;">6,3 %</td>
+</tr>
+<tr>
+<td>§ 8 (c) Langlands local</td>
+<td><code>recTExists</code></td>
+<td style="text-align: right;">faible</td>
+</tr>
+<tr>
+<td>§ 8 Fabrication</td>
+<td><code>nonempty_hyps_definite_side_of_closed_bound</code></td>
+<td style="text-align: right;">35,8 %</td>
+</tr>
+<tr>
+<td>Cœur automorphe (total)</td>
+<td><code>every_character_of_theta_integrals_local_matching</code></td>
+<td style="text-align: right;">41,5 %</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Faits établis sur l’export.</strong></p>
+<ul>
+<li><strong>Fermeture.</strong> L’environnement de <code>Main</code>
+compte 2,70 M de constantes ; 1,48 M sont utilisées (55 %), dont 86 %
+appartiennent au projet. L’export ne contient que celles-là. Les axiomes
+sont standard.</li>
+<li><strong>Échafaudage « littérature » hors du chemin.</strong>
+<code>LitN</code>, <code>published_inputs_combined</code>,
+<code>Published.LocalLanglandsGL</code> n’apparaissent pas dans
+l’export. La structure <code>OpenLiteratureStatements</code> est
+construite <strong>anonymement</strong> à partir de théorèmes démontrés
+; 255 des 259 théorèmes <code>X_of_literature</code> n’utilisent pas
+leur hypothèse. Un seul énoncé <code>Published.*</code> est vide :
+<code>UnusedSlot72 := True</code>, sous le nom « pôle simple de
+Siegel–Eisenstein ».</li>
+<li><strong>Aucun énoncé de la littérature n’entre comme
+axiome.</strong> Tout est démontré dans le projet.</li>
+</ul>
+<p><strong>Ce que chaque étape lit sur l’export</strong> (détails dans
+la <a href="carte.html">carte de la preuve</a>, § 11).</p>
+<ul>
+<li><strong>Le gain de Legendre.</strong> <code>gam p = p/(p^2−1)</code>
+; <code>gB = gam(p)·Σα − Σ_e min(α/p^{2e+1}, cap) − de</code>.</li>
+<li><strong>La perte d’automorphismes.</strong>
+<code>dG_spec : v_p(|Stab_Γ(L)|) ≤ dG j</code>.</li>
+<li><strong>La chaîne de relèvements.</strong>
+<code>lifts D = Icc 1 m</code> ; <code>yProd</code> itère
+<code>yv</code> m fois ; <code>ColChain</code> factorise la période par
+<code>chainMat K_1 … K_m</code>.</li>
+<li><strong>L’arrondi de la division.</strong> <code>round_le</code> :
+<span class="math inline">\(|\Delta\widehat\mu-\sum_w\)</span>
+<code>sz w (sg u w)</code><span class="math inline">\(|\le
+2\sum_{w:\,\mathrm{sg}\neq0}\)</span> <code>lwP w</code> ;
+<code>nprimeMu_at</code> majore le membre de droite par <span
+class="math inline">\(2(X&#39;&#39;\log4+\log T+\log g_0+\log g_1+\log
+d+\log D_\Gamma)\)</span> ; d’où <code>NprimeMuR L C</code> (erreur
+<span class="math inline">\(\le C\cdot X&#39;&#39;\)</span>), exigée par
+<code>LinkMu</code> et utilisée dans <code>places_at_of</code>. Échelles
+(<code>Scale</code>) : <span
+class="math inline">\(b=e^{x^\varepsilon}\)</span>, <span
+class="math inline">\(a=x\,b\)</span>, <span
+class="math inline">\(b&#39;=a/e^{x^{\varepsilon/3}}\)</span>, <span
+class="math inline">\(w&#39;&#39;=b&#39;/(x\,n)\)</span>, donc <span
+class="math inline">\(X&#39;&#39;=a/w&#39;&#39;=x\,n\,e^{x^{\varepsilon/3}}\)</span>,
+avec <code>n = Frame.ord</code>. Taille de <span
+class="math inline">\(n\)</span> : <code>HC.Der.finrank_E</code> donne
+<span class="math inline">\([E:\mathbb Q]=4\,\)</span><code>ord</code>
+(le groupe de Galois est <span class="math inline">\((\mathbb
+Z^\times)^2\times\mathbb Z/\mathrm{ord}\)</span>, <code>card_GG</code>)
+; <code>Ranks.mk</code> impose <span
+class="math inline">\(2\,\)</span><code>ord</code><span
+class="math inline">\(\le k\)</span>, et
+<code>size_window_at_five</code> établit <code>Win_at L 5</code>, donc
+<span class="math inline">\(k\le x^5\)</span> et <span
+class="math inline">\(n\le x^5/2\)</span>. Plus précisément, la
+construction de la famille (<code>T3.supplyOfAdmOf</code>, sur le chemin
+de <code>riemannHypothesis</code> via <code>supplyOfAdm</code> →
+<code>supplyChi</code> → … → <code>everyCharacter</code>) appelle
+<code>Top.winPairs</code> et pose <code>hord : ord = c·2^e</code>, où
+<code>WinDatum</code> impose <span
+class="math inline">\(x^{2+8\varepsilon}\le
+c\cdot2^e\le2x^{2+8\varepsilon}\)</span> ; sa conclusion
+(<code>HostExW</code>) contient la borne de Ш <code>VVle</code> pour
+<strong>le même</strong> corps <code>E</code>. Dans
+<code>Lnk.Places_at</code>, le défaut d’arrondi vérifie
+<code>Rd ≤ RX ≤ C·X''</code>, à côté de
+<code>LT ≤ C·|TT|·m·(a/k + b')·log T</code> ; avec <span
+class="math inline">\(k\ge x\,m\)</span> (<code>Win_at</code>), <span
+class="math inline">\(m\,a/k\le b\)</span> : <code>LT</code> est d’ordre
+<span class="math inline">\(b\)</span>.</li>
+<li><strong>La condition de taille.</strong> <code>Win_at</code> impose
+<code>x^{1/2−ε} ≤ m ≤ x^{1/2+ε/2}</code> et <code>x·m ≤ k</code>.</li>
+</ul>
+<hr />
+<h1 id="partie-iii.-bilan">Partie III. Bilan</h1>
+<h2 id="ce-qui-est-nouveau-i">Ce qui est nouveau ⟦I⟧</h2>
+<ol type="1">
+<li><strong>Une multiplicité automorphe : Stepanov sur les
+entiers.</strong> L’ordre d’annulation de Stepanov est remplacé par la
+divisibilité <span class="math inline">\(p\)</span>-adique des dérivées
+de séries thêta en des points CM, au taux de Legendre <span
+class="math inline">\(p/(p^2-1)\)</span>, accumulée le long d’une chaîne
+de <span class="math inline">\(\approx\sqrt x\)</span> relèvements
+thêta. C’est l’idée centrale. Selon la note d’Alpöge, elle combine son
+analogie (Stepanov, un jouet de Fourier, Bost) et une suggestion de
+l’agent (la longueur <span class="math inline">\(\sqrt X\)</span>). Sur
+le partage des rôles, voir l’annexe A.</li>
+<li><strong>Une positivité arithmétique concrète.</strong> La positivité
+de Weil (Castelnuovo, indice de Hodge), qui fait marcher RH sur les
+corps de fonctions, trouve ici un analogue arithmétique effectif :
+l’inégalité de pentes de Bost sur des réseaux de formes automorphes
+explicites.</li>
+<li><strong>L’exposant ½ par optimisation</strong>, comme dans un lemme
+de Siegel, et non par l’équation fonctionnelle.</li>
+<li><strong>Des résultats intermédiaires de valeur propre</strong> :
+<ul>
+<li>bornes de Tate–Shafarevich polynomiales en le conducteur, effectives
+et uniformes ;</li>
+<li>Landau sur fenêtres ;</li>
+<li>représentations galoisiennes par thêta et poids 1 sans variétés de
+Shimura ;</li>
+<li>une formule de Petersson quantitative pour les coefficients de
+Bessel des groupes unitaires.</li>
+</ul></li>
+</ol>
+<h2 id="ce-qui-est-classique-ou-classique-recombiné">Ce qui est
+classique, ou classique recombiné</h2>
+<p>Formule explicite, positivité de Landau, grand crible, correspondance
+thêta et Siegel–Weil, formules de Rallis, Chowla–Selberg, lemme de
+Dwork, Legendre, Behrend, Hironaka, Moriwaki, Faltings–Chai, congruences
+d’Eisenstein, système d’Euler de Kato, Ferrero–Washington.</p>
+<h2 id="ce-quon-ne-comprend-pas-encore">Ce qu’on ne comprend pas
+encore</h2>
+<ul>
+<li><strong>Pourquoi des poids alignés existent.</strong> Les poids des
+relèvements doivent coïncider avec ceux des sommes de premiers, et la
+borne de Ш doit tenir dans le budget. La construction des familles qui y
+parviennent occupe 36 % du volume et n’a pas été lue en détail.</li>
+<li><strong>La preuve interne de la quasi-orthogonalité</strong>
+(minorations de séries de Poincaré, 5,1 M de lignes) et celle de la
+borne de covolume.</li>
+<li><strong>La partie déformations</strong> des bornes de
+Tate–Shafarevich, et les énoncés d’automorphie pour <span
+class="math inline">\(\mathrm{GSp}_4\)</span> et <span
+class="math inline">\(U(3)\)</span>.</li>
+<li><strong>Ce qui est vraiment nécessaire.</strong> Alpöge s’attend à
+des simplifications rapides. Les constantes (401, <span
+class="math inline">\(1/52\)</span>, l’écart <span
+class="math inline">\(120n^3\)</span>, …) ne semblent pas forcées.</li>
+</ul>
+<h2 id="ce-qui-est-démontré-exactement">Ce qui est démontré,
+exactement</h2>
+<p>GRH pour <strong>toutes les fonctions L de Dirichlet</strong>, donc
+RH, et RH pour les fonctions zêta de Dedekind des <strong>corps
+abéliens</strong>. <strong>Pas</strong> GRH pour les corps non abéliens,
+les fonctions L d’Artin ou automorphes générales. Voir l’annexe C.</p>
+<hr />
+<h2 id="annexe-a.-genèse-ce-que-disent-les-sources">Annexe A. Genèse :
+ce que disent les sources</h2>
+<p><em>Cette annexe se limite aux faits mesurables sur l’artefact et à
+ce qu’affirme la note de l’auteur. Elle ne cherche pas à attribuer les
+idées.</em></p>
+<p><strong>L’artefact</strong> (mesures sur le code et l’export) :</p>
+<ul>
+<li>17,4 M de lignes, aucun commentaire, aucun historique de versions
+;</li>
+<li>des régénérations empilées (<code>_alt_alt_alt…</code>) et des
+emplacements numérotés dont le nom est contredit par le contenu
+(<code>UnusedSlot80</code> : 2 121 déclarations utilisées) ;</li>
+<li>52 764 tactiques défensives <code>first | … | …</code> ;</li>
+<li>une spécification courte et lisible (<code>Statements.lean</code>,
+<code>Main.lean</code>).</li>
+</ul>
+<p>Rien dans l’artefact ne permet d’établir qui a écrit quoi.</p>
+<p><strong>Le partage entre mécanisme et construction</strong> (mesuré
+par l’arbre des dominateurs). Le mécanisme de la partie I pèse
+<strong>moins de 0,5 % du volume</strong> : Landau en fenêtres, Théorème
+A et taux <span class="math inline">\(p/(p^2-1)\)</span>, division des
+réseaux et inégalité de pentes, équilibre <span
+class="math inline">\(x/m+m\)</span>. Le reste fabrique les objets et
+contrôle les pertes : groupes unitaires, noyaux thêta entiers,
+quasi-orthogonalité, covolume, bornes de Tate–Shafarevich,
+représentations galoisiennes.</p>
+<p><strong>Ce que dit la note</strong>
+(<code>alpo.ge/remark.pdf</code>). Elle donne une chronologie en 20
+étapes, du 6 octobre au 16 novembre 2026, qu’elle présente comme « a
+rough timeline Claude provided after a thorough search ». Correspondance
+avec la preuve reconstruite :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dans la preuve reconstruite</th>
+<th>Étapes de la note</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analogie de Stepanov</td>
+<td>1, 4</td>
+<td>6/10</td>
+</tr>
+<tr>
+<td>Divisibilité de <span
+class="math inline">\(D^a\Omega\theta(0)\)</span> au point CM (Théorème
+A)</td>
+<td>2</td>
+<td>9/10</td>
+</tr>
+<tr>
+<td>Inégalité de pentes de Bost</td>
+<td>13</td>
+<td>6/10</td>
+</tr>
+<tr>
+<td>Tour d’Iwasawa, Behrend</td>
+<td>11, 19</td>
+<td>6/10 et 19/10</td>
+</tr>
+<tr>
+<td>Positivité, signe de Guinand–Weil</td>
+<td>5, 6</td>
+<td>8/10 et 20/10</td>
+</tr>
+<tr>
+<td>Chaîne de relèvements thêta</td>
+<td>3, 8</td>
+<td>19/10 puis 15/11</td>
+</tr>
+<tr>
+<td>Normes des relèvements, seesaw, coût par relèvement, structures
+entières, Ш, covolumes</td>
+<td>9, 10, 12, 14, 15, 17, 18</td>
+<td>presque toutes le 15/11</td>
+</tr>
+</tbody>
+</table>
+<p>Sur le partage des rôles, la note dit notamment : « The simple, new,
+Fourier-analytic ideas in the toy setting led us to examine chaining
+theta lifts » ; la longueur de chaîne <span class="math inline">\(\sqrt
+X\)</span> est « Claude’s suggested length of chain of theta lifts » ; «
+Claude far outpaced me near the finish line ». L’auteur écrit aussi
+qu’il a « little mastery of automorphic forms on higher rank groups »,
+et qu’il a produit une exposition de plus de 250 000 pages, non publiée.
+La note cite également des apports extérieurs (des résultats d’OpenAI,
+des collègues consultés).</p>
+<p>Deux constats sur l’export complètent la note : le Théorème A (étape
+2), l’inégalité de pentes (étape 13) et la construction de Behrend
+(étape 19) correspondent à des déclarations de la fermeture ; le « jouet
+de Fourier » de l’étape 3 (« qN = Mk + R », quadrique, revêtement
+d’ordre 6) n’y apparaît pas tel quel, ce que Rubinstein constate
+aussi.</p>
+<hr />
+<h2 id="annexe-b.-glossaire">Annexe B. Glossaire</h2>
+<p><em>Définitions minimales, au sens où elles servent dans ce
+texte.</em></p>
+<div class="glossaire">
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Terme</th>
+<th>Définition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Caractère de Dirichlet primitif</strong></td>
+<td>Caractère χ mod N qui ne provient pas d’un caractère de module plus
+petit ; N est alors le <strong>conducteur</strong></td>
+</tr>
+<tr>
+<td><strong><span class="math inline">\(\Lambda(n)\)</span></strong>
+(von Mangoldt)</td>
+<td><span class="math inline">\(\log p\)</span> si <span
+class="math inline">\(n=p^k\)</span>, <span
+class="math inline">\(0\)</span> sinon</td>
+</tr>
+<tr>
+<td><strong><span class="math inline">\(\psi(x,\chi)\)</span></strong>,
+fonction de Tchebychev</td>
+<td><span class="math inline">\(\displaystyle\psi(x,\chi)=\sum_{n\le
+x}\Lambda(n)\chi(n)\)</span> ; GRH pour <span
+class="math inline">\(\chi\)</span> <span
+class="math inline">\(\iff\)</span> <span
+class="math inline">\(\psi(x,\chi)=O(x^{1/2+\varepsilon})\)</span> (pour
+<span class="math inline">\(\chi\neq1\)</span>)</td>
+</tr>
+<tr>
+<td><strong>Formule explicite</strong></td>
+<td>Expression de <span class="math inline">\(\psi(x,\chi)\)</span>
+comme somme sur les zéros <span class="math inline">\(\rho\)</span> de
+<span class="math inline">\(L(s,\chi)\)</span> : <span
+class="math inline">\(\displaystyle\psi(x,\chi)\approx-\sum_\rho
+\frac{x^\rho}{\rho}\)</span></td>
+</tr>
+<tr>
+<td><strong>Théorème de Landau</strong></td>
+<td>Une série de Dirichlet à coefficients ≥ 0 a une singularité au point
+réel de son abscisse de convergence ; d’où : une majoration suffit</td>
+</tr>
+<tr>
+<td><strong>Grand crible</strong></td>
+<td>Inégalités de moyenne quadratique sur une famille de caractères ;
+elles montrent que presque tous les caractères d’une grande famille ont
+des sommes petites</td>
+</tr>
+<tr>
+<td><strong>Corps CM</strong></td>
+<td>Extension quadratique totalement imaginaire d’un corps totalement
+réel (ex. ℚ(√−d))</td>
+</tr>
+<tr>
+<td><strong>Forme hermitienne, groupe unitaire</strong></td>
+<td>Forme sesquilinéaire hermitienne sur <span
+class="math inline">\(E^n\)</span> (<span
+class="math inline">\(E\)</span> CM) ; le groupe unitaire est le groupe
+de ses isométries. <strong>Définie</strong> : positive à toutes les
+places infinies</td>
+</tr>
+<tr>
+<td><strong>Masse de Siegel</strong></td>
+<td><span
+class="math inline">\(\displaystyle\sum_{[L]}\frac{1}{\lvert\mathrm{Aut}(L)\rvert}\)</span>
+sur les classes de réseaux d’un genre ; la formule de Siegel la calcule
+exactement</td>
+</tr>
+<tr>
+<td><strong>Série thêta, Siegel–Weil</strong></td>
+<td>La série thêta d’un réseau est la série génératrice de ses nombres
+de représentations ; Siegel–Weil : moyenne sur le genre = série
+d’Eisenstein</td>
+</tr>
+<tr>
+<td><strong>Correspondance (relèvement) thêta</strong></td>
+<td>Procédé qui transporte des formes automorphes d’un groupe unitaire à
+un autre via la représentation de Weil ; <strong>domaine stable</strong>
+: quand le second groupe est assez grand</td>
+</tr>
+<tr>
+<td><strong>Réseau hermitien</strong></td>
+<td><span class="math inline">\(\mathcal O_K\)</span>-module projectif
+de type fini muni de normes hermitiennes aux places infinies (« fibré
+vectoriel » sur <span class="math inline">\(\operatorname{Spec}\mathcal
+O_K\)</span>)</td>
+</tr>
+<tr>
+<td><strong>Degré arakelovien</strong></td>
+<td><span
+class="math inline">\(\widehat{\deg}(L)=-\log\operatorname{covol}(L)\)</span>,
+normalisé ; se décompose en contributions locales finies (<span
+class="math inline">\(\times\log p\)</span>) et archimédiennes</td>
+</tr>
+<tr>
+<td><strong>Pente, Harder–Narasimhan</strong></td>
+<td><span
+class="math inline">\(\widehat\mu=\widehat{\deg}/\mathrm{rang}\)</span>
+; <span class="math inline">\(\widehat\mu_{\max}\)</span> est la plus
+grande pente d’un sous-réseau (premier cran de la filtration de
+Harder–Narasimhan)</td>
+</tr>
+<tr>
+<td><strong>Inégalité de pentes (Bost)</strong></td>
+<td>Pour <span class="math inline">\(\varphi:E\to F\)</span> injectif,
+<span
+class="math inline">\(\widehat\mu(E)\le\widehat\mu_{\max}(F)+h(\varphi)\)</span>,
+où <span class="math inline">\(h(\varphi)\)</span> est la hauteur de
+<span class="math inline">\(\varphi\)</span> ; généralise Minkowski</td>
+</tr>
+<tr>
+<td><strong>Représentation galoisienne attachée</strong></td>
+<td><span class="math inline">\(r:\mathrm{Gal}(\overline
+E/E)\to\mathrm{GL}_n(\overline{\mathbb Q}_\ell)\)</span> dont les
+valeurs propres de Frobenius en p non ramifié égalent les paramètres de
+Satake de la forme automorphe en p</td>
+</tr>
+<tr>
+<td><strong>Représentation de Weil–Deligne</strong></td>
+<td>Version « linéarisée » d’une représentation galoisienne locale (Weil
++ monodromie) ; c’est le côté galoisien de Langlands local</td>
+</tr>
+<tr>
+<td><strong>Langlands local</strong></td>
+<td>Bijection entre représentations irréductibles de <span
+class="math inline">\(\mathrm{GL}_n(K)\)</span> (<span
+class="math inline">\(K\)</span> local) et représentations de
+Weil–Deligne de dimension n, préservant certains invariants</td>
+</tr>
+<tr>
+<td><strong>Profondeur zéro, modéré</strong></td>
+<td>Représentation de <span
+class="math inline">\(\mathrm{GL}_n(K)\)</span> ayant des vecteurs fixes
+sous le premier sous-groupe de congruence ; côté galoisien : inertie
+sauvage triviale</td>
+</tr>
+<tr>
+<td><strong>Théorie de Green</strong></td>
+<td>Description des caractères irréductibles de <span
+class="math inline">\(\mathrm{GL}_n(\mathbb F_q)\)</span> ; les «
+caractères réguliers » <span class="math inline">\(\theta\)</span> de
+<span class="math inline">\(\mathbb F_{q^n}^\times\)</span> paramètrent
+les cuspidales</td>
+</tr>
+<tr>
+<td><strong>Formule de Lefschetz holomorphe</strong></td>
+<td>Trace d’une correspondance sur la cohomologie cohérente (de Hodge) =
+somme sur les points fixes de termes locaux</td>
+</tr>
+<tr>
+<td><strong>Géométrie d’Arakelov</strong></td>
+<td>Géométrie des variétés sur Spec ℤ complétée par des métriques aux
+places infinies ; degrés, hauteurs, volumes arithmétiques</td>
+</tr>
+<tr>
+<td><strong>Méthode de Stepanov</strong></td>
+<td>Majoration du nombre de points d’une courbe sur <span
+class="math inline">\(\mathbb F_q\)</span> par une fonction auxiliaire
+qui s’annule à un ordre élevé en chaque point ; donne RH pour les
+courbes (Stepanov, Bombieri)</td>
+</tr>
+<tr>
+<td><strong>Groupe formel, hauteur</strong></td>
+<td>Loi de groupe donnée par une série formelle <span
+class="math inline">\(F(X,Y)\)</span> ; sur <span
+class="math inline">\(\mathbb Z_p\)</span>, celui d’une courbe
+elliptique <strong>supersingulière</strong> est de hauteur 2, avec un
+logarithme du type <span class="math inline">\(\sum_e
+X^{p^{2e}}/p^e\)</span></td>
+</tr>
+<tr>
+<td><strong>Point CM</strong></td>
+<td>Point d’une variété de Shimura correspondant à une variété abélienne
+à multiplication complexe ; la réduction en un premier inerte est
+supersingulière</td>
+</tr>
+<tr>
+<td><strong>Formule de Legendre</strong></td>
+<td><span class="math inline">\(v_p(a!)=\sum_{e\ge1}\lfloor
+a/p^e\rfloor=(a-s_p(a))/(p-1)\)</span> ; ici, ses analogues restreints
+aux exposants impairs donnent le taux <span
+class="math inline">\(p/(p^2-1)\)</span></td>
+</tr>
+<tr>
+<td><strong>Lemme de Dwork</strong></td>
+<td>Critère d’intégralité <span class="math inline">\(p\)</span>-adique
+: <span class="math inline">\(\exp(P)\in 1+X\,W[[X]]\)</span> si et
+seulement si <span class="math inline">\(P^{\sigma}(X^p)-pP\in
+pW[[X]]\)</span> ; sert pour les exponentielles d’Artin–Hasse et pour
+les groupes formels</td>
+</tr>
+<tr>
+<td><strong>Norme de Gauss</strong></td>
+<td>Norme d’un polynôme <span class="math inline">\(p\)</span>-adique
+égale au maximum des normes de ses coefficients ; elle est
+multiplicative, et égale à la valeur en un point résiduellement
+générique</td>
+</tr>
+<tr>
+<td><strong>Période de Bessel (GGP)</strong></td>
+<td>Intégrale d’une forme automorphe sur un sous-groupe, contre un
+caractère d’un unipotent et une forme d’un groupe plus petit ; les
+identités seesaw de Kudla relient celles des relèvements thêta</td>
+</tr>
+<tr>
+<td><strong>Groupe de Tate–Shafarevich</strong></td>
+<td>Noyau de la restriction <span
+class="math inline">\(H^1(G_{E,S},\mathbb Q_\ell/\mathbb
+Z_\ell(-e))\to\prod_{v\mid\ell}H^1(E_v,\cdot)\)</span> : classes
+globales localement triviales</td>
+</tr>
+<tr>
+<td><strong>Congruence d’Eisenstein</strong></td>
+<td>Congruence modulo ℓ entre une forme cuspidale et une série
+d’Eisenstein ; elle construit, ou ici borne, des classes de Selmer
+(Ribet, Mazur–Wiles)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="annexe-c.-conséquences-mathématiques">Annexe C. Conséquences
+mathématiques</h2>
+<p><strong>Ce qui est démontré, exactement.</strong> GRH pour
+<strong>toutes les fonctions L de Dirichlet</strong>, donc RH. La
+fonction zêta de Dedekind d’un <strong>corps abélien</strong> se
+factorise en produit de fonctions L de Dirichlet ; <strong>GRH vaut donc
+pour tous les corps de nombres abéliens</strong>, en particulier
+quadratiques et cyclotomiques. Elle n’est <strong>pas</strong> démontrée
+pour les corps non abéliens, ni pour les fonctions L d’Artin ou
+automorphes générales. Cette frontière décide de la plupart des
+conséquences.</p>
+<h3 id="c.1-conséquences-classiques-de-rh-pour-ζ">C.1 Conséquences
+classiques de RH (pour ζ)</h3>
+<ul>
+<li><strong>Théorème des nombres premiers optimal</strong> (von Koch) :
+<span class="math inline">\(\pi(x)=\operatorname{li}(x)+O(\sqrt x\log
+x)\)</span>. Forme explicite (Schoenfeld) : <span
+class="math inline">\(|\pi(x)-\operatorname{li}(x)|&lt;\dfrac{\sqrt
+x\,\log x}{8\pi}\)</span> pour <span class="math inline">\(x\ge
+2657\)</span>.</li>
+<li><strong>Écarts entre nombres premiers</strong> (Cramér) : <span
+class="math inline">\(p_{n+1}-p_n=O(\sqrt{p_n}\,\log p_n)\)</span>. Il y
+a un premier dans tout intervalle <span
+class="math inline">\([x,\,x+C\sqrt x\log x]\)</span>.</li>
+<li><strong>Fonction de Mertens</strong> : <span
+class="math inline">\(\displaystyle M(x)=\sum_{n\le
+x}\mu(n)=O(x^{1/2+\varepsilon})\)</span>, ainsi que toutes les
+reformulations équivalentes de RH (Riesz, Nyman–Beurling, critère de
+Li…).</li>
+<li><strong>Hypothèse de Lindelöf</strong> : <span
+class="math inline">\(\zeta(\tfrac12+it)\ll_\varepsilon
+|t|^{\varepsilon}\)</span>. Elle découle de RH.</li>
+<li><strong>Critère de Robin</strong> : <span
+class="math inline">\(\sigma(n)&lt;e^{\gamma}\,n\log\log n\)</span> pour
+tout <span class="math inline">\(n&gt;5040\)</span>. La page de
+Sutherland mentionne des fichiers « Robin1984 » et un export
+arithmétique combiné, ce qui suggère une dérivation formelle de ce
+critère (contenu non lu ici).</li>
+</ul>
+<h3
+id="c.2-conséquences-de-grh-pour-dirichlet-nombres-premiers-en-progressions-et-algorithmique">C.2
+Conséquences de GRH pour Dirichlet : nombres premiers en progressions et
+algorithmique</h3>
+<ul>
+<li><strong>Premiers en progressions arithmétiques</strong> : <span
+class="math inline">\(\pi(x;q,a)=\dfrac{\operatorname{li}(x)}{\varphi(q)}+O\big(\sqrt
+x\,\log(qx)\big)\)</span>, uniformément en <span
+class="math inline">\(q\)</span>.</li>
+<li><strong>Plus petit premier dans une progression</strong> : <span
+class="math inline">\(p(q,a)\ll(\varphi(q)\log q)^2\)</span>,
+c’est-à-dire, à toutes fins pratiques, la constante de Linnik égale à
+2.</li>
+<li><strong>Plus petit non-résidu quadratique</strong> : <span
+class="math inline">\(n_p&lt;2(\log p)^2\)</span> (Ankeny, Bach). On
+trouve aussi des racines primitives petites (Shoup).</li>
+<li><strong>Algorithmes déterministes</strong> :
+<ul>
+<li><strong>test de primalité de Miller</strong> : il suffit de tester
+les bases <span class="math inline">\(\le 2(\log n)^2\)</span>, d’où un
+test déterministe en temps polynomial. AKS l’était déjà
+inconditionnellement, mais Miller est bien plus rapide ;</li>
+<li>calcul déterministe de racines carrées modulo <span
+class="math inline">\(p\)</span>, et d’autres algorithmes qui
+dépendaient de GRH.</li>
+</ul></li>
+<li><strong>Plus de zéro de Siegel</strong> pour les fonctions L de
+Dirichlet, ce qui <strong>rend effectifs</strong> des résultats
+jusque-là ineffectifs :
+<ul>
+<li>le théorème de Siegel <span
+class="math inline">\(h(-d)\gg_\varepsilon d^{1/2-\varepsilon}\)</span>,
+dont la constante devient calculable ;</li>
+<li>la minoration de Littlewood <span
+class="math inline">\(h(-d)\gg\sqrt d/\log\log d\)</span> ;</li>
+<li>le théorème de Siegel–Walfisz et ce qui en dépend.</li>
+</ul></li>
+<li><strong>Corps quadratiques et cyclotomiques</strong> (cas abélien) :
+<ul>
+<li>borne de Bach : le groupe des classes est engendré par les idéaux
+premiers de norme <span class="math inline">\(\le
+12(\log|d|)^2\)</span>. Le calcul des groupes de classes et des unités
+devient prouvé, et non plus seulement conditionnel ;</li>
+<li>Chebotarev effectif (Lagarias–Odlyzko) <strong>pour les extensions
+abéliennes de <span class="math inline">\(\mathbb
+Q\)</span></strong>.</li>
+</ul></li>
+</ul>
+<h3 id="c.3-ce-qui-ne-suit-pas">C.3 Ce qui ne suit pas</h3>
+<p>Plusieurs conséquences célèbres de « GRH » supposent en réalité GRH
+pour des corps <strong>non abéliens</strong>, ou pour des fonctions L
+plus générales :</p>
+<ul>
+<li><strong>la conjecture d’Artin sur les racines primitives</strong>
+(Hooley, 1967) : elle utilise GRH pour les corps de Kummer <span
+class="math inline">\(\mathbb Q(\zeta_k,a^{1/k})\)</span>, qui ne sont
+pas abéliens. <strong>Non couverte</strong> ;</li>
+<li><strong>Chebotarev effectif général</strong>, la borne de Bach pour
+les corps non abéliens, le caractère euclidien des anneaux d’entiers
+(Weinberger) dans le cas général. <strong>Non couverts</strong> ;</li>
+<li>GRH pour les formes modulaires, les courbes elliptiques (rangs,
+Birch et Swinnerton-Dyer…), les fonctions L automorphes de <span
+class="math inline">\(\mathrm{GL}_n\)</span> et d’Artin. <strong>Non
+couvertes</strong> ;</li>
+<li>les questions qui ne découlent pas de RH : nombres premiers jumeaux,
+Goldbach binaire, corrélation de paires (Montgomery), simplicité des
+zéros, indépendance linéaire de leurs ordonnées.
+<strong>Inchangées</strong>.</li>
+</ul>
+<p>Pour chaque résultat « conditionnel à GRH » de la littérature, il
+faut donc vérifier <strong>quelle</strong> GRH est supposée.</p>
+<h3 id="c.4-conséquences-méthodologiques-spéculatives-i">C.4
+Conséquences méthodologiques (spéculatives ⟦I⟧)</h3>
+<ul>
+<li><strong>Une méthode, plus qu’un résultat.</strong> Rien n’oblige a
+priori l’argument à se limiter à Dirichlet : multiplicité par chaînes de
+relèvements thêta, pentes de Bost, groupes unitaires sur des corps CM,
+choix en moyenne des caractères auxiliaires. Une extension aux
+<strong>caractères de Hecke</strong> (et donc à GRH pour davantage de
+corps), voire à <span class="math inline">\(\mathrm{GL}_2\)</span>,
+serait l’enjeu naturel. Rien dans l’export ne l’établit ; c’est une
+question ouverte.</li>
+<li><strong>Des résultats intermédiaires utiles en eux-mêmes</strong> :
+<ul>
+<li>représentations galoisiennes par thêta, poids 1 et congruences, sans
+variétés de Shimura ;</li>
+<li>correspondance de Langlands locale explicite en profondeur zéro
+;</li>
+<li>un Petersson quantitatif pour les coefficients de Bessel des groupes
+unitaires ;</li>
+<li>une densité de zéros et des régions sans zéro démontrées
+formellement.</li>
+</ul></li>
+<li><strong>Une bibliothèque formelle</strong> : Hironaka, Moriwaki,
+Grothendieck–Messing, compactifications toroïdales, etc. existent
+désormais en Lean, même sous une forme peu lisible.</li>
+<li><strong>Des conséquences formelles immédiates</strong> : les énoncés
+finaux utilisent les définitions de Mathlib. Tout théorème Lean formulé
+« sous l’hypothèse <code>RiemannHypothesis</code> » devient
+inconditionnel en l’instanciant par <code>riemannHypothesis</code>.</li>
+</ul>
+<h3 id="c.5-conséquences-pour-la-discipline">C.5 Conséquences pour la
+discipline</h3>
+<ul>
+<li><strong>Un pan de la littérature devient inconditionnel</strong>,
+mais seulement la partie qui dépend de GRH pour Dirichlet ou pour les
+corps abéliens. Ce tri reste à faire, article par article.</li>
+<li><strong>La recherche se déplace</strong> : des énoncés « sous GRH »
+vers les questions plus fines que RH ne tranche pas (distribution
+statistique des zéros, moments, conjectures de corrélation), et vers
+l’<strong>extension de la méthode</strong> aux autres fonctions L.</li>
+<li><strong>Un précédent épistémique</strong> : un résultat central est
+certain avant d’être compris, ce qui pose la question de la « preuve
+explicative » (partie III).</li>
+</ul>
+<h2 id="références">Références</h2>
+<p><strong>La preuve et sa vérification</strong></p>
+<ul>
+<li>[A] L. Alpöge, note d’annonce, 20/11/2026 : <a
+href="https://alpo.ge/remark.pdf"
+class="uri">https://alpo.ge/remark.pdf</a></li>
+<li>[Su] A. Sutherland, page de vérification et export de la preuve
+(<code>solution.ndjson.zst</code>, <code>challenge.ndjson.zst</code>) :
+<a href="https://math.mit.edu/~drew/grh/"
+class="uri">https://math.mit.edu/~drew/grh/</a></li>
+<li>[R] M. Rubinstein, page de vérification : <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/</a></li>
+</ul>
+<p><strong>Autres synthèses et lectures publiées</strong> (toutes
+rédigées avec des outils d’IA, à des degrés divers)</p>
+<ul>
+<li>[R] M. Rubinstein (avec Claude, Codex et Gemini), <em>The
+Alpöge–Claude proof of the Riemann hypothesis explained for the Riemann
+zeta function</em>, document de travail, 21–22/11/2026 : <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper.pdf"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper.pdf</a>.
+L’exposition la plus détaillée, restreinte à ζ, dans le style de la
+théorie analytique classique.</li>
+<li>[S] S. Slijepčević, <em>Outline of Alpöge’s proof of the generalised
+Riemann hypothesis</em>, hexagon:2611.00812 : <a
+href="https://cantabpi.com/grh.pdf"
+class="uri">https://cantabpi.com/grh.pdf</a></li>
+<li>[Z] R. Zhang, <em>A preliminary note on Alpöge’s proposed proof of
+the generalized Riemann hypothesis</em>, hexagon:2611.00809 : <a
+href="https://www.ihes.fr/~rzhang/files/GRH%20note.pdf"
+class="uri">https://www.ihes.fr/~rzhang/files/GRH%20note.pdf</a></li>
+<li>[H] twinheterodox, <em>Three simplifications in the Alpöge–Claude
+argument for Dirichlet GRH</em>, hexagon:2611.00828 : <a
+href="https://hexagonmath.org/2611.00828v1"
+class="uri">https://hexagonmath.org/2611.00828v1</a></li>
+<li>[G] <code>RH-Alpoge-Reconstruction</code> (lecture textuelle du
+source) : <a
+href="https://github.com/jimjamzola/RH-Alpoge-Reconstruction"
+class="uri">https://github.com/jimjamzola/RH-Alpoge-Reconstruction</a></li>
+<li>M. Lerma, <em>A Schematic RH Proof for Dummies</em> (vulgarisation)
+: <a
+href="https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf"
+class="uri">https://mlerma54.github.io/papers/ai_assisted/RH_Proof_for_Dummies.pdf</a></li>
+</ul>
+<p><strong>Références classiques</strong></p>
+<ul>
+<li>H. Davenport, <em>Multiplicative Number Theory</em>, 3ᵉ éd.,
+Springer, 2000.</li>
+<li>J.-B. Bost, « Périodes et isogénies des variétés abéliennes sur les
+corps de nombres », Séminaire Bourbaki, exposé 795, 1995 (inégalités de
+pentes).</li>
+<li>S. A. Stepanov, « On the number of points of a hyperelliptic curve
+over a finite prime field », <em>Izv. Akad. Nauk SSSR</em> 33, 1969 ; E.
+Bombieri, « Counting points on curves over finite fields (d’après S. A.
+Stepanov) », Séminaire Bourbaki, exposé 430, 1973.</li>
+</ul>
+<h2 id="historique-des-versions">Historique des versions</h2>
+<ul>
+<li><strong>1.0</strong> (23/11/2026) : première version publiée.
+Prémisses sur les fonctions L ; § 1 détaillé ; comparaison avec [R] et
+[H] ; annexe A réduite aux faits.</li>
+</ul>
+<hr />
+<p><em>Méthode : lecture en flux de l’export (62 Go décompressé) par <a
+href="tools/deps.c"><code>tools/deps.c</code></a> ; graphe des
+déclarations, dominateurs (Cooper–Harvey–Kennedy) et index inverse par
+<a href="tools/analyse_export.py"><code>analyse_export.py</code></a>, <a
+href="tools/revindex.py"><code>revindex.py</code></a> et <a
+href="tools/query.py"><code>query.py</code></a> ; réimpression des
+énoncés par <a href="tools/show.py"><code>show.py</code></a>. Toute
+conclusion négative (« X n’est pas utilisé ») est établie sur l’export
+et non par recherche textuelle. Les outils et ce texte ont été écrits
+avec Claude (Anthropic).</em></p>
+</body>
+</html>

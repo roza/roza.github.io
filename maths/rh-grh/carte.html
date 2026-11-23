@@ -1,0 +1,2707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Carte de la preuve RH/GRH</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
+  <style>
+    body { max-width: 52em; margin: 0 auto; padding: 1.5em 1em; font-family: Georgia, "Times New Roman", serif; line-height: 1.55; color: #1a1a1a; background: #fff; }
+    h1, h2, h3 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.25; }
+    h1 { font-size: 1.9em; } h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: .2em; }
+    table { border-collapse: collapse; margin: 1em 0; font-size: .92em; display: block; overflow-x: auto; }
+    th, td { border: 1px solid #ccc; padding: .3em .6em; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .glossaire td { padding-top: .45em; padding-bottom: .45em; }
+    .glossaire td:last-child, .glossaire th:last-child { padding-left: 1.2em; }
+    code { font-size: .88em; background: #f5f5f5; padding: 0 .2em; border-radius: 3px; }
+    pre { overflow-x: auto; background: #f7f7f7; padding: .8em; }
+    pre.mermaid { background: none; text-align: center; overflow-x: auto; }
+    blockquote { border-left: 4px solid #c9d3e6; margin: 1em 0; padding: .2em 1em; background: #f6f8fc; }
+    nav#TOC { font-size: .9em; background: #fafafa; border: 1px solid #e5e5e5; padding: .5em 1em; }
+    a { color: #1f4f9a; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #161616; color: #e6e6e6; } a { color: #8ab4f8; }
+      th { background: #262626; } th, td { border-color: #444; }
+      code, pre { background: #222; } blockquote { background: #1d2330; border-color: #3b4a66; }
+      nav#TOC { background: #1d1d1d; border-color: #333; } h2 { border-color: #333; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false }, theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" });
+  </script>
+</head>
+<body>
+<nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#carte-de-la-preuve-rhgrh-archive-alpo.ge-20-novembre-2026"
+id="toc-carte-de-la-preuve-rhgrh-archive-alpo.ge-20-novembre-2026">Carte
+de la preuve RH/GRH (archive alpo.ge, 20 novembre 2026)</a>
+<ul>
+<li><a href="#s-1" id="toc-s-1">1. Les énoncés finaux
+(vérifiés)</a></li>
+<li><a href="#s-2" id="toc-s-2">2. La chaîne principale</a></li>
+<li><a href="#s-3" id="toc-s-3">3. Les trois piliers</a></li>
+<li><a href="#s-4" id="toc-s-4">4. La borne de covolume arakelovienne
+(<code>topCovolSlim2_use_alt_alt</code>, bloc de 3,0 % au niveau des
+modules, 7,05 % au niveau des déclarations)</a></li>
+<li><a href="#s-5" id="toc-s-5">5. L’échafaudage « littérature
+»</a></li>
+<li><a href="#s-6" id="toc-s-6">6. Volumes</a></li>
+<li><a href="#s-7" id="toc-s-7">7. Diagramme</a></li>
+<li><a href="#s-8" id="toc-s-8">8. Questions ouvertes</a></li>
+<li><a href="#s-9" id="toc-s-9">9. Leçons de méthode</a></li>
+<li><a href="#s-10" id="toc-s-10">10. [export] Arbre des dominateurs au
+niveau des déclarations</a></li>
+<li><a href="#s-11" id="toc-s-11">11. [export] Le cœur, lu de haut en
+bas (question 5)</a></li>
+<li><a href="#s-12" id="toc-s-12">12. [export] Les représentations
+galoisiennes : du relèvement thêta à <code>Row0b</code> (question
+4)</a></li>
+<li><a href="#annexe-outils-de-lanalyse-de-lexport"
+id="toc-annexe-outils-de-lanalyse-de-lexport">Annexe : outils de
+l’analyse de l’export</a></li>
+<li><a href="#annexe-fichiers-clés" id="toc-annexe-fichiers-clés">Annexe
+: fichiers clés</a></li>
+</ul></li>
+</ul>
+</nav>
+<blockquote>
+<p><strong>Notes de travail (21–23/11/2026).</strong> Les lectures
+dépassées sont corrigées sur place et marquées <strong>[corrigé
+23/11]</strong>. La <a href="synthese.html">synthèse</a> fait foi.</p>
+</blockquote>
+<h1 id="carte-de-la-preuve-rhgrh-archive-alpo.ge-20-novembre-2026">Carte
+de la preuve RH/GRH (archive alpo.ge, 20 novembre 2026)</h1>
+<blockquote>
+<p><strong>Statut de ce document.</strong> Cette carte est une
+cartographie <strong>issue de la lecture textuelle des sources</strong>,
+faite le 21 novembre 2026, alors que le projet n’était compilé qu’à 4 %
+environ. Les interprétations mathématiques reposent sur les <strong>noms
+et les signatures</strong> des déclarations : ce sont des hypothèses de
+lecture, pas des vérifications.</p>
+<p><strong>Mise à jour du 21 novembre 2026 (soir) : analyse de l’export
+de la preuve.</strong> L’export <code>solution.ndjson.zst</code> de
+Sutherland (lean4export 3.1.0, 1 080 769 508 lignes, 1 065 214 335
+expressions) a été lu en flux, et les dépendances ont été calculées
+<strong>au niveau des déclarations, sur les types et les
+valeurs</strong>. Outils : <code>tools/deps.c</code>,
+<code>tools/analyse_export.py</code>, <code>tools/show.py</code> et
+<code>tools/query.py</code>. Les sorties sont
+<code>analysis/report_decl.md</code>,
+<code>analysis/decl_spine.txt</code> et
+<code>analysis/decl_domtree.tsv.gz</code>. Les passages marqués
+<strong>[export]</strong> sont établis sur l’export et non plus par
+lecture textuelle. Nouvelles sections : <a href="#s-3-4">§ 3.4</a>, <a
+href="#s-10">§ 10</a> (dominateurs) et <a href="#s-11">§ 11</a> (le
+cœur, question 5).</p>
+<p><strong>Relecture du 23 novembre 2026.</strong> Les lectures
+dépassées (numéros d’étapes de la note, nature de <code>VWin</code>,
+cadrage par « transfert », rôle de m) sont corrigées sur place et
+marquées <strong>[corrigé 23/11]</strong>. La <a
+href="synthese.html">synthèse</a> en donne l’état à jour. Le même jour,
+tous les noms, poids et comptes cités, ainsi que les paraphrases des
+énoncés longs (§<a href="#s-3">§ 3</a>, 11 et 12), ont été
+<strong>revérifiés sur l’export</strong> : les écarts trouvés sont
+corrigés et marqués de la même façon.</p>
+<p><strong>Aucune de ces remarques n’affecte la validité de la
+preuve.</strong> Si <code>Main</code> compile et que
+<code>#print axioms</code> ne montre que <code>propext</code>,
+<code>Classical.choice</code> et <code>Quot.sound</code>, RH est
+démontrée, quoi que valent les énoncés intermédiaires. La carte sert à
+<strong>comprendre</strong> la preuve, pas à la valider.</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. Les énoncés finaux (vérifiés)</h2>
+<p><code>src/Statements.lean</code> (16 lignes) et
+<code>src/Main.lean</code> (12 lignes) :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Théorème de <code>Main</code></th>
+<th>Énoncé</th>
+<th>Commentaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>riemannHypothesis</code></td>
+<td><code>RiemannHypothesis</code>, la définition de
+<strong>Mathlib</strong></td>
+<td>énoncé officiel (Loeffler–Stoll)</td>
+</tr>
+<tr>
+<td><code>riemannZeta_eq_zero_re</code></td>
+<td>copie mot pour mot de la définition de Mathlib</td>
+<td></td>
+</tr>
+<tr>
+<td><code>LFunction_ne_zero_of_half_lt_re</code></td>
+<td>L(χ, s) ≠ 0 pour Re s &gt; ½, sauf (χ = 1, s = 1), pour tout N et
+tout χ mod N</td>
+<td><strong>GRH pour les fonctions L de Dirichlet</strong></td>
+</tr>
+<tr>
+<td><code>LFunction_eq_zero_re</code></td>
+<td>zéros dans 0 &lt; Re s &lt; 1 ⇒ Re s = ½, pour tout χ, y compris non
+primitif</td>
+<td>équivalent</td>
+</tr>
+<tr>
+<td><code>LFunction_eq_zero_re_of_isPrimitive</code></td>
+<td>idem, pour χ primitif</td>
+<td>cas particulier</td>
+</tr>
+</tbody>
+</table>
+<p>Contrôles statiques effectués : la Mathlib utilisée est l’officielle
+(commit <code>0df444a3…</code>), le <code>lakefile</code> est en TOML,
+et il n’y a dans les sources ni <code>axiom</code>, ni
+<code>sorry</code>, ni <code>admit</code>, ni <code>native_decide</code>
+(seulement des <code>decide +kernel</code>). <del>Ce qui reste à faire :
+compiler, lancer <code>#print axioms</code>, puis rejouer
+l’environnement avec lean4checker.</del> <strong>Fait par la
+communauté</strong> (math.mit.edu/~drew/grh) : compilation complète,
+axiomes ⊆ {<code>propext</code>, <code>Classical.choice</code>,
+<code>Quot.sound</code>} pour les 5 théorèmes (<code>audit.log</code>),
+rejeu par nanoda, con-leche et lean4lean.</p>
+<p><strong>[export]</strong> Chaîne effective :
+<code>riemannHypothesis := rhOfAll …</code> ; <code>allChi</code>
+(dépend de <code>EveryCharacter</code> et <code>everyCharacter</code>)
+est le nœud commun aux 5 théorèmes ; <code>everyCharacter</code> dépend
+exactement de 3 constantes : <code>EveryCharacter</code>,
+<code>everyCharacter_of_row</code>,
+<code>galoisLocalGlobalStrong_recParameter</code>. La preuve de
+<code>everyCharacter_of_row</code> référence bien
+<code>OpenLiteratureStatements.mk</code> (construction anonyme
+confirmée).</p>
+<hr />
+<h2 id="s-2">2. La chaîne principale</h2>
+<pre class="lean"><code>-- MainConclusion.lean (texte source ; voir la correction ci-dessous)
+theorem riemannHypothesis : RiemannHypothesis :=
+  riemannHypothesis_of_everyCharacter everyCharacter          -- RH ⇐ GRH
+
+theorem everyCharacter : EveryCharacter :=                    -- EveryCharacter = GRH (mot pour mot)
+  everyCharacter_of_row Gal.Int.galoisLocalGlobalStrong_recParameter
+
+theorem everyCharacter_of_row (h : Row0b (fun h rc =&gt; IsRecT h rc)) : EveryCharacter :=
+  every_character_of_literature_of_vWin
+    ⟨h, Zero.LLC.recTExists, h⟩       -- construction ANONYME de OpenLiteratureStatements
+    (vwin_of_row h)</code></pre>
+<p><strong>[corrigé 23/11]</strong> Sur l’export,
+<code>riemannHypothesis := rhOfAll</code> et
+<code>rhOfAll := Formalism.VW.rh_of_every allChi</code> :
+<code>riemannHypothesis_of_everyCharacter</code> <strong>n’apparaît pas
+dans l’export</strong>. Le premier théorème de l’extrait ci-dessus est
+donc du texte source hors du chemin ; les définitions de
+<code>everyCharacter</code> et de <code>everyCharacter_of_row</code>
+sont, elles, conformes à l’export (avec
+<code>OpenLiteratureStatements.mk h recTExists h</code> et
+<code>One.vwin_of_row h</code>).</p>
+<pre class="lean"><code>-- EveryCharacterOfLiteratureOfVWin.lean, l. 810
+every_character_of_literature_of_vWin O hV :=
+  every_character_of_theta_integrals_local_matching
+    (published_results_eigen O) (published_results_first O)
+    (theta_integrals_agree_and_local_matching O).1  (… O).2
+    (topCovolSlim2_use_alt_alt  …15 ingrédients de géométrie arithmétique… )
+    (local_langlands_gl_recT_exists_of_literature O)
+    hV</code></pre>
+<pre class="lean"><code>-- SiegelEisensteinSecondTermHypotheses.lean, l. 69 : LE CŒUR
+theorem every_character_of_theta_integrals_local_matching
+    (P  : UnitaryGroupThirdPlaceHypotheses)   (F  : ThetaLocalInputs)
+    (hA : WeilTensorModels.ThetaIntegralsAgree)
+    (hM : WeilTensorModels.LocalMatching)
+    (hX : CovTop.CovolumeBoundOfX)            (hL : RecTExists)   (hV : VWin) :
+    EveryCharacter :=
+  every_character_of_green_v_win (green_of_regular P.greenRegularCharacters) hV
+    (nonempty_hyps_definite_side_of_closed_bound P F hA hM hX hL
+      (fun cDep =&gt; boundAtTwoThree_linked_of_recT P.nLink (parametersOfDependence hL cDep)))</code></pre>
+<p><strong>Comment je lis le cœur.</strong> Le nom du fichier,
+<em>Siegel–Eisenstein second term</em>, et l’hypothèse
+<code>ThetaIntegralsAgree</code> évoquent la <strong>formule de
+Siegel–Weil</strong>, sous sa forme « second terme » due à Kudla–Rallis
+: une intégrale thêta y est égale à une série d’Eisenstein. Avec
+l’<strong>appariement local</strong> des modèles de Weil, le
+<strong>côté défini</strong> (<code>definite_side</code>, c’est-à-dire
+des groupes unitaires totalement définis), une <strong>borne de
+covolume</strong> et une condition de type <strong>Green</strong>
+(caractères réguliers, théorie de Green des représentations de
+GL_n(𝔽_q)), on retrouve les ingrédients de la note : relèvements thêta
+entre groupes unitaires définis (étape 8), seesaw et Rallis (étape 12),
+covolume (étape 18). <strong>[corrigé 23/11]</strong> numéros d’étapes
+alignés sur la note.</p>
+<hr />
+<h2 id="s-3">3. Les trois piliers</h2>
+<p><code>O : OpenLiteratureStatements</code> est une structure
+<code>Prop</code> à trois champs, construite de façon anonyme dans
+<code>everyCharacter_of_row</code> :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Type</th>
+<th>Rempli par</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caraianiLocalGlobalDual</code></td>
+<td><code>One.M.Row</code> = <code>Row0b IsRecT</code></td>
+<td><code>h</code>, c’est-à-dire
+<strong><code>galoisLocalGlobalStrong_recParameter</code></strong></td>
+</tr>
+<tr>
+<td><code>localLanglandsExists</code></td>
+<td><code>RecTExists</code></td>
+<td><strong><code>Zero.LLC.recTExists</code></strong></td>
+</tr>
+<tr>
+<td><code>galoisRepOfPolarizedPairLit</code></td>
+<td><code>One.M.Row</code></td>
+<td><code>h</code> (le même)</td>
+</tr>
+</tbody>
+</table>
+<p>Tout l’édifice « littérature » repose donc, en dernier ressort, sur
+trois théorèmes :
+<strong><code>galoisLocalGlobalStrong_recParameter</code></strong>,
+<strong><code>recTExists</code></strong>, et
+<strong><code>vwin_of_row</code></strong> (qui dérive lui-même de
+<code>Row0b</code>). S’y ajoutent les nombreux résultats démontrés
+directement (suffixes <code>_holds</code>, <code>_outright</code>).</p>
+<h3 id="s-3-1">3.1 <code>Row0b</code> : les représentations galoisiennes
+(<code>RowSrc.lean</code>, bloc de 5,7 %)</h3>
+<pre class="lean"><code>theorem galoisLocalGlobalStrong_recParameter : Row0b recT :=
+  galoisRepresentations_of_thetaLift TP.K.tLiftK
+
+def Row0b : Prop := ∀ E (corps CM) Ω l ι a ≥ 1,
+  ∀ (π : CuspSub E a) (χ : HChar E⁺), π régulière algébrique → (π, χ) polarisée →
+    ∃ (r : Gal(Ω/E) →* GL_a(Q̄_l)) wt HT, PropsB Rc π ι r wt HT</code></pre>
+<p>C’est l’énoncé de type Harris–Taylor / Chenevier–Harris (existence
+des représentations galoisiennes attachées aux représentations
+automorphes polarisées régulières algébriques sur un corps CM). Il est
+obtenu ici <strong>par relèvements thêta</strong>, et non par la
+cohomologie des variétés de Shimura.</p>
+<p>Propriétés de r (structures <code>Props</code> et <code>Above</code>)
+:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Clause</th>
+<th>Contenu</th>
+<th>Relie r à π ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cont</code>, <code>ss</code>, <code>pol</code></td>
+<td>continuité, semi-simplicité, polarisation</td>
+<td>non</td>
+</tr>
+<tr>
+<td><code>pure</code></td>
+<td>pureté en w ∤ l</td>
+<td>non</td>
+</tr>
+<tr>
+<td><code>weights</code>, <code>jumps</code></td>
+<td>poids de Hodge–Tate fixés par le caractère infinitésimal</td>
+<td>par les poids</td>
+</tr>
+<tr>
+<td><code>deRham</code>, <code>crys</code>, <code>iwahori</code> (1ʳᵉ
+partie)</td>
+<td>de Rham ; cristalline si π_w sphérique ; semi-stable si π_w a des
+vecteurs fixes sous l’Iwahori</td>
+<td>qualitativement</td>
+</tr>
+<tr>
+<td><strong><code>away</code></strong>, <code>iwahori</code> (2ᵉ
+partie)</td>
+<td>**WD(r|_w) = rc(π_w) pour tout <code>rc</code> vérifiant
+<code>IsRecT</code>**</td>
+<td><strong>précisément, mais via <code>rc</code>
+seulement</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Il n’y a pas de clause qui dise directement « valeurs propres de
+Frobenius = paramètres de Satake » : le lien précis entre r et π passe
+uniquement par <code>rc</code>.</p>
+<p><strong>[export] Forme exacte utilisée dans <code>Row0b</code> :
+<code>PropsB</code>, pas <code>Props</code>.</strong>
+<code>Row0b Rc</code> exige
+<code>∃ r wt HT, PropsB Rc π ι r wt HT</code>, et dans
+<code>PropsB</code> la clause <code>away</code> est
+<strong><code>AwayB</code></strong>, une forme affaiblie de
+<code>Away</code> (<code>Away.big : Away x y → AwayB x y</code>). Pour
+toute place w ∤ l, toute <code>rc</code> vérifiant <code>Rc</code> (=
+<code>IsRecT</code>) et toute composante locale σ de π, avec x =
+WD(r|_w) et y = rc(algNorm σ) :</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Champ de <code>AwayB x y</code></th>
+<th>Exigence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim</code></td>
+<td>dim x = dim y, <strong>toujours</strong></td>
+</tr>
+<tr>
+<td><code>tor</code></td>
+<td><code>Tor y → mono0 y → x = y</code> : égalité complète
+<strong>seulement si</strong> y est trivial sur les commutateurs du
+groupe de Weil (somme de caractères) et sans monodromie</td>
+</tr>
+<tr>
+<td><code>tame0</code></td>
+<td><code>IsQpBig w (dim y) → TmW y → Sqf y → mono0 y → mono0 x ∧ ∀ g ∈ W, deg g = 0 → charPol x g = charPol y g</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>IsQpBig w n</code> : K_w ≅ ℚ_g (isomorphisme continu), avec n
+= 1 ou 16n² &lt; g.</li>
+<li><code>TmW y</code> : l’inertie sauvage agit de façon unipotente,
+polynôme d’inertie = (X − 1)^dim ; c’est la représentation
+<strong>modérément ramifiée</strong>.</li>
+<li><code>Sqf y</code> : les valeurs propres multiples d’un générateur
+de l’inertie modérée sont des racines (q_w − 1)-ièmes de l’unité.</li>
+</ul>
+<p>De même, <code>AboveB.nice</code> n’exige la compatibilité p-adique à
+l’égalité près qu’au cas <code>(IsQpBig ∧ TmW ∧ Sqf) ∨ Tor</code>.</p>
+<p><strong>Pourquoi « pour tout <code>rc</code> » est satisfiable malgré
+la non-unicité de <code>rc</code> (question 2, résolue).</strong> Les
+valeurs arbitraires (<em>junk</em>) ne déclenchent jamais les clauses
+fortes, et c’est garanti par les énoncés eux-mêmes : -
+<code>JunkEx</code> : pour tout n ≥ 2, il existe J
+<strong>irréductible</strong> de dimension n, à déterminant unitaire, et
+tel que <strong>si K_w ≅ ℚ_g</strong> (de façon continue), <strong>J
+n’est la tordue d’aucune représentation modérée</strong>. Donc J n’est
+ni <code>Tor</code> (irréductible de dimension ≥ 2, donc non abélienne),
+ni <code>TmW</code> là où <code>IsQpBig</code> pourrait s’appliquer. -
+<code>LawsT</code> impose <code>rc x = segSum rc l</code> pour tout x
+(classification de Langlands) ; <code>rc(σ)</code> est donc une somme
+sur le support cuspidal. Elle n’est <code>Tor</code> que si toutes les
+cuspidales du support sont des caractères (<code>GoodCusp</code>, cas n
+= 1, où <code>rc</code> est fixée par l’application d’Artin). Elle n’est
+<code>TmW</code> que si aucun morceau n’est arbitraire. - La loi
+<code>inj</code> de <code>CuspT</code> interdit à une valeur arbitraire
+de coïncider avec la valeur d’une cuspidale <code>GoodCusp</code>.</p>
+<p>Conclusion : la clause <code>away</code> ne relie r à π
+<strong>précisément</strong> qu’en des places où <code>rc</code> est
+déterminée par des données non arbitraires (caractères et types de
+profondeur zéro sur ℚ_g). Ailleurs, elle se réduit à l’égalité des
+dimensions. Le « Galois local-global » de <code>Row0b</code> est donc
+beaucoup plus faible que la compatibilité local-global de Harris–Taylor
+ou de Caraiani, et c’est voulu.</p>
+<p><strong>Correction [export, <a href="#s-12">§ 12</a>].</strong> La
+preuve établit en fait <strong><code>Row0 recT</code></strong>, la
+version <strong>forte</strong> avec
+<code>Props</code>/<code>Away</code>, puis l’affaiblit par
+<code>Row0.row0b</code> (<code>Props.big</code>). <code>AwayB</code> est
+l’<strong>interface</strong> consommée en aval, pas la limite de ce qui
+est démontré.</p>
+<h3 id="s-3-2">3.2 <code>recTExists</code> : une correspondance de
+Langlands locale <strong>partielle</strong></h3>
+<pre class="lean"><code>theorem recTExists : RecTExists := by
+  obtain ⟨a, ha, -⟩ := artEx …          -- application d&#39;Artin locale
+  obtain ⟨r, hr⟩    := cuspEx … a ha    -- application sur les cuspidales
+  obtain ⟨⟨rc, hrc⟩, hcu⟩ := exists_isLExt Pr.exh Pr.multi …   -- classification de Langlands/Zelevinsky
+  … vérification de LawsT
+
+theorem cuspEx : CuspEx := by
+  obtain ⟨r₀, …⟩ := goodMap …           -- construction sur les cuspidales « GoodCusp »
+  choose! J hJ using junkEx …           -- valeurs « junk » pour les autres
+  let r x := if GoodCusp x then r₀ x else (J x.1).lpTw (e x)</code></pre>
+<ul>
+<li><strong><code>GoodCusp</code></strong> désigne, d’après le contexte,
+les caractères (n = 1) et les tordues par un caractère des cuspidales de
+<strong>profondeur zéro</strong>. Pour elles, une correspondance
+explicite est accessible (paramètres modérés, théorie de Green et de
+Deligne–Lusztig).</li>
+<li><strong>Pour toutes les autres cuspidales, <code>rc</code> prend une
+valeur arbitraire</strong> (<code>junk</code>) de la bonne dimension,
+irréductible, et convenablement tordue.</li>
+<li><strong><code>Good x</code></strong> signifie que tout le support
+cuspidal de x est <code>GoodCusp</code>. Les lois <code>twist</code>,
+<code>central</code>, <code>dual</code>, <code>inj</code> et
+<code>depth</code> de <code>LawsT</code> <strong>ne sont exigées que sur
+<code>Good</code></strong>.</li>
+<li><code>LawsT</code> <strong>ne contient pas la préservation des
+facteurs L et ε des paires</strong>, c’est-à-dire la caractérisation de
+Henniart.</li>
+</ul>
+<p><strong>Conclusion de lecture :</strong> le « Langlands local » du
+projet est une correspondance <strong>réelle sur la profondeur zéro, à
+torsion près, et arbitraire ailleurs</strong>. Ce n’est pas le théorème
+de Harris–Taylor–Henniart, et le projet ne prétend pas, sur ce chemin,
+le démontrer. C’est cohérent avec un argument global qui ne se sert de
+la correspondance locale qu’en des places auxiliaires bien choisies.
+<del>Les énoncés <code>Published.LocalLanglandsGL</code> (existence et
+unicité avec <code>IsRec</code>) n’apparaissent qu’<strong>en
+hypothèse</strong>, dans des paquets (<code>LitN</code>,
+<code>Hypotheses₂</code>, …) qui ne semblent pas construits sans
+hypothèse.</del> → corrigé au <a href="#s-5">§ 5</a> :
+<code>Published.LocalLanglandsGL</code> et <code>LitN</code> sont
+<strong>absents de l’export</strong> ; certains paquets nommés
+<code>Hypotheses…</code> sont en revanche sur le chemin.</p>
+<p><strong>[export] Définitions exactes</strong> (module
+<code>UpperTheory.Zero.LLC</code> ; c’est la <strong>seule</strong>
+copie d’<code>IsRecT</code>/<code>RecTExists</code> présente dans
+l’export, le doublon
+<code>AbelianVarietyTheory/…/NonGaloisDescent/RecTExists.lean</code> est
+hors du chemin) : -
+<code>GoodCusp y := dim y = 1 ∨ ((∃ g, K ≅ ℚ_g continûment) ∧ ∃ y₀ χ, DZ y₀ ∧ y = y₀ ⊗ χ)</code>,
+avec <code>DZ y₀ := y₀^{K(1)} ≠ 0</code>. Ce sont <strong>les
+caractères, ou les tordues de cuspidales de profondeur zéro, mais
+seulement sur un corps local isomorphe à ℚ_g</strong> (pas sur ses
+extensions). <code>Good x</code> : tout le support cuspidal de x est
+<code>GoodCusp</code>. <strong>Question 3 résolue sur ce point.</strong>
+-
+<code>IsRecT h rc := ∃ a (ha : IsLocalArtin h a), LawsT a ha rc</code>.
+- <code>LawsT</code>, <strong>pour tout x</strong> : <code>dim</code>,
+caractères via Artin (<code>rc (ofChar χ) = χ ∘ a</code>),
+classification (<code>rc x = segSum rc l</code> si
+<code>IsL l x</code>), cuspidale ⇒ <code>IsIrrWD</code>, torsion par
+|det|^s, |det| = |caractère central|. <strong>Seulement sur
+<code>Good</code></strong> : torsion, caractère central exact, dualité,
+injectivité, et K(1)-fixes ≠ 0 ⇒ <code>IsTameWD</code> (inertie sauvage
+triviale). S’y ajoute <code>TypeLaw</code> : pour K_w ≅ ℚ_g, une
+cuspidale σ qui gonfle (<em>inflates</em>) une cuspidale τ de GL_n(𝔽_g)
+donnée par un caractère <strong>régulier</strong> θ de
+𝔽_{g<sup>n}</sup>× (<strong>[corrigé 23/11]</strong> et non « de
+GL_n(𝔽_{g^n}) ») (formule de caractère de Green : (−1)^{n−1} Σ_j
+θ(z<sup>{g</sup>j}) sur les éléments elliptiques) a une image sans
+monodromie, dont le polynôme d’inertie est **∏_j (X −
+θ(z<sup>{g</sup>j}))<strong>. C’est le contenu arithmétique réel : la
+</strong>correspondance de Green/Deligne–Lusztig en profondeur
+zéro<strong>, c’est-à-dire le type modéré. - <code>CuspT</code>
+(propriétés de <code>r</code> sur les cuspidales, construite dans
+<code>cuspEx</code>) : mêmes lois restreintes aux cuspidales, avec
+<code>inj : GoodCusp y → r x = r y → x = y</code> et
+<code>TypeAt x (r x)</code> pour </strong>toute** cuspidale x.</p>
+<p><del><strong>Question ouverte, et subtile.</strong></del>
+<strong>Résolue plus haut</strong> (« Pourquoi “pour tout
+<code>rc</code>” est satisfiable », <a href="#s-3-1">§ 3.1</a>). Énoncé
+d’origine : <code>away</code> impose WD(r|_w) = rc(π_w) <strong>pour
+tout</strong> <code>rc</code> vérifiant <code>IsRecT</code>. Or, hors de
+<code>Good</code>, plusieurs <code>rc</code> admissibles peuvent
+différer. Il faudra lire la forme exacte de <code>PropsB</code>, la
+variante paramétrée utilisée dans <code>Row0b</code>, pour comprendre
+comment cette clause est satisfaite : par exemple restreinte aux π_w
+<code>Good</code>, ou affaiblie par <code>.big</code>.</p>
+<h3 id="s-3-3">3.3 <code>VWin</code></h3>
+<pre class="lean"><code>theorem vwin_of_row (h : Row0b …) : VWin :=
+  automorphic_window_of_inputs (OpenImageCondition.mk h) BaseChangeIdentities.baseChangeN h</code></pre>
+<p><del>Une « fenêtre automorphe » obtenue à partir de
+<code>Row0b</code> et d’identités de <strong>changement de
+base</strong>.</del> <strong>[corrigé 23/11]</strong> <code>VWin</code>
+n’est pas une fenêtre automorphe mais une <strong>borne de groupes de
+Tate–Shafarevich</strong> sur les corps hôtes : pour x dans une plage
+[Y, Y²] et tout corps E vérifiant <code>IsChiField</code> (degré 2^e ≈
+x^{2+8ε}, contenant le corps de ψ, √−q et √−d), Σ_ℓ log ℓ ·
+Σ_{1≤e&lt;⌊x^401⌋} long Ш¹_ℓ(E, ℚ_ℓ/ℤ_ℓ(−e)) ≤ exp(x^ε/2). La constante
+401 borne la plage des torsions de Tate ; « window » désigne la plage
+d’échelles. <code>Row0b</code>, le changement de base et la modularité
+servent à <strong>démontrer</strong> cette borne (congruences
+d’Eisenstein, système d’Euler de Kato). Le bloc associé,
+<code>ModularityArgument</code>, pèse 4,4 % ; il contient les caractères
+quadratiques de Kato et la zêta non ramifiée.</p>
+<p><strong>[export]</strong>
+<code>UpperTheory.Top.VWin := ∀ ψ : Formalism.HC.PChar, VWinAt ψ 401</code>
+: la fenêtre est une propriété uniforme en ψ, avec la constante
+numérique <strong>401</strong>. Au niveau des déclarations,
+<code>vwin_of_row</code> domine 8,2 % du poids. Épine :
+<code>automorphic_window_of_inputs</code> →
+<code>v_window_of_depth_zero_residual_bc_cm</code> →
+<code>v_window_of_literal_automorphy_n</code> →
+<code>v_window_of_automorphy_csd_ss_mono_odd</code> →
+<code>vwin_of_hypotheses_H_E_alt</code> (7,4 %), avec
+<code>sp4In0_alt</code> et la branche de Kato
+(<code>katoTwoW_of_printsH</code> → <code>twoS</code> →
+<code>zetaUr</code>, environ 1,1 %).</p>
+<h3 id="s-3-4">3.4 [export] Les énoncés autour du cœur</h3>
+<pre class="lean"><code>theorem UpperTheory.Top.every_character_of_green_v_win :
+  GLq.Green → VWin →
+  Nonempty (Fc.HypsAlt (fun 𝒞 =&gt; Closed (fun x =&gt; 𝒞 x) (fun Fm _ =&gt; LinkN Fm)) Fc.DefiniteSideCondition) →
+  EveryCharacter
+  := fun hG hV h =&gt; imprimitive (zero_free_all_of_green_v_win hG hV h)
+
+def CovTop.CovolumeBoundOfX : Prop :=
+  Closed BigTop.FamHyp (fun Fm CH =&gt; ∃ C0 ≥ 0, EventuallyAtAllPoints Fm
+      (fun x _ _ p =&gt; ∀ C ≥ C0, IndefData.L3 (p.S false) (p.N C CH)))
+
+def WeilTensorModels.LocalMatching : Prop :=
+  ∀ F E σ (B : Base F E) a a&#39; (G : Geo σ a a&#39;) X om om&#39;, IsTriple B G X om om&#39; → ∃ R Rf, IsMatched B G X om om&#39; R Rf
+
+def WeilTensorModels.ThetaIntegralsAgree : Prop :=
+  (∀ F E σ B a a&#39; G X om om&#39;, IsTriple … → Decay B G om om&#39; ∧
+     ∀ R Rf, IsMatched … R Rf → OneConst … ∧ Coinv B G X om om&#39; Rf)
+  ∧ (∃ e₁ e₂ s, ∀ F E σ, StepBeta σ e₁ e₂ s) ∧ (∃ e₁ e₂ s, ∀ F E σ, StepAlpha σ e₁ e₂ s)</code></pre>
+<p>Lecture : la conclusion <code>EveryCharacter</code> sort de
+<code>imprimitive (zero_free_all_of_green_v_win …)</code>. On montre
+d’abord l’absence de zéros pour une classe de caractères (primitifs),
+puis on passe à tous les caractères. Les trois ingrédients sont
+<strong>Green</strong> (caractères réguliers de GL_n(𝔽_q)),
+<strong>VWin</strong> et l’existence d’un jeu d’hypothèses
+<code>HypsAlt</code> du côté défini, fermé sous <code>LinkN</code>.
+<code>ThetaIntegralsAgree</code> combine décroissance, constante 1 et
+coinvariants des modèles de Weil appariés, ainsi que deux étapes
+numériques (<code>StepAlpha</code>, <code>StepBeta</code>). C’est la
+forme concrète de « Siegel–Weil, second terme ».</p>
+<hr />
+<h2 id="s-4">4. La borne de covolume arakelovienne
+(<code>topCovolSlim2_use_alt_alt</code>, bloc de 3,0 % au niveau des
+modules, 7,05 % au niveau des déclarations)</h2>
+<p>Les ingrédients passés en arguments :</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Résultat ou théorie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>resolution_char_zero</code>,
+<code>principalisation_char_zero</code></td>
+<td><strong>Hironaka</strong> : résolution des singularités et
+principalisation en caractéristique 0</td>
+</tr>
+<tr>
+<td><code>hsUse_outright</code>, <code>moriwakiBig_outright</code></td>
+<td><strong>Hilbert–Samuel arithmétique</strong>, <strong>« bigness » de
+Moriwaki</strong> (démontrés sans hypothèse)</td>
+</tr>
+<tr>
+<td><code>poincare_lelong_inv</code></td>
+<td>formule de Poincaré–Lelong</td>
+</tr>
+<tr>
+<td><code>fargues_exact</code></td>
+<td>un résultat de <strong>Fargues</strong> (suite exacte)</td>
+</tr>
+<tr>
+<td><code>zarhin_statement</code></td>
+<td>astuce de <strong>Zarhin</strong></td>
+</tr>
+<tr>
+<td><code>nef_rr</code>, <code>ar_degree</code></td>
+<td>Riemann–Roch pour les fibrés nef, degré arithmétique</td>
+</tr>
+<tr>
+<td><code>siegel_toroidal_integral</code>,
+<code>toroidal_for_fan_ks</code></td>
+<td><strong>compactifications toroïdales</strong> des variétés de Siegel
+(Faltings–Chai), isomorphisme de <strong>Kodaira–Spencer</strong>
+logarithmique</td>
+</tr>
+<tr>
+<td><code>semi_abelian_lie_seminegative</code></td>
+<td>semi-négativité de l’algèbre de Lie des schémas semi-abéliens</td>
+</tr>
+<tr>
+<td><code>grothendieck_deformation</code></td>
+<td>théorie des déformations (Grothendieck, Schlessinger)</td>
+</tr>
+<tr>
+<td><code>point_separation_pair</code>,
+<code>published_results_arithmetic</code></td>
+<td>divers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[corrigé 23/11]</strong> Les noms du tableau sont ceux des
+<strong>arguments</strong> dans le texte source. Dans l’export,
+<code>topCovolSlim2_use_alt_alt</code> reçoit
+<code>resolution_char_zero_of_literature O</code>,
+<code>principalisation_char_zero_of_literature O</code>,
+<code>poincare_lelong_inv_of_literature O</code>,
+<code>hsUse_outright</code>, <code>moriwakiBig_outright</code>,
+<code>fargues_exact_of_literature O</code>,
+<code>zarhin_statement O</code>, <code>nef_rr_of_literature O</code>,
+<code>siegel_toroidal_integral_of_literature O</code>,
+<code>toroidal_for_fan_ks_of_literature O</code>,
+<code>semi_abelian_lie_seminegative_of_literature O</code>,
+<code>point_separation_pair_of_literature O</code>,
+<code>ar_degree_of_literature O</code>,
+<code>published_results_arithmetic O</code>, etc.</p>
+<p>C’est cohérent avec la note : pente de Bost (étape 13), covolume
+(étape 18). <strong>[corrigé 23/11]</strong> numéros d’étapes. Dans
+l’arbre des dominateurs <strong>au niveau des modules</strong>, on
+trouve aussi <code>HeightBoundOfLieSlope</code>,
+<code>CovolumeOfHeightHyp</code> et <code>ThetaNonvanishing</code>, sous
+le module <code>RiemannHypothesisOfEveryCharacter</code> (4,2 %).
+<strong>[corrigé 23/11]</strong> Ce sont des noms de modules, pas des
+déclarations de l’export.</p>
+<hr />
+<h2 id="s-5">5. L’échafaudage « littérature »</h2>
+<ul>
+<li><strong>Plusieurs dizaines de théorèmes
+<code>X_of_literature (O : OpenLiteratureStatements)</code></strong>.
+Beaucoup <strong>n’utilisent pas <code>O</code></strong> : leur preuve
+renvoie à un lemme démontré directement
+(<code>deligneRibet_holds</code>,
+<code>ellipticMainTheoremCM_holds</code>, <code>heckeTateFE</code>,
+<code>jacquetShalikaRigidity</code>, <code>segmentRepresentation</code>,
+…). D’autres l’utilisent (<code>O.localLanglandsExists</code>,
+<code>O.galoisRepOfPolarizedPairLit</code>). Comme <code>O</code> est
+construit, tout est inconditionnel au bout du compte.</li>
+<li><strong>Les paquets d’hypothèses</strong> <code>LitN</code>,
+<code>LitLoc</code>, <code>LitAut</code>, <code>Hypotheses₂</code>,
+<code>LocalRepresentationTheoryHypothesesAlt</code>,
+<code>GlobalAutomorphicGaloisHypotheses'</code>, ainsi que
+<code>published_inputs_combined</code>, qui prend 22 énoncés
+<code>Published.X</code> en arguments (Caraiani, Clozel,
+Harris–Taylor…). <del>Ils ne sont construits qu’à partir d’autres
+hypothèses, du moins par recherche textuelle. S’ils ne sont jamais
+construits, ils sont hors du chemin de <code>Main</code>. C’est à
+confirmer au niveau des déclarations.</del></li>
+</ul>
+<p><strong>[export] Verdict, en deux parties</strong> (l’export est
+exactement la fermeture de <code>Main</code>, voir <a href="#s-10">§
+10</a> ; <em>absent de l’export</em> signifie donc <em>inutilisé</em>)
+:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Paquet</th>
+<th>Dans l’export ?</th>
+<th>Construit par</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LitN</code>, <code>LitLoc</code>, <code>LitAut</code></td>
+<td><strong>non</strong></td>
+<td>(hors chemin)</td>
+</tr>
+<tr>
+<td><code>published_inputs_combined</code></td>
+<td><strong>non</strong></td>
+<td>(hors chemin)</td>
+</tr>
+<tr>
+<td><code>Published.LocalLanglandsGL</code></td>
+<td><strong>non</strong></td>
+<td>(hors chemin)</td>
+</tr>
+<tr>
+<td><code>GlobalTheory.Mem.LiteralAutomorphy.LocalRepresentationTheoryHypothesesAlt</code></td>
+<td><strong>oui</strong></td>
+<td><code>LiteratureTheorems.literature_local O</code> : 19 champs
+(Bernstein–Zelevinsky, Moy–Prasad, Langlands, Zelevinsky, Green, Brauer,
+Chevalley, <code>local_langlands_recT_exists</code>…)</td>
+</tr>
+<tr>
+<td><code>GlobalTheory.Mem.LiteralAutomorphy.GlobalAutomorphicGaloisHypotheses'</code></td>
+<td><strong>oui</strong></td>
+<td><code>LiteratureTheorems.literature_automorphy O</code> : 16 champs
+(décroissance rapide des cuspidales, Harish-Chandra, Jacquet–Shalika,
+Gelfand–Kazhdan, Clozel, Artin global, de Rham ⇒ potentiellement
+semi-stable…, dont <code>O.caraianiLocalGlobalDual</code>)</td>
+</tr>
+<tr>
+<td><code>GlobalTheory.NLink.Hypotheses₂</code></td>
+<td><strong>oui</strong></td>
+<td><code>LiteratureTheorems.published_results_local O</code> : Fontaine
+B_cris, Artin global, Bloch–Kato local, dualité de Tate locale,
+caractéristique d’Euler, finitude, Bhatt–Scholze</td>
+</tr>
+<tr>
+<td><code>UpperTheory.V.GC.Hypotheses₂</code></td>
+<td><strong>oui</strong></td>
+<td>7 constructeurs dans la branche modularité
+(<code>UpperTheory.V…</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Et <code>O</code> lui-même ?</strong> Sur les
+<strong>259</strong> déclarations de
+<code>UpperTheory.LiteratureTheorems</code>, <strong>4
+seulement</strong> lisent un champ de <code>O</code> :
+<code>literature_automorphy</code> et
+<code>carU_local_global_of_literature</code>
+(<code>caraianiLocalGlobalDual</code>),
+<code>local_langlands_recT_exists_of_literature</code>
+(<code>localLanglandsExists</code>), <code>pair_u_of_literature</code>
+(<code>galoisRepOfPolarizedPairLit</code>). Les 255 autres prennent
+<code>O</code> en paramètre <strong>sans s’en servir</strong> : ce sont
+des théorèmes démontrés sans hypothèse et habillés en
+<code>X_of_literature</code>. L’espace <code>Published.*</code> présent
+dans l’export (Poitou–Tate, Bloch–Kato, Fontaine, Bhatt–Scholze, Rallis,
+Metaplectic, Chebotarev…) est un <strong>vocabulaire d’énoncés</strong>
+; comme la fermeture n’a pas d’axiome, chacun de ceux qui sont utilisés
+est démontré quelque part. - <strong>Le style du code est
+généré</strong> : <code>type_of%</code>, des <code>first | … | …</code>,
+des suffixes <code>_alt</code> et <code>_alt_alt</code>, des définitions
+dupliquées à l’identique (<code>IsRecT</code> et <code>RecTExists</code>
+dans deux fichiers), des hypothèses <code>(_H : True)</code>.</p>
+<hr />
+<h2 id="s-6">6. Volumes</h2>
+<p><strong>[export] Au niveau des déclarations :</strong>
+l’environnement de <code>Main</code> compte <strong>2 701 132
+constantes</strong> (<code>audit.log</code>), dont <strong>1 484 733
+utilisées</strong> (1 468 418 nœuds, un bloc inductif = 1 nœud), soit
+<strong>55 %</strong>. Les <strong>1,22 M</strong> restantes (Mathlib
+non utilisée, déclarations mortes du projet, auxiliaires) sont importées
+mais jamais référencées. Parmi les nœuds utilisés, <strong>1 261 660 (86
+%) sont du projet</strong> et portent <strong>96,1 %</strong> du poids
+(lignes d’expressions de l’export). Mathlib en fournit 176 085 (3,7 % du
+poids), Lean core 6 745 et Batteries 159. L’attribution est faite à
+partir des <code>.ilean</code> ; environ 23 800 déclarations générées
+(<code>to_additive</code>, <code>_proof_n</code>) sont rattachées à
+Mathlib grâce à l’export <code>challenge</code>. Il y a 114 115 002
+arêtes distinctes entre déclarations.</p>
+<p>Niveau modules (analyse du 21 novembre, matin) : 175 187 fichiers et
+17,4 millions de lignes, <strong>tous atteignables par les
+imports</strong> depuis <code>Main</code>. L’arbre des dominateurs (au
+niveau des modules) est plat sous <code>MainTheoremsAll</code> : environ
+47 000 enfants directs, qui représentent environ 75 % des lignes. Les
+blocs encapsulés les plus lourds :</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bloc (module dominant)</th>
+<th style="text-align: right;">Lignes dominées</th>
+<th>Lecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>…GaloisRepresentations.IntegralStructures.RowSrc</code></td>
+<td style="text-align: right;">993 k (5,7 %)</td>
+<td>représentations galoisiennes par relèvements thêta, réalisation en
+poids 1</td>
+</tr>
+<tr>
+<td><code>…ModularityArgument…TopMainZj</code></td>
+<td style="text-align: right;">769 k (4,4 %)</td>
+<td>modularité, seuils, caractères de Kato</td>
+</tr>
+<tr>
+<td><code>…CharacterBoxes.RiemannHypothesisOfEveryCharacter</code></td>
+<td style="text-align: right;">729 k (4,2 %)</td>
+<td>covolume, hauteurs, non-annulation thêta</td>
+</tr>
+<tr>
+<td><code>…WeilBound…MoriwakiBigness…TopCovolSlim2Use</code></td>
+<td style="text-align: right;">523 k (3,0 %)</td>
+<td>géométrie d’Arakelov, volume le long d’une tour</td>
+</tr>
+<tr>
+<td><code>Supplements.Kernels.MainTheoremsCritical</code></td>
+<td style="text-align: right;">288 k (1,7 %)</td>
+<td>chaîne finale</td>
+</tr>
+<tr>
+<td><code>…ToroidalCompactificationFanLogKodairaSpencerIso</code></td>
+<td style="text-align: right;">122 k (0,7 %)</td>
+<td>compactifications toroïdales</td>
+</tr>
+<tr>
+<td><code>…ResolutionOfSingularities…</code></td>
+<td style="text-align: right;">101 k (0,6 %)</td>
+<td>résolution des singularités</td>
+</tr>
+<tr>
+<td><code>…SatakeParameters.ReciprocityKernelService</code></td>
+<td style="text-align: right;">99 k (0,6 %)</td>
+<td>paramètres de Satake, réciprocité d’Artin</td>
+</tr>
+</tbody>
+</table>
+<p>L’épine dorsale, au-delà de la profondeur 7, descend dans la
+<strong>théorie des déformations des familles de Siegel</strong> :
+modèles entiers de Harris–Taylor, relèvements artiniens, recollement de
+Ferrand, pushouts d’épaississements nilpotents. Ce sont des fondations,
+pas l’argument.</p>
+<hr />
+<h2 id="s-7">7. Diagramme</h2>
+<div style="overflow-x:auto;border:1px solid #ddd;padding:6px">
+<img src="carte_diagramme.svg" alt="Diagramme de la carte" style="max-width:none;width:5100px">
+</div>
+<p><em>Diagramme large : faites défiler horizontalement, ou <a
+href="carte_diagramme.svg">ouvrez-le seul (SVG)</a>.</em></p>
+<p>Légende : en bleu, les énoncés finaux ; en jaune, le cœur de
+l’argument ; en vert, les trois piliers et les paquets « littérature »
+effectivement construits ; en gris pointillé, l’échafaudage
+conditionnel, <strong>hors du chemin de <code>Main</code> (établi sur
+l’export)</strong>. Les flèches signifient « utilise ».</p>
+<hr />
+<h2 id="s-8">8. Questions ouvertes</h2>
+<p>Les questions marquées ★ demandaient les dépendances au niveau des
+déclarations ; elles ont été traitées sur l’export.</p>
+<ol type="1">
+<li>★ <del><strong>Le chemin exact de
+<code>riemannHypothesis</code></strong> : quels théorèmes sont
+réellement utilisés ? L’échafaudage conditionnel est-il vraiment hors du
+chemin ?</del> <strong>Résolu [export]</strong> : la fermeture contient
+1 468 390 nœuds pour RH et 1 468 414 pour les 5 théorèmes, soit la
+totalité de l’export à 4 près (<code>Nat.lor</code>,
+<code>Nat.xor</code>, <code>String.mk</code>). La liste complète
+(<code>closure_all.txt</code>, environ 1,5 M de noms) n’est pas publiée
+; l’arbre des dominateurs, qui la contient, l’est (<a href="#s-10">§
+10</a>). Échafaudage : voir <a href="#s-5">§ 5</a> (en partie hors du
+chemin, en partie construit). Dominateurs : voir <a href="#s-10">§
+10</a>.</li>
+<li><del><strong><code>PropsB</code></strong> : sous quelle forme exacte
+la clause <code>away</code> apparaît-elle dans <code>Row0b</code> ?
+Comment est-elle compatible avec la non-unicité de <code>rc</code> hors
+de <code>Good</code> ?</del> <strong>Résolu [export]</strong>, voir <a
+href="#s-3-1">§ 3.1</a> : <code>AwayB</code> n’impose l’égalité qu’aux
+cas <code>Tor</code> et <code>TmW ∧ Sqf</code> sur ℚ_g, que
+<code>JunkEx</code> exclut pour les valeurs arbitraires.</li>
+<li><del><strong><code>GoodCusp</code> et <code>goodMap</code></strong>
+: vérifier que ce sont bien les tordues des cuspidales de profondeur
+zéro ; reste à lire la <em>preuve</em> de <code>goodMap</code>
+(construction de <code>r₀</code>).</del> <strong>Résolu
+[export].</strong> <code>r₀(x) := ε V, Rel a ha x V</code>, rendu bien
+défini par <code>rel_unique</code>. <code>Rel</code> : soit x = χ et V =
+χ ∘ a (Artin) ; soit K ≅ ℚ_g, x = y₀ ⊗ χ avec y₀ cuspidale de profondeur
+zéro (<code>DZ</code>), et V = V₀ ⊗ (χ ∘ a) avec
+<strong><code>Par a y₀ V₀</code></strong>. <code>Par a y V</code> := V
+irréductible, de dimension n, <strong>modérée</strong>, de déterminant =
+caractère central ∘ Artin, et <strong><code>TypeAt y V</code></strong>
+(loi de Green : polynôme d’inertie ∏<em>j (X − θ(z<sup>{g</sup>j})) pour
+le caractère régulier θ de la cuspidale de GL_n(𝔽_g) dont y est
+gonflée). Existence <code>parEx</code>, unicité <code>parUniq</code>.
+<strong><code>r₀</code> est la correspondance de Langlands locale
+explicite classique en profondeur zéro</strong> (caractère régulier θ de
+𝔽</em>{g<sup>n}</sup>× ↦ induite modérée), via la théorie de Green et
+Deligne–Lusztig.</li>
+<li><del><strong><code>galoisRepresentations_of_thetaLift</code></strong>
+: comment les relèvements thêta produisent-ils r, et que valent
+réellement <code>pure</code> et <code>crys</code> ?</del> <strong>Lu
+[export]</strong>, voir <a href="#s-12">§ 12</a> : relèvement thêta en
+domaine stable, puis réalisation géométrique en poids 1 (formule de
+Lefschetz holomorphe, Kodaira–Spencer), puis étapes cristallines.
+<strong><code>Row0</code> (version forte, <code>Away</code>) est
+démontré</strong>, puis affaibli en <code>Row0b</code>.
+<del><strong>Reste</strong> : la preuve de
+<code>galoisLocalGlobal_of_geometry_lift</code> (6 M lignes
+propres).</del> Lue (<a href="#s-12">§ 12</a>) : graines géométriques en
+rang impair, congruences de poids lacunaire, relèvement thêta, puis
+<code>CoreAll</code>, puis <code>Row0</code>.</li>
+<li><strong>Le cœur</strong> : <del>lire
+<code>every_character_of_green_v_win</code> et
+<code>nonempty_hyps_definite_side_of_closed_bound</code>, là où
+l’argument de positivité et de covolume devrait se trouver.</del>
+<strong>Structure résolue [export]</strong>, voir <a href="#s-11">§
+11</a> : une inégalité de Tchebychev unilatérale en x^{½+O(ε)} sur des
+fenêtres, convertie en absence de zéros par positivité à la Landau, et
+obtenue à partir de familles de données de groupes unitaires définis
+(masses de Siegel, correspondance thêta, borne de covolume).
+<del><strong>Reste</strong> : le sens précis des 44 champs de
+<code>HypsAlt</code> et de <code>ChainTied</code>.</del> Champs de
+<code>HypsAlt</code> lus (<a href="#s-11-4">§ 11.4</a>).
+<del><strong>Reste</strong> : la preuve de
+<code>goal_of_shape_of_hyps</code> (comment <code>HypsAlt</code> et
+Green donnent <code>FamilyClassConnected</code>), et
+<code>ChainTied</code>.</del> Chaîne complète lue (<a href="#s-11-5">§
+11.5</a>) : <code>goal_of_shape_of_hyps</code> est un dépliage ; neuf
+lemmes « Link » assemblés par <code>topDesWin</code> ;
+<code>ChainTied</code> est une chaîne de fonctions L à chaque échelle,
+convertie en Tchebychev par un lemme inconditionnel.
+<del><strong>Reste</strong>, pour aller plus profond : les identités
+<code>LChain.Ident</code> et <code>GrowthInequalityRemainingHyps</code>,
+c’est-à-dire <em>quelle</em> fonction L et <em>quelle</em>
+identité.</del> Lu (<a href="#s-11-6">§ 11.6</a>) : transfert d’une
+borne en racine carrée depuis trois caractères quadratiques auxiliaires,
+choisis par un argument en moyenne (<code>QH.pair_share</code>), vers χ.
+<del><strong>Reste</strong> : <em>le mécanisme du transfert</em>,
+c’est-à-dire comment les données de groupes unitaires établissent
+<code>Ident</code> et les Link. Piste : lire <code>Lnk.linkCore</code>
+et <code>LinkGLOBAL7</code>, puis
+<code>GlobalTheoremInputs</code>.</del> Lu (<a href="#s-11-6-bis">§ 11.6
+bis</a>) : <strong>méthode des pentes en géométrie d’Arakelov</strong>,
+avec des réseaux hermitiens de rang m ≈ √x (d’où l’exposant ½), une
+inégalité de pentes et une décomposition places finies (somme sur les
+premiers inertes) / places infinies (termes Γ).
+<del><strong>Reste</strong> : la construction effective des réseaux
+<code>lat_u</code>, <code>Nu(u)</code> et <code>RR</code> à partir des
+groupes unitaires (<code>D7.fm</code>, <code>D7.div</code>), et la
+preuve de <code>FrameF</code> (l’inégalité de pentes elle-même).</del>
+Lu (<a href="#s-11-6-ter">§ 11.6 ter</a>) : <code>lat_u</code> vient de
+<code>MemberTorsor.forms</code>, <code>Nu(u)</code> est l’image
+réciproque de <code>lat_u</code> par <code>nuIn(u)</code> ; l’inégalité
+de pentes vient d’un repère presque unitaire (<code>InputSG</code>),
+dont la condition hors diagonale est le théorème S, et d’une hauteur de
+morphisme (<code>LatGeom</code>). <del><strong>Reste</strong> : la
+preuve qui identifie les pentes <code>μ(Nu(u))</code> aux sommes sur les
+premiers <code>ASK</code> (point 3 du <a href="#s-11-6-ter">§ 11.6
+ter</a>), et la construction de <code>RR</code> et de
+<code>nuIn</code>.</del> Lu (<a href="#s-11-6-quater">§ 11.6 quater</a>)
+: deux inégalités reliées par le terme <code>Ga</code>. D’un côté, la
+pente varie, par longueurs locales × log N(w), de μ(lat_u) à μ(Nu(u))
+(<code>Places_at</code>) ; de l’autre, la somme de von Mangoldt aux
+premiers inertes est dominée par <code>Ga</code>, aux premiers d’ordre
+petit près (<code>Loss7</code>). <del><strong>Reste</strong> (niveau de
+détail suivant) : la construction de <code>RR</code> et de
+<code>nuIn</code>, et les preuves de <code>placesF_min'</code> et de
+<code>joint_discriminant_eventually</code>.</del> <code>RR</code> et
+<code>nuIn</code> lus (<a href="#s-11-6-quinquies">§ 11.6 quinquies</a>)
+: <code>Nu(u)</code> est la restriction ramifiée de <code>lat_u</code> ;
+<code>RR</code> est la structure entière d’un espace de Hilbert de
+lignes ; la division est l’accouplement rationnel <code>Bu</code>. Il
+existe aussi des constructions témoins à morphismes nuls.
+<del><strong>Reste</strong> : (a) établir quelle construction de
+<code>DivData</code> alimente les familles du chemin principal, en
+suivant <code>Mem.assemble</code> depuis
+<code>parametersOfExtension</code> ; (b) les preuves de
+<code>placesF_min'</code> et de
+<code>joint_discriminant_eventually</code>.</del> (a) et (b) lus (<a
+href="#s-11-6-sexies">§ 11.6 sexies</a>) : les conditions du transfert
+exigent <code>BuRational</code>, donc division = accouplement rationnel
+; la perte « premiers » est une comptabilité élémentaire par classes de
+premiers. <strong>[corrigé 23/11]</strong> Deux lectures de ce
+paragraphe sont dépassées : il ne s’agit pas d’un « transfert » de borne
+depuis les caractères auxiliaires (<a href="#s-11-6">§ 11.6</a>), et m
+n’est pas un rang de réseaux mais la <strong>longueur de la
+chaîne</strong> de relèvements thêta (<a href="#s-11-6-septies">§ 11.6
+septies</a>).</li>
+<li><strong>Les résultats « outright »</strong> (Hironaka, Moriwaki,
+Fargues, Deligne–Ribet…) : leurs énoncés sont-ils ceux de la
+littérature, ou des versions affaiblies suffisantes pour l’argument ?
+<strong>Premier passage [export]</strong> (<a href="#s-11-7">§ 11.7</a>)
+: un seul énoncé <code>Published.*</code> est trivial
+(<code>UnusedSlot72 := True</code>, sous le nom « pôle simple de
+Siegel–Eisenstein ») ; les énoncés lus sont substantiels. <del>Les
+énoncés de géométrie arithmétique du <a href="#s-4">§ 4</a> restent à
+lire.</del> <strong>Énoncés du <a href="#s-4">§ 4</a> lus [export], tous
+de la forme de la littérature</strong> :</li>
+</ol>
+<ul>
+<li><code>ResolutionCharZero</code> (Hironaka : suite d’éclatements, X′
+lisse, iso au-dessus du lieu lisse, exceptionnel SNC) ;
+<code>PrincipalisationCharZero</code> (Bierstone–Milman, Włodarczyk)
+;</li>
+<li><code>MoriwakiBigStatement</code> (Â^{D+1} ≤ vol arithmétique pour Â
+semi-positif, nef sur les fibres et génériquement) ; <code>HSUse</code>
+(Kleiman arithmétique ∧ volume arithmétique nef) ; <code>NefRR</code>
+(D!·dim/τ^D → degré générique) ;</li>
+<li><code>PoincareLelongInv</code> (formule exacte des intégrales de log
+de normes) ; <code>FarguesExact</code> (exactitude de la suite de
+Hodge–Tate d’un groupe p-divisible sur 𝒪_C) ;</li>
+<li><code>ZarhinStatement</code> (rétracte d’une variété abélienne
+<strong>principalement</strong> polarisée : le type
+<code>Out.PolAV</code> contient <code>KTriv</code>, noyau de la
+polarisation trivial ; un affichage sans type des ∃ l’aurait fait
+paraître trivial) ;</li>
+<li><code>SemiAbelianLieSeminegative</code> (deg det W ≤ 0 pour W ⊆
+Lie(G), G semi-abélien sur une courbe) ;
+<code>GrothendieckDeformation</code> (Grothendieck–Messing) ;
+<code>SiegelToroidalIntegral</code> (compactifications toroïdales lisses
+projectives de dimension g(g + 1)/2 avec extension semi-abélienne).</li>
+</ul>
+<p>Les preuves ont des parts propres modestes (Hironaka : 11 décl.
+propres, fermeture de 107 330 décl.) : le contenu est mutualisé dans les
+théories communes. 7. ★ <del>Le temps de compilation complet et
+<code>#print axioms</code> ; puis le rejeu par lean4checker, et de
+préférence par un noyau indépendant.</del> <strong>Fait par la
+communauté</strong> (voir <a href="#s-1">§ 1</a>). 8. <strong>Structure
+lue au <a href="#s-11-3">§ 11.3</a></strong> ; le détail de la
+sous-branche à 15 % reste à lire. Énoncé d’origine : lire
+<code>nonempty_hyps_definite_side_of_closed_bound</code> (35,8 % du
+poids) et sa sous-branche
+<code>hypotheses_nonempty_of_unramified_exponents_alt</code> (15 %) :
+c’est là que se trouve la majeure partie du travail propre au cœur. 9.
+<strong>Nouveau.</strong> <del>Lire <code>imprimitive</code> et
+<code>zero_free_all_of_green_v_win</code> : par quel argument passe-t-on
+des caractères primitifs à tous les caractères, et que vaut exactement
+<code>VWinAt ψ 401</code> ?</del> <strong>En grande partie résolu
+[export]</strong> (<a href="#s-11-1">§ 11.1</a>–11.2) :
+<code>imprimitive</code> est élémentaire ; <code>VWinAt ψ 401</code>
+fournit, via <code>supplyChi</code>, des hôtes d’ordre compris entre
+x^{2+8ε} et 2·x^{2+8ε} contenant χ dans leur noyau. <del>Reste à lire la
+définition de <code>VWinAt</code> elle-même.</del> <strong>[corrigé
+23/11]</strong> <strong>Lue</strong> : c’est une borne de groupes de
+Tate–Shafarevich (<a href="#s-3-3">§ 3.3</a>).</p>
+<hr />
+<h2 id="s-9">9. Leçons de méthode</h2>
+<ul>
+<li><p><strong>Un théorème ne transmet que son énoncé.</strong> Le
+contenu utilisable d’une étape est celui de son <em>type</em>, quelle
+que soit la richesse de sa preuve. Pour savoir ce qui porte l’argument,
+il faut lire les énoncés, pas les noms.</p></li>
+<li><p><strong>Les noms internes ne garantissent rien.</strong>
+<code>Published.LocalLanglandsGL</code>,
+<code>galoisLocalGlobalStrong</code>… peuvent désigner des énoncés plus
+faibles que leur homonyme dans la littérature. Ça ne gêne pas la
+correction de la preuve, mais ça gêne son interprétation.</p></li>
+<li><p><strong>La recherche textuelle a des angles morts.</strong> Un
+constructeur anonyme <code>⟨h, recTExists, h⟩</code> a construit
+<code>OpenLiteratureStatements</code> sans jamais le nommer, et a
+invalidé une conclusion provisoire. Toute affirmation négative (« X
+n’est pas utilisé », « Y n’est jamais construit ») doit attendre
+l’analyse des dépendances sur l’environnement compilé.</p></li>
+<li><p><strong>[export] Lire les types des quantificateurs
+existentiels.</strong> Un ∃ affiché sans son type peut faire paraître un
+énoncé trivial (cas de Zarhin : « ∃ P, i, r, r ∘ i = id » est vide avec
+P = A, sauf que P : <code>PolAV</code> impose une polarisation
+principale). Avant de conclure à la vacuité, afficher en mode
+<code>--explicit</code>.</p></li>
+<li><p><strong>[export] Dépendance n’est pas flot de données.</strong>
+Le graphe dit qui utilise quoi, pas quel terme alimente quel champ (cas
+des constructions de division à morphismes nuls, <a
+href="#s-11-6-sexies">§ 11.6 sexies</a>). Pour trancher, chercher un
+<strong>prédicat exigé</strong> par l’étape aval (ici
+<code>BuRational</code>).</p></li>
+<li><p><strong>[export] Une conclusion négative textuelle peut aussi
+être fausse dans l’autre sens.</strong> On croyait les paquets
+<code>Hypotheses₂</code> et <code>…HypothesesAlt</code> jamais
+construits ; trois d’entre eux le sont, par
+<code>literature_local</code>, <code>literature_automorphy</code> et
+<code>published_results_local</code>. Seuls <code>LitN</code>,
+<code>LitLoc</code>, <code>LitAut</code>,
+<code>published_inputs_combined</code> et
+<code>Published.LocalLanglandsGL</code> sont réellement hors du
+chemin.</p></li>
+</ul>
+<hr />
+<h2 id="s-10">10. [export] Arbre des dominateurs au niveau des
+déclarations</h2>
+<p>Méthode : graphe décl. → décl. (types et valeurs), racine virtuelle →
+5 théorèmes de <code>Main</code>, algorithme de Cooper–Harvey–Kennedy
+(convergence en 2 tours). <strong>Poids</strong> = nombre de lignes
+d’expressions que l’export émet juste avant la déclaration, c’est-à-dire
+le matériau <em>nouveau</em> qu’elle introduit. Le poids d’un sous-arbre
+est la part de la preuve qui n’est utilisée <strong>que</strong> par ce
+nœud. <code>d</code> est son nombre de déclarations dominées.</p>
+<pre><code>allChi                                              99,31 %   1 409 557 d   (commun aux 5 théorèmes)
+└ everyCharacter                                    99,31 %
+  ├ everyCharacter_of_row                           76,62 %     982 855 d
+  │ ├ every_character_of_literature_of_vWin         66,26 %     849 323 d
+  │ │ ├ every_character_of_theta_integrals_local_matching   41,45 %   (CŒUR)
+  │ │ │ ├ nonempty_hyps_definite_side_of_closed_bound       35,78 %
+  │ │ │ │ ├ hypotheses_nonempty_of_unramified_exponents_alt 15,04 %
+  │ │ │ │ │ ├ large_unramified_exponent_bundles_exist_alt    6,84 %  → réseaux de base, comptage de hauteurs
+  │ │ │ │ │ ├ allRows_of_open0_alt                           3,52 %  → Siegel–Weil (sLp_sO_hTF_of_siegelWeil), Artin
+  │ │ │ │ │ └ GalC.final_alt_alt                             2,48 %  → linkN_of_boundAtTwoThree
+  │ │ │ │ ├ ontoX_and_lamLow_of_unitaryGroupHypotheses&#39;      2,90 %
+  │ │ │ │ └ open0_of_unitary_group_hypotheses                2,29 %  → main_theorem_published_inputs_*
+  │ │ │ ├ every_character_of_green_v_win                     1,56 %
+  │ │ │ └ globalLatticeIndexTheorem_of_lengthBoundAtPlaces   0,5 %
+  │ │ ├ topCovolSlim2_use_alt_alt                     7,05 %  (Arakelov, § 4)
+  │ │ │ ├ deep_slim_use → deepStR_of_use → good_tower_volume_theorem_bis   3,9 %
+  │ │ │ └ topCovolG_alt_alt                           2,03 %
+  │ │ ├ toroidalForFanKS                              1,15 %
+  │ │ └ theta_integrals_agree_and_local_matching_of_literature   1,05 %
+  │ └ vwin_of_row                                   8,21 %  (§ 3.3)
+  ├ galoisLocalGlobalStrong_recParameter            6,31 %   95 102 d
+  │ └ galoisRepresentations_of_thetaLift            6,07 %
+  │   └ geoOne_holds → geometric_realization_of_weight_one   5,23 %
+  │       ├ steps_holds                             3,24 %
+  │       └ kodaira_spencer_of_weight_one           1,69 %
+  └ zarhinGeometric_of_semistableReduction          0,3 %</code></pre>
+<p><strong>Lecture.</strong> - Les pourcentages ne s’additionnent pas :
+99,3 − 76,6 − 6,3 ≈ <strong>16 %</strong> du poids est partagé entre
+<code>everyCharacter_of_row</code> et
+<code>galoisLocalGlobalStrong</code>, donc dominé par
+<code>everyCharacter</code> seul. De même, 76,6 − 66,3 − 8,2 ≈ 2 % est
+partagé entre la littérature et <code>VWin</code>, et 66,3 − 41,5 − 7,1
+− … ≈ 15 % entre le cœur, Arakelov et les compactifications toroïdales.
+- <strong>Le cœur (41 %) est d’abord un problème de « côté défini
+»</strong> : <code>nonempty_hyps_definite_side_of_closed_bound</code>
+porte 36 % à lui seul. Il construit des données de groupes unitaires
+(exposants non ramifiés, réseaux de base, orbites ouvertes, lignes
+Siegel–Weil) qui satisfont les hypothèses de positivité. -
+<strong><code>Row0b</code> (Galois via thêta) ne pèse que 6,3 %</strong>
+de matériau propre. Il passe par une <strong>réalisation géométrique en
+poids 1</strong> (Kodaira–Spencer), c’est-à-dire par des variétés
+abéliennes et non par la cohomologie des variétés de Shimura. -
+<strong>L’épine la plus profonde</strong> (<code>decl_spine.txt</code>,
+30 niveaux) descend dans le comptage de hauteurs et de multiplicités
+(<code>HeightCounting.Up</code>, <code>SerCarry</code>,
+<code>TwInputs.Move</code>) : c’est une technique de « déplacement » de
+formes propres entre niveaux, pas de la géométrie de Siegel. - Fichiers
+: <code>decl_domtree.tsv.gz</code>, publié en <a
+href="https://github.com/roza/roza.github.io/releases/tag/rh-grh-data-v1.0">release
+GitHub</a> (colonnes
+<code>d idom kind name own sub_n sub_w type_dag value_dag</code>),
+<code>analysis/decl_spine.txt</code> et
+<code>analysis/report_decl.md</code> (150 nœuds structurants).</p>
+<hr />
+<h2 id="s-11">11. [export] Le cœur, lu de haut en bas (question 5)</h2>
+<h3 id="s-11-1">11.1 La sortie analytique : Tchebychev unilatéral ⇒
+absence de zéros</h3>
+<pre><code>EveryCharacter  ⇐  imprimitive : ZeroFreeAll → GRH pour tout χ
+                    (passage au primitif ; les facteurs d&#39;Euler 1 − χ*(p)p^{-s} ne s&#39;annulent pas : élémentaire)
+ZeroFreeAll := ∀ ψ : PChar (caractère primitif), ∀ s, ½ &lt; Re s → L(χ_ψ, s) ≠ 0
+            ⇐  zeroFreeAll_of_topG (la = 3/2) TopG (supplyChi ψ (VWin ψ))
+            ⇐  HC.zeroFreeOn_of_tiedWin_cyc : niveau Λ = ⟨χ⟩ (groupe cyclique engendré par χ), et
+                 (a) Level.FormB Λ                             [lemme de positivité, inconditionnel]
+                 (b) ChebyshevInequalityAtWindowScale / OnWindows :
+                     ∀ ε petit, ∃ famille Fm, sur une suite de fenêtres x → ∞ (rapport la = 3/2) :
+                         Gm_Λ(x) ≤ x^{½ + (eD + eL + 7)·ε}</code></pre>
+<ul>
+<li><code>Gm_Λ(y) = Gz(y) + Σ_{ψ ∈ Nt(Λ)} wt(ψ) · Re gChi(χ_ψ, y)</code>,
+où :
+<ul>
+<li><code>gChi(χ, y) = Σ_{n ≤ y} Λ(n)χ(n) + y · (L'/L)(1, χ)</code> :
+somme de Tchebychev tordue, terme principal ôté ;</li>
+<li><code>Gz(y) = Sz(y) − y log y + (1 + γ)y</code> : son analogue pour
+ζ ;</li>
+<li><code>wt</code> vaut 1 pour le caractère distingué
+(<code>psK</code>, un caractère réel impair) et
+<code>1/(3·ord Λ + 1)</code> pour les autres. <strong>[corrigé
+23/11]</strong> Sur le chemin principal (<code>Level.cyc</code>), il n’y
+a pas de caractère distingué (<code>psK = none</code>) : tous les poids
+valent 1/(3o + 1). Ce poids vient des densités 4/(3o+1) et 3/(3o+1) de
+l’échantillonnage des classes de Frobenius
+(<code>Frame.lam</code>).</li>
+</ul></li>
+<li><code>FormBAt Λ la</code> : <em>si</em> <code>Gm_Λ(x) ≤ x^θ</code>
+sur des fenêtres de rapport la, <em>alors</em> aucun zéro au-delà de θ
+pour les caractères de Λ. C’est un argument de <strong>positivité à la
+Landau</strong> : la combinaison pondérée a des coefficients positifs,
+de sorte qu’une <strong>majoration unilatérale</strong> suffit. ε → 0
+donne θ = ½.</li>
+<li>La fermeture de <code>zeroFreeOn_of_tiedWin_cyc</code> compte 72 945
+déclarations, pour une part propre minime : c’est de l’analyse
+classique, essentiellement Mathlib plus le lemme de Landau.</li>
+</ul>
+<p><strong>Tout le poids de la preuve sert donc à établir une seule
+inégalité</strong> : une borne supérieure en x^{½+O(ε)} sur une
+combinaison positive de sommes de Tchebychev tordues par les puissances
+de χ, le long d’échelles x → ∞.</p>
+<h3 id="s-11-2">11.2 D’où vient l’inégalité : des familles de données
+arithmétiques</h3>
+<ul>
+<li><code>FamP eps</code> est une <strong>famille indexée par
+l’échelle</strong> : pour chaque x &gt; x₁ et chaque i ∈ Ix x, une
+donnée <code>D7</code> (un corps hôte CM ou cyclotomique, un rang, des
+places, des « mots » et des lignes) munie de tailles
+<code>SizeData₂</code> (avec <code>Scale.x = x</code>,
+<code>Scale.eps = ε</code>) et de constantes uniformes.</li>
+<li><code>Closed 𝒞 P</code> : pour tout ε assez petit, il existe un
+seuil K tel que toute famille de 𝒞 à paramètres assez grands vérifie P.
+C’est un énoncé asymptotique uniforme.</li>
+<li><code>supplyChi ψ (VWinAt ψ 401)</code> fournit, pour chaque ψ et
+chaque ε &lt; 1/52, des hôtes <code>φ</code> <strong>d’ordre compris
+entre x^{2+8ε} et 2·x^{2+8ε}</strong> dont le noyau contient χ
+(<code>KerChi</code>). La constante 401 de <code>VWin</code> sert à cet
+endroit.</li>
+<li><code>TopG</code> : pour toute classe de familles vérifiant
+<code>HypV</code>, la classe est <strong>connexe</strong>
+(<code>FamilyClassConnected</code>). C’est ce qui produit les chaînes
+<code>ChainTied</code>, puis l’inégalité de Tchebychev.</li>
+<li><code>TopG</code> s’obtient par
+<code>forall_goal_of_shape_of_hyps</code>, qui demande une
+<strong>forme</strong> (<code>shape_closed_link_n_of_green hG</code>,
+donc la théorie de <strong>Green</strong>) et un <strong>jeu
+d’hypothèses</strong> <code>HypsAlt NL DefiniteSideCondition</code>. Ce
+dernier est le produit du cœur : 46 champs (<strong>[corrigé
+23/11]</strong> et non 44, voir <a href="#s-11-4">§ 11.4</a>)
+(<code>hduty</code>, <code>rRows</code>, <code>tie</code>,
+<code>hTu</code>, <code>sLp</code>, <code>hServ</code>,
+<code>hLit</code>…). Ils portent sur des lignes de réalisations
+indéfinies, des liens primitifs, une formule du nombre de classes
+(<code>ClassNumberFormula₂</code>), une condition <code>MinkDiv</code>
+(Minkowski : l’ordre d’un sous-groupe fini de GL_n(ℚ) divise
+<code>minkM n</code>), et une condition
+<code>DefiniteSideCondition</code>, c’est-à-dire la
+<strong>compatibilité de division</strong> du côté défini.</li>
+</ul>
+<h3 id="s-11-3">11.3 La preuve de
+<code>nonempty_hyps_definite_side_of_closed_bound</code> (35,8 %)</h3>
+<p>Elle prend <code>P</code>, <code>F</code>,
+<code>ThetaIntegralsAgree</code>, <code>LocalMatching</code>,
+<code>CovolumeBoundOfX</code>, <code>RecTExists</code> et un lien
+<code>boundAtTwoThree</code>. Elle enchaîne :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Contenu</th>
+<th>Ingrédients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hS</code></td>
+<td>les fonctionnelles se séparent
+(<code>FunctionalsSeparate</code>)</td>
+<td>Howe non ramifié (<code>howeUnram_holds</code>), Siegel–Weil
+unitaire convergent</td>
+</tr>
+<tr>
+<td><code>hRat</code></td>
+<td><code>RowRat</code> : les lignes sont rationnelles</td>
+<td>assemblage de vecteurs tests
+(<code>test_vector_assembly_holds</code>) : ensembles de Siegel, dualité
+de Howe réelle, cuspidales de Green, <code>ThetaIntegralsAgree</code>,
+<code>LocalMatching</code></td>
+</tr>
+<tr>
+<td><code>hFit</code></td>
+<td>ajustement des coefficients de Fourier</td>
+<td>idem, plus <code>ontoX</code> (surjectivité, 2,9 %)</td>
+</tr>
+<tr>
+<td><code>∃ CF1</code></td>
+<td>grille d’évaluation (<code>evaluation_grid_of_join</code>)</td>
+<td>convergence de la représentation de Weil tordue, appariement des
+facteurs locaux, égalité des intégrales thêta au carré</td>
+</tr>
+<tr>
+<td><code>∃ CF0</code></td>
+<td><code>rowFun_at_gridA_alt</code></td>
+<td>séries discrètes, modules de Harish-Chandra, décroissance rapide,
+Casselman–Wallach, corps de classes de rayon</td>
+</tr>
+<tr>
+<td><code>hOpen1</code></td>
+<td>énoncés d’ouverture des paramètres</td>
+<td><code>open0_of_unitary_group_hypotheses</code> (orbite ouverte, 2,3
+%)</td>
+</tr>
+<tr>
+<td><code>hL3</code></td>
+<td><code>CovolumeBoundThirdPlaceSeries</code></td>
+<td><strong><code>CovolumeBoundOfX</code></strong> (Arakelov, <a
+href="#s-4">§ 4</a>)</td>
+</tr>
+<tr>
+<td>conclusion</td>
+<td><code>hypotheses_nonempty_of_unramified_exponents_alt</code> (15
+%)</td>
+<td>dont <code>large_unramified_exponent_bundles_exist_alt</code>, qui
+livre <strong><code>SiegelMassRatioCM</code></strong> : rapport
+explicite des <strong>masses de Siegel</strong> des réseaux hermitiens
+standard de rang M et M − 1 sur un corps CM non ramifié</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lecture d’ensemble.</strong> On construit, pour chaque
+échelle x, des données de <strong>groupes unitaires définis</strong> sur
+des corps CM ou cyclotomiques d’ordre environ x^{2+8ε}. Leurs propriétés
+de comptage (masses de Siegel, nombres de classes, réseaux) sont reliées
+par la correspondance thêta (Siegel–Weil, Howe, appariement des modèles
+de Weil) aux sommes de caractères. La borne de covolume arakelovienne et
+les représentations galoisiennes (<code>Row0b</code>,
+<code>RecTExists</code>) contrôlent le côté indéfini. Le résultat est
+une majoration de Tchebychev en x^{½+O(ε)}, et la positivité de Landau
+la convertit en absence de zéros.</p>
+<p><strong>Limites de cette lecture.</strong> Les objets
+<code>D7</code>, <code>Rows</code>, <code>BundleCondition</code> et
+<code>Tied</code> restent opaques au niveau de leurs noms. La
+signification exacte des 46 champs de <code>HypsAlt</code> demande une
+lecture champ par champ (outil :
+<code>tools/show.py OUT GlobalTheory.Fc.HypsAlt.mk</code>).</p>
+<h3 id="s-11-4">11.4 [export]
+<code>HypsAlt NL DefiniteSideCondition</code>, champ par champ</h3>
+<p><code>HypsAlt</code> a <strong>46 champs</strong> : 2 données
+(<code>𝒜</code>, <code>σ</code>), 3 constantes (<code>cT</code>,
+<code>c30</code>, <code>cIc</code>) et 41 propriétés. Notations :
+<code>𝒜</code> est une classe de familles <code>FamP eps</code> (<a
+href="#s-11-2">§ 11.2</a>) ; <code>σ</code> est une
+<strong>sélection</strong> qui choisit, pour chaque famille de
+<code>𝒜</code>, une échelle de départ et, pour chaque (x, i) au-delà, un
+<em>bundle</em> (une réalisation indéfinie <code>RealTBAlt.Q</code> et
+un choix de niveau de base) ; <code>D3 3 𝒜</code> est la classe épaissie
+par les « choix de conception » (<code>Des</code>) de constante 3.
+Presque tous les champs ont la forme <code>Closed (D3 3 𝒜) P</code> :
+<em>pour ε petit et des paramètres assez grands, toute famille vérifie
+P</em>.</p>
+<p><strong>A. Théorèmes universels, indépendants des familles</strong>
+(énoncés ∀ D : D7 ou purement analytiques) :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Énoncé</th>
+<th>Lecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hLit : LitThin</code></td>
+<td><code>ShortIntervalPrimes.adm6 ∧ adm7 ∧ adm11</code></td>
+<td><strong>théorie analytique classique</strong> : densité de zéros (≤
+C·Q^{1/4} zéros dans Re ≥ 1 − 1/400, conducteur et hauteur ≤ Q), région
+sans zéro de de la Vallée Poussin avec zéro exceptionnel (Landau–Page),
+région pour ζ, <strong>formule explicite tronquée</strong> de ψ(x, χ),
+nombre de zéros près de t en O(log N(|t|+2)). <strong>Démontré dans le
+projet</strong> (<code>ZerosNearOne.density_and_regions</code>,
+<code>ZeroBounds.explicit_formula_and_window_count</code>)</td>
+</tr>
+<tr>
+<td><code>hG : ∀ D, GenusMassAt D 2</code></td>
+<td>masse des réseaux hermitiens <strong>définis</strong> de rang 2 =
+<code>massI D 2</code></td>
+<td><strong>formule de masse de Siegel</strong> (rang 2)</td>
+</tr>
+<tr>
+<td><code>hU : ∀ D, MassRatioUnderVolume D</code></td>
+<td><code>VolTie D → VolumeRatio₂ D</code></td>
+<td>rapport de volumes</td>
+</tr>
+<tr>
+<td><code>hWu : WuDecayOfGap</code></td>
+<td>sous une hypothèse de trou spectral, décroissance « de Wu » et
+intégrabilité dans un <code>HidaSetting</code></td>
+<td>analyse sur l’espace automorphe</td>
+</tr>
+<tr>
+<td><code>sM : RowMainEqP</code>, <code>sNG : RowNGP</code>,
+<code>sTy : TypeP</code></td>
+<td>estimations des termes d’un développement de Fourier : <strong>terme
+principal</strong> (<code>RowMain</code>), <strong>termes non
+génériques</strong> (<code>RowNG</code>), <strong>termes de type κ hors
+diagonale</strong></td>
+<td>trace relative / développement de Fourier : diagonale et hors
+diagonale</td>
+</tr>
+<tr>
+<td><code>hRF : RowsFinDim</code></td>
+<td>finitude de dimension des lignes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>B. Propriétés asymptotiques des familles</strong>
+(<code>Closed (D3 3 𝒜) …</code>) :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Propriété</th>
+<th>Lecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nRest : N(D3 3 𝒜)</code> avec <code>N = NL</code></td>
+<td><code>Closed … LinkN</code></td>
+<td><strong>l’inégalité centrale</strong>, voir ci-dessous</td>
+</tr>
+<tr>
+<td><code>h30</code></td>
+<td><code>CountAllPointsClass</code> : comptage des idempotents ou
+points sur chaque instance automorphe, avec constantes
+<code>c30</code></td>
+<td>comptage de points (formule des traces)</td>
+</tr>
+<tr>
+<td><code>hn4</code></td>
+<td><code>ClassNumberFormula₂</code> : #classes d’une chaîne de colonnes
+= <code>massI(D, k) · idxPi · (T^k − 1)^f</code></td>
+<td><strong>formule exacte du nombre de classes</strong></td>
+</tr>
+<tr>
+<td><code>sO</code></td>
+<td><code>TheoremSSelected</code> : pour u ≠ u′, |K₀(u, u′)|² ≤ (1 +
+b^{-6}) · du(u)·du(u′)/D*</td>
+<td><strong>quasi-orthogonalité</strong> : les termes hors diagonale
+sont dominés par la diagonale (« théorème S » spectral)</td>
+</tr>
+<tr>
+<td><code>aPer0</code></td>
+<td><code>PeriodClassSumWeyl</code> : les <strong>périodes</strong> des
+points du réseau sont entières, avec valuations bornées</td>
+<td>intégralité des périodes</td>
+</tr>
+<tr>
+<td><code>aPt0</code>, <code>aP10</code>, <code>aPtTw</code>,
+<code>aPerTw</code>, <code>aAtG</code>, <code>aC2</code></td>
+<td>conclusions 5 et 6 du « produit premier-zéro », intégrales de points
+tordues, périodes tordues admissibles, n-uplets utilisés bornés, entrées
+de second complément</td>
+<td>bornes de tailles le long de la famille</td>
+</tr>
+<tr>
+<td><code>irrC</code></td>
+<td>comptage injectif des étiquettes, <code>CountAllRows</code> à
+ε_C(cIc, r, f)</td>
+<td>comptage des lignes</td>
+</tr>
+<tr>
+<td><code>jOn</code>, <code>zL</code></td>
+<td>surjectivités (ι(V₀) = tout ; projection <code>lPrj</code>
+surjective)</td>
+<td>non-dégénérescence</td>
+</tr>
+<tr>
+<td><code>tie</code></td>
+<td><code>RealPlaceSecondLayerConditions</code></td>
+<td>conditions aux places réelles</td>
+</tr>
+<tr>
+<td><code>hTF</code>, <code>hTu</code></td>
+<td><code>TFrame(CYL+1, ¼, 3, ½, CTu, 3)</code> ;
+<code>cT ≤ CTu → TuSize</code></td>
+<td>réglages de tailles (<em>tuning</em>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>C. Propriétés ponctuelles du bundle sélectionné</strong>
+(pour tout x au-delà de l’échelle de départ et tout i) :
+<code>hRB</code> (lignes bornées de la réalisation indéfinie),
+<code>hPA</code> (lignes primitives, types séparés), <code>hLamP</code>
+(<code>RowsHoldLam3</code>), <code>hDivG</code>
+(<code>DivRows3G</code>), <code>hDcPtG</code>, <code>hTw</code>
+(<code>TieTwRec</code> : la torsion de la famille est celle de la
+réalisation), <code>hInstR</code> (volume indépendant de la signature,
+données de classes au rang de Y₀), <code>hMt</code> (le réseau M̃ est un
+𝒪_LL-module), <code>selJ</code> (recollement de la réalisation indéfinie
+avec la condition spectrale).</p>
+<p><strong>D. Structure :</strong>
+<code>rRows : SelectionDefiniteRows DefiniteSideCondition 𝒜 σ</code>. Le
+long de la sélection, la réalisation indéfinie a des bornes constantes
+<strong>et</strong> satisfait <code>DefiniteSideCondition</code>,
+c’est-à-dire la <strong>compatibilité de division à trois côtés</strong>
+entre le côté défini et le côté indéfini (<a href="#s-11-2">§ 11.2</a>).
+S’y ajoutent <code>hduty</code> (<code>Duty</code> : page fixée,
+fenêtres, petit premier module, distinction modérée, mur choisi…),
+<code>hServ</code> (la sélection est servie), <code>sLp</code> (boucle
+de lignes à 3), <code>hEx : MinkDiv → ExS 𝒜 cT</code>
+(<strong>existence</strong> : pour toute exigence <code>G</code> et tout
+la &gt; 1 avec un hôte <code>HostExW</code>, il existe des familles
+satisfaisant <code>DesignChoices</code>, sous la borne de Minkowski sur
+les sous-groupes finis de GL_n(ℚ)), <code>hc30</code> et
+<code>hcI</code> (positivité des constantes).</p>
+<p><strong>L’inégalité centrale <code>LinkN</code>.</strong> Pour x
+grand, pour tout i et tout j :</p>
+<p><code>etaSum_L(j) ≤ dZ0(j) · ( C·(f·m·b·L² + log²x · Nc) + Σ_ℓ vvTerm(ℓ) )</code>,</p>
+<p>où
+<code>etaSum_L(j) = Σ_{w ∈ supp, μ_w ≠ μ₀} lwP(w) · e(w) · η_j(w)</code>
+est une somme pondérée sur les <strong>places tordues</strong> du
+support, et
+<code>vvTerm(ℓ) = log ℓ · Σ_{1 ≤ e &lt; t} long Ш(ℓ, e)</code>
+(<strong>[corrigé 23/11]</strong> longueur <code>shaLen</code>, pas
+cardinal) mesure les <strong>groupes de Tate–Shafarevich</strong>
+(cf. <code>ShaFinOdd</code> : finitude de Ш en degrés impairs). C’est
+une borne de type <strong>« somme sur les places ≲ taille + Ш
+»</strong>. Elle est imposée comme hypothèse (<code>N = NL</code>) et
+fournie par le cœur.</p>
+<p><strong>Synthèse.</strong> <code>HypsAlt</code> dit en substance : il
+existe une classe de familles de données hermitiennes ou unitaires,
+indexées par l’échelle x, munies d’une sélection de réalisations
+indéfinies, telle que : - (i) le côté défini (masses de Siegel, nombres
+de classes, comptages de points) et le côté indéfini (développement de
+Fourier : terme principal, quasi-orthogonalité hors diagonale) sont
+<strong>compatibles par division</strong> ; - (ii) la somme sur les
+places tordues est majorée par la taille plus Ш (<code>LinkN</code>) ; -
+(iii) on dispose des outils analytiques classiques (densité de zéros,
+formule explicite).</p>
+<p><code>forall_goal_of_shape_of_hyps</code> combine cela avec Green
+pour obtenir la connexité des familles (<code>TopG</code>), d’où
+l’inégalité de Tchebychev du <a href="#s-11-1">§ 11.1</a>.</p>
+<h3 id="s-11-5">11.5 [export] De <code>HypsAlt</code> à Tchebychev :
+<code>goal_of_shape_of_hyps</code>, <code>topDesWin</code>,
+<code>ChainTied</code></h3>
+<p><strong>Chaîne complète</strong>, de bas en haut :</p>
+<pre><code>HypsAlt NL DefiniteSideCondition                       (produit du cœur, § 11.3–11.4)
+  │  goal_of_shape_of_hyps : PUR DÉPLIAGE (61 décl.) — chaque champ est passé à la « forme »
+  ▼
+TopShapeAlt True True NL TopG      ← shape_closed_link_n_of_green (Green)   1,2 %, 19 248 décl.
+  │  (les deux emplacements V et NR de la forme sont instanciés par True)
+  │  chaîne de lemmes « Link », chacun fabriqué à partir de champs de HypsAlt :
+  │    closed_family_admissible_twist_link_alt   (aPer0, aPerTw, aP10, aAtG…)  → adm2 locale
+  │    link_gl                (Duty, tie, hU, hG = masses)          → NuFull ∧ MuRank ; LinkGLOBAL
+  │    closed_linkDIVt_of_closed_bridge_kernel (noyaux de division)  → LinkDIVt
+  │    wire_sel_alt, link_brest_alt (hTw, hPA, hDivG, hDcPtG, hRB)   → bornes de division restantes
+  │    closed_linkEta_of_duty (Duty)                                 → LinkEta
+  │    link_alt_alt_bis       (sLp, sO = théorème S, h30, hInstR)    → LinkS
+  │    Irr.closed_linkIRR_of_join_count (Green, irrC)                → LinkIRR
+  │    selection_closed_of_wu_decay_alt (hWu, hRF, selJ, jOn)        → compléments
+  │    designExists_of_tuSize_aux4n_litThin (hEx, hTu, hn4, LitThin) → DesignExists
+  ▼
+topDesWin (assemblage, 15 décl.) :
+  DesignExists ∧ HypV ∧ Closed{LinkN, LinkEta, LinkIRR, SmallLevelRankEq, LinkDIVt,
+                               NuFull∧MuRank, LinkG, LinkS, LinkGLOBAL}  ⟹  FamilyClassConnected
+  ▼
+FamilyClassConnected ℰ := ∃ eD eL ε₁ &gt; 0, ∀ ε &lt; ε₁, ∃ Fm ∈ ℰ, ∃ K cHH eK CL x₀,
+                          ∀ x ≥ x₀ dans les fenêtres Win(Fm), ChainTied Fm eD eL K cHH eK CL x
+  ▼
+level_gm_le_on_family_scales : ∀ Λ, ChebyshevInequalityOnWindows (Tied := ChainTied) Λ
+      INCONDITIONNEL (337 décl. propres) : ChainTied sur les fenêtres ⇒ Gm_Λ(x) ≤ x^{½+(eD+eL+7)ε}
+  ▼
+zeroFreeOn_of_tiedWin_cyc + FormB (Landau) ⇒ ZeroFreeAll ⇒ (imprimitive) EveryCharacter</code></pre>
+<p><strong><code>ChainTied Fm eD eL K cHH eK CL x</code></strong>,
+c’est-à-dire « à l’échelle x, la famille porte une <strong>chaîne de
+fonctions L</strong> liée ». Il existe un indice i₀ et des données (m,
+f, points, Dd, constantes C, X″, ℓ, N, TT, T2, a, w, eT, eP, η, X′, θ)
+telles que : - <code>TiePts</code>, <code>TieGlobal</code>,
+<code>TieLocal</code> et <code>TieArith</code> lient les points de la
+famille aux données globales, locales et arithmétiques de l’hôte
+<code>D(x, i₀)</code> (q, d, arithOf…) ; - <code>Dd</code> est une
+<strong>donnée de moyenne pondérée</strong>
+(<code>RankGapBounds.WeightedMeanData</code>) à l’échelle x et au
+paramètre ε, avec perte de division <code>eDiv ≤ eD</code>, perte
+<code>eLoss ≤ eL</code> et <code>cHH</code>. Les exposants
+<code>eD</code> et <code>eL</code> sont exactement ceux qui apparaissent
+dans la borne finale x^{½+(eD+eL+7)ε} ; - <code>LChain.Ident</code> est
+une <strong>identité</strong> reliant la chaîne aux données
+arithmétiques de l’hôte (N, ℓ, TT, a, w, eT, eP) ; -
+<code>LChain.SizeData₂</code>, <code>LErr.ErrWindows</code> (erreurs sur
+les fenêtres), <code>BNBounds</code>,
+<code>GrowthInequalityRemainingHyps</code> (<strong>inégalité de
+croissance</strong>), <code>CostWindows</code> et <code>RestSize</code>
+contrôlent les tailles et les coûts.</p>
+<p><strong>Lecture.</strong> La « connexité » d’une famille signifie
+qu’à chaque échelle x d’une suite de fenêtres, on peut construire une
+chaîne de fonctions L. Une identité la relie aux données arithmétiques
+de l’hôte d’ordre environ x^{2+8ε}, avec des pertes contrôlées (eD, eL)
+et une inégalité de croissance. Le lemme inconditionnel
+<code>level_gm_le_on_family_scales</code> transforme cette chaîne en
+majoration de Tchebychev. <strong>Les neuf Link sont les ingrédients qui
+rendent la chaîne constructible ; le contenu arithmétique profond est
+dans les champs de <code>HypsAlt</code> qui les alimentent</strong>,
+c’est-à-dire dans le cœur (<a href="#s-11-3">§ 11.3</a>). Les deux
+lemmes de jonction, <code>goal_of_shape_of_hyps</code> et
+<code>topDesWin</code>, sont légers (61 et 15 déclarations propres).</p>
+<p><strong>Poids propres</strong> (dominés) :
+<code>shape_closed_link_n_of_green</code> 1,2 % ;
+<code>level_gm_le_on_family_scales</code> 383 k lignes ;
+<code>zeroFreeAll_of_topG</code> 537 k ; <code>supplyChi</code> 2,4 M
+lignes (2 686 décl.). L’essentiel du poids est en amont, dans
+<code>nonempty_hyps_definite_side_of_closed_bound</code> (35,8 %).</p>
+<h3 id="s-11-6">11.6 [export] <code>LChain.Ident</code>, l’inégalité de
+croissance et l’origine des bornes en racine carrée</h3>
+<p><strong><code>LChain.Ident Dd D N ℓ TT a w eT eP</code></strong>
+identifie la donnée de moyenne pondérée <code>Dd</code>
+(<code>RankGapBounds.WeightedMeanData</code>) à des <strong>sommes de
+caractères sur un groupe abélien fini</strong> E₀ × H, avec E₀ = (ℤ/2)²
+et H le groupe de l’hôte (<code>Frame.A</code>) : - les poids
+<code>aT</code>, <code>w</code> de <code>Dd</code> sont ceux de la
+chaîne ; - <code>gam Dd = γ</code>, la constante d’Euler–Mascheroni ; -
+<code>LpL Dd = Re ℓ(chC)</code>, où ℓ(ψ) = (L′/L)(1, χ) pour le
+caractère de Dirichlet primitif χ induit par ψ
+(<code>Lnk.char_at</code>) ; -
+<code>ASK Dd u₀ = Σ_{t ∈ TT} Σ_j ASK(D, N, a_t, t, w_{u₀,j})</code>,
+avec</p>
+<p><code>ASK(D, N, a, t, w) = Σ_{p ≤ N inerte} 2 log p · Σ_{i ≤ N, i·Frob_p ∉ Φ} max(a/p^i − w(partner(t, i·Frob_p)), 0) + log d · askD</code>.</p>
+<p>C’est une somme sur les <strong>premiers inertes</strong> de l’hôte
+(Frob_p ∉ Φ = {première coordonnée de E₀ nulle}), pondérée par les
+puissances de p. Elle a la forme d’une <strong>formule de Weil/explicite
+côté premiers</strong> pour les fonctions L de l’extension abélienne de
+groupe E₀ × H. Les ingrédients sont
+<code>ArithData.mk : q1, d, sous-groupes, Frob : ℕ → E₀ × H</code>.</p>
+<p><strong><code>GrowthInequalityRemainingHyps</code></strong> =
+<code>GrowthInequalitySizes ∧ ThinScales ∧ ValuesAtX</code> : -
+<code>GrowthInequalitySizes</code> : contraintes de tailles (|a_t/b − x|
+≤ 1, a_t/w ≤ N, b′X′ ≤ xb, nœuds…) ; - <code>ThinScales D ℓ X′ θ</code>
+: |GPsi(ψ, y)| ≤ θ·y pour tout caractère ψ et tout y ≥ X′/3, avec X′ =
+exp(x^{ε/3}) et θ = exp(−c₆ x^{ε/8}) : un <strong>théorème des nombres
+premiers avec terme d’erreur</strong> aux très grandes échelles ; -
+<code>ValuesAtX D ℓ x ε CL</code> : pour <strong>les trois caractères
+quadratiques</strong> ψ ∈ {<code>chC</code>, <code>psC</code>,
+<code>chC·psC</code>} qui se factorisent par E₀ = (ℤ/2)², donc ceux
+d’une <strong>sous-extension biquadratique</strong> : <strong>|GPsi(ψ,
+x)| ≤ x^{½+ε}</strong> et |ℓ(ψ)| ≤ CL·log x.</p>
+<p>Ici
+<code>GPsi(ψ, y) = Σ_{n ≤ y} Λ(n)·ψ(Frob n)·(y/n − 1) + y·ℓ(ψ)</code>
+est une fonction de Tchebychev <strong>lissée</strong> (poids de Riesz),
+terme principal ôté.</p>
+<p><strong>[corrigé 23/11]</strong> La « conclusion structurelle »
+ci-dessous (lecture du 22/11) est <strong>dépassée</strong>. Les trois
+caractères quadratiques auxiliaires n’apportent pas la borne : ils
+servent à <strong>construire l’hôte</strong> et à <strong>neutraliser
+les termes parasites</strong> de l’identité d’orthogonalité (torsions
+par (q/·), (d/·) et leur produit). Le moteur est la <strong>divisibilité
+p-adique des périodes</strong> le long d’une chaîne de m ≈ √x
+relèvements thêta, aux premiers inertes, plafonnée côté archimédien par
+l’inégalité de pentes (§<a href="#s-11-6-ter">§ 11.6 ter</a> et quater ;
+synthèse, §§ 3 à 7).</p>
+<p><del><strong>Conclusion structurelle.</strong></del> <em>Lecture
+dépassée :</em> La borne de Tchebychev pour le caractère χ visé (<a
+href="#s-11-1">§ 11.1</a>) est obtenue par <strong>transfert</strong>
+d’une borne de même qualité, x^{½+ε}, portant sur <strong>trois
+caractères quadratiques auxiliaires</strong> de l’hôte. Le transfert
+passe par la chaîne, c’est-à-dire par l’identité <code>Ident</code>
+entre moyennes pondérées de données de groupes unitaires (<a
+href="#s-11-3">§ 11.3</a>–11.4) et sommes sur les premiers inertes.</p>
+<p><strong>D’où vient la borne sur les caractères auxiliaires ?</strong>
+Elle est imposée par le <strong>choix</strong> de l’hôte, sans hypothèse
+:</p>
+<pre><code>Lnk.char_at (inconditionnel) : ChQD_at D x ε C → ValuesAtX ;  ChThin_at → ThinScales
+ChQD_at D x ε C := BoundsAtX pour psDir(q), chDir(d) et leur produit, au module 8qd
+BoundsAtX x ε C f M := ∀ χ primitif induit par f : |gChi(χ, x)| ≤ x^{½+ε} ∧ |L′/L(1, χ)| ≤ C log x
+ChosenQD Fm C5 ∈ DesignChoices : les hôtes de la famille vérifient ChQD_at à leur échelle
+  ⇐ qdq_of_pair : PairGood M ε Y x q d → Inhab.QDq x ε 4 q d   (q ≡ 3 mod 8, d ≡ 7 mod 16, symboles de Jacobi)
+PairGood M ε Y X q d : ∀ ξ mod M, ∀ (i, j) ≠ (0, 0), ∀ χ induit par ξ·(q/·)^i·(d/·)^j,
+        ∀ y ∈ [Y, X] : |gChi(χ, y)| ≤ y^{½+ε/2} ∧ |L′/L(1, χ)| ≤ 4 log y ;  + boîte sans zéro (ZeroBox) pour les caractères réels
+PairEx := ∀ M ε A, ∀ Y ≫ 1, ∃ q d, PairGood M ε Y (Y^A) q d          ← QH.pairEx ← QH.pair_exists ← QH.pair_share</code></pre>
+<ul>
+<li><strong><code>QH.pair_share</code></strong> : parmi les premiers q
+de l’ensemble <code>primePairSetFirst(Y^{ε/5})</code>, une proportion ≥
+1 − η est <code>GoodQ</code> ; pour chacun, une proportion ≥ 1 − η des d
+de <code>primeSetTwoBounds</code> est <code>GoodD</code>.
+<code>BoxAll</code> porte sur des modules jusqu’à
+<strong>N₀·exp(z)</strong>, avec z ≈ Y^{ε/5}·log²Y : les conducteurs
+auxiliaires sont <strong>exponentiellement grands</strong> devant les
+échelles y ∈ [Y, Y^A].</li>
+<li><strong><code>QH.bad_share</code></strong> : si une <strong>moyenne
+quadratique</strong> <code>MeanSq</code> est contrôlée sur P, alors
+l’ensemble des q tels que |S(y, q)| &gt; y^{½+τ}/2 pour <strong>au moins
+un</strong> y ∈ [Y, X] a une proportion ≤ η. S’y ajoutent
+<code>small_zeros</code>/<code>NoExc</code> (pas de zéro exceptionnel
+pour les petits modules).</li>
+<li>Poids : <code>QH.pair_share</code> domine 1 200 déclarations et 1,34
+M de lignes ; c’est un module compact d’analyse.</li>
+</ul>
+<p><strong>Lecture d’ensemble de l’argument (hypothèse de lecture du
+22/11 ; les étapes 3 et le paragraphe qui suit sont dépassés, voir la
+correction ci-dessus).</strong> 1. Par un argument en moyenne (moyenne
+quadratique sur une famille de caractères quadratiques de conducteur
+énorme), <strong>presque toutes</strong> les paires auxiliaires (q, d)
+ont une annulation en racine carrée sur toute la plage [Y, Y^A]. C’est
+inconditionnel : la taille de la famille compense. 2. On construit un
+hôte (corps CM ou biquadratique, ordre environ x^{2+8ε},
+<code>IsChiField ψ e q d E</code>) qui contient à la fois le caractère χ
+visé et les caractères auxiliaires. 3. La géométrie arithmétique et la
+théorie automorphe (groupes unitaires définis, masses, correspondance
+thêta, covolume, représentations galoisiennes : les 36 % du cœur)
+établissent l’<strong>identité de chaîne</strong> <code>Ident</code> et
+les Link. Ils <strong>transfèrent</strong> la bonne borne des caractères
+auxiliaires vers χ, avec des pertes eD et eL arbitrairement petites. 4.
+Tchebychev pour χ en x^{½+O(ε)}, positivité de Landau, absence de zéros
+pour Re s &gt; ½.</p>
+<p>Le point mathématiquement <strong>non standard</strong> n’est ni
+l’étape 1 (classique dans son principe), ni l’étape 4 (classique). C’est
+l’étape 3, le <strong>transfert</strong> : comment une identité entre
+données de groupes unitaires permet de faire passer une borne en racine
+carrée d’un caractère à un autre sans perte de puissance. C’est là que
+se concentrent les 36 % du cœur.</p>
+<h3 id="s-11-6-bis">11.6 bis [export] Le mécanisme de la majoration :
+<code>GlobalTheoremInputs</code>, <code>LinkGLOBAL7</code>,
+<code>Lnk.linkCore</code></h3>
+<ul>
+<li><code>GlobalTheoremInputs Fm Cabs CH C0 := LinkG ∧ LinkS C0 ∧ LinkIRR ∧ LinkDIV Cabs CH ∧ LinkMu</code>,
+simple conjonction de cinq Link.</li>
+<li><code>LinkGLOBAL7 := WeightVectorSmallSharesSeven → GlobalTheoremInputs → ∃ K cHH eK CL x₀, ∀ x ≥ x₀ ∈ Win, ChainTied … x</code>.
+<code>linkGLOBAL7_items</code> (1 494 décl. propres, 967 k lignes)
+dérive des cinq Link les composantes ci-dessous.</li>
+<li><strong><code>Lnk.linkCore</code></strong> (129 décl. propres) :
+<code>CountF ∧ SlopesMF ∧ SlopesNF ∧ LatF ∧ NodesF ∧ FrameF CH ∧ LossFS eL ∧ CharF ∧ WinF ∧ ChosenTT ∧ ChosenQD C5 ∧ ChosenThin c6 ∧ LinkIRR ∧ LinkDIV Cabs CH ⟹ ChainTied Fm Cabs eL …</code>.
+La perte de division eD de la borne finale est la constante
+<code>Cabs</code> de <code>LinkDIV</code>.</li>
+</ul>
+<p>Chaque <code>…F</code> exige, pour x grand, une propriété ponctuelle
+<code>…_at</code> de la donnée (D, L) à l’échelle x. <strong>Ces
+propriétés portent sur des pentes de réseaux hermitiens</strong> :
+<code>HLat.mu</code> et <code>HLat.muMax</code> sont la pente et la
+pente maximale de <strong>Harder–Narasimhan</strong> d’un 𝒪_K-réseau
+hermitien (<code>HN.muDef = 2·slope − log 2 + log|disc K|/[K:ℚ]</code>),
+c’est-à-dire la géométrie d’Arakelov des fibrés hermitiens sur Spec
+𝒪_K.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Composante</th>
+<th>Contenu de <code>…_at</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WinF</code> (régime de tailles)</td>
+<td><strong>x^{½−ε} ≤ m ≤ x^{½+ε/2}</strong>, x·m ≤ k ≤ x^{eK}, k ≤ a, 0
+≤ La ≤ 2x^ε, k ≤ n²·x^{½−ε}, |T2|/n ≥ x^{−ε}, |a_t/b − x| ≤ 1, log #mots
+≤ (k − 3) log 2…</td>
+</tr>
+<tr>
+<td><code>LatF</code></td>
+<td>pour tout mot u, le réseau <code>Nu(u)</code> (obtenu par division)
+a un rang &gt; 0 et μ ≤ μ_max ; et μ_min(RR^∨) = −μ_max(RR)
+(dualité)</td>
+</tr>
+<tr>
+<td><code>SlopesMF</code></td>
+<td>pentes des réseaux « membres » <code>lat_u</code> encadrées par
+±C·|TT|·a·La (<strong>[corrigé 23/11]</strong> la borne inférieure porte
+en plus un facteur 1 + m/k)</td>
+</tr>
+<tr>
+<td><code>SlopesNF</code></td>
+<td><strong>comparaison de pentes à travers la division</strong> :
+μ(lat_u) + Ga + Fo − Ee(u) − LoU ≤ μ(Nu(u)) et μ_max(Nu(u)) ≤
+μ_max(lat_u) + Ga + Fo − Ee(u) + C·m·B0</td>
+</tr>
+<tr>
+<td><code>FrameF</code></td>
+<td><strong>inégalité de pentes</strong> : sFrame(Nu, h) − log #mots −
+(1 − δ)^{−1}(4u·log(1 + H/u) + (η + 4√e)H) ≤ μ_dual(RR), où sFrame =
+moyenne des pentes μ(Nu(u)) − h(u) pondérée par les rangs</td>
+</tr>
+<tr>
+<td><code>CountF</code></td>
+<td>log T(u) (seuil de colonne) encadré entre Σ_j (1/f) Σ_τ
+log(w_{j,τ}·v/π) + m·lgG − C(…) et C·m·L : <strong>contributions
+archimédiennes</strong> de type Γ</td>
+</tr>
+<tr>
+<td><code>NodesF</code></td>
+<td>poids w_j(ρ) : ≥ 1 sur Φ, dans [b, b + η + 1] sur l’ensemble épais,
+≤ 2b′ ailleurs</td>
+</tr>
+<tr>
+<td><code>LossFS</code></td>
+<td><strong>(Σ_t Σ_j ASK(…)) − Ga ≤ C·|TT|·m·b·x^{eL·ε}</strong>, et de
+même pour <code>IOsum</code> : la somme sur les premiers inertes de
+<code>Ident</code> (<a href="#s-11-6">§ 11.6</a>) est
+<strong>majorée</strong> par le terme <code>Ga</code> plus une perte
+x^{eL·ε}</td>
+</tr>
+<tr>
+<td><code>CharF</code></td>
+<td><code>Lnk.char_at</code> (inconditionnel) : ℓ(ψ) = (L′/L)(1, χ) et
+ChQD/ChThin ⇒ ValuesAtX/ThinScales (<a href="#s-11-6">§ 11.6</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lecture (hypothèse de lecture, cohérente avec les
+énoncés).</strong> C’est une <strong>méthode des pentes</strong> à la
+Bost en géométrie d’Arakelov : - À l’échelle x, on construit à partir
+des données de groupes unitaires (formes hermitiennes
+<code>lat_u</code>, division <code>Nu(u)</code>, réseau <code>RR</code>)
+des réseaux hermitiens, le long d’une <strong>chaîne de m ≈ √x
+relèvements thêta</strong>. <strong>C’est l’origine de l’exposant
+½</strong> : il vient de m ∈ [x^{½−ε}, x^{½+ε/2}]. <strong>[corrigé
+23/11]</strong> m est la longueur de la chaîne, pas le rang des réseaux
+: le rang de base k vérifie x·m ≤ k, soit au moins x^{3/2}. -
+L’inégalité de pentes (<code>FrameF</code>, <code>SlopesNF</code>)
+compare une moyenne de pentes au μ_dual d’un réseau cible. - Le degré
+arakelovien se décompose en places finies et en places infinies. Les
+places finies donnent la <strong>somme sur les premiers inertes</strong>
+<code>Σ 2 log p · max(a/p^i − w, 0)</code>, c’est-à-dire des valuations
+tronquées pondérées par log p, qui est <code>ASK</code>. Les places
+infinies donnent les termes archimédiens (<code>Ga</code>,
+<code>log(w·v/π)</code>, <code>lgG</code>). - L’inégalité de pentes
+donne donc <strong>somme sur les premiers ≤ terme archimédien +
+perte</strong> (<code>LossFS</code>). Par l’identité <code>Ident</code>,
+c’est la moyenne pondérée de la chaîne, que
+<code>level_gm_le_on_family_scales</code> convertit en Tchebychev pour
+χ. - Les trois caractères quadratiques auxiliaires, choisis par
+l’argument en moyenne (<code>QH.pair_share</code>), <del>servent de
+<strong>référence</strong></del> <strong>[corrigé 23/11]</strong>
+servent à <strong>neutraliser les termes parasites</strong> de
+l’identité : leur bonne borne (<code>ValuesAtX</code>) contrôle ces
+termes, pas le terme principal.</p>
+<p>C’est cohérent avec la présence massive de géométrie d’Arakelov dans
+la fermeture (<a href="#s-4">§ 4</a> : Hilbert–Samuel arithmétique,
+bigness de Moriwaki, borne de covolume, hauteurs,
+<code>HeightBoundOfLieSlope</code>) et avec la « pente de Bost » de la
+note d’Alpöge.</p>
+<h3 id="s-11-6-ter">11.6 ter [export] L’inégalité de pentes et la
+construction des réseaux</h3>
+<p><strong>Qui construit les données.</strong> <code>D7</code> est une
+structure d’environ 170 champs : hôte, rangs, formes <code>fm</code>,
+division <code>div</code>, places, caractères, jets, déterminants, et
+leurs propriétés. Ses constructeurs : -
+<code>GlobalTheory.Mem.assemble : Base → Cols → RowsRest → DivStage → SStage → NStage → GJStage → D7</code>,
+assemblage par <strong>étapes</strong> ; - les <strong>formes
+membres</strong> <code>lat_u</code> :
+<code>MemberTorsor.forms R ι hc T LL embLL Pl</code>, à partir de rangs
+R, de paramètres <code>HCParam</code> (<code>hc : ι → HCParam R</code>),
+d’un premier T et d’un corps LL plongé dans ℂ (aussi
+<code>Mem.Col2.forms</code>, <code>Mem.ColsModel.cols</code>) ; - la
+<strong>division</strong> : <code>Mem.DivModel.exists_divStage</code>
+fournit <code>DivData</code> avec
+<code>Nu(u) = (nuIn u)^{−1}(lat_u)</code>, image réciproque du réseau
+membre par l’application <code>nuIn(u)</code>.</p>
+<p><strong>Un exemple jouet est dans la fermeture.</strong>
+<code>Examples₂.exampleRecord : LocalGap R0 H0 → D7</code> (934 décl.
+propres) sert à prouver <code>Nonempty D7</code>
+(<code>nonempty_D7_of_localGap</code>). La chaîne remonte par
+<code>MemLoc.record_nonempty</code> →
+<code>WachPlace.exists_positions_global</code> →
+<code>wach_lattices</code> → … →
+<code>ontoX_of_hypotheses_alt_alt</code> (branche <code>ontoX</code> du
+cœur, 2,9 %). C’est un <strong>témoin de non-vacuité</strong>,
+logiquement anodin. Il montre seulement que l’exigence « il existe un D7
+» à cet endroit est faible.</p>
+<p><strong>L’inégalité de pentes.</strong> <code>Lnk.frame_at_of</code>
+:
+<code>FrameReal_at ∧ ChProviso ∧ ChCode ∧ NuFull ∧ Lat_at ⇒ Frame_at</code>.
+Elle est fournie par <code>frameRealF_of''</code>, à partir de
+<code>LinkDIV</code>, <code>LinkIRR</code>,
+<strong><code>LinkS</code></strong> (théorème S),
+<code>ChosenProviso</code>, <code>NuFull</code>, <code>MuRank</code>,
+<code>TuSize</code>, <code>RamRank</code> et <code>MatK</code>. Le
+contenu de <code>FrameReal_at D sg de eB</code> est l’existence d’une
+<strong>géométrie de réseaux matricielle</strong> : -
+<strong><code>LatGeom</code></strong> : des réseaux hermitiens N_i =
+<code>Nu(u)</code> (bases b_i, métriques X_i aux places infinies) et un
+réseau cible <code>cc</code> = dual de RR, avec des morphismes B_i : V_i
+→ W tels que B_i(N_i) ⊆ cc et
+<strong><code>HN.htMap(B_i) ≤ h_i</code></strong> (hauteur arakelovienne
+du morphisme). Les matrices <code>Ball_i = Y′^{−1}·B_i(v)·Y_i</code>
+sont réalisées à une place infinie v, et (1 − δ)·#(κ ⊔ κ₁) ≤ #κ. -
+<strong><code>InputSG(Bf, γ, D*, η₀, η₁, e₀)</code></strong>, avec
+<code>Ball = Bf·Vr</code> et <code>Vr</code> unitaire, est un
+<strong>repère presque unitaire</strong> : - hors diagonale : ‖K(i,
+j)‖²_HS ≤ (1 + η₀)·|ι_i|·|ι_j|/D* ; - diagonale : ‖K_d(i) − 1‖²_HS ≤
+e₀·|ι_i| ; - dimension : |α| ≤ (1 + η₁)·D* ; - et Σ_u (#ι_f(u) − rang
+Nu(u)) ≤ de·R.</p>
+<p>La condition hors diagonale est <strong>exactement la forme du
+théorème S</strong> (<code>sO</code>, <a href="#s-11-4">§ 11.4</a> :
+|K₀(u, u′)|² ≤ (1 + b^{−6})·du(u)·du(u′)/D*). - Conclusion
+(<code>Frame_at</code>) : sFrame(Nu, h) − log #mots − corrections ≤
+μ_dual(RR), où sFrame est la moyenne des μ(Nu(u)) − h(u) pondérée par
+les rangs.</p>
+<p><strong>Le mécanisme complet, tel qu’il se lit maintenant.</strong>
+1. <strong>Côté spectral</strong> (théorie automorphe des groupes
+unitaires, développement de Fourier : <code>RowMain</code>,
+<code>RowNG</code>, <code>TypeP</code> ; Siegel–Weil ; décroissance de
+Wu) : une famille de blocs indexés par des mots u, de dimensions du(u),
+est <strong>presque orthogonale</strong> (théorème S). 2.
+<strong>Inégalité de pentes de Bost</strong> : la quasi-orthogonalité
+rend le morphisme B = ⊕B_i presque isométrique, et l’inégalité de pentes
+borne la pente moyenne des réseaux <code>Nu(u)</code> par la pente duale
+du réseau cible RR, à la hauteur des morphismes près
+(<code>FrameF</code>, <code>SlopesNF</code>, <code>LatF</code>). 3.
+<strong>Degrés arakeloviens</strong> : les pentes se décomposent en
+places finies (somme sur les premiers inertes, <code>ASK</code>, via
+<code>Ident</code>) et en places infinies (termes Γ et volumes,
+<code>CountF</code>, masses et nombres de classes) ; d’où <strong>somme
+sur les premiers ≤ terme archimédien + perte</strong>
+(<code>LossFS</code>). 4. Avec une chaîne de longueur m ≈ √x
+(<code>WinF</code>), on obtient l’identité de chaîne et
+<code>ChainTied</code>, puis Tchebychev pour χ en x^{½+O(ε)}, puis
+GRH.</p>
+<p><del>Le point 3 reste une <strong>hypothèse de lecture</strong> : je
+n’ai pas lu la preuve qui identifie les pentes <code>μ(Nu(u))</code> aux
+sommes <code>ASK</code>.</del> Le point 3 est <strong>établi au niveau
+des énoncés</strong> (<a href="#s-11-6-quater">§ 11.6 quater</a>) : ce
+n’est pas une identité mais <strong>deux inégalités qui partagent le
+terme <code>Ga</code></strong>. Les points 1, 2 et 4 sont établis par
+les énoncés lus.</p>
+<h3 id="s-11-6-quater">11.6 quater [export] Le pont pentes ↔︎ premiers :
+le terme <code>Ga</code></h3>
+<p><strong>Normalisation locale.</strong>
+<code>sz(w, y) = 2·lwP(w)·e(w)·y</code>, avec e(w) l’indice de
+ramification et lwP(w) le poids logarithmique de la place : c’est la
+contribution d’une place finie w au <strong>degré arakelovien</strong>,
+de la forme e·log N(p). On définit : -
+<code>Ga = Σ_{w ∈ supp} sz(w, Σ_j gainD(j, w) − τ(w))</code>, la
+<strong>somme pondérée par les log N(w) des gains locaux</strong> de la
+division (<code>gainD = 0</code> aux places dont la caractéristique
+résiduelle est écartée, <code>drop</code>) ; -
+<code>Fo = Σ_j Σ_w sz(w, F(j, w))</code> et
+<code>Ee(u) = Σ_j Σ_w sz(w, E(u, j, w))</code>, deux autres sommes
+locales.</p>
+<p><strong>Moitié 1 : formule de pente par longueurs locales.</strong>
+<code>slopesN_at_of : 4 ≤ C → 0 ≤ IOsum → Places_at L C → SlopesN_at L C</code>,
+avec - <code>SlopesN_at</code> : μ(lat_u) + Ga + Fo − Ee(u) − LoU ≤
+μ(Nu(u)) et μ_max(Nu(u)) ≤ μ_max(lat_u) + Ga + Fo − Ee(u) + C·m·B0 ; -
+<code>Places_at</code> : pour chaque mot u, les hypothèses
+<code>UnitWeightPartition.HypLow</code>, <code>HypLow2</code> et
+<code>HypHigh</code> relient μ(Nu(u)) et μ_max(Nu(u)) à μ(lat_u) et
+μ_max(lat_u) par les <strong>longueurs locales</strong>
+<code>lenMN(u, w)</code> de lat_u/Nu(u) aux places w du support, les
+gains, F, E, τ, io et les restes LT, RX (bornés par C·|TT|·m·(a/k +
+b′)·log T et C·X″). C’est la formule standard <strong>deg(N) = deg(L) −
+Σ_w long_w(L/N)·log N(w)</strong>, organisée par une partition en poids
+unitaires. Démontré par
+<code>GlobalTheoryTheory.Places.placesF_min'</code> (196 k lignes) et
+<code>places_at_of</code>.</p>
+<p><strong>Moitié 2 : premiers ≤ gains locaux.</strong>
+<code>Loss7.losses_of_small_share_weight : ChosenTT → ChosenBadp → LinkG → LossesSmallShares</code>,
+avec <code>LossesSmallShares</code> ⇒ <code>Loss_at L C 0</code> :</p>
+<p>(Σ_t Σ_j ASK(…)) − Ga ≤ C·|TT|·m·b, et IOsum ≤ C·|TT|·m·b.</p>
+<p>La preuve (392 k lignes dominées) passe par
+<code>SmallOrderPrimeLosses.joint_discriminant_eventually</code>
+(<code>PrimeClassLossHypotheses ⇒ ExcessAndPrimeLogSumUnitBounds</code>)
+: les pertes ne viennent que des <strong>premiers d’ordre petit</strong>
+et du <strong>discriminant joint</strong>, et sont absorbées par une
+marge en log p. L’identification des deux côtés est
+<code>Lnk.askIs_of</code> : <strong>Σ_t Σ_j ASK(arithOf D, N, a_t, t,
+w_j) = <code>LocalQuadraticParts.ASK L</code></strong>. Ce dernier vaut
+Σ_j Σ_t (Σ_{p inerte, p ∈ askPrimes(a_t)} 2 log p ·
+<code>vonMangoldtClassSum(j, t, p)</code>) + log d · askD : une
+<strong>somme de von Mangoldt par classes</strong>, aux premiers
+inertes, lue sur la donnée (<code>AskRec_at</code>).</p>
+<p><strong>Assemblage</strong> (c’est ainsi que les inégalités se
+composent dans <code>linkCore</code>) :</p>
+<pre><code>Σ ASK  ≤  Ga + perte                                   (Loss7 : premiers inertes ≤ gains locaux)
+Ga     ≤  μ_max(Nu(u)) − μ_max(lat_u) − Fo + Ee(u) + C·m·B0      (SlopesN, côté haut)
+μ(Nu)  ≤  μ_dual(RR) + corrections   (en moyenne pondérée par les rangs)   (FrameF : Bost + théorème S)
+μ(lat_u) encadrée (SlopesM) ;  log T(u) ↔ termes Γ archimédiens (CountF)
+⟹  Σ ASK  ≤  [termes archimédiens et volumes] + perte x^{eL·ε}
+⟹ (Ident) moyenne pondérée de la chaîne ⟹ ChainTied ⟹ Tchebychev pour χ</code></pre>
+<p><strong>Conclusion.</strong> Le lien entre géométrie d’Arakelov et
+premiers est la <strong>décomposition locale du degré</strong> : quand
+on passe d’un réseau à son sous-réseau de division, la pente change
+exactement par une somme sur les places finies de longueurs locales ×
+log N(w), à des restes contrôlés près. Les premiers inertes de l’hôte
+contribuent à cette somme au moins autant que le terme de von Mangoldt
+<code>ASK</code>, aux premiers d’ordre petit près. L’inégalité de pentes
+(Bost), rendue efficace par la quasi-orthogonalité spectrale, majore la
+somme totale. <strong>La somme de nombres premiers est donc majorée par
+un argument de positivité arakelovienne.</strong>
+<em>Interprétation</em> : c’est l’analogue arithmétique de l’argument de
+Weil/Bombieri pour les courbes sur les corps finis, où le côté «
+premiers » est majoré par une inégalité de positivité (Hodge ou
+Castelnuovo) sur un objet géométrique.</p>
+<h3 id="s-11-6-quinquies">11.6 quinquies [export] Construction de
+<code>RR</code>, de <code>nuIn</code> et des morphismes de division</h3>
+<p><strong>Ce qu’impose <code>Mem.DivStage.mk</code></strong> (l’étape
+de division d’un <code>D7</code> assemblé) : -
+<code>nuIn(u) : V(Nu(u)) → V(lat_u)</code> est
+<strong>injective</strong>, d’image
+<strong><code>MemberForms.ramSub(fm u)</code></strong> (le
+<strong>sous-espace ramifié</strong> des formes membres), et
+<strong>isométrique</strong> à toutes les places infinies
+(<code>normAt</code> conservée) ; elle est compatible avec les
+plongements <code>jN(u)</code> dans les espaces complexes
+<code>RowsRest.Mu W u</code>. Donc <strong><code>Nu(u)</code> est le
+réseau membre <code>lat_u</code> restreint à son sous-espace
+ramifié</strong>, avec la métrique induite et un sous-réseau
+<code>Ln u</code>. - <code>jEE : V(RR) → RowsRest.EE W</code> envoie une
+base de <code>RR</code> sur une base de l’espace de Hilbert
+<code>EE</code>, de façon isométrique à la place distinguée.
+<code>EE</code> est l’<strong>espace des « lignes restantes »</strong>,
+muni d’une base orthonormée de taille <code>Drows</code>, avec
+<code>Drows = (1 − δ)·Dall</code>. -
+<code>DivData.mk RR Nu Bk h HH … delP</code> exige
+<code>sFrame(Nu, h) + μ_max(RR) ≤ HH</code>.</p>
+<p><strong>Trois constructeurs de <code>DivData</code> sur le chemin de
+<code>riemannHypothesis</code></strong> (outil :
+<code>revindex.py path</code>) :</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Constructeur</th>
+<th><code>RR</code></th>
+<th>Morphismes <code>Bk</code></th>
+<th><code>h</code></th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mem.DivModel.exists_divStage</code></td>
+<td><code>stdLat LL Drows</code> (réseau standard)</td>
+<td><strong><code>fun _ =&gt; 0</code></strong></td>
+<td>0</td>
+<td>témoin d’existence ; utilisé par
+<code>R3.Rw.exists_lt_grpTrue</code>, qui assemble un <code>D7</code>
+d’étape ultérieure avec des données de substitution
+<code>Mem.Df.StandIn</code> (<code>dall</code>, <code>drows</code>,
+<code>eta</code>, <code>sha</code>) ; chemin : branche à 15 % →
+<code>compatibleSystem_weightOne_saturated</code> →
+<code>exists_bare_form_of_saturation</code> →
+<code>untwisted_adelic_data_saturated_over_fixed_field</code></td>
+</tr>
+<tr>
+<td><code>Mem.DivInhab.exists_divStage</code></td>
+<td><code>stdHLat</code></td>
+<td><strong><code>fun _ =&gt; 0</code></strong></td>
+<td>0</td>
+<td>témoin (<code>StagesInhab.exists_stages_over</code>,
+<code>Col2.TrueColsTest.later</code>)</td>
+</tr>
+<tr>
+<td><strong><code>Mem.R3.Rw.exists_divStage_of_pk</code></strong></td>
+<td><strong>réseau sur K^{nR}, de base standard, dont la métrique à la
+place distinguée est ‖Σ x_i · cR_i‖ avec <code>cR</code> une base de
+l’espace de Hilbert <code>Hs.T(ChD.EE …)</code> du paquet
+<code>Pk</code></strong></td>
+<td><strong><code>bkOf W c</code></strong></td>
+<td>donnés</td>
+<td><strong>construction effective</strong>
+(<code>Bare.bare_form_saturated</code>,
+<code>HeightCounting.Up.minimal_ktype_of_local_components_alt</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Le morphisme de division effectif.</strong>
+<code>bkOf W c u : ramSub(lat_u) → Dual(K^m)</code> envoie φ sur la
+forme
+<code>x ↦ (la valeur dans K de) Bu(u, ramForm φ, coordForm_c x)</code>.
+C’est <strong>l’accouplement <code>RowsRest.Bu</code></strong> entre les
+vecteurs ramifiés des formes membres et le repère <code>c</code> de
+l’espace des lignes <code>EE</code>, <strong>à condition que cet
+accouplement soit rationnel</strong> (à valeurs dans l’image de LL → ℂ).
+<strong>Sinon <code>bkOf</code> vaut 0</strong> (branche
+<code>dite</code>). <code>exists_divStage_of_pk</code> garantit
+<code>Bu(jN φ, jEE x) = embLL(Bk(u) φ x)</code> sous cette hypothèse de
+rationalité.</p>
+<p><strong>Lecture.</strong> - <code>RR</code> est la <strong>structure
+entière</strong> (réseau <code>Lr</code>) d’un espace de Hilbert de
+lignes (spectral) <code>EE</code>. - Les <code>Nu(u)</code> sont les
+réseaux ramifiés des formes membres. - Les morphismes de division sont
+l’<strong>accouplement</strong> entre les deux, rationnel par hypothèse.
+C’est exactement l’objet dont le théorème S contrôle les blocs
+(<code>K₀(u, u′)</code>), puis que l’inégalité de pentes utilise
+(<code>LatGeom</code>, <a href="#s-11-6-ter">§ 11.6 ter</a>). - La
+rationalité de l’accouplement est donc essentielle. C’est sans doute le
+rôle de <code>RowRat</code> (« les lignes sont rationnelles », <a
+href="#s-11-3">§ 11.3</a>), établi à partir des vecteurs tests thêta
+(<code>test_vector_assembly_holds</code>).</p>
+<p><strong>Prudence.</strong> Des constructions <strong>témoins à
+morphismes nuls</strong> coexistent dans la fermeture avec la
+construction effective. Le graphe montre où chacune est utilisée, mais
+je n’ai pas établi laquelle alimente les familles <code>𝒜</code> sur
+lesquelles s’applique l’inégalité de pentes du chemin principal. Les
+théorèmes de liaison (<code>frameRealF_of''</code>,
+<code>linkCore</code>) sont universels en la famille et ne dépendent
+d’aucune des deux (<code>revindex.py path</code> : NON pour les quatre
+constructeurs). Ce point ne touche pas la validité, qui est vérifiée par
+le noyau. Il touche l’interprétation : savoir si, dans les familles
+concrètes, l’inégalité de pentes porte sur de vrais accouplements.</p>
+<h3 id="s-11-6-sexies">11.6 sexies [export] Quelle division dans les
+familles ? Et les deux grosses preuves</h3>
+<p><strong>(a) Les familles du chemin principal utilisent l’accouplement
+effectif.</strong> - Les familles <code>FamP</code> sont construites à
+partir de <strong>kits</strong> (<code>EX.famOfKits</code> ←
+<code>EX.exists_famP_of_kits</code>). À chaque échelle x, un kit porte
+des points <code>Pt</code> munis chacun d’un <code>D7</code>. Les points
+viennent de <code>Fc.objCP_of_recExP</code>, qui utilise
+<code>Mem.assemble</code> et <code>EX.OB.setDiv</code> mais
+<strong>aucun</strong> des trois théorèmes d’existence de division : les
+<code>D7</code> y arrivent en <strong>entrée</strong>, via l’hypothèse
+<code>Mem.Top.RecAtG</code>, fournie par la branche à 15 %
+(<code>large_unramified_exponent_bundles_exist_alt</code>). - Cette
+branche utilise les <strong>trois</strong> constructions, dans des
+sous-lemmes distincts : <code>bare_form_saturated</code> → effective
+(<code>exists_divStage_of_pk</code>) ; <code>exists_lt_grpTrue</code> →
+nulle (<code>DivModel</code>) ; <code>exists_stages_over</code> → nulle
+(<code>DivInhab</code>). Le graphe de dépendances ne dit pas quel terme
+circule vers quel champ. - <strong>Ce qui tranche</strong> :
+<code>EX.OB.setDiv</code> <strong>conserve</strong> les morphismes
+<code>Bk</code> de la donnée d’origine, et surtout le prédicat
+<strong><code>D7.BuRational D : Bu(jN φ, jEE x) = embLL(Bk(u) φ x)</code></strong>
+(division = accouplement) est <strong>exigé par les conditions de
+liaison elles-mêmes</strong> : <code>DivisionKernelConstantBounds</code>
+(d’où <code>LinkDIVt</code>), <code>BridgeRowsT/F</code>,
+<code>RemainingDivisionBounds</code>, <code>Wire4Alt</code> et
+<code>Lnk.blockReal_at_of</code> (côté <code>FrameReal</code>). -
+<strong>Conclusion.</strong> Dans toute famille où s’applique
+l’inégalité de pentes, <strong><code>Bk = Bu</code></strong> : la
+division est l’accouplement rationnel. Une donnée à morphismes nuls n’y
+satisferait <code>BuRational</code> que si l’accouplement était lui-même
+nul, ce que la quasi-orthogonalité (blocs diagonaux ≈ identité) exclut.
+Les constructions à morphismes nuls servent de témoins dans des lemmes
+d’existence d’étapes, où <code>BuRational</code> n’est pas requis.</p>
+<p><strong>(b) Les deux grosses preuves du <a href="#s-11-6-quater">§
+11.6 quater</a>.</strong> -
+<code>SmallOrderPrimeLosses.joint_discriminant_eventually</code> (342
+décl. propres, fermeture de seulement 28 297 décl.) est un lemme
+<strong>élémentaire de comptabilité</strong> :
+<code>PrimeClassLossHypotheses ⇒ ExcessAndPrimeLogSumUnitBounds</code>,
+c’est-à-dire <code>ASK − Ga ≤ (3C + 13)·unitU</code> et
+<code>Σ_{p cand} log p·io(p) ≤ unitU</code>. Les premiers de
+<code>Ps</code> sont répartis en classes (<code>PClass</code>) : - pour
+les premiers « servis », le gain local couvre le terme de von Mangoldt ;
+- les premiers de « seconde » classe sont des candidats de poids
+négligeable (<code>lhsW ≤ x^{−9}</code>) ; - les mauvais premiers sont
+rares (<code>badPrimeLogWeightedCount ≤ |TT|·x^{−2+ε}</code>).</p>
+<p>Le contenu arithmétique est donc entièrement dans le choix des
+données qui rendent ces hypothèses vraies. -
+<code>Places.placesF_min'</code> (196 k lignes) :
+<code>LevelTFamily ∧ NuCommensF ∧ TuSize ∧ MuRank ∧ LinkG ∧ LinkMu ⇒ PlacesF</code>,
+c’est-à-dire le calcul de pentes place par place (longueurs locales) à
+partir de la structure des niveaux et de la commensurabilité des
+<code>Nu</code>.</p>
+<h3 id="s-11-6-septies">11.6 septies [export] Pourquoi m ≈ √x (longueur
+de la chaîne) : l’équilibre du crochet d’erreur</h3>
+<ul>
+<li><code>Deduction.ch_top</code> (129 861 lignes propres) : sous
+<code>IdentU</code>, <code>SizeData₂</code>, <code>ErrWindows</code>,
+<code>BNBoundsU</code> et <code>LargeX</code>, on a
+<code>gapA ≤ x^{CErr·ε} · errorBracketSizeWindows(x, ε, n, nT, nT2, m, b, k, a)</code>,
+avec <code>gapA = Σ_{t∈TT} Σ_{j&lt;m} (ASK − Re MAIN)</code>
+(<code>ch_top_main_eq</code>, <code>ch_balance</code> : ASK − MAIN =
+De).</li>
+<li><code>errorBracketSizeWindows = nT·a·(1 + m²/k) + m·(2·n·m·b·x^ε + nT2·k·b·x^ε/(n²·x^{−ε}))</code>.</li>
+<li>Contraintes : <code>RestSize</code> (a ≤ 2xb ; nT ≥ x^{−ε/8}n/2 ;
+nT2/n ≥ x^{−ε} ; <strong>x^{½−ε} ≤ m</strong> ; k ≤ n²·x^{½−ε}) et
+<code>WinF</code> (<strong>m ≤ x^{½+ε/2}</strong> ; x·m ≤ k).</li>
+<li>Erreur par terme, c’est-à-dire divisée par nT·m·b : ≲ x^{O(ε)}·(4x/m
++ 4m + 2√x). Comme <strong>x/m + m ≥ 2√x</strong>, l’optimum est m = √x,
+avec une erreur x^{½+O(ε)}.</li>
+<li>Le terme (1) décroît en m (erreur triviale x répartie sur m
+relevés), le terme (2) croît en m (pertes proportionnelles à la longueur
+m de la chaîne,
+cf. <code>exponent_le_upper : Ee ≤ m·(sumA·lg + cE·B0)</code>), et le
+terme (3) est plafonné à √x par k ≤ n²·x^{½−ε}.
+<code>key_identity</code> contient de même le terme m²L/k.</li>
+<li>La barrière √x de la méthode coïncide avec la vraie taille des
+fluctuations (Littlewood : ψ(x) − x = Ω±(√x·log log log x)).</li>
+</ul>
+<h3 id="s-11-6-octies">11.6 octies [export] La preuve du théorème S</h3>
+<ul>
+<li>Producteur : <code>GlobalTheory.CarrierGap.offDiag</code> (22 167
+décl. dominées, 15,2 M lignes, 1,42 %), via
+<code>allRows_of_open0_alt</code> → <code>lg1_sLp_sO_hTF</code> →
+<code>sLp_sO_hTF_of_siegelWeil</code> → <code>at_choice_alt</code>.
+Hypothèses : <code>SWXS</code>, <code>RowNGP</code>,
+<code>RowsFinDim</code>, <code>LocTied</code>, <code>RanksRow 3</code>,
+<code>LoopRowS 3</code>.</li>
+<li>Sous-lemmes porteurs : <code>theoremS_leaves_of_carrierG</code> (5,9
+M) ⇒ <code>TheoremSClosedHypotheses</code> ; <code>carrierP</code> (5,1
+M) ; <code>TheoremSConclusion.theoremS_of_conj</code> (1,8 M) ;
+<code>RankOneChart.instFactRhsWLim_development</code> (323 k).</li>
+<li><code>TheoremSClosedHypotheses</code> ⇐ <code>HermRepUnram</code>,
+<code>CoefWeightedLoc</code>, <strong><code>BesselNVGap</code></strong>,
+<code>DecLow</code>, <code>KFinDense</code>, <code>GaugeVolUD</code>,
+<code>RhsWLim</code>, <strong><code>BesselNVG</code></strong>,
+<code>CoefCapAll</code>, <strong><code>CarrierP</code></strong>
+(minorations d’amplitude de séries de Poincaré), <code>RowNGP</code>,
+<code>RowsFinDim</code>, <strong><code>UniqGap</code></strong> (unicité
+des modèles de Bessel pour les séries discrètes de U(p, q) à écart ≥
+120·n³), <code>SWXS</code> (Siegel–Weil et compatibilité des classes de
+Chern des stabilisateurs).</li>
+<li><code>BesselNVG</code> : non-annulation des périodes de Bessel sous
+une condition d’<strong>entrelacement</strong> des paramètres de
+Harish-Chandra (<code>InterlacingCondition</code>,
+<code>HalfIntegralDifference</code>, <code>GapBig</code>), c’est-à-dire
+un branchement archimédien de type Gross–Prasad.</li>
+<li><strong>Lecture</strong> : une formule de type Petersson ou
+Kuznetsov pour des coefficients de Bessel sur des groupes unitaires,
+quantitative et uniforme en grand rang. Outils connus dans leur principe
+; la nouveauté est technique (uniformité, constantes explicites). Voir
+la <a href="synthese.html">synthèse</a>, § 6.</li>
+</ul>
+<h3 id="s-11-7">11.7 Les 60 champs de <code>P</code> (question 6,
+premier passage)</h3>
+<p><code>P : UnitaryGroupThirdPlaceHypotheses</code> est construit par
+<code>published_results_eigen O</code> à partir de 60 théorèmes
+<code>X_of_literature O</code> (<strong>[corrigé 23/11]</strong> et non
+50 : la structure hérite des champs de
+<code>NRows.GeometricGaloisRepCompatibility</code>, et
+<code>UnitaryGroupThirdPlaceHypotheses.mk</code> reçoit 60 arguments,
+tous de cette forme ; le champ <code>litN</code> y est de type
+<code>NonEndoscopicHypothesesAlt</code>, sans rapport avec le paquet
+<code>LitN</code> absent de l’export). Ce sont des résultats
+<strong>démontrés</strong>, avec des fermetures de 80 000 à 150 000
+déclarations, et pas de simples emplacements. Sur un échantillon, les
+énoncés sont <strong>substantiels et ont la forme de la
+littérature</strong> : <code>DiscreteSeriesClassification</code>
+(classification des séries discrètes de U(p, q) par le caractère
+infinitésimal, unicité et multiplicité du K-type minimal à la Blattner,
+unicité de la réalisation) ; <code>SiegelWeilUnitaryConvergent</code>
+(domaine de convergence de Weil rang A &lt; rang B ≤ 2 rang A et rang A
++ indice de Witt(B) &lt; rang B : intégrabilité de θ et égalité avec la
+valeur d’Eisenstein).</p>
+<p><strong>Exception</strong> : le champ
+<code>siegelEisensteinSimplePole</code> est rempli par
+<code>siegel_eisenstein_simple_pole : O → Published.UnusedSlot72</code>,
+et <strong><code>UnusedSlot72 := True</code></strong>. Sur les 273
+définitions <code>GlobalTheory.Published.*</code> de l’export (293 en
+comptant les autres espaces <code>Published</code>), c’est la
+<strong>seule</strong> dont la valeur est <code>True</code> (vérifié sur
+les 293). Les autres définitions courtes sont des conjonctions ou des
+alias d’énoncés du projet.</p>
+<hr />
+<h2 id="s-12">12. [export] Les représentations galoisiennes : du
+relèvement thêta à <code>Row0b</code> (question 4)</h2>
+<pre><code>galoisLocalGlobalStrong_recParameter : Row0b recT             (6,3 %, 95 102 décl.)
+  = galoisRepresentations_of_thetaLift TP.K.tLiftK
+  = galoisLocalGlobalStrong_of_geometry_lift Geo.geoOne_holds up     (8 091 décl. / 6,0 M lignes propres)
+  = Row0.row0b recT (galoisLocalGlobal_of_geometry_lift geo up)      ← Row0 recT (FORTE) puis Props.big
+recT := UpperTheory.Zero.LLC.IsRecT        (la LLC partielle du § 3.2)</code></pre>
+<p><strong>Les deux entrées.</strong> 1.
+<strong><code>TP.TLiftK</code></strong>, le <strong>relèvement
+thêta</strong> (<code>TP.K.tLiftK</code> : 4 104 décl. propres,
+fermeture de 152 943). Pour un corps CM E, une base de modèles de Weil
+<code>B</code> (<code>GoodK</code>), un espace hermitien X de dimension
+n ≥ 1 et tout espace anti-hermitien W de dimension <strong>d ≥
+d₀</strong> (domaine <strong>stable</strong>), avec des caractères de
+Hecke χ_X, χ_W (<code>IsHecke</code>, <code>ResEtaPow</code>) et des
+exposants m_X, m_W (<code>HasExp</code>), il fournit l’existence du
+relèvement avec ses propriétés (énoncé tronqué à l’impression). 2.
+<strong><code>Geo.GeoOne</code></strong>, la <strong>réalisation
+géométrique en poids 1</strong>
+(<code>geoOne_holds = geometric_realization_of_weight_one weight_one_geometric_realization</code>).
+Les données sont : - E CM, l premier, ι : ℚ̄_l ≃ ℂ, a
+<strong>impair</strong>, d avec x² = −d dans E
+(<code>CongL.FieldOK</code>) ; - un ensemble T non scindé, deux places
+w₀ et v′ au-dessus de l, « éloignées » (<code>Cong.Apart</code>) ; - un
+espace U de formes automorphes sur U(a) : automorphe hors de T,
+<strong>de type elliptique en w₀</strong> (<code>TyEll</code>),
+sphérique hors de S, saturé en v′, <strong>de poids lacunaire</strong>
+en v′ (<code>LacWtAt</code>).</p>
+<p>Conclusion : il existe ρ (<code>Div.VBase ι d U ρ</code>) telle que -
+<strong>aux places w non ramifiées, ne divisant pas l</strong> : les
+valeurs propres de Frobenius égalent les <strong>paramètres de Satake
+algébriques</strong> (<code>ESAt ι ρ w (algSat a q_w B)</code>) ; -
+<strong>aux places w | l éloignées</strong> : ρ est
+<strong>cristalline</strong> en w (<code>CrysAt</code>), avec des sauts
+de Hodge–Tate prescrits (<code>JumpsOcc</code>) et un Frobenius
+cristallin compatible (<code>PhiKilled</code>).</p>
+<p><strong>Comment <code>GeoOne</code> est démontré.</strong>
+<code>geoOne_of_parts steps_holds (kodaira_spencer_of_weight_one hW) planEx_holds</code>
+: - <strong><code>HolomorphicLefschetzFormula</code></strong>, démontrée
+dans le projet, est la <strong>formule de Lefschetz holomorphe</strong>
+(Atiyah–Bott). Pour s : Z → Spec ℂ lisse projectif de dimension d et
+deux correspondances finies étales c₁, c₂ : Y → Z, on a Σ_b (−1)^b
+tr(c₁_* ∘ c₂^* | H^{a,b}<em>Hodge) = Σ</em>{y fixe} coeff_a(det(1 +
+X·A_y))/det(1 − A_y), où A_y est l’action tangente aux points fixes,
+supposés non dégénérés. C’est l’outil standard pour calculer des traces
+de correspondances de Hecke sur la <strong>cohomologie
+cohérente</strong>, ce qui est le cadre des formes de <strong>poids
+1</strong>. - <strong><code>KSAll</code></strong> : isomorphisme de
+Kodaira–Spencer (<code>stdEx</code>, <code>kSEx</code>,
+<code>kSNice</code>, <code>ksGood</code>, <code>ksCong</code>, et
+<code>ksHodge</code> tiré de la formule de Lefschetz holomorphe et de
+<code>FixK</code>). - <strong><code>Steps</code></strong> : étape
+cristalline (<code>Seam.crysStep_holds</code>), étape des sauts
+(<code>jumpStep_holds</code>), comparaison cristalline φ
+(<code>Ru.crystallineComparison.phiStep</code>).</p>
+<p><strong>Lecture.</strong> Les représentations galoisiennes attachées
+aux formes automorphes polarisées sur les groupes unitaires ne sont pas
+construites par la cohomologie étale des variétés de Shimura (Kottwitz,
+Harris–Taylor). Elles le sont <strong>par relèvement thêta vers un
+groupe unitaire de grand rang</strong>, puis <strong>réalisation en
+poids 1 dans la cohomologie cohérente</strong>, avec traces des
+correspondances par Lefschetz holomorphe, Kodaira–Spencer et
+<strong>congruences</strong> (préfixes <code>Cong</code>,
+<code>CongL</code>, <code>CongW</code> ; types elliptiques ; poids
+lacunaire). Le schéma rappelle celui de <strong>Deligne–Serre</strong>
+pour les formes de poids 1. Les propriétés aux places au-dessus de l
+(cristallinité, sauts) viennent d’une comparaison cristalline
+séparée.</p>
+<p><del><strong>Reste</strong> : la preuve de
+<code>galoisLocalGlobal_of_geometry_lift</code> (6 M lignes propres),
+c’est-à-dire comment <code>GeoOne</code> et <code>TLiftK</code> se
+combinent pour produire <code>Row0</code> pour toute π polarisée
+régulière algébrique.</del></p>
+<p><strong>[export] La combinaison : graines géométriques + congruences
++ thêta.</strong></p>
+<pre><code>galoisLocalGlobal_of_geometry_lift geo up
+  = rest (coreAll_of (Div.seedFinOdd_of_geoOne geo) (Cong.congFinOdd_of_ex Wt.wtLacEx_holds) up)</code></pre>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Énoncé</th>
+<th>Poids propre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Div.seedFinOdd_of_geoOne : GeoOne → SeedFinOdd</code></td>
+<td><strong>graines</strong> : en rang a <strong>impair</strong>, les
+formes <strong>de type elliptique</strong> (<code>TyEll</code>) et
+<strong>de poids lacunaire</strong> (<code>WtLac</code>) ont des
+représentations galoisiennes (<code>SeedWU4</code>), réalisées
+géométriquement</td>
+<td>908 décl. / 555 k lignes</td>
+</tr>
+<tr>
+<td><code>Wt.wtLacEx_holds : WtLacEx = WtTo GapWt</code></td>
+<td>pour tout poids dominant λ dont les poids de Hodge–Tate attendus ((a
+− 1)/2 − z sur le caractère infinitésimal) sont <strong>séparés</strong>
+(<code>GapJ</code>), les formes de poids λ sont
+<strong>congruentes</strong>, via des fonctions test
+<strong>entières</strong> (<code>Gal.Gen.Loc.IntL ι λ</code>), à des
+formes de poids lacunaire, à des places w₀, v′ au-dessus de l, scindées
+et éloignées</td>
+<td>263 décl. / 160 k</td>
+</tr>
+<tr>
+<td><code>Cong.congFinOdd_of_ex : WtLacEx → CongFinOdd</code></td>
+<td>congruences en rang impair (<code>CongUW4</code>)</td>
+<td>644 décl. / 514 k</td>
+</tr>
+<tr>
+<td><code>coreAll_of : SeedFinOdd → CongFinOdd → TLiftK → CoreAll</code></td>
+<td><code>CoreAll</code> =
+<code>GalCut.Ex Level.all ∧ ∀ c, SphericalLevelCondition</code> :
+<strong>existence des représentations galoisiennes à tous les
+niveaux</strong>, avec les conditions sphériques ; le relèvement thêta
+fait passer du rang impair au cas général</td>
+<td>2 694 décl. / <strong>2,49 M</strong></td>
+</tr>
+<tr>
+<td><code>rest : CoreAll → Row0 recT</code></td>
+<td>propriétés locales-globales complètes (<code>Props</code> avec
+<code>Away</code>)</td>
+<td>3 061 décl. / <strong>2,07 M</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lecture.</strong> C’est la <strong>méthode par
+congruences</strong>. On réalise géométriquement des représentations
+galoisiennes pour des formes « graines » (poids 1 et poids lacunaire,
+cohomologie cohérente, Lefschetz holomorphe). On les étend aux poids
+généraux par <strong>congruences l-adiques</strong>, ce qui se termine
+typiquement par des pseudo-représentations ou des déterminants, à la
+Taylor (1991) ou à la Deligne–Serre. On passe de rang impair au cas
+général par <strong>relèvement thêta</strong>. C’est une alternative
+complète à la cohomologie étale des variétés de Shimura.</p>
+<hr />
+<h2 id="annexe-outils-de-lanalyse-de-lexport">Annexe : outils de
+l’analyse de l’export</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Outil</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tools/deps.c</code></td>
+<td>passe 1 en C :
+<code>zstd -dc --long=30 solution.ndjson.zst \| ./deps OUT</code> ;
+dépendances par déclaration, DAG persisté en <code>mmap</code>
+(<code>c1/c2/aux.u32</code>, 13 Go) ; 54 min sur M1 avec une compilation
+Lean en concurrence, moins sur une machine libre</td>
+</tr>
+<tr>
+<td><code>tools/analyse_export.py</code></td>
+<td>fermeture, dominateurs, poids, composition, échafaudage (9 min, 2,2
+Go de RAM)</td>
+</tr>
+<tr>
+<td><code>tools/show.py OUT NOM… [--value]</code></td>
+<td>réimprime l’énoncé ou la preuve de n’importe quelle déclaration
+depuis l’export ; <code>--grep REGEX</code> pour trouver un nom</td>
+</tr>
+<tr>
+<td><code>tools/query.py OUT spine \| deps NOM… \| refs NOM…</code></td>
+<td>épine depuis la racine, dépendances directes, référents</td>
+</tr>
+<tr>
+<td><code>tools/modmap.py</code></td>
+<td>table déclaration → paquet depuis les <code>.ilean</code>
+(<code>export/decl2mod.tsv</code>) ; non publié, car il dépend de la
+compilation locale</td>
+</tr>
+<tr>
+<td><code>tools/revindex.py OUT build \| up NOM \| refs NOM… \| path SOURCE CIBLE…</code></td>
+<td>index inverse décl. → référents (<code>rev_off.u64</code>,
+<code>rev.u32</code>, construit en 1,5 min) ; <code>up</code> remonte
+une chaîne de référents uniques, <code>refs</code> liste les référents
+triés par poids dominé (instantané) ; <code>path</code> dit si SOURCE
+utilise transitivement CIBLE et donne la chaîne</td>
+</tr>
+<tr>
+<td><code>tools/query.py OUT cl NOM…</code></td>
+<td>taille de la fermeture et part dominée d’une déclaration</td>
+</tr>
+</tbody>
+</table>
+<h2 id="annexe-fichiers-clés">Annexe : fichiers clés</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Déclaration</th>
+<th>Fichier (sous <code>src/</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>énoncés finaux</td>
+<td><code>Statements.lean</code>, <code>Main.lean</code></td>
+</tr>
+<tr>
+<td><code>everyCharacter</code>, <code>everyCharacter_of_row</code></td>
+<td><code>Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean</code></td>
+</tr>
+<tr>
+<td><code>EveryCharacter</code></td>
+<td><code>Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean</code></td>
+</tr>
+<tr>
+<td><code>OpenLiteratureStatements</code>,
+<code>every_character_of_literature_of_vWin</code></td>
+<td><code>Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean</code></td>
+</tr>
+<tr>
+<td><strong>cœur</strong>
+<code>every_character_of_theta_integrals_local_matching</code></td>
+<td><code>…/ThirdPlaceSeries/SiegelEisensteinSecondTermHypotheses.lean</code></td>
+</tr>
+<tr>
+<td><code>galoisLocalGlobalStrong_recParameter</code></td>
+<td><code>Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean</code></td>
+</tr>
+<tr>
+<td><code>Row0b</code></td>
+<td><code>Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TypeConditions/WeightsConjBis.lean</code></td>
+</tr>
+<tr>
+<td><code>Props</code>, <code>Above</code></td>
+<td><code>Development/AbelianVarietyTheory/PublishedTheorems/GaloisGeometry₂/PolarizedGaloisRepPublished.lean</code></td>
+</tr>
+<tr>
+<td><code>recTExists</code></td>
+<td><code>Development/AutomorphicArithmetic/Foundations/LocalLanglands/LocalCentralUnits/RecTExists.lean</code></td>
+</tr>
+<tr>
+<td><code>cuspEx</code></td>
+<td><code>…/LocalLanglands/LocalCentralUnits/CuspEx.lean</code></td>
+</tr>
+<tr>
+<td><code>LawsT</code>, <code>IsRecT</code>, <code>Good</code></td>
+<td><code>Development/AutomorphicArithmetic/Foundations/LocalLanglands/IsRecTOfIsRec.lean</code>
+(copie dans
+<code>AbelianVarietyTheory/Definitions/NonGaloisDescent/RecTExists.lean</code>)</td>
+</tr>
+<tr>
+<td><code>vwin_of_row</code></td>
+<td><code>Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean</code></td>
+</tr>
+<tr>
+<td><code>Published.LocalLanglandsGL</code></td>
+<td><code>Development/AbelianVarietyTheory/PublishedTheorems/AutomorphicForms₂/LocalLanglandsGL.lean</code></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -283,26 +283,23 @@ paginate: true
   </div>
 </section>
 
-<!-- « Autres thèmes » : masqué tant que Maths et Cognition n'ont pas de lien -->
-<!--
+<!-- « Autres thèmes » : Maths actif ; Cognition encore masqué -->
 <div class="other-separator">
   <span>Autres thèmes</span>
 </div>
--->
 
 <section>
-  <div class="courses-grid courses-grid--centered">
+  <!-- grille centrée en auto-fit : une seule carte visible reste au milieu -->
+  <div class="courses-grid courses-grid--centered" style="grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); justify-content: center;">
 
-    <!-- Carte masquée pour l'instant
-    <a href="#" class="course-card">
+    <a href="/maths/" class="course-card">
       <div class="icon-wrap">
         <img src="/assets/images/maths.svg" alt="Maths">
       </div>
       <span class="course-title">Maths</span>
-      <span class="course-desc">CPGE · Analyse · Algèbre</span>
+      <span class="course-desc">Lectures · Preuve RH/GRH</span>
       <span class="course-btn course-btn--maths">→ Accéder</span>
     </a>
-    -->
 
     <!-- Carte masquée pour l'instant
     <a href="#" class="course-card">

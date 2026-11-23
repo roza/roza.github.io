@@ -1,0 +1,30 @@
+  0  99.31%  1409557 allChi
+  1  99.31%  1409556 UpperTheory.FinalTheorems.everyCharacter
+  2  76.62%   982855 UpperTheory.FinalTheorems.everyCharacter_of_row   || frères: UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter 6.3%; GlobalTheory.T.zarhinGeometric_of_semistableReduction 0.3%
+  3  66.26%   849323 UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin   || frères: UpperTheory.One.vwin_of_row 8.2%
+  4  41.45%   543325 UpperTheory.Lit.every_character_of_theta_integrals_local_matching   || frères: SelfIntersectionVolumeEstimates.topCovolSlim2_use_alt_alt 7.1%; GlobalTheory.TorKSField.toroidalForFanKS 1.2%; UpperTheory.LiteratureTheorems.theta_integrals_agree_and_local_matching_of_literature 1.1%
+  5  35.78%   451610 UpperTheory.Lit.nonempty_hyps_definite_side_of_closed_bound   || frères: UpperTheory.Top.every_character_of_green_v_win 1.6%; GlobalTheory.T.globalLatticeIndexTheorem_of_lengthBoundAtPlaces 0.5%
+  6  15.04%   153377 GlobalTheory.Fc.S0.StageU.hypotheses_nonempty_of_unramified_exponents_alt   || frères: GlobalTheory.Fc.S0.ontoX_and_lamLow_of_unitaryGroupHypotheses' 2.9%; GlobalTheory.T.open0_of_unitary_group_hypotheses 2.3%; GlobalTheory.RowClaim.Join.thetaLift_row_properties_conj 0.6%
+  7   6.84%    37318 GlobalTheory.T.large_unramified_exponent_bundles_exist_alt   || frères: GlobalTheory.Fc.AllAtMemberStage0.allRows_of_open0_alt 3.5%; UpperTheory.GalC.final_alt_alt 2.5%; GlobalTheory.T.liftInj_and_nonVan_typeNZ_of_given 0.3%
+  8   6.84%    37317 GlobalTheory.Fc.StageOneU.member_bundles_large_unramified_exponents_alt
+  9   4.58%    26263 GlobalTheory.T.member_exists_baseLattice_alt   || frères: GlobalTheory.T.adelicData_extend_largerFields_of_hypotheses 1.0%; GlobalTheory.T.geometric_parameter_uniform_alt 0.4%
+ 10   4.58%    26262 GlobalTheory.Mem.Top.Bl.exists_baseLattice_of_prime_alt
+ 11   2.69%     1736 GlobalTheory.T.sFino_and_secondNo_of_sFinl'   || frères: GlobalTheory.Mem.Top.Bl.exists_baseLattice_of_pair_alt 1.0%; GlobalTheory.T.all_stages_at_member_of_specializations_alt 0.4%
+ 12   2.69%     1735 GlobalTheory.HeightCounting.Up.sFino_and_secondNo_of_rat_cusp_finl
+ 13   2.69%     1733 GlobalTheory.HeightCounting.Up.secondNo_of_sMt_sRat_sCusp_sFinl
+ 14   1.83%     1362 GlobalTheory.T.moveToBase_of_inputs_serN
+ 15   1.83%     1360 GlobalTheory.HeightCounting.Up.multiplicity_bound_of_local_components_alt
+ 16   1.83%     1356 GlobalTheory.T.levelI_same_gal_transfer_to_levelB1_list
+ 17   1.83%     1355 GlobalTheory.HeightCounting.Up.exists_levelB1_carried_of_levelI_same_gal
+ 18   1.69%     1220 GlobalTheory.T.multiplicity_pos_of_restricted_eigenform_copy_alt
+ 19   1.69%     1219 GlobalTheory.HeightCounting.Up.multiplicity_lower_bound_of_restricted_copy_alt
+ 20   1.20%      763 GlobalTheory.T.mem_of_series_carry_alt   || frères: GlobalTheory.T.side_eigenform_copy_transfer_alt 0.4%
+ 21   1.20%      762 GlobalTheory.HeightCounting.SerCarry.series_restage_of_carry_alt
+ 22   1.13%      526 GlobalTheory.HeightCounting.SerCarry.series_move
+ 23   1.02%      305 GlobalTheory.HeightCounting.SerCarry.serAt_move
+ 24   0.52%      289 GlobalTheory.HeightCounting.SerCarry.exportTie_move   || frères: GlobalTheory.HeightCounting.SideCopy.LamCopy.lam_copy 0.5%
+ 25   0.29%      101 GlobalTheory.TwInputs.Move.setup_move
+ 26   0.29%      100 GlobalTheory.TwInputs.Move.setup_move_data
+ 27   0.21%       24 GlobalTheory.TwInputs.Move.SetupRel.good
+ 28   0.21%       23 GlobalTheory.TwInputs.Move.SetupRel.good_of
+ 29   0.03%        1 GlobalTheory.TwInputs.Move.BaseRel.isWeil
