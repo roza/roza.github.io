@@ -8,6 +8,11 @@ url: "https://roza.github.io"
 lang: fr-FR
 timezone: Europe/Paris
 
+# Vérification Search Console (lue par le thème so-simple)
+owner:
+  google:
+    verify: "K-UkhhvOd-npaqQK7Vry2tcFXlDCu-3GAYcBmtnBq58"
+
 # jekyll-seo-tag : identité (JSON-LD) et liens
 social:
   name: "Gérard Rozsavolgyi"
