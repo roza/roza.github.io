@@ -1,16 +1,21 @@
 theme: jekyll-theme-so-simple
 
-title: "Gérard Rozsavolgyi Github Page"
-tagline: "Page de présentation - cours en ligne"
-description: "Page de présentation"
+title: "Gérard Rozsavolgyi"
+tagline: "Cours en ligne, ouvrages et lectures mathématiques"
+description: "Cours en ligne (PHP, Unix, JavaScript, Docker, Django, Flutter, Git, cybersécurité), ouvrages de mathématiques chez Dunod et lectures mathématiques, par Gérard Rozsavolgyi."
 baseurl: ""
 url: "https://roza.github.io"
 lang: fr-FR
 timezone: Europe/Paris
 
+# jekyll-seo-tag : identité (JSON-LD) et liens
+social:
+  name: "Gérard Rozsavolgyi"
+  links:
+    - https://github.com/roza
+
 author:
   name: "Gérard Rozsavolgyi"
-  email: example@domain.com
   links:
     - title: GitHub
       url: https://github.com/roza
@@ -52,6 +57,9 @@ defaults:
 
 plugins:
   - jekyll-archives
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
 
 jekyll-archives:
   enabled: [categories, tags]

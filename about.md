@@ -1,6 +1,8 @@
 ---
 layout: page
 title: "À propos"
+description: "Gérard Rozsavolgyi : enseignant en informatique et en mathématiques (BTS SIO, Polytech Marseille, ex-IUT d'Orléans et prépa MP2I), agrégé de mathématiques et d'informatique."
+permalink: /about/
 ---
 
 ## Whoami

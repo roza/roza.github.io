@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Publications"
+description: "Ouvrages co-écrits par Gérard Rozsavolgyi chez Dunod et Hatier : mathématiques et informatique en CPGE (MPSI, MP2I, PCSI, PC, MP, MPI) et NSI au lycée."
 permalink: /publications/
 ---
 
