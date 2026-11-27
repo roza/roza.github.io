@@ -1,0 +1,5 @@
+### GlobalTheory.CM.logOm  [def]
+∀ (E : Type) [Field E] , NumberField E → ∀ {N : Nat} , NeZero N → DirichletCharacter Complex N → Complex
+  :=
+fun (E : Type) [Field E] [NumberField E] {d : Nat} [NeZero d] (χ : DirichletCharacter Complex d) => Complex.ofReal (Real.eulerMascheroniConstant + Real.log ((2 * Real.pi) / NumberField.rootDiscr E)) - (deriv (DirichletCharacter.LFunction χ) 1 / DirichletCharacter.LFunction χ 1)
+

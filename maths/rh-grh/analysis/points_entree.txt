@@ -1,0 +1,7 @@
+# Référents directs des grandes théories (tools/revindex.py OUT refs NOM), export du 21/11/2026
+UpperTheory.One.vwin_of_row                                   1  UpperTheory.FinalTheorems.everyCharacter_of_row
+UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParameter      1  UpperTheory.FinalTheorems.everyCharacter
+SelfIntersectionVolumeEstimates.topCovolSlim2_use_alt_alt     1  UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin
+GlobalTheory.CarrierGap.offDiag                               1  GlobalTheory.LocalRows.at_choice_alt
+GlobalTheory.T.large_unramified_exponent_bundles_exist_alt    1  GlobalTheory.Fc.S0.StageU.hypotheses_nonempty_of_unramified_exponents_alt
+UpperTheory.Zero.LLC.recTExists                              25  everyCharacter_of_row, ToralGalois.R2.*, V.Z.Win.*, V.Z.Desc.W.*, Gal.SV.* …

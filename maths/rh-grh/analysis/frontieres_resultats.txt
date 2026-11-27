@@ -1,0 +1,8 @@
+racine riemannHypothesis : 1468390 décl., 1065212063 lignes, 2584502198 nœuds
+configuration                       |B|    G_B : reste à lire (décl. lignes nœuds)              suppression   ∪ dominés
+0. sans frontière                     0                    100.00% 100.00% 100.00%                 100.00%      0.00%   biblio 110494 / projet 1357896
+1. cœur automorphe admis              1                     63.00%  58.55%  56.63%                  63.00%     37.00%   biblio 107339 / projet 817727
+2. grandes théories admises           7                     45.72%  36.75%  34.95%                  45.72%     49.09%   biblio 101245 / projet 570103
+3. 2 + gains, division, Ш-lien       11                     45.56%  36.54%  34.79%                  45.56%     49.22%   biblio 101233 / projet 567801
+4. 3 sans CM (formule CM ouverte)    10                     45.56%  36.54%  34.79%                  45.56%     49.21%   biblio 101233 / projet 567801
+python3 -I tools/frontiere.py export/out_sol riemannHypothesis   165,80s user 2,29s system 99% cpu 2:48,91 total

@@ -1,0 +1,25 @@
+### Formalism.HC.Frame.lam  [def]
+∀ (φ : Formalism.HC.Frame) , Formalism.HC.Frame.A φ → Real
+  :=
+fun (φ : Formalism.HC.Frame) (γ : Formalism.HC.Frame.A φ) => ite (Membership.mem (Formalism.HC.Frame.A0 φ) γ) 4 3 / ((3 * Nat.cast (Formalism.HC.Frame.o φ)) + 1)
+
+### Formalism.HC.Level.wt  [def]
+Formalism.HC.Level → Formalism.HC.PChar → Real
+  :=
+fun (Λ : Formalism.HC.Level) (ψ : Formalism.HC.PChar) => ite (Formalism.HC.KSet.psK (Formalism.HC.Level.toKSet Λ) = Option.some ψ) 1 (Inv.inv ((3 * Nat.cast (Formalism.HC.Level.o Λ)) + 1))
+
+### Formalism.HC.Level.Gm  [def]
+Formalism.HC.Level → Real → Real
+  :=
+fun (Λ : Formalism.HC.Level) (y : Real) => Formalism.Gz y + (∑ ψ ∈ (Formalism.HC.Level.Nt Λ), Formalism.HC.Level.wt Λ ψ * Complex.re (Formalism.HC.An.gChi (Formalism.HC.PChar.χ ψ) y))
+
+### Formalism.HC.Level.cyc  [def]
+Formalism.HC.PChar → Formalism.HC.Level
+  :=
+fun (ψ : Formalism.HC.PChar) => Formalism.HC.Level.ofSub (Subgroup.zpowers (Formalism.HC.PChar.χ ψ))
+
+### Formalism.HC.Level.ofSub  [def]
+∀ {M : Nat} , NeZero M → Subgroup (DirichletCharacter Complex M) → Formalism.HC.Level
+  :=
+fun {M : Nat} [NeZero M] (Ξ : Subgroup (DirichletCharacter Complex M)) => Formalism.HC.Level.mk (Formalism.HC.KSet.mk (Finset.image (Formalism.HC.PChar.of) (Finset.filter (fun (χ : DirichletCharacter Complex M) => Membership.mem Ξ χ) (Finset.univ))) (Formalism.HC.Level.ofSub._proof_2 Ξ) (Formalism.HC.Level.ofSub._proof_3 Ξ) (Option.none) (Formalism.HC.Level.ofSub._proof_4 Ξ)) (Nat.card (Subtype (fun (χ : DirichletCharacter Complex M) => Membership.mem Ξ χ)))
+

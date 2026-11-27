@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.14" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Gérard Rozsavolgyi, avec Claude (Anthropic)" />
+  <meta name="author" content="Relecture : ChatGPT (OpenAI)" />
+  <title>Descendre le graphe : comment lire une preuve formelle de
+dix-sept millions de lignes</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
+      background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a, a:visited {
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
+      color: #606060;
+      color: light-dark(#606060, #b6b6b6);
+    }
+    div.abstract {
+      margin: 2em 2em 2em 2em;
+      text-align: left;
+      font-size: 85%;
+    }
+    div.abstract-title {
+      font-weight: bold;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 0.5em;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid currentColor;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+    }
+    th {
+      border-top: 1px solid currentColor;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
+  <style>
+    body { max-width: 52em; margin: 0 auto; padding: 1.5em 1em; font-family: Georgia, "Times New Roman", serif; line-height: 1.55; color: #1a1a1a; background: #fff; }
+    h1, h2, h3 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.25; }
+    h1 { font-size: 1.9em; } h2 { margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: .2em; }
+    table { border-collapse: collapse; margin: 1em 0; font-size: .92em; display: block; overflow-x: auto; }
+    th, td { border: 1px solid #ccc; padding: .3em .6em; vertical-align: top; }
+    th { background: #f3f3f3; }
+    .glossaire td { padding-top: .45em; padding-bottom: .45em; }
+    .glossaire td:last-child, .glossaire th:last-child { padding-left: 1.2em; }
+    code { font-size: .88em; background: #f5f5f5; padding: 0 .2em; border-radius: 3px; }
+    pre { overflow-x: auto; background: #f7f7f7; padding: .8em; }
+    pre.mermaid { background: none; text-align: center; overflow-x: auto; }
+    blockquote { border-left: 4px solid #c9d3e6; margin: 1em 0; padding: .2em 1em; background: #f6f8fc; }
+    nav#TOC { font-size: .9em; background: #fafafa; border: 1px solid #e5e5e5; padding: .5em 1em; }
+    a { color: #1f4f9a; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #161616; color: #e6e6e6; } a { color: #8ab4f8; }
+      th { background: #262626; } th, td { border-color: #444; }
+      code, pre { background: #222; } blockquote { background: #1d2330; border-color: #3b4a66; }
+      nav#TOC { background: #1d1d1d; border-color: #333; } h2 { border-color: #333; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, flowchart: { useMaxWidth: false }, theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "default" });
+  </script>
+  <meta name="description" content="Article de méthode : quatre graphes (dépendances, dominateurs, interfaces, applications instanciées), frontières de lecture, provenance des arguments et clauses inertes, appliqués à la preuve Lean de GRH d&#x27;Alpöge, avec une comparaison à la réécriture courte de Sernau.">
+  <meta name="author" content="Gérard Rozsavolgyi">
+  <link rel="canonical" href="https://roza.github.io/maths/rh-grh/article.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Gérard Rozsavolgyi">
+  <meta property="og:title" content="Descendre le graphe : comment lire une preuve formelle de dix-sept millions de lignes">
+  <meta property="og:description" content="Article de méthode : quatre graphes (dépendances, dominateurs, interfaces, applications instanciées), frontières de lecture, provenance des arguments et clauses inertes, appliqués à la preuve Lean de GRH d&#x27;Alpöge, avec une comparaison à la réécriture courte de Sernau.">
+  <meta property="og:url" content="https://roza.github.io/maths/rh-grh/article.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Descendre le graphe : comment lire une preuve formelle de dix-sept millions de lignes">
+  <meta name="twitter:description" content="Article de méthode : quatre graphes (dépendances, dominateurs, interfaces, applications instanciées), frontières de lecture, provenance des arguments et clauses inertes, appliqués à la preuve Lean de GRH d&#x27;Alpöge, avec une comparaison à la réécriture courte de Sernau.">
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
+<header id="title-block-header">
+<h1 class="title">Descendre le graphe : comment lire une preuve formelle
+de dix-sept millions de lignes</h1>
+<p class="subtitle">Le cas de la preuve d’Alpöge de l’hypothèse de
+Riemann généralisée</p>
+<p class="author">Gérard Rozsavolgyi, avec Claude (Anthropic)</p>
+<p class="author">Relecture : ChatGPT (OpenAI)</p>
+<p class="date">Article de méthode, version 1.3, 26 novembre 2026</p>
+<div class="abstract">
+<div class="abstract-title">Résumé</div>
+<p>En novembre 2026, L. Alpöge a publié une preuve formelle, en Lean, de
+l’hypothèse de Riemann généralisée pour les fonctions L de Dirichlet :
+17,4 millions de lignes de source, 1 468 414 déclarations dans la
+fermeture de ses énoncés, rejouées par plusieurs noyaux indépendants. Sa
+validité n’est pas en cause ; sa compréhension l’est. Nous demandons ce
+que l’on peut comprendre d’une preuve formelle produite avec l’aide d’un
+agent d’IA, à une échelle qui excède la lecture humaine ordinaire, et
+comment le mesurer.</p>
+<p>La méthode combine quatre graphes : le graphe des dépendances,
+extrait de l’export ; l’arbre des dominateurs, qui attribue à chaque
+nœud un volume exclusif ; un graphe des interfaces entre composantes,
+extrait des types puis interprété ; et le graphe des applications
+instanciées, qui suit les objets à travers les termes de preuve. Trois
+résultats en sortent. Des <strong>frontières de lecture</strong>
+collectives : admettre sept grandes composantes masque environ 76 000
+déclarations de plus que l’union de leurs sous-arbres dominés, et la
+fermeture encore accessible compte 45,7 % des déclarations. La
+<strong>provenance des arguments</strong> : le graphe des applications
+identifie une même donnée d’accouplement (<code>DivData.Bk</code>) au
+point où intégralité, hauteur et rang sont requis, et rattache les onze
+hypothèses du théorème de comptabilité de la preuve à leurs interfaces.
+Une <strong>analyse des clauses inertes</strong> : 5 729 théorèmes
+livrent au moins une conclusion qu’aucun consommateur ne lit. Selon
+notre sélection de composantes, le mécanisme propre pèse moins de 0,5 %
+de la fermeture, en volume exclusif. Une échelle de validation dit, nœud
+par nœud, ce qui est lu, interprété ou reconstruit ; trois études de cas
+montrent comment le graphe réfute une lecture, ou comment un
+contre-exemple oriente sa lecture. Nous distinguons enfin branches
+mortes, portées et remplaçables, et nous comparons la preuve à sa
+réécriture courte. Le contenu mathématique est exposé dans un texte
+compagnon.</p>
+</div>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction-lire-une-preuve-quon-ne-peut-pas-lire"
+id="toc-introduction-lire-une-preuve-quon-ne-peut-pas-lire">1.
+Introduction : lire une preuve qu’on ne peut pas lire</a></li>
+<li><a href="#lobjet-en-deux-pages" id="toc-lobjet-en-deux-pages">2.
+L’objet en deux pages</a></li>
+<li><a href="#quatre-graphes" id="toc-quatre-graphes">3. Quatre
+graphes</a></li>
+<li><a href="#mesurer" id="toc-mesurer">4. Mesurer</a></li>
+<li><a href="#une-traversée-guidée" id="toc-une-traversée-guidée">5. Une
+traversée guidée</a></li>
+<li><a href="#frontières-de-lecture" id="toc-frontières-de-lecture">6.
+Frontières de lecture</a></li>
+<li><a href="#valider-une-lecture" id="toc-valider-une-lecture">7.
+Valider une lecture</a></li>
+<li><a href="#branches-mortes-portées-remplaçables"
+id="toc-branches-mortes-portées-remplaçables">8. Branches mortes,
+portées, remplaçables</a></li>
+<li><a href="#discussion" id="toc-discussion">9. Discussion</a></li>
+<li><a href="#annexe.-reproductibilité"
+id="toc-annexe.-reproductibilité">Annexe. Reproductibilité</a></li>
+<li><a href="#outils-et-déclaration-dusage-de-lia"
+id="toc-outils-et-déclaration-dusage-de-lia">Outils et déclaration
+d’usage de l’IA</a></li>
+<li><a href="#références" id="toc-références">Références</a></li>
+</ul>
+</nav>
+<p><em>English version: translation of version 1.3 in preparation. Texte
+compagnon, consacré au contenu mathématique : <a
+href="synthese.html">synthèse</a>. Outils : <a href="tools/">tools/</a>.
+Le rôle de chacun est précisé dans la déclaration d’usage de l’IA, en
+fin d’article.</em></p>
+<blockquote>
+<p><strong>Statut des énoncés.</strong> La validité formelle n’est pas
+en cause : compilation complète, axiomes standard (<code>propext</code>,
+<code>Classical.choice</code>, <code>Quot.sound</code>), rejeu par
+plusieurs noyaux indépendants (Sutherland [Su], Rubinstein [R], état au
+23/11/2026). Ce texte cherche à <strong>comprendre</strong>. On y
+distingue trois statuts :</p>
+<ul>
+<li>les <strong>énoncés de l’export</strong>, cités par leur nom Lean
+(<code>ainsi</code>) et lus avec les outils de <a
+href="tools/">tools/</a> ; ils sont parfois transcrits en notation
+mathématique, en abrégeant les arguments implicites ;</li>
+<li>les <strong>mesures</strong>, calculées sur le graphe extrait, avec
+leurs conventions ;</li>
+<li>les <strong>interprétations</strong>, marquées ⟦I⟧.</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="introduction-lire-une-preuve-quon-ne-peut-pas-lire">1.
+Introduction : lire une preuve qu’on ne peut pas lire</h2>
+<p>Depuis Riemann, on sait que les nombres premiers sont gouvernés par
+les zéros de la fonction ζ. L’hypothèse de Riemann fixe à <span
+class="math inline">\(\tfrac12\)</span> l’exposant de ces oscillations :
+le terme d’erreur du théorème des nombres premiers est <span
+class="math inline">\(O(x^{1/2+\varepsilon})\)</span>, et aucun exposant
+plus petit n’est possible. En novembre 2026, L. Alpöge a annoncé une
+preuve de cette hypothèse, étendue aux fonctions L de Dirichlet, sous la
+forme d’un développement Lean de dix-sept millions de lignes, produit
+avec un agent d’IA et accompagné d’une note de quelques pages [A]. En
+quelques jours, la communauté l’a recompilé, a vérifié que seuls les
+trois axiomes standard sont utilisés, et l’a rejoué dans plusieurs
+noyaux indépendants [Su, R, Li].</p>
+<p>Ces vérifications établissent la validité. Elles ne disent rien de la
+compréhension, qui progresse depuis par des lectures partielles et des
+réécritures (§ 9.3). Comme le note Lipponen [Li], une recompilation «
+n’établirait pas que quelqu’un comprend l’argument ». Une preuve
+formelle de cette taille ne se lit pas ligne à ligne ; elle n’a pas été
+écrite pour être lue. Elle se laisse pourtant interroger, à condition de
+la regarder comme ce qu’elle est : un <strong>graphe</strong>. Chaque
+déclaration, définition ou théorème, dépend d’autres déclarations, par
+son énoncé et par sa preuve. Le théorème final est une racine, et l’on
+peut calculer exactement tout ce dont il dépend.</p>
+<p>La question de cet article est donc méthodologique : <strong>que
+peut-on comprendre d’une preuve formelle produite avec l’aide d’un agent
+d’IA, à une échelle qui excède la lecture humaine ordinaire, et comment
+mesurer ce que l’on a compris ?</strong> Notre réponse est qu’un graphe
+de dépendances devient un instrument de lecture si l’on sépare
+soigneusement ce qui s’y <strong>calcule</strong> (des fermetures, des
+dominateurs, des volumes, des frontières) de ce qui s’y
+<strong>interprète</strong> (le sens mathématique d’une interface, le
+rôle d’un nœud). La preuve d’Alpöge sert d’étude de cas. Son contenu
+mathématique est exposé dans un texte compagnon, la <a
+href="synthese.html">synthèse</a>, organisée par questions ; nous y
+renvoyons pour tous les calculs et modèles.</p>
+<p><strong>Contributions.</strong></p>
+<ol type="1">
+<li><strong>L’arbre des dominateurs comme outil de lecture.</strong> Il
+attribue à chaque nœud un volume exclusif, mesuré selon trois
+pondérations, et localise le mécanisme : moins de 0,5 % de la fermeture
+(§§ 3–4).</li>
+<li><strong>Un graphe des interfaces</strong>, extrait automatiquement
+des types des prédicats de contrat de la preuve, puis regroupé et
+traduit à la main. Il montre comment les grandes composantes
+communiquent (§§ 3, 5).</li>
+<li><strong>Des frontières de lecture.</strong> Nous définissons la zone
+qui reste accessible quand on admet des théorèmes, en gardant leurs
+énoncés, et nous la mesurons. L’abstraction simultanée de plusieurs
+composantes masque un volume que les poids individuels ne voient pas, et
+ce qui reste est l’infrastructure des objets (§ 6).</li>
+<li><strong>Une échelle de validation</strong>, qui dit, nœud par nœud,
+ce qui est lu, interprété ou reconstruit, et une étude de cas où le
+graphe, joint à un contre-exemple, réfute une lecture (§ 7).</li>
+<li><strong>Une taxonomie des branches</strong> non exploitées, mortes,
+portées ou remplaçables, avec les critères qui permettent de les établir
+(§ 8).</li>
+<li><strong>Un graphe des applications instanciées</strong>, extrait des
+termes de preuve, qui dit à quels objets les théorèmes sont appliqués et
+d’où viennent leurs arguments. Il permet de vérifier des raccords que la
+lecture des énoncés laisse ouverts (§§ 3.4, 5).</li>
+</ol>
+<p>Le § 2 présente l’objet en deux pages. Le § 3 décrit les graphes, le
+§ 4 les mesures. Le § 5 parcourt la preuve en huit arrêts. Les §§ 6 à 8
+présentent les résultats méthodologiques, et le § 9 discute leurs
+limites. L’annexe dit comment tout reproduire.</p>
+<hr />
+<h2 id="lobjet-en-deux-pages">2. L’objet en deux pages</h2>
+<h3 id="lénoncé">2.1 L’énoncé</h3>
+<p>Le module <code>Main</code> contient cinq énoncés :
+<code>riemannHypothesis</code>, de type <code>RiemannHypothesis</code>
+(la définition de Mathlib), et quatre énoncés sur les fonctions L de
+Dirichlet. Tous descendent d’un seul nœud :</p>
+<pre><code>allChi : EveryCharacter
+EveryCharacter := ∀ N [NeZero N] (χ : DirichletCharacter ℂ N) (s : ℂ),
+                    1/2 &lt; re s → (χ ≠ 1 ∨ s ≠ 1) → LFunction χ s ≠ 0</code></pre>
+<p>Pour tout caractère de Dirichlet χ et tout <span
+class="math inline">\(s\)</span> de partie réelle <span
+class="math inline">\(&gt;\tfrac12\)</span>, <span
+class="math inline">\(L(\chi,s)\ne0\)</span>, hors du pôle <span
+class="math inline">\(s=1\)</span> du caractère principal.
+<code>LFunction</code> et <code>DirichletCharacter</code> sont celles de
+Mathlib : l’énoncé ne dépend d’aucune définition du projet, ce qui le
+rend vérifiable indépendamment du reste. Le théorème couvre donc GRH
+pour les fonctions L de Dirichlet, RH, et RH pour les fonctions zêta de
+Dedekind des corps abéliens ; il ne couvre ni les corps non abéliens, ni
+les fonctions L automorphes générales.</p>
+<h3 id="largument-en-un-paragraphe">2.2 L’argument en un paragraphe</h3>
+<p>Une analyse classique ramène GRH à une <strong>majoration
+unilatérale</strong> : une somme de <span class="math inline">\(\log
+p\)</span> à coefficients positifs, lissée par le poids de Riesz et dont
+on a retranché le terme principal, doit être au plus <span
+class="math inline">\(x^{1/2+O(\varepsilon)}\)</span> sur une suite de
+fenêtres d’échelles (Landau en fenêtres ; synthèse, § 1). Pour majorer
+une somme de premiers, la preuve suit Tchebychev : un objet arithmétique
+très divisible, dont la taille se calcule sans les premiers, fournit par
+la formule du produit une inégalité « premiers ≤ taille » (synthèse, §
+2). L’objet est un réseau de périodes de formes automorphes. La
+divisibilité vient de dérivées de séries thêta en des points à
+multiplication complexe, qui garantissent, en chaque premier inerte, une
+valuation <span class="math inline">\(a\,p/(p^2-1)-O(\log a)\)</span>
+(le Théorème A ; synthèse, § 3). Produire ces gains ne suffit pas : il
+faut encore les répartir sur assez de directions et les préserver le
+long des orbites de Frobenius (synthèse, §§ 3.5 et 7). Comme chez
+Stepanov pour les courbes sur les corps finis, ces couches de
+divisibilité s’empilent, ici le long d’une chaîne de <span
+class="math inline">\(m\approx\sqrt x\)</span> relèvements thêta dont
+les valuations s’additionnent (synthèse, § 4). La divisibilité devient
+une montée de pente d’un réseau, que plafonne une inégalité de pentes de
+Bost ; les tailles archimédiennes sont <strong>calculées</strong>
+(Stirling, une formule de Chowla–Selberg démontrée dans le projet, des
+masses de Siegel, une quasi-orthogonalité) : identités pour certaines,
+bornes à erreur contrôlée pour d’autres. Le terme principal se compense
+alors dans un théorème de comptabilité (synthèse, §§ 5 et 6.2). Il reste
+une erreur de la forme <span class="math inline">\(x/m+m\)</span>,
+minimale en <span class="math inline">\(m\asymp\sqrt x\)</span> : d’où
+l’exposant ½ (synthèse, § 6). Les grandes théories du projet servent à
+rendre la division des réseaux possible et les objets constructibles
+(synthèse, § 7).</p>
+<h3 id="une-architecture-abstraite-puis-instanciée">2.3 Une architecture
+« abstraite puis instanciée »</h3>
+<p>Ce qui rend la lecture possible est une propriété d’architecture.
+Sous <code>allChi</code>, on rencontre une suite de théorèmes de la
+forme « hypothèses ⇒ <code>EveryCharacter</code> » :</p>
+<pre><code>everyCharacter_of_row : Row0b (… IsRecT …) → EveryCharacter
+every_character_of_literature_of_vWin : OpenLiteratureStatements → VWin → EveryCharacter
+every_character_of_theta_integrals_local_matching :
+   UnitaryGroupThirdPlaceHypotheses → ThetaLocalInputs → ThetaIntegralsAgree → LocalMatching
+   → CovolumeBoundOfX → RecTExists → VWin → EveryCharacter</code></pre>
+<p>Le dernier, le <strong>cœur automorphe</strong>, domine 41,5 % de la
+fermeture. Le mécanisme y est écrit sous hypothèses, et les grandes
+théories sont injectées tout en haut comme arguments. L’index inverse le
+confirme : chacune n’a qu’<strong>un seul référent direct</strong>.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Théorie</th>
+<th>Nœud</th>
+<th style="text-align: center;">Référents directs</th>
+<th>Consommateur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tate–Shafarevich</td>
+<td><code>vwin_of_row</code></td>
+<td style="text-align: center;">1</td>
+<td><code>everyCharacter_of_row</code></td>
+</tr>
+<tr>
+<td>Représentations galoisiennes</td>
+<td><code>galoisLocalGlobalStrong_recParameter</code></td>
+<td style="text-align: center;">1</td>
+<td><code>everyCharacter</code></td>
+</tr>
+<tr>
+<td>Covolume</td>
+<td><code>topCovolSlim2_use_alt_alt</code></td>
+<td style="text-align: center;">1</td>
+<td><code>every_character_of_literature_of_vWin</code></td>
+</tr>
+<tr>
+<td>Théorème S</td>
+<td><code>CarrierGap.offDiag</code></td>
+<td style="text-align: center;">1</td>
+<td><code>LocalRows.at_choice_alt</code></td>
+</tr>
+<tr>
+<td>Masses de Siegel</td>
+<td><code>large_unramified_exponent_bundles_exist_alt</code></td>
+<td style="text-align: center;">1</td>
+<td><code>hypotheses_nonempty_of_unramified_exponents_alt</code></td>
+</tr>
+<tr>
+<td>Langlands local</td>
+<td><code>recTExists</code></td>
+<td style="text-align: center;">25</td>
+<td>galoisien, borne de Ш…</td>
+</tr>
+</tbody>
+</table>
+<p>La correspondance de Langlands locale, partielle (démontrée en
+profondeur zéro, arbitraire ailleurs), fait exception : elle est
+interrogée directement en 25 points. Cette structure explique pourquoi
+le mécanisme est léger dans l’arbre des dominateurs, et pourquoi on peut
+le lire sans lire les théories.</p>
+<figure>
+<img src="fig/schema_sommet.svg" style="width:88.0%"
+alt="Le sommet du graphe de la preuve. Les flèches sont des dépendances directes, d’un énoncé vers ce dont il dépend. En jaune, la chaîne principale ; en vert, les grandes théories, chacune injectée par un unique référent ; en pointillés, les 24 autres référents de recTExists ; en tirets rouges, l’échafaudage « littérature », hors de la fermeture (§ 5.1)." />
+<figcaption aria-hidden="true">Le sommet du graphe de la preuve. Les
+flèches sont des dépendances directes, d’un énoncé vers ce dont il
+dépend. En jaune, la chaîne principale ; en vert, les grandes théories,
+chacune injectée par un unique référent ; en pointillés, les 24 autres
+référents de <code>recTExists</code> ; en tirets rouges, l’échafaudage «
+littérature », hors de la fermeture (§ 5.1).</figcaption>
+</figure>
+<hr />
+<h2 id="quatre-graphes">3. Quatre graphes</h2>
+<p>La méthode distingue quatre graphes de nature différente : le premier
+est <strong>extrait</strong>, le deuxième est <strong>calculé</strong>,
+le troisième est <strong>interprété</strong>, le quatrième <strong>suit
+les objets</strong> dans les termes de preuve.</p>
+<h3 id="le-graphe-des-dépendances">3.1 Le graphe des dépendances</h3>
+<p>Ses sommets sont les déclarations de l’export. Une arête va de <span
+class="math inline">\(d\)</span> à <span
+class="math inline">\(c\)</span> si la constante <span
+class="math inline">\(c\)</span> apparaît dans le type
+<strong>ou</strong> dans la valeur de <span
+class="math inline">\(d\)</span> : énoncé, corps de définition ou terme
+de preuve. Les constructeurs, récurseurs et projections d’un inductif
+sont rattachés à leur inductif. Le graphe est extrait en une passe sur
+l’export NDJSON publié par Sutherland [Su] (62 Go décompressés), lu en
+flux sans être décompressé sur disque, par un programme C
+(<code>deps.c</code>) qui persiste le DAG des expressions.</p>
+<p>Deux propriétés de ce graphe commandent toute la suite. Il
+<strong>sur-approxime</strong> l’usage : une constante citée dans un
+terme de preuve compte comme dépendance, même si son rôle est
+accessoire. Et il est <strong>exact</strong> sur ce qu’il affirme : une
+absence de dépendance, établie sur l’export, vaut pour cet artefact et
+cette convention, alors qu’une recherche textuelle dans le source la
+manque facilement (§ 5.1).</p>
+<p><strong>Un exemple réel.</strong> Le théorème
+<code>Deduction.ch_balance</code>, dont l’énoncé tient en une ligne
+(<span
+class="math inline">\(\mathrm{ASK}-\mathrm{MAIN}=\mathrm{De}\)</span>, §
+5.3), dépend directement de 338 constantes : 24 du projet, et 314 de
+Lean et de Mathlib, en grande partie des structures et des instances
+algébriques. Sa fermeture compte 34 253 déclarations, dont 66 seulement
+lui appartiennent en propre. Vers le haut, il n’a qu’un utilisateur, qui
+n’en a qu’un, et ainsi de suite : treize liens à référent unique le
+relient à <code>allChi</code>. C’est, à l’échelle d’un seul nœud, la
+signature de l’architecture « abstraite puis instanciée » du § 2.3.</p>
+<figure>
+<img src="fig/schema_dependances.svg"
+alt="Un extrait réel du graphe des dépendances, autour de ch_balance. En bas, ses 338 dépendances directes, regroupées ; en haut, la chaîne de ses utilisateurs jusqu’à allChi, dont chaque maillon n’a qu’un référent (les tirets abrègent plusieurs liens). Sorties de query.py deps, query.py cl et revindex.py up." />
+<figcaption aria-hidden="true">Un extrait réel du graphe des
+dépendances, autour de <code>ch_balance</code>. En bas, ses 338
+dépendances directes, regroupées ; en haut, la chaîne de ses
+utilisateurs jusqu’à <code>allChi</code>, dont chaque maillon n’a qu’un
+référent (les tirets abrègent plusieurs liens). Sorties de
+<code>query.py deps</code>, <code>query.py cl</code> et
+<code>revindex.py up</code>.</figcaption>
+</figure>
+<h3 id="larbre-des-dominateurs">3.2 L’arbre des dominateurs</h3>
+<p>Fixons une racine <span class="math inline">\(r\)</span>. Un sommet
+<span class="math inline">\(u\)</span> <strong>domine</strong> <span
+class="math inline">\(v\)</span> si tout chemin dirigé de <span
+class="math inline">\(r\)</span> à <span
+class="math inline">\(v\)</span> passe par <span
+class="math inline">\(u\)</span>. Les dominateurs de <span
+class="math inline">\(v\)</span> forment une chaîne ; le plus proche est
+son <strong>dominateur immédiat</strong>, et ces liens forment un arbre,
+calculé ici par l’algorithme de Cooper, Harvey et Kennedy [CHK]. Le
+<strong>poids dominé</strong> de <span class="math inline">\(u\)</span>
+est le poids de son sous-arbre : ce qui disparaîtrait de la fermeture si
+l’on retirait <span class="math inline">\(u\)</span>. Nous prenons pour
+racine un sommet virtuel relié aux cinq énoncés de
+<code>Main</code>.</p>
+<figure>
+<img src="fig/trois_graphes.svg"
+alt="Les trois graphes. À gauche, un graphe de dépendances (les flèches vont d’un énoncé vers ce dont il dépend) ; au centre, son arbre des dominateurs ; à droite, un schéma d’interfaces, qui n’est pas un sous-graphe extrait de Lean. Le nœud D, partagé par A et B, est rattaché à T." />
+<figcaption aria-hidden="true">Les trois graphes. À gauche, un graphe de
+dépendances (les flèches vont d’un énoncé vers ce dont il dépend) ; au
+centre, son arbre des dominateurs ; à droite, un schéma d’interfaces,
+qui n’est pas un sous-graphe extrait de Lean. Le nœud D, partagé par A
+et B, est rattaché à T.</figcaption>
+</figure>
+<p>L’arbre n’est pas un arbre couvrant du graphe : une arête de l’arbre
+n’est pas nécessairement une dépendance directe. Sur l’exemple de la
+figure, A domine C et B domine E, mais ni A ni B ne domine D, qui est
+partagé. D’où quatre précautions de lecture :</p>
+<ul>
+<li>un théorème central partagé par plusieurs branches a un poids dominé
+faible, car il est rattaché plus haut ;</li>
+<li>une longue formalisation peut être conceptuellement simple, et une
+déclaration très courte peut porter l’idée décisive ;</li>
+<li>deux sous-arbres sont emboîtés ou disjoints : on additionne des
+poids disjoints, jamais des poids emboîtés ;</li>
+<li>une dépendance ne dit rien, à elle seule, de la fonction d’un nœud
+dans le raisonnement.</li>
+</ul>
+<p><strong>Sur la preuve réelle.</strong> La figure suivante montre le
+haut de l’arbre des dominateurs. On y lit l’<strong>épine
+dorsale</strong> : chaque nœud de la chaîne principale domine la suite,
+du cœur automorphe (41,5 %) à la fabrication (35,8 %), puis, sous elle,
+à la construction qui livre les masses de Siegel (6,8 %). Les grandes
+théories apparaissent comme des frères de l’épine, chacune avec son
+volume exclusif. La correspondance de Langlands locale n’y figure pas :
+partagée par 25 référents, elle est rattachée au-dessus d’eux, et son
+poids dominé n’est que de 0,05 % (première précaution). Comparé au
+schéma du sommet (§ 2.3), l’arbre ne garde qu’une arête par nœud, et ce
+n’est pas toujours une dépendance directe.</p>
+<figure>
+<img src="fig/schema_dominateurs.svg" style="width:80.0%"
+alt="Le haut de l’arbre des dominateurs réel. Une arête relie un nœud à son dominateur immédiat ; le pourcentage est le poids dominé, en lignes de l’export (analysis/decl_spine.txt). En jaune, l’épine dorsale ; en vert, les grandes théories. Les sous-arbres sont emboîtés : le poids d’un parent contient ceux de ses enfants." />
+<figcaption aria-hidden="true">Le haut de l’arbre des dominateurs réel.
+Une arête relie un nœud à son dominateur immédiat ; le pourcentage est
+le poids dominé, en lignes de l’export
+(<code>analysis/decl_spine.txt</code>). En jaune, l’épine dorsale ; en
+vert, les grandes théories. Les sous-arbres sont emboîtés : le poids
+d’un parent contient ceux de ses enfants.</figcaption>
+</figure>
+<h3 id="le-graphe-des-interfaces">3.3 Le graphe des interfaces</h3>
+<p>La preuve contient un module, <code>Formalism.MainNotions</code>, qui
+définit 207 prédicats à valeur dans <code>Prop</code>
+(<code>LinkG_at</code>, <code>LinkDIV_at</code>, <code>LinkN</code>,
+<code>Count_at</code>, <code>ChainTied</code>…). Ils servent de
+<strong>contrats</strong> entre les grandes composantes. Pour chaque
+théorème de l’export, <code>interfaces.py</code> relève automatiquement,
+dans son type, les prédicats qu’il prend en hypothèse et ceux qu’il
+conclut : on obtient 390 arêtes. <code>organes.py</code> dit ensuite,
+par l’index inverse, quels producteurs d’interfaces chaque composante
+utilise transitivement, et où chaque grande théorie est consommée.</p>
+<p>Trois étapes restent <strong>humaines</strong> : le choix de la
+famille de prédicats (par défaut, ceux de <code>MainNotions</code>) ; le
+regroupement des théorèmes en composantes nommées (« hôte », « division
+»…) ; et surtout la lecture de chaque énoncé, sa traduction mathématique
+et l’explication de son rôle. Ce troisième graphe n’est pas fourni par
+Lean.</p>
+<p><strong>Un extrait réel.</strong> La figure suivante montre le
+voisinage de <code>linkCore</code> dans ce graphe, tel que
+<code>interfaces.py</code> l’extrait. On le lit comme un graphe biparti
+: les ellipses sont des interfaces, les boîtes des théorèmes qui en
+consomment certaines et en produisent d’autres. <code>linkCore</code>
+est un <strong>nœud d’inférence</strong> à quatorze entrées. On y voit
+par exemple que la quasi-orthogonalité (<code>LinkS</code>) n’atteint
+l’inégalité de pentes (<code>FrameF</code>) qu’à travers
+<code>frameRealF_of''</code>, qui demande aussi la division
+(<code>LinkDIV</code>) et l’irréductibilité (<code>LinkIRR</code>), et
+que les gains (<code>LinkG</code>) alimentent deux interfaces
+distinctes, la majoration des premiers (<code>LossFS</code>) et la
+montée de pente (<code>SlopesNF</code>). Le graphe complet, avec les
+organes et les plaques tournantes, est au § 5.4.</p>
+<figure>
+<img src="fig/schema_interfaces.svg"
+alt="Le voisinage de linkCore dans le graphe des interfaces, extrait de analysis/interfaces.tsv. Ellipses : interfaces (prédicats de MainNotions) ; boîtes : théorèmes qui consomment et produisent des interfaces, avec leur poids dominé en lignes. Quatre entrées de linkCore (NodesF, ChosenTT, ChosenQD, ChosenThin) et quelques entrées secondaires des théorèmes sont omises." />
+<figcaption aria-hidden="true">Le voisinage de <code>linkCore</code>
+dans le graphe des interfaces, extrait de
+<code>analysis/interfaces.tsv</code>. Ellipses : interfaces (prédicats
+de <code>MainNotions</code>) ; boîtes : théorèmes qui consomment et
+produisent des interfaces, avec leur poids dominé en lignes. Quatre
+entrées de <code>linkCore</code> (<code>NodesF</code>,
+<code>ChosenTT</code>, <code>ChosenQD</code>, <code>ChosenThin</code>)
+et quelques entrées secondaires des théorèmes sont omises.</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Objet</th>
+<th>Mode d’obtention</th>
+<th>Ce qu’il apporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graphe des dépendances</td>
+<td>extraction (<code>deps.c</code>)</td>
+<td>les constantes que chaque déclaration référence</td>
+</tr>
+<tr>
+<td>Arbre des dominateurs</td>
+<td>calcul (<code>analyse_export.py</code>)</td>
+<td>un volume exclusif par nœud</td>
+</tr>
+<tr>
+<td>Graphe des interfaces</td>
+<td>extraction des prédicats (<code>interfaces.py</code>,
+<code>organes.py</code>), puis lecture humaine</td>
+<td>la nature des informations échangées entre composantes</td>
+</tr>
+<tr>
+<td>Graphe des applications instanciées (§ 3.4)</td>
+<td>extraction dans les termes de preuve (<code>trace_app.py</code>),
+sans vérification de convertibilité</td>
+<td>les objets auxquels les théorèmes sont appliqués, et la provenance
+de leurs arguments</td>
+</tr>
+</tbody>
+</table>
+<h3 id="le-graphe-des-applications-instanciées">3.4 Le graphe des
+applications instanciées</h3>
+<p>Les trois graphes précédents disent quels résultats interviennent, et
+quelles propriétés passent d’une composante à l’autre. Ils ne disent pas
+<strong>à quoi</strong> les théorèmes sont appliqués. Prenons trois
+théorèmes <span class="math inline">\(T_1:\forall x,\,A(x)\Rightarrow
+B(x)\)</span>, <span class="math inline">\(T_2:\forall
+x,\,B(x)\Rightarrow C(x)\)</span>, <span
+class="math inline">\(T_3:\forall x,\,C(x)\Rightarrow D(x)\)</span>, et
+la preuve <code>final x h := T3 x (T2 x (T1 x h))</code>. Le graphe des
+dépendances retient que <code>final</code> dépend de <span
+class="math inline">\(T_1\)</span>, <span
+class="math inline">\(T_2\)</span> et <span
+class="math inline">\(T_3\)</span>. Le terme de preuve dit en outre que
+les trois sont appliqués <strong>au même objet</strong> <span
+class="math inline">\(x\)</span>, et que chaque conclusion devient la
+prémisse suivante. Dans une preuve où des propriétés différentes doivent
+porter sur les mêmes objets, c’est cette information qui fait le
+raccord.</p>
+<p>Le quatrième graphe la restitue. Ses nœuds sont les occurrences
+d’application d’un théorème ou d’un constructeur dans un terme de
+preuve. Chacune a plusieurs entrées : ses arguments, alignés sur le
+télescope du théorème appelé. Chaque argument a une
+<strong>provenance</strong> : variable introduite par un lieur,
+définition locale (<code>let</code>, <code>have</code>) produite par une
+autre occurrence, projection d’une structure, ou résultat d’une autre
+occurrence. Le script <code>trace_app.py</code> l’extrait du DAG
+d’expressions déjà construit, sans nouvelle passe sur l’export. Il suit
+la pile des lieurs, pour ne pas confondre un même sous-terme partagé
+dans deux contextes ; il traite les <code>have</code> comme des
+définitions locales ; il garde visibles les transports par égalité ; et
+il affiche les types attendus des arguments, instanciés par
+substitution. Un mode de <strong>tranchage arrière</strong>
+(<code>--slice</code>, <em>backward slicing</em>) remonte la provenance
+d’un seul argument d’une application, de proche en proche, jusqu’aux
+lieurs de la déclaration. Il ne vérifie pas la convertibilité : deux
+termes sont reconnus identiques s’ils sont le même nœud du DAG (l’export
+partage les sous-termes clos syntaxiquement égaux) ou, par construction,
+le même champ d’une structure.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Représentation</th>
+<th>Unité</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dépendances</td>
+<td>déclaration</td>
+<td>quels résultats sont référencés ?</td>
+</tr>
+<tr>
+<td>dominateurs</td>
+<td>sous-arbre dominé</td>
+<td>quel volume ne sert qu’à ce nœud ?</td>
+</tr>
+<tr>
+<td>interfaces</td>
+<td>prédicat de contrat</td>
+<td>quelles propriétés passent entre composantes ?</td>
+</tr>
+<tr>
+<td>applications instanciées</td>
+<td>occurrence d’application</td>
+<td>à quels objets, avec quelles preuves ?</td>
+</tr>
+</tbody>
+</table>
+<p>Un premier exemple montre ce qu’apporte ce niveau. Au sommet (§ 5.1),
+la structure <code>OpenLiteratureStatements</code> est construite
+anonymement. Le graphe des applications donne ses champs :
+<code>caraianiLocalGlobalDual := h</code>,
+<code>localLanglandsExists := recTExists</code>,
+<code>galoisRepOfPolarizedPairLit := h</code>. <strong>La même preuve
+<code>h</code>, la ligne galoisienne, remplit deux champs « littérature
+».</strong> Les résultats obtenus sur sept raccords sont rapportés au §
+5 et consignés dans <code>analysis/raccords.md</code>.</p>
+<hr />
+<h2 id="mesurer">4. Mesurer</h2>
+<h3 id="données-et-racines">4.1 Données et racines</h3>
+<p>L’export contient 1 468 418 déclarations et 1 065 214 335
+enregistrements d’expressions, pour 1 080 769 508 lignes (Lean v4.33.1,
+Mathlib <code>0df444a3</code>). Une déclaration y regroupe un bloc
+inductif avec ses constructeurs et récurseurs ; l’environnement Lean,
+qui les compte séparément, contient 1 484 733 constantes utilisées sur 2
+701 132. Nous travaillons dans le premier univers. La fermeture de
+<code>riemannHypothesis</code> compte 1 468 390 déclarations ; l’union
+des fermetures des cinq énoncés de <code>Main</code>, 1 468 414. Quatre
+déclarations de l’export (<code>Nat.lor</code>, <code>Nat.xor</code>,
+<code>String.mk</code> et une preuve auxiliaire) n’appartiennent à
+aucune. L’union est le dénominateur de tous les pourcentages.
+<code>allChi</code> domine à lui seul 96 % des déclarations.</p>
+<h3 id="trois-pondérations">4.2 Trois pondérations</h3>
+<p>Le poids d’une déclaration se mesure de trois façons : 1 par
+déclaration ; le nombre d’enregistrements d’expressions qu’elle
+introduit dans l’export (les « lignes », partagées dans tout l’export et
+attribuées à leur premier usage) ; ou le nombre de nœuds distincts de
+son type et de sa valeur (partage compté à l’intérieur de la déclaration
+seulement).</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Composante (nœud dominant)</th>
+<th style="text-align: right;">décl.</th>
+<th style="text-align: right;">lignes</th>
+<th style="text-align: right;">nœuds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allChi</code></td>
+<td style="text-align: right;">96,0 %</td>
+<td style="text-align: right;">99,3 %</td>
+<td style="text-align: right;">99,4 %</td>
+</tr>
+<tr>
+<td>cœur automorphe
+(<code>every_character_of_theta_integrals_local_matching</code>)</td>
+<td style="text-align: right;">37,0 %</td>
+<td style="text-align: right;">41,5 %</td>
+<td style="text-align: right;">43,4 %</td>
+</tr>
+<tr>
+<td>fabrication
+(<code>nonempty_hyps_definite_side_of_closed_bound</code>)</td>
+<td style="text-align: right;">30,8 %</td>
+<td style="text-align: right;">35,8 %</td>
+<td style="text-align: right;">38,0 %</td>
+</tr>
+<tr>
+<td>Tate–Shafarevich (<code>vwin_of_row</code>)</td>
+<td style="text-align: right;">6,3 %</td>
+<td style="text-align: right;">8,2 %</td>
+<td style="text-align: right;">8,1 %</td>
+</tr>
+<tr>
+<td>représentations galoisiennes
+(<code>galoisLocalGlobalStrong_recParameter</code>)</td>
+<td style="text-align: right;">6,5 %</td>
+<td style="text-align: right;">6,3 %</td>
+<td style="text-align: right;">6,0 %</td>
+</tr>
+<tr>
+<td>covolume (<code>topCovolSlim2_use_alt_alt</code>)</td>
+<td style="text-align: right;">5,5 %</td>
+<td style="text-align: right;">7,1 %</td>
+<td style="text-align: right;">7,0 %</td>
+</tr>
+<tr>
+<td>théorème S (<code>CarrierGap.offDiag</code>)</td>
+<td style="text-align: right;">1,5 %</td>
+<td style="text-align: right;">1,4 %</td>
+<td style="text-align: right;">1,5 %</td>
+</tr>
+<tr>
+<td>Langlands local (<code>recTExists</code>)</td>
+<td style="text-align: right;">0,04 %</td>
+<td style="text-align: right;">0,05 %</td>
+<td style="text-align: right;">0,05 %</td>
+</tr>
+<tr>
+<td><strong>mécanisme</strong> (union de 13 sous-arbres, § 4.3)</td>
+<td style="text-align: right;"><strong>0,28 %</strong></td>
+<td style="text-align: right;"><strong>0,34 %</strong></td>
+<td style="text-align: right;"><strong>0,27 %</strong></td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="fig/poids_trois_mesures.svg"
+alt="Poids dominés des grandes composantes selon les trois mesures. Les composantes sont emboîtées (la fabrication est sous le cœur automorphe) : les barres ne s’additionnent pas." />
+<figcaption aria-hidden="true">Poids dominés des grandes composantes
+selon les trois mesures. Les composantes sont emboîtées (la fabrication
+est sous le cœur automorphe) : les barres ne s’additionnent
+pas.</figcaption>
+</figure>
+<p>La hiérarchie des grandes composantes, et la faible part attribuable
+au mécanisme, sont stables sous les trois mesures. L’ordre exact peut
+changer entre composantes voisines : les représentations galoisiennes
+devancent Tate–Shafarevich en déclarations, pas en lignes ni en nœuds.
+La mesure en lignes dépend de l’ordre de sérialisation de l’export ; ce
+n’est pas une mesure intrinsèque. Sauf mention contraire, les
+pourcentages de cet article sont en lignes.</p>
+<h3 id="ce-que-pèse-le-mécanisme">4.3 Ce que pèse le mécanisme</h3>
+<p>L’affirmation « le mécanisme pèse moins de 0,5 % » demande une
+définition opérationnelle. On part d’une liste explicite de 21 nœuds qui
+portent la réduction analytique, l’hôte, le Théorème A, la chaîne, la
+division et le bilan (<code>analysis/mecanisme.txt</code>). On garde
+ceux qu’aucun autre nœud de la liste ne domine : il en reste 13
+(<code>analysis/mecanisme_maximal.txt</code>), de
+<code>zeroFreeOn_of_tiedWin_cyc</code> à <code>linkCore</code>. Leurs
+sous-arbres sont disjoints, et la somme de leurs poids dominés vaut 0,28
+% des déclarations, 0,34 % des lignes, 0,27 % des nœuds.</p>
+<p>Deux précautions. Le choix de la liste est humain : un seuil de poids
+ne définit pas un mécanisme. Et le nombre mesure ce qui appartient
+<strong>en propre</strong> à ces nœuds, non tout ce qu’il faut savoir
+pour les comprendre : leurs dépendances partagées (Mathlib, les
+structures communes, les grandes théories injectées en hypothèse) sont
+rattachées plus haut. Le § 6 mesure précisément cette différence.</p>
+<h3 id="ce-quun-poids-ne-dit-pas">4.4 Ce qu’un poids ne dit pas</h3>
+<p>Le contraste entre les poids et les rôles est frappant. Le Théorème
+A, qui porte l’idée de la divisibilité, pèse environ 0,02 % ; la
+fabrication des objets, 35,8 %. Une lecture ⟦I⟧ de ce contraste : une
+borne <span class="math inline">\(p\)</span>-adique peut être grossière,
+puisqu’il suffit de minorer des valuations ; une taille archimédienne
+doit être exacte, et une division doit être sûre. Ce sont ces exigences
+d’exactitude et de sûreté qui coûtent. Mais l’inverse serait une erreur
+: un poids faible ne signale pas un nœud secondaire, et un poids fort ne
+signale pas une idée. Le poids localise ; il ne hiérarchise pas les
+idées.</p>
+<hr />
+<h2 id="une-traversée-guidée">5. Une traversée guidée</h2>
+<p>Cette section parcourt la preuve en huit arrêts, du sommet à la
+fabrication. Chaque arrêt suit le même gabarit : la
+<strong>question</strong> mathématique à laquelle le nœud répond ; le
+<strong>nœud</strong>, avec son énoncé lu sur l’export ; ce que le
+<strong>graphe</strong> montre de plus (poids, consommateurs,
+interfaces, chemins) ; ce qui reste <strong>ouvert</strong>. Le contenu
+mathématique est développé dans la synthèse, à laquelle chaque arrêt
+renvoie.</p>
+<h3 id="le-sommet-et-une-leçon-sur-les-constructions-anonymes">5.1 Le
+sommet, et une leçon sur les constructions anonymes</h3>
+<p><em>Question.</em> Le sommet repose-t-il sur des énoncés admis ? Les
+noms le laissent craindre : <code>OpenLiteratureStatements</code>,
+<code>every_character_of_literature_of_vWin</code>, et dans le source un
+échafaudage nommé <code>LitN</code>,
+<code>published_inputs_combined</code>,
+<code>Published.LocalLanglandsGL</code>.</p>
+<p><em>Nœud.</em> Le chemin principal passe par</p>
+<pre><code>everyCharacter_of_row h := every_character_of_literature_of_vWin
+                              ⟨h, Zero.LLC.recTExists, h⟩ (vwin_of_row h)</code></pre>
+<p>La structure <code>OpenLiteratureStatements</code> y est construite
+<strong>anonymement</strong>, par le constructeur <code>⟨…⟩</code>, à
+partir de théorèmes démontrés.</p>
+<p><em>Graphe.</em> Sur l’export, l’échafaudage « littérature » est hors
+de la fermeture des cinq énoncés : aucune de ses déclarations n’est
+atteinte. Aucun énoncé publié n’entre comme axiome. Une recherche
+textuelle dans le source ne permettait pas de le conclure : elle trouve
+les noms, mais rate le constructeur anonyme qui remplit la structure.
+<strong>Toute conclusion négative doit être établie sur le graphe
+extrait</strong>, et c’est la première règle de la méthode.</p>
+<p><em>Ouvert.</em> Rien, à ce niveau. Le sens des hypothèses du cœur
+automorphe est l’objet des arrêts suivants.</p>
+<h3 id="des-zéros-à-une-inégalité-landau-en-fenêtres">5.2 Des zéros à
+une inégalité : Landau en fenêtres</h3>
+<p><em>Question.</em> Pourquoi une majoration d’une somme de premiers
+suffit-elle à exclure les zéros, et pourquoi seulement sur des fenêtres
+? (synthèse, §§ 1.4–1.5).</p>
+<p><em>Nœud.</em></p>
+<pre><code>zeroFreeOn_of_tiedWin_cyc :
+  1 &lt; λ → (∀ ψ, ChebyshevInequalityOnWindows core Tied (Level.cyc ψ))
+        → (∀ ψ, Level.FormB (Level.cyc ψ))
+        → (∀ ψ, ChebyshevInequalityAtWindowScale core Tied λ (Level.cyc ψ))
+        → ZeroFreeOn Q</code></pre>
+<p><code>Level.FormBAt</code> énonce le critère de Landau localisé : si
+<span class="math inline">\(\{y: G_\psi(y)\le y^\theta\}\)</span>
+contient des fenêtres <span class="math inline">\([Y,Y^\lambda]\)</span>
+pour des <span class="math inline">\(Y\)</span> arbitrairement grands,
+aucune des fonctions L du niveau n’a de zéro de partie réelle <span
+class="math inline">\(&gt;\theta\)</span>. La quantité majorée,
+<code>Level.Gm</code>, est une combinaison positive <span
+class="math inline">\(G(y)+\sum_\psi\mathrm{wt}(\psi)\operatorname{Re}g(y,\chi_\psi)\)</span>.
+Sur le chemin principal (<code>Level.cyc</code>), tous les poids
+<code>wt</code> valent <span class="math inline">\(1/(3o+1)\)</span>, et
+ce profil se retrouve dans l’échantillonnage des classes de Frobenius
+par l’hôte (<code>Frame.lam</code> : <span
+class="math inline">\(4/(3o+1)\)</span> pour la classe neutre, <span
+class="math inline">\(3/(3o+1)\)</span> ailleurs, consommé par
+<code>BernoulliSumsFrobeniusOrbits.topsFrame</code>).</p>
+<p><em>Graphe.</em> Toute la réduction analytique pèse moins de 0,1 %.
+Le critère en fenêtres est démontré par <code>Comparison₂.formB</code>
+et <code>Deduction.zeroFree_of_rpow_window</code>, environ 140 000
+lignes pour une centaine de déclarations propres ; on y lit un noyau
+gamma (<code>iteratedDeriv_laplace</code>), une borne de Chernoff
+(<code>landau_tails_chernoff</code>) et un lemme de dichotomie
+(<code>landau_dichotomy</code>). Le nœud demande en retour
+<code>ChebyshevInequalityOnWindows</code>, fourni par
+<code>level_gm_le_on_family_scales</code> (337 déclarations propres) dès
+qu’une famille porte une <code>ChainTied</code> à chaque échelle.</p>
+<p><em>Ouvert.</em> La nouveauté de la forme en fenêtres, que
+Slijepčević souligne [S], et la possibilité de la remplacer par un
+théorème d’oscillation classique [H]. C’est un premier candidat de
+court-circuit (§ 8).</p>
+<h3 id="une-identité-exacte-ch_balance">5.3 Une identité exacte :
+<code>ch_balance</code></h3>
+<p><em>Question.</em> Qu’est-ce que la chaîne compare exactement à son
+terme principal ? (synthèse, partie II, « Cinq points éclaircis »).</p>
+<p><em>Nœud.</em> Le cœur de <code>ChainTied</code> est une quantité
+<code>gapA</code>, somme sur des colonnes <span
+class="math inline">\(t\)</span> et sur <span
+class="math inline">\(m\)</span> étages <span
+class="math inline">\(j\)</span> de différences <span
+class="math inline">\(\mathrm{ASK}-\mathrm{MAIN}\)</span> :</p>
+<pre><code>MAIN(a, w) = a · ( log a − 1 − γ + ℓ(χ) − (1/|Φ|) Σ_{ρ∈Φ} log w(ρ) )</code></pre>
+<p><code>ASK</code> est une somme de von Mangoldt sur les premiers
+inertes d’un corps auxiliaire, l’<strong>hôte</strong> ;
+<code>MAIN</code> est son terme principal, écrit en toutes lettres. Le
+théorème <code>Deduction.ch_balance</code> établit l’identité <span
+class="math inline">\(\mathrm{ASK}-\mathrm{MAIN}=\mathrm{De}\)</span>,
+où <code>De</code> est une combinaison, par orthogonalité des caractères
+du groupe de Galois de l’hôte, de sommes centrées <span
+class="math inline">\(G_\psi\)</span>.</p>
+<p><em>Graphe.</em> Le voisinage de ce nœud est représenté au § 3.1. Cet
+arrêt illustre aussi le cycle de lecture élémentaire, en quatre
+commandes en bibliothèque standard :</p>
+<pre><code>python3 -I tools/show.py OUT Deduction.ch_balance          # l&#39;énoncé
+python3 -I tools/query.py OUT deps Deduction.ch_balance    # ce qu&#39;il utilise
+python3 -I tools/revindex.py OUT up Deduction.ch_balance   # qui l&#39;utilise, jusqu&#39;à la racine
+python3 -I tools/query.py OUT cl Deduction.ch_balance      # fermeture et poids dominé</code></pre>
+<p>La première donne l’identité. La deuxième montre qu’elle repose sur
+<code>askExp</code> (le développement par orthogonalité) et sur les
+faits de ramification de l’hôte (<code>HostFactsS</code>). La troisième
+la situe sous <code>ch_core</code>, puis <code>core_gm</code>, sur le
+chemin de <code>allChi</code>. La traduction mathématique et
+l’explication du rôle (soustraire exactement le terme principal) restent
+le travail du lecteur.</p>
+<p><em>Raccord.</em> Le passage de <code>De</code> à la majoration de
+<code>Level.Gm</code> est reconstruit à partir du terme de
+<code>core_gm</code>. Une objection naturelle est qu’une somme sur des
+colonnes ne borne qu’une moyenne, non chacun de ses termes. La preuve
+l’évite ainsi. Le lemme <code>gmA_eq</code> établit que la combinaison
+produite par la somme sur les colonnes, pondérée par <span
+class="math inline">\(1/(3o+1)\)</span> sur les caractères « gardés » du
+niveau, est <strong>identiquement</strong> <code>Level.Gm</code> : la
+cible est cette combinaison à coefficients positifs, celle sur laquelle
+Landau opère (§ 5.2). Les caractères parasites, non gardés, sont bornés
+<strong>un par un</strong> (<code>sigA_le</code>, par l’hypothèse
+ponctuelle <code>EAtH.bdG</code> que fournit le choix des paires ;
+synthèse, § 3.4). Et l’échantillonnage des colonnes respecte le profil 4
+: 3 à <span class="math inline">\(x^{-1+\varepsilon}\)</span> près
+(<code>EAtH.shares</code>).</p>
+<h3 id="le-cœur-quatorze-interfaces">5.4 Le cœur : quatorze
+interfaces</h3>
+<p><em>Question.</em> Comment la majoration de <code>gapA</code>
+est-elle obtenue ? (synthèse, §§ 5.4 et 6.2).</p>
+<p><em>Nœud.</em> Sous <code>ChainTied</code>, le graphe passe par un
+théorème de 129 déclarations propres, presque entièrement fait
+d’hypothèses :</p>
+<pre><code>linkCore : CountF ∧ SlopesMF ∧ SlopesNF ∧ LatF ∧ NodesF ∧ FrameF ∧ LossFS ∧ CharF ∧ WinF
+           ∧ ChosenTT ∧ ChosenQD ∧ ChosenThin ∧ LinkIRR ∧ LinkDIV  ⟹  ChainTied</code></pre>
+<p>Ces quatorze hypothèses sont les interfaces de
+<code>MainNotions</code> du § 3.3. Lues ensemble, elles forment un bilan
+de pentes de réseaux hermitiens : la somme de premiers est majorée par
+des gains locaux (<code>LossFS</code>), ceux-ci par une montée de pente
+(<code>SlopesNF</code>), celle-ci par une inégalité de pentes
+(<code>FrameF</code>) dont le second membre est fait de tailles
+archimédiennes (<code>CountF</code>, <code>CharF</code>), dans une
+fenêtre de paramètres (<code>WinF</code>). Le théorème
+<code>Deduction.ch_top</code> en tire le <strong>crochet
+d’erreur</strong> mot pour mot :</p>
+<pre><code>errorBracketSizeWindows x ε n nT nT2 m b k a
+  = nT·a·(1 + m²/k)  +  m·( 2·n·m·b·x^ε  +  nT2·k·b·x^ε / (n·(n·x^(−ε))) ).</code></pre>
+<p>Normalisé, il donne <span
+class="math inline">\(x^{O(\varepsilon)}(x/m+xm/k+m+k/n^2)\)</span>, et
+la fenêtre <code>Win_at</code> (<span
+class="math inline">\(x^{1/2-\varepsilon}\le m\le
+x^{1/2+\varepsilon/2}\)</span>, <span class="math inline">\(xm\le
+k\)</span>) le ramène à <span
+class="math inline">\(x^{1/2+O(\varepsilon)}\)</span>.</p>
+<p><em>Graphe.</em> C’est ici que le graphe des interfaces prend son
+sens. Neuf liens (<code>Link…</code>) dépliés depuis
+<code>HypsAlt</code> alimentent les quatorze interfaces ; deux
+<strong>plaques tournantes</strong>, l’hôte (<code>supplyChi</code>) et
+<code>HypsAlt</code>, redistribuent les grandes théories.</p>
+<figure>
+<img src="fig/interfaces.svg"
+alt="Le graphe des interfaces, lu sur l’export. En vert, les organes ; en jaune, les plaques tournantes (l’hôte et HypsAlt) ; en rose, les liens ; en bleu, les interfaces de linkCore. Une flèche pleine est un usage établi (un théorème qui consomme l’une et produit l’autre, ou un point d’entrée) ; une flèche en tirets passe par une étape intermédiaire non détaillée." />
+<figcaption aria-hidden="true">Le graphe des interfaces, lu sur
+l’export. En vert, les organes ; en jaune, les plaques tournantes
+(l’hôte et <code>HypsAlt</code>) ; en rose, les liens ; en bleu, les
+interfaces de <code>linkCore</code>. Une flèche pleine est un usage
+établi (un théorème qui consomme l’une et produit l’autre, ou un point
+d’entrée) ; une flèche en tirets passe par une étape intermédiaire non
+détaillée.</figcaption>
+</figure>
+<p>Quelques arêtes, lues telles quelles :</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Arête</th>
+<th>Théorème (poids dominé)</th>
+<th>Ce qui passe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LinkS</code> → <code>FrameRealF</code> →
+<code>FrameF</code></td>
+<td><code>frameRealF_of''</code>, <code>frameF_of</code> (231 k
+lignes)</td>
+<td>la quasi-orthogonalité rend l’inégalité de pentes utilisable</td>
+</tr>
+<tr>
+<td><code>LinkG</code> → <code>LossesSmallShares</code> →
+<code>LossFS</code></td>
+<td><code>losses_of_small_share_weight</code> (392 k)</td>
+<td>premiers inertes ≤ gains locaux + perte</td>
+</tr>
+<tr>
+<td><code>LinkG</code>, <code>LinkMu</code> → <code>PlacesF</code> →
+<code>SlopesNF</code></td>
+<td><code>placesF_min'</code> (196 k)</td>
+<td>saut de pente = Σ longueurs locales × log N𝔭</td>
+</tr>
+<tr>
+<td><code>LinkN</code> → <code>DIVinN</code></td>
+<td><code>divinN_of_hypV</code></td>
+<td>la borne sur les places tordues conditionne la division</td>
+</tr>
+<tr>
+<td>Galois → <code>LinkN</code></td>
+<td><code>linkN_of_twGood_galoisPreconditions</code> (24,8 M)</td>
+<td>représentations galoisiennes ⇒ <code>LinkN</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Deux niveaux de contrat.</em> Le graphe des interfaces fournit
+ici un contrat large, à quatorze entrées. Le graphe des applications en
+donne un second, plus proche du raisonnement numérique.
+<code>each_unit_bound_statement</code> démontre
+<code>PointwiseBoundVariant</code>, à onze hypothèses, et
+<code>Deduction.ch_top</code> exploite cette conclusion. L’expérience
+E17 du carnet apparie ces hypothèses aux entrées (A1)–(A7) et (H) du
+ch. 58 de l’exposition de Nelson pour la route d’origine [Ne0]. Elle les
+rattache aussi à leurs interfaces, en suivant dans la valeur de
+<code>linkCore</code> la preuve passée à chaque fabricant
+<code>Lnk.Mod.data_*</code>, dont le modèle <code>Lnk.Mod.mk</code> ne
+porte que des données. Il en ressort que trois entrées (la borne de
+division, les termes locaux, l’écart des hauteurs) sortent toutes d’un
+même lien, <code>LinkDIV</code>, et que <code>CountF</code>,
+<code>SlopesMF</code>, <code>SlopesNF</code>, <code>LatF</code>,
+<code>FrameF</code> et <code>LossFS</code> alimentent les autres. Une
+seule provenance passe par un choix intermédiaire que nous n’avons pas
+suivi : celle de la forme « cadres » de <code>SlopeIneq</code>, établie
+par son type. Les entrées (A1)–(A7) ne sont donc pas sept interfaces
+Lean, mais une lecture de onze prédicats d’un record. La synthèse (§
+6.2) en tire le bilan mathématique, avec ses trois compensations.</p>
+<p><em>Ouvert.</em> La correspondance entre interfaces et étapes
+mathématiques est une lecture ⟦I⟧, appuyée sur les énoncés, mais aucune
+des grandes arêtes n’a été suivie dans sa preuve.</p>
+<h3 id="les-gains-théorème-a-behrend-et-norel">5.5 Les gains : Théorème
+A, Behrend et <code>NoRel</code></h3>
+<p><em>Question.</em> D’où vient la divisibilité, et comment
+s’empile-t-elle ? (synthèse, §§ 3 et 4).</p>
+<p><em>Nœud.</em> Le Théorème A
+(<code>DworkPowerSeriesWeights.thmAGauss</code>) minore la valuation
+<span class="math inline">\(p\)</span>-adique de la <span
+class="math inline">\(a\)</span>-ième dérivée d’une série thêta
+renormalisée en un point CM par <span
+class="math inline">\(a\,p/(p^2-1)-O(\log a)\)</span>, pour <span
+class="math inline">\(p\)</span> inerte. L’interface
+<code>LinkG_at</code> demande davantage : des gains de la forme <span
+class="math inline">\(\sum_{e\text{
+impair}}(a/p^e-\text{seuil})_+\)</span>, place par place, à chacun des
+<span class="math inline">\(m\)</span> étages. Entre les deux intervient
+une condition combinatoire, lue sur l’export :</p>
+<pre><code>Formalism.FrobeniusOrbits.NoRel (T : Finset ℕ) (L : ℕ) :=
+  ∀ s₁ s₂ s₃ ∈ T, distincts, ∀ i j : ℤ, 0 &lt; |i| ≤ L → 0 &lt; |j| ≤ L → i ≠ j →
+    j·(s₂ − s₁) ≠ i·(s₃ − s₁)</code></pre>
+<p>un ensemble de positions sans relation courte, plus fort que
+l’absence de progression arithmétique de longueur 3. La preuve l’obtient
+par la construction de Behrend.</p>
+<p><em>Graphe.</em> Le Théorème A pèse environ 0,02 %, alors que le
+producteur de <code>LinkG_at</code>, <code>linkG_fam_noKer</code>,
+compte 1,3 M de lignes. L’index inverse montre un
+<strong>partage</strong> que les dominateurs ne voient pas :
+<code>Behrend.box</code> alimente les orbites de Frobenius « épaisses »
+(<code>hostThickExists</code>), qui servent à la fois l’hôte
+(<code>supplyChi</code>) et le lien des gains
+(<code>linkG_fam_noKer</code>). Rattachée plus haut, la construction de
+Behrend a un poids dominé faible, bien qu’elle serve deux composantes (§
+3.2, première précaution). Un lemme élémentaire, démontré dans la
+synthèse (§ 3.5), explique pourquoi <code>NoRel</code> convient aux
+orbites : un segment d’orbite de longueur <span
+class="math inline">\(L\)</span> contient au plus deux points distincts
+de <span class="math inline">\(T\)</span>. L’export contient
+littéralement cet énoncé (<code>dropping_proposition_holds</code>, avec
+un ensemble de densité de Behrend), mais il y est
+<strong>inerte</strong> : le paquet qui le contient est déstructuré par
+ses deux consommateurs, qui n’en projettent que d’autres clauses. Une
+recherche de dépendances le compte comme utilisé ; seul le suivi des
+projections montre le contraire. La propriété effective est portée par
+un champ de l’hôte et sert, par des grappes d’au plus deux lettres
+épaisses sur l’orbite, le lien côté Galois (<code>NLinkClose</code> →
+<code>linkN</code>).</p>
+<p><em>Raccord.</em> Le graphe des applications localise la provenance
+des gains. L’unique consommateur de <code>linkG_fam_noKer</code>,
+<code>link_of_local_closed</code>, tire ses dix hypothèses d’un seul
+paquet local, par projections. Les deux principales sont un « premier
+théorème » (<code>first_theorem_threshold_functions</code>) et un «
+second théorème », une borne de valuation le long des orbites
+(<code>second_theorem_absolute_constant</code>), construits à partir de
+résultats de modèle local, de platitude et de projecteurs extrémaux
+(<code>local_model_results</code>, <code>local_flatness_results</code>,
+<code>extremal_projector_tools_of_loc</code>). Les seuils de troncature
+<code>cap</code> sont définis par blocs de segments.</p>
+<p>La lecture des énoncés donne la forme exacte de ce que fournissent
+ces deux théorèmes. Ils ont la même conclusion, <code>LPprime</code> :
+pour tout réseau <span class="math inline">\(L\)</span> de <span
+class="math inline">\(\mathbb Q_q^{m+1}\)</span> (<span
+class="math inline">\(\mathbb Q_q\)</span> non ramifiée sur <span
+class="math inline">\(\mathbb Q_p\)</span>), il existe des arêtes de
+Hecke en <span class="math inline">\(p\)</span> aboutissant à <span
+class="math inline">\(L\)</span> et des fonctionnelles attachées à leurs
+sources, séparées modulo une puissance de l’uniformisante, dont
+l’accouplement avec l’espace cible est de rang au moins <span
+class="math inline">\((1-\kappa)\dim\)</span> à la précision <span
+class="math inline">\(p^D\)</span>. Ce « rang à la précision <span
+class="math inline">\(p^D\)</span> » a un sens exact
+(<code>GoodRankK</code>) : il existe <span
+class="math inline">\(n\ge(1-\kappa)\dim\)</span> directions et une
+matrice entière <span class="math inline">\(M\)</span> telles que <span
+class="math inline">\(M\,\Phi=p^D\,I_n\)</span> sur ces directions ;
+pour un accouplement entier, cela équivaut à <span
+class="math inline">\(n\)</span> facteurs invariants de Smith <span
+class="math inline">\(\le D\)</span> (synthèse, § 3.5). Le Théorème A,
+de son côté, minore la valuation par un gain brut diminué de l’optimum
+d’un <strong>programme de flot</strong> sur l’orbite de Frobenius, dont
+les variables sont les couches impaires ; sous des capacités
+équilibrées, cet optimum se calcule exactement (<code>LemmaFe</code>,
+reconstruit ; synthèse, § 3.5). C’est une propriété de <strong>rang
+<span class="math inline">\(p\)</span>-adique</strong>, sous une
+condition de pavage des orbites de Frobenius (<code>IsGoodOrbit</code>),
+là où interviennent les ensembles sans relation courte. Elle est
+assemblée place par place par une entrée de programmation linéaire
+(<code>OrbitLatticeBounds</code>) et un sandwich de réseaux. <strong>Le
+Théorème A n’est pas dans la fermeture de ces deux théorèmes</strong>
+(<code>revindex.py path</code>) : il atteint <code>LinkG</code> par une
+autre hypothèse, l’admissibilité des lignes servies
+(<code>Adm2F</code>), sous la forme d’une borne uniforme
+(<code>SplitConstantsUniformBound 11 1</code> : la conclusion du
+Théorème A avec une perte de constante 1). Le gain combine donc deux
+ingrédients distincts : la divisibilité du Théorème A, qui rend les
+lignes admissibles, et une propriété de rang le long des arêtes de
+Hecke, qui la propage aux réseaux.</p>
+<p>La preuve de <code>LPprime</code> a deux étages. L’assemblage est
+reconstruit : tout réseau reçoit au moins <span
+class="math inline">\(\frac{q^k-1}{q-1}\)</span> arêtes de type 1, et
+les rangs fournis par les arêtes s’additionnent parce que la séparation
+rend la matrice globale congrue à une matrice diagonale par blocs
+inversible (<code>rho_lower_bound_of_edge_count</code>,
+<code>isUnit_det_of_one_add</code>, <code>goodRank_core</code>). Le rang
+par arête est obtenu par une récurrence sur le plus haut poids d’un
+module de Weyl de <span
+class="math inline">\(\mathrm{GL}_{m+1}\)</span>, avec la formule de
+dimension de Weyl.</p>
+<p>Ce cœur est lu : le module de Weyl dual y est réalisé par des
+polynômes invariants par addition de colonnes, tordus par les puissances
+du Frobenius le long de l’orbite, et le modèle local fournit pour chaque
+arête une base commune aux deux réseaux, d’exposants <span
+class="math inline">\(\pi_i\)</span>
+(<code>elementary_divisor_basis</code>) ; le rang par arête revient à
+compter les vecteurs de poids dont l’exposant tient dans la
+précision.</p>
+<p>Le lemme sur les mots est un énoncé de l’export, le Théorème B des
+arcs (<code>thmB_at</code>). Il borne l’exposant d’un morphisme de
+réseaux cristallins tant qu’il n’y a jamais trois lettres épaisses
+consécutives. Sans cette condition, la borne d’une suite de <span
+class="math inline">\(R\)</span> lettres épaisses est en <span
+class="math inline">\(R^2\)</span> : la propriété de fenêtre sert à
+éviter cette majoration quadratique.</p>
+<p><em>Ouvert.</em> Ce comptage (<code>cloud_count</code>), et les
+relèvements d’arcs (modules de Wach) qui démontrent le Théorème B. C’est
+la première des trois articulations ouvertes (§ 7.2).</p>
+<h3 id="la-division-et-ш">5.6 La division et Ш</h3>
+<p><em>Question.</em> Pourquoi la division des réseaux par les gains
+est-elle sûre, et à quel prix ? (synthèse, § 7).</p>
+<p><em>Nœud.</em> La borne de Tate–Shafarevich est lue exactement
+(<code>VAt</code>, via <code>VVle</code>) : <span
+class="math display">\[\sum_\ell\log\ell\sum_{1\le
+e&lt;x^{401}}\operatorname{len}\,\mathrm{Sha}^1_\ell\big(E,\mathbb
+Q_\ell/\mathbb Z_\ell(-e)\big)\;\le\;\exp(x^\varepsilon/2).\]</span> Le
+nœud <code>LinkN</code> borne, à chaque étage, la masse pondérée des
+places <strong>tordues</strong> (où la donnée locale <code>muAt</code>
+diffère de sa valeur de base) par une taille plus une somme de longueurs
+de Ш ; <code>DIVinN</code> en déduit que cette masse tient dans le
+budget par étage <span class="math inline">\(B_0\)</span>, lui-même
+imposé par <code>BNBoundsU</code> (<span
+class="math inline">\(B_0\le2\,n\,m\,b\,x^\varepsilon\)</span>) ;
+l’erreur de division <code>EDiv</code> contient exactement le coût
+marginal <span
+class="math inline">\(c_{\mathrm{Div}}\,m\,(B_0+N_c)\,x^{e_{\mathrm{Div}}\varepsilon}\)</span>.</p>
+<p><em>Graphe.</em> La borne de Ш (8,2 %) a un unique référent direct (§
+2.3). Elle est consommée exactement à la construction de l’hôte :
+<code>zero_free_all_of_green_v_win</code> applique
+<code>supplyChi ψ (hV ψ)</code>. Le <strong>même</strong> corps <span
+class="math inline">\(E\)</span> porte la sélection des premiers inertes
+et la borne de Ш. Le chemin se lit donc : Ш borne ce que les places
+tordues coûtent à chaque étage, et ce coût entre dans le budget linéaire
+de la division.</p>
+<p><em>Raccord.</em> Le terme de preuve précise la forme de la borne
+(<code>etaSum_le</code>). La masse des places tordues de l’étage <span
+class="math inline">\(j\)</span> est majorée par des termes de taille,
+par une somme sur les caractéristiques résiduelles des places tordues,
+où chaque premier ℓ n’est compté qu’une fois, et par <span
+class="math inline">\(d_{Z_0}(j)\sum_\ell\mathrm{vvTerm}(\ell)\)</span>,
+avec <span
+class="math inline">\(\mathrm{vvTerm}(\ell)=\log\ell\sum_{1\le
+e&lt;t}\operatorname{len}\text{Ш}(\ell,e)\)</span>. Ш entre donc une
+fois par premier, avec un <strong>facteur de multiplicité
+explicite</strong> <span class="math inline">\(d_{Z_0}(j)\)</span> : ce
+n’est pas une injection conjointe des défauts locaux dans un groupe de
+Tate–Shafarevich. Les places concernées sont celles dont la
+caractéristique est l’un des deux premiers de l’hôte, sous une condition
+de « caractères appariés » (<code>PairedCharacterConditionAlt</code>)
+qui exige la finitude des longueurs de Ш.</p>
+<p>La fiche de la donnée locale (<code>NData</code>) et la définition du
+défaut vont plus loin. Le défaut local <code>etaLoc</code> est la
+longueur du quotient de la projection du réseau de Hecke sur les espaces
+propres « bons » par la trace du réseau sur ces espaces : c’est
+<strong>le module de congruences</strong> de Ribet et Wiles, qui mesure
+les dénominateurs du projecteur de Hecke. L’analogie des dénominateurs
+de projection, présentée jusqu’ici comme une motivation, est donc la
+<strong>définition</strong> même de la quantité bornée. La condition de
+caractères appariés borne ce module par <span
+class="math inline">\(\sum_\pi\mathrm{mult}(\pi)\,(\sum_{e&lt;t}\operatorname{len}\text{Ш}(\ell,e)+\text{termes
+locaux})\)</span>, et le facteur <span
+class="math inline">\(d_{Z_0}(j)\)</span> est la dimension de l’espace
+de formes de l’étage, qui majore la multiplicité totale.</p>
+<p><em>Ouvert.</em> La preuve de cette borne, qui passe par la théorie
+de Hodge <span class="math inline">\(p\)</span>-adique
+(<code>conclusion41_of_pAdicHodge_alt</code>, 4,7 M lignes) et la
+réciprocité d’Artin. Son schéma est celui de la méthode de Ribet ⟦I⟧ :
+des congruences produisent des classes de cohomologie galoisienne dans
+des torsions de Tate, dont Ш majore la taille. C’est la deuxième
+articulation ouverte, désormais réduite à ce transfert.</p>
+<h3 id="la-formule-cm-et-son-chemin-dans-le-graphe">5.7 La formule CM et
+son chemin dans le graphe</h3>
+<p><em>Question.</em> D’où viennent les constantes <span
+class="math inline">\(-\gamma+\ell(\chi)\)</span> du terme principal,
+côté archimédien ? (synthèse, atelier 5 et § 5.5).</p>
+<p><em>Nœud.</em> Le théorème <code>CM.DegSt</code>, démontré dans le
+projet (<code>CM.PureDeg.degSt</code>, fermeture de 114 806
+déclarations), énonce :</p>
+<pre><code>CM.DegSt := ∀ E (corps CM) H χ (caractère de Kronecker) … ,
+    2 · deg h (eigLat …)  =  CM.logOm E χ
+CM.logOm E χ := γ + log (2π / rootDiscr E) − deriv (LFunction χ) 1 / LFunction χ 1</code></pre>
+<p>une formule de Chowla–Selberg pour le degré d’Arakelov d’une droite
+propre d’un objet CM. L’identité algébrique <code>key_identity5</code>
+vérifie que Stirling, cette formule et les termes Γ de
+<code>Count5</code> reconstituent exactement <code>MAIN</code>.</p>
+<p><em>Graphe.</em> L’index inverse donne le chemin de la formule
+jusqu’à l’inégalité de division :</p>
+<ol type="1">
+<li><code>CM.DegSt</code> alimente <code>ArcCM.Known</code>
+(<code>known_holds</code>), puis <code>lamDegSt_logOm₂</code>, qui
+affirme que le degré normalisé de chaque droite CM de l’hôte vaut <span
+class="math inline">\(\tfrac12\log\Omega\)</span> ;</li>
+<li><code>numGood_of_famQ</code> (1,65 M lignes) et
+<code>cmArcDatumFamily_functional_bounded_linear_on_cuspForms</code> en
+déduisent une borne sur une fonctionnelle linéaire sur les formes
+paraboliques, un coefficient du jet en un point CM ;</li>
+<li>ces bornes remontent par des bornes de réseaux « par pages »
+(<code>recursive_page_lattice_bound</code>) jusqu’à la fabrication
+(<code>ontoX</code>, puis <code>HypsAlt</code>) ;</li>
+<li>de là, elles reviennent dans les enregistrements numériques de la
+division (<code>RecNums.logOm</code>, <code>HtNums.logOmτ</code>), puis
+dans <code>LinkDIV_at</code>.</li>
+</ol>
+<p>La lecture des normalisations sur l’export a corrigé une
+interprétation : le <span class="math inline">\(v\)</span> de <span
+class="math inline">\(\log\Omega=\gamma+\log(\pi/v)-\ell(\chi)\)</span>,
+d’abord pris pour un réel libre, est <strong>défini</strong> comme <span
+class="math inline">\(\mathrm{rd}_E/2\)</span> (<code>Host.v</code>), la
+moitié du discriminant racine du grand corps hôte (§ 7.4 ; tableau
+complet dans la synthèse, § 5.5).</p>
+<p><em>Raccords.</em> Rubinstein [R2] signale que, pour appliquer son
+inégalité de pentes, trois applications distinctes doivent coïncider :
+l’une porte l’intégralité, une autre la hauteur, la troisième le rang.
+Dans Lean, la question se pose autrement. L’énoncé général
+<code>TheoremF</code> exige les trois propriétés <strong>d’une même
+famille</strong> <span class="math inline">\(B_i\)</span> :
+l’intégralité (<span class="math inline">\(B_i(N_i)\)</span> contenu
+dans le réseau cible), la hauteur (<span class="math inline">\(h(B_i)\le
+h_i\)</span>) et le rang, par une matrice définie comme <span
+class="math inline">\(Y&#39;^{-1}\,\mathrm{Mat}(B_i)\,Y_i\)</span>. Là
+où la donnée réelle entre, dans <code>frame_at_of</code>, <span
+class="math inline">\(B\)</span> est instancié par <strong>un seul
+champ</strong> de la structure de division, <code>DivData.Bk</code>,
+l’accouplement des périodes <span class="math inline">\(V(N_u)\to
+V(R)^\vee\)</span>. Le raccord est assuré par construction, c’est-à-dire
+par le typage ; ce qui reste à comprendre est pourquoi le
+<code>Bk</code> fabriqué possède ces propriétés.</p>
+<figure>
+<img src="fig/schema_raccord.svg" style="width:85.0%"
+alt="Le raccord des trois propriétés, lu dans les termes de preuve. L’énoncé général TheoremF les exige d’une même famille B ; dans frame_at_of, B est instancié par l’unique champ DivData.Bk (sortie de trace_app.py)." />
+<figcaption aria-hidden="true">Le raccord des trois propriétés, lu dans
+les termes de preuve. L’énoncé général <code>TheoremF</code> les exige
+d’une même famille <span class="math inline">\(B\)</span> ; dans
+<code>frame_at_of</code>, <span class="math inline">\(B\)</span> est
+instancié par l’unique champ <code>DivData.Bk</code> (sortie de
+<code>trace_app.py</code>).</figcaption>
+</figure>
+<p>Deux autres lectures précisent le chemin. Les « bornes par pages »
+sont des bornes de réseau étage par étage : une page est un étage <span
+class="math inline">\(j&lt;m\)</span> de la chaîne, et
+<code>recursive_page_lattice_bound</code> transforme, à chaque étage,
+une condition de réseau en une borne de quotient. Le squelette de sa
+preuve permet d’aller plus loin. À chaque étage, l’espace des formes
+paraboliques contient un sous-espace <span
+class="math inline">\(W\)</span> qui est <strong>exactement</strong> le
+noyau commun des fonctionnelles « coefficient du jet en un point CM »
+(<code>KillQ</code> et <code>DetectQ</code>) ; et la borne de quotient
+se démontre par un argument classique de déterminant (formule du
+produit, inégalité de Hadamard), à partir de fonctionnelles «
+numériquement bonnes » à valeurs dans des droites hermitiennes de degré
+borné (<code>NumGood</code>). Cette étape est
+<strong>reconstruite</strong> (niveau 4 ; synthèse, § 5.5) : les
+constantes de Lean coïncident avec celles de la démonstration, jusqu’à
+la perte de Hadamard <span
+class="math inline">\(\tfrac12\log\rho\)</span> par vecteur. Et
+l’identité <code>key_identity5</code> n’est qu’une réécriture de
+<code>Data.key_identity</code> : après dépliage des définitions, un
+terme apparaît des deux côtés et s’annule, et la vérification est faite
+par <code>linear_combination</code>, sans lemme d’identification
+nommé.</p>
+<p>Le tranchage arrière (<code>trace_app.py --slice</code>), qui remonte
+la provenance d’un argument précis, montre la forme de ces
+fonctionnelles : le jet, en un point CM, d’une section d’un fibré en
+droites sur une variété abélienne polarisée, à valeurs dans une droite
+produit tensoriel de droites propres de degré <span
+class="math inline">\(\log\Omega/2\)</span>, dont le degré est borné
+linéairement en l’ordre du jet (<code>valLine_ndeg_le</code>).</p>
+<p><em>Ouvert.</em> La troisième articulation se réduit ainsi à
+l’<strong>existence</strong> de fonctionnelles CM numériquement bonnes,
+dont le degré est relié à <span
+class="math inline">\(\tfrac12\log\Omega\)</span> par le théorème CM
+(<code>cmArcDatumFamily_functional_bounded_linear_on_cuspForms</code>,
+1,65 M lignes, et <code>numGood_of_famQ</code>), et à l’identification
+du degré d’Arakelov à l’opposé d’une hauteur de Faltings ⟦I⟧.</p>
+<h3 id="la-fabrication">5.8 La fabrication</h3>
+<p><em>Question.</em> Qui construit les objets qui satisfont toutes ces
+interfaces à la fois ?</p>
+<p><em>Nœud.</em> Au fond de la descente, les flèches convergent vers
+<code>UpperTheory.Lit.nonempty_hyps_definite_side_of_closed_bound</code>.
+Il domine 35,8 % de la fermeture et produit une structure
+<code>HypsAlt</code> de 46 champs : familles d’espaces hermitiens
+définis aux signatures prescrites, paramètres de séries discrètes,
+noyaux thêta à coefficients entiers, périodes rationnelles, et une
+sélection de réalisations compatibles avec la division.
+<code>HypsAlt</code> reçoit le théorème S (champs <code>sO</code>,
+<code>sLp</code>), les masses de Siegel (<code>hG</code>,
+<code>hU</code>), le Théorème A (par les lignes servies,
+<code>hServ</code>), le covolume et la correspondance de Langlands
+locale ; les 46 champs sont dépliés en neuf liens par
+<code>goal_of_shape_of_hyps</code>, puis <code>topDesWin</code>.</p>
+<p><em>Graphe.</em> Chacun des 46 champs est lu par une projection,
+toujours dans le même consommateur, <code>goal_of_shape_of_hyps</code>.
+Au niveau syntaxique, aucun champ n’est mort ; savoir si la valeur
+projetée sert réellement demanderait une analyse de vivacité (§ 8).</p>
+<p><em>Raccord.</em> Le graphe des applications montre comment ces
+champs atteignent le mécanisme. <code>goal_of_shape_of_hyps</code> est
+un branchement pur : une hypothèse <code>t</code> se déplie en une
+fonction à 53 paramètres, appliquée aux champs de <code>HypsAlt</code>.
+42 champs passent tels quels, sous leur nom ; trois sont transformés ;
+huit paramètres sont construits à partir des champs de données, surtout
+la classe de familles <code>𝒜</code> et la sélection <code>σ</code>. Sur
+les 46 champs, six sont des <strong>données</strong> (<code>𝒜</code>,
+<code>σ</code>, une sélection dépendante <code>selJ</code> et trois
+constantes ou fonctions numériques) et 40 sont des
+<strong>certificats</strong>, dont le type est une proposition. Le
+témoin de <code>t</code>, <code>shape_closed_link_n_of_green</code>, les
+distribue aux théorèmes de liaison : les champs du théorème S à celui
+qui produit <code>LinkS</code>, les masses à celui qui produit
+<code>LinkGLOBAL</code>, les lignes servies du Théorème A à celui qui
+produit les parties quadratiques admissibles, et ainsi de suite. On y
+trouve aussi une condition explicite de carte unique sur les
+réalisations (<code>SingleMapCondition</code>). Le tableau complet est
+dans <code>analysis/raccords.md</code>.</p>
+<p><em>Ouvert.</em> Presque tout ce qui reste opaque est ici : la
+réalisation des gains, les preuves du transport CM, la raison pour
+laquelle Ш borne les places tordues, et les preuves internes de la
+quasi-orthogonalité (5,1 M de lignes) et du covolume. C’est la part de
+la preuve qu’on ne comprend pas en descendant. Elle est massive, mais sa
+<strong>fonction</strong> n’est plus mystérieuse : elle fabrique des
+objets qui satisfont des interfaces dont on connaît maintenant le
+sens.</p>
+<hr />
+<h2 id="frontières-de-lecture">6. Frontières de lecture</h2>
+<p>Un lecteur ne mesure pas des volumes exclusifs. Il choisit des
+résultats qu’il accepte provisoirement, et cherche à comprendre comment
+leurs conclusions suffisent. Cette section transforme ce geste en
+mesure.</p>
+<h3 id="définition">6.1 Définition</h3>
+<p>Pour une cible <span class="math inline">\(T\)</span> et un ensemble
+<span class="math inline">\(B\)</span> de résultats admis, la zone à
+examiner est l’ensemble des sommets atteints depuis <span
+class="math inline">\(T\)</span> par un chemin qui ne traverse pas <span
+class="math inline">\(B\)</span>. Pour une preuve Lean, il faut
+cependant séparer les arêtes de <strong>type</strong> et de
+<strong>valeur</strong> : admettre un théorème coupe sa preuve, pas les
+définitions qui servent à lire son énoncé. Notons <span
+class="math inline">\(E_{\mathrm{type}}\)</span> et <span
+class="math inline">\(E_{\mathrm{val}}\)</span> ces deux familles
+d’arêtes. La fermeture accessible sous la frontière <span
+class="math inline">\(B\)</span> est celle de <span
+class="math inline">\(T\)</span> dans <span
+class="math display">\[G_B=\big(V,\;E_{\mathrm{type}}\cup\{(u,v)\in
+E_{\mathrm{val}}:u\notin B\}\big).\]</span> Les autres déclarations
+gardent toutes leurs arêtes, et une définition n’est jamais rendue
+opaque.</p>
+<h3 id="une-frontière-nest-pas-une-somme-de-dominateurs">6.2 Une
+frontière n’est pas une somme de dominateurs</h3>
+<p>Notons <span class="math inline">\(D(b)\)</span> l’ensemble des
+sommets dominés par <span class="math inline">\(b\)</span>, et <span
+class="math inline">\(C_B\)</span> celui des sommets qui deviennent
+inaccessibles depuis <span class="math inline">\(T\)</span> quand on
+<strong>supprime</strong> les sommets de <span
+class="math inline">\(B\)</span>. Alors <span
+class="math display">\[\bigcup_{b\in B}D(b)\;\subseteq\;C_B :\]</span>
+si tout chemin de <span class="math inline">\(T\)</span> à <span
+class="math inline">\(v\)</span> passe par <span
+class="math inline">\(b\)</span>, aucun ne survit à la suppression de
+<span class="math inline">\(B\)</span>. L’inclusion peut être stricte.
+Dans le losange <span class="math inline">\(T\to A\)</span>, <span
+class="math inline">\(T\to B\)</span>, <span class="math inline">\(A\to
+D\)</span>, <span class="math inline">\(B\to D\)</span>, ni A ni B ne
+domine D, mais D disparaît quand on supprime A et B ensemble.
+<strong>Une abstraction collective peut masquer un volume que les poids
+dominés individuels ne voient pas.</strong> La proposition porte sur la
+suppression de sommets ; la frontière <span
+class="math inline">\(G_B\)</span>, qui garde les énoncés, peut en
+principe réintroduire des sommets. Notons <span
+class="math inline">\(R\)</span> la fermeture, <span
+class="math inline">\(R_{\mathrm{del}}\)</span> la zone atteinte quand
+on supprime <span class="math inline">\(B\)</span>, et <span
+class="math inline">\(R_{\mathrm{cut}}\)</span> celle de <span
+class="math inline">\(G_B\)</span> : on a toujours <span
+class="math inline">\(R_{\mathrm{del}}\subseteq
+R_{\mathrm{cut}}\)</span>, et l’expérience mesure l’écart.</p>
+<h3 id="lexpérience">6.3 L’expérience</h3>
+<p>Il suffit de recalculer les constantes du <strong>type</strong> des
+théorèmes admis, en parcourant leur énoncé dans le DAG des expressions
+déjà extrait. Le script <code>frontiere.py</code> le fait, après un test
+sur le losange. Les frontières sont emboîtées : le cœur automorphe ;
+puis sept grandes théories ; puis les mêmes et quatre liens du mécanisme
+; puis la même chose avec la formule CM rouverte. Racine :
+<code>riemannHypothesis</code>.</p>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 6%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>Théorèmes admis</th>
+<th style="text-align: center;"><span class="math inline">\(\lvert
+B\rvert\)</span></th>
+<th style="text-align: right;">décl.</th>
+<th style="text-align: right;">lignes</th>
+<th style="text-align: right;">nœuds</th>
+<th style="text-align: right;"><span
+class="math inline">\(100\,\%-\)</span> ∪ dom.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aucun</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: right;">100 %</td>
+<td style="text-align: right;">100 %</td>
+<td style="text-align: right;">100 %</td>
+<td style="text-align: right;">100 %</td>
+</tr>
+<tr>
+<td>le cœur automorphe</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">63,0 %</td>
+<td style="text-align: right;">58,6 %</td>
+<td style="text-align: right;">56,6 %</td>
+<td style="text-align: right;">63,0 %</td>
+</tr>
+<tr>
+<td>sept grandes théories¹</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">45,7 %</td>
+<td style="text-align: right;">36,8 %</td>
+<td style="text-align: right;">35,0 %</td>
+<td style="text-align: right;">50,9 %</td>
+</tr>
+<tr>
+<td>les mêmes + quatre liens²</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: right;">45,6 %</td>
+<td style="text-align: right;">36,5 %</td>
+<td style="text-align: right;">34,8 %</td>
+<td style="text-align: right;">50,8 %</td>
+</tr>
+<tr>
+<td>les mêmes, <code>CM.DegSt</code> ouvert</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: right;">45,6 %</td>
+<td style="text-align: right;">36,5 %</td>
+<td style="text-align: right;">34,8 %</td>
+<td style="text-align: right;">50,8 %</td>
+</tr>
+</tbody>
+</table>
+<p>¹ Fabrication, Ш, Galois, covolume, théorème S, Langlands local,
+<code>CM.DegSt</code>. ² <code>linkG_fam_noKer</code>,
+<code>linkDIVt_of_rowsF</code>,
+<code>linkN_of_twGood_galoisPreconditions</code>,
+<code>thmAGauss</code>. Colonnes : part de la fermeture encore
+accessible sous la frontière, selon les trois mesures ; dernière colonne
+: ce que laisserait l’union des poids dominés.</p>
+<figure>
+<img src="fig/frontieres.svg"
+alt="Part de la fermeture encore accessible sous des frontières emboîtées. Le trait noir marque ce que laisserait l’union des poids dominés : l’écart avec la barre « déclarations » est l’effet collectif de l’abstraction." />
+<figcaption aria-hidden="true">Part de la fermeture encore accessible
+sous des frontières emboîtées. Le trait noir marque ce que laisserait
+l’union des poids dominés : l’écart avec la barre « déclarations » est
+l’effet collectif de l’abstraction.</figcaption>
+</figure>
+<h3 id="trois-constats">6.4 Trois constats</h3>
+<p><strong>L’effet collectif est réel.</strong> Admettre les sept
+grandes théories cache 54,3 % des déclarations, alors que l’union de
+leurs poids dominés n’en cache que 49,1 %. Avec la racine virtuelle des
+cinq énoncés et les sept théories admises, les comptes exacts sont :
+<span class="math inline">\(|R\setminus
+R_{\mathrm{cut}}|=797\,042\)</span>, contre <span
+class="math inline">\(720\,807\)</span> pour l’union des poids dominés.
+<strong>Environ 76 000 déclarations (exactement 76 235) ne servent qu’à
+l’ensemble de ces théories</strong>, sans appartenir à aucune en propre.
+Les pourcentages sont identiques, à l’arrondi, avec la racine
+<code>riemannHypothesis</code> seule.</p>
+<p><strong>Garder les énoncés ne réintroduit presque rien.</strong> On
+trouve <span class="math inline">\(|R_{\mathrm{cut}}\cap B|=5\)</span>
+(deux théorèmes de <span class="math inline">\(B\)</span> ne sont
+atteints qu’à travers les autres) et <span
+class="math inline">\(|(R_{\mathrm{cut}}\setminus B)\setminus
+R_{\mathrm{del}}|=3\)</span> : les énoncés des grandes théories ne
+parlent, à trois déclarations près, que d’objets déjà nécessaires
+ailleurs. La différence entre couper les preuves et supprimer les
+sommets, essentielle en principe, est négligeable ici.</p>
+<p><strong>Ouvrir un lien du mécanisme ne change presque rien.</strong>
+Admettre en plus les quatre liens du mécanisme, ou rouvrir la formule
+CM, déplace les parts d’au plus 0,2 point environ. Leurs preuves
+partagent l’essentiel de leurs dépendances avec le reste. C’est un
+constat de partage, non d’inactivité : une dépendance partagée peut être
+indispensable (§ 8).</p>
+<h3 id="ce-qui-reste-linfrastructure">6.5 Ce qui reste :
+l’infrastructure</h3>
+<p>Le plus instructif est ce qui <strong>reste</strong>. Même quand
+toutes les grandes théories sont admises, la fermeture accessible compte
+encore 45,6 % des déclarations, dont environ 568 000 du projet et 101
+000 des bibliothèques (Lean, Mathlib). Le mécanisme propre pèse 0,3 % ;
+mais les objets dont parlent ses énoncés (groupes unitaires, réseaux
+hermitiens, séries thêta, données d’hôte) et les lemmes qui les relient
+forment une infrastructure massive. Lire la preuve au niveau du
+squelette ne demande pas les grandes théories ; cela demande cette
+infrastructure, au moins au niveau de ses définitions. <strong>Le
+mécanisme est petit ; son vocabulaire ne l’est pas.</strong></p>
+<p>Cette mesure est une mesure de dépendances, non d’effort cognitif.
+Une déclaration accessible n’est pas une déclaration qu’il faut lire, et
+une infrastructure bien conçue se lit par ses interfaces. Mais elle
+donne une borne honnête à l’affirmation « le mécanisme pèse 0,3 % » : ce
+chiffre dit ce qui appartient au mécanisme, non ce qu’il faut maîtriser
+pour le comprendre.</p>
+<hr />
+<h2 id="valider-une-lecture">7. Valider une lecture</h2>
+<p>Une dépendance n’est pas une explication. Pour dire ce qui a été
+compris, il faut une échelle, des pièces justificatives, et la
+possibilité d’être réfuté.</p>
+<h3 id="une-échelle-de-reconstruction">7.1 Une échelle de
+reconstruction</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Niveau</th>
+<th>Signification</th>
+<th>Pièce justificative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>une dépendance est identifiée</td>
+<td>un chemin explicite dans le graphe</td>
+</tr>
+<tr>
+<td>2</td>
+<td>l’énoncé est lu</td>
+<td>une transcription, avec ses hypothèses</td>
+</tr>
+<tr>
+<td>3</td>
+<td>le rôle mathématique est identifié</td>
+<td>une interprétation argumentée</td>
+</tr>
+<tr>
+<td>4</td>
+<td>le passage est reconstruit</td>
+<td>une déduction écrite, avec hypothèses, normalisations et
+erreurs</td>
+</tr>
+</tbody>
+</table>
+<p>La relecture externe est un indicateur distinct : à ce jour, elle n’a
+eu lieu pour aucun nœud. L’échelle n’est pas une mesure de la
+compréhension, et nous ne calculons aucune moyenne. Le niveau peut
+varier le long d’un même chemin ; un niveau 4 ne vaut que pour ce qui
+est effectivement reconstruit (une identité, par exemple), pas pour les
+hypothèses qu’il faut réaliser pour l’appliquer.</p>
+<p>Pour un <strong>raccord</strong> entre deux énoncés, le graphe des
+applications (§ 3.4) permet une échelle plus fine :
+<strong>localisation</strong> (un chemin est identifié),
+<strong>instanciation</strong> (les arguments effectifs sont extraits),
+<strong>identification</strong> (les objets sont reconnus identiques,
+comme même nœud ou même champ, avec une compatibilité apparente des
+types ; un indicateur distinct dirait si Lean l’a vérifié, ce que
+l’outil ne fait pas), <strong>reconstruction</strong> (la déduction est
+écrite), <strong>explication</strong> (on sait ce qui échouerait sans
+lui), <strong>transformation</strong> (une alternative est démontrée et
+recertifiée). Les sept raccords étudiés au § 5 atteignent les niveaux 2
+à 4 de cette échelle (<code>analysis/raccords.md</code>).</p>
+<h3 id="le-squelette-annoté">7.2 Le squelette annoté</h3>
+<p>Si l’on ne devait garder qu’une poignée d’énoncés pour raconter la
+preuve, ce seraient ceux-ci.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Nœud</th>
+<th>Ce qu’il dit</th>
+<th style="text-align: center;">§</th>
+<th style="text-align: center;">Niveau</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zeroFreeOn_of_tiedWin_cyc</code></td>
+<td>majoration sur des fenêtres ⇒ pas de zéro pour <span
+class="math inline">\(\operatorname{Re}s&gt;\tfrac12\)</span></td>
+<td style="text-align: center;">5.2</td>
+<td style="text-align: center;">4 (global), 3 (fenêtres)</td>
+</tr>
+<tr>
+<td><code>level_gm_le_on_family_scales</code></td>
+<td>chaîne liée à chaque échelle ⇒ <span
+class="math inline">\(G_\psi(x)\le x^{1/2+O(\varepsilon)}\)</span></td>
+<td style="text-align: center;">5.2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>ch_balance</code></td>
+<td><span
+class="math inline">\(\mathrm{ASK}-\mathrm{MAIN}=\mathrm{De}\)</span></td>
+<td style="text-align: center;">5.3</td>
+<td style="text-align: center;">4 (l’identité)</td>
+</tr>
+<tr>
+<td><code>core_gm</code>, <code>gmA_eq</code></td>
+<td>la somme sur les colonnes est exactement <code>Level.Gm</code> ;
+parasites bornés un par un</td>
+<td style="text-align: center;">5.3</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>frame_at_of</code>, <code>DivData.Bk</code></td>
+<td>intégralité, hauteur et rang portent sur un même champ</td>
+<td style="text-align: center;">5.7</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>HostFactsS</code>, <code>HostRaw</code></td>
+<td>ramification de l’hôte hors d’un ensemble <span
+class="math inline">\(S\)</span></td>
+<td style="text-align: center;">7.3</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td><code>ch_top</code></td>
+<td><code>gapA</code> ≤ crochet d’erreur</td>
+<td style="text-align: center;">5.4</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>linkCore</code></td>
+<td>quatorze interfaces ⇒ le bilan de pentes</td>
+<td style="text-align: center;">5.4</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>each_unit_bound_statement</code></td>
+<td>onze prédicats du record ⇒ <span
+class="math inline">\(\mathrm{ASK}\le\mathrm{MAIN}+\)</span> erreurs
+(E17)</td>
+<td style="text-align: center;">5.4</td>
+<td style="text-align: center;">3 (appariement et provenances) ; 4 pour
+la dérivation, sous la forme moyennée de (A3)</td>
+</tr>
+<tr>
+<td><code>key_identity5</code></td>
+<td>taille archimédienne = <code>MAIN</code> + erreur</td>
+<td style="text-align: center;">5.7</td>
+<td style="text-align: center;">4 (l’identité)</td>
+</tr>
+<tr>
+<td><code>LinkG_at</code></td>
+<td>premiers ≤ gains, place par place</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td><code>thmAGauss</code></td>
+<td><span class="math inline">\(v_p(D^a\Theta)\ge a\,p/(p^2-1)-O(\log
+a)\)</span></td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>VWin</code>, <code>LinkN</code></td>
+<td>Ш borné ; places tordues dans le budget</td>
+<td style="text-align: center;">5.6</td>
+<td style="text-align: center;">2 (le défaut, module de congruences :
+4)</td>
+</tr>
+<tr>
+<td><code>LinkDIV_at</code></td>
+<td>pente du réseau divisé ≤ <code>MAIN</code> + erreurs</td>
+<td style="text-align: center;">5.7</td>
+<td style="text-align: center;">2 (l’étape des pages : 4)</td>
+</tr>
+<tr>
+<td><code>CM.DegSt</code></td>
+<td><span
+class="math inline">\(2\widehat{\deg}=\gamma+\log(2\pi/\mathrm{rd}_E)-L&#39;/L(1,\chi)\)</span></td>
+<td style="text-align: center;">5.7</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td><code>HypsAlt</code></td>
+<td>existence des objets</td>
+<td style="text-align: center;">5.8</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>Ce tableau se lit comme une carte de ce qui reste à faire, non comme
+un score : une seule articulation indispensable non comprise suffit à
+bloquer la reconstruction. Les trois niveaux 2 du milieu,
+<code>LinkG_at</code>, <code>VWin</code>/<code>LinkN</code> et
+<code>LinkDIV_at</code>, sont précisément les trois
+<strong>articulations ouvertes</strong> : la réalisation des gains, le
+mécanisme par lequel Ш borne les places tordues, et le transport de la
+formule CM jusqu’à la division. Le raccord de trois applications
+distinctes, que Rubinstein [R2] signale comme nécessaire à son argument
+par propagation des pentes, est en revanche assuré dans Lean par
+construction (§ 5.7).</p>
+<h3 id="quand-une-lecture-est-réfutée-une-étude-de-cas">7.3 Quand une
+lecture est réfutée : une étude de cas</h3>
+<p>Le graphe ne sert pas seulement à illustrer une lecture ; joint à un
+argument mathématique, il permet de la réfuter et de la corriger. Deux
+opérations distinctes y interviennent : un contre-exemple mathématique
+réfute la transcription, puis l’exploration de l’export identifie ce qui
+avait été oublié.</p>
+<p><em>La première lecture.</em> Une version antérieure de notre lecture
+transcrivait <code>HostFactsS</code> ainsi : hors de <span
+class="math inline">\(\{2,q\}\)</span> et de <span
+class="math inline">\(d\)</span>, tout premier est non ramifié dans
+l’hôte.</p>
+<p><em>Le test.</em> L’hôte doit contenir le corps découpé par le
+caractère ψ étudié. Prenons <span
+class="math inline">\(\psi=(\frac\cdot5)\)</span> : son corps est <span
+class="math inline">\(\mathbb Q(\sqrt5)\)</span>, où 5 est ramifié, donc
+5 est ramifié dans l’hôte. Or les congruences <span
+class="math inline">\(q\equiv3\pmod8\)</span> et <span
+class="math inline">\(d\equiv7\pmod{16}\)</span> interdisent <span
+class="math inline">\(q=5\)</span> et <span
+class="math inline">\(d=5\)</span>. La transcription est donc fausse, ou
+l’énoncé dit autre chose.</p>
+<p><em>Le retour à l’export.</em> La réimpression de
+<code>HostFactsS.mk</code> montre un paramètre oublié : un ensemble fini
+<span class="math inline">\(S\)</span> de premiers, qui contient 2 et
+<span class="math inline">\(q\)</span> mais pas <span
+class="math inline">\(d\)</span>. La non-ramification n’est affirmée que
+hors de <span class="math inline">\(S\cup\{d\}\)</span>. L’index inverse
+mène à <code>hostFactsS</code>, qui instancie <span
+class="math inline">\(S\)</span> par les premiers divisant <span
+class="math inline">\(Q_Sq\)</span>, et <code>HostRaw.mk</code> impose
+que tout facteur impair de <span class="math inline">\(Q_S\)</span> soit
+décomposé dans <span class="math inline">\(\mathbb
+Q(\sqrt{-d})\)</span>. Le premier 5 est dans <span
+class="math inline">\(S\)</span> : ramifié dans l’hôte, décomposé dans
+<span class="math inline">\(\mathbb Q(\sqrt{-d})\)</span>, absent des
+sommes. Les énoncés cités sont reproduits dans
+<code>analysis/extraits/</code>.</p>
+<h3 id="dautres-corrections-même-cycle">7.4 D’autres corrections, même
+cycle</h3>
+<p>Le même cycle (lire, interpréter, tester, revenir aux énoncés) a
+corrigé plusieurs autres lectures, que nous consignons parce qu’elles
+montrent où se glissent les erreurs :</p>
+<ul>
+<li><strong>une normalisation</strong> : le paramètre <span
+class="math inline">\(v\)</span> de <span
+class="math inline">\(\log\Omega\)</span>, d’abord lu comme un réel
+libre, est défini par <span
+class="math inline">\(v=\mathrm{rd}_E/2\)</span> (<code>Host.v</code>)
+;</li>
+<li><strong>une égalité qui n’en était pas une</strong> :
+<code>Count5</code> encadre la taille d’une colonne ; il ne l’égale pas,
+et seule la minoration sert ;</li>
+<li><strong>un décompte</strong> : une version affirmait que chaque
+grande théorie était utilisée par 11 à 35 déclarations ; l’index inverse
+donne un unique référent direct (§ 2.3) ;</li>
+<li><strong>une unité</strong> : les poids sont en lignes de l’export
+(enregistrements d’expressions), non en lignes de source ;</li>
+<li><strong>le rôle de Ш</strong>, révisé deux fois avant d’être lu sur
+le chemin <code>VWin</code> → <code>supplyChi</code> →
+<code>LinkN</code> → <code>DIVinN</code> (§ 5.6) ;</li>
+<li><strong>le changement de corps des pages</strong>, une troisième
+étude de cas, où le sens de la méthode s’inverse. Ce n’est plus le
+graphe qui réfute une lecture : c’est un raisonnement mathématique qui
+révèle une obligation oubliée et oriente l’exploration du graphe. Notre
+reconstruction de l’étape des pages par un déterminant (synthèse, § 5.5)
+supposait des fonctionnelles à valeurs dans le corps de base. Or une
+forme à valeurs dans une extension peut détecter tous les vecteurs
+rationnels sans que son prolongement soit injectif : <span
+class="math inline">\(x+\sqrt2\,y\)</span> sur <span
+class="math inline">\(\mathbb Q^2\)</span>. La lecture de
+<code>NumGood</code> a confirmé que les valeurs vivent dans des
+extensions quelconques. Elle a aussi conduit au lemme qui répare le
+défaut, <code>FreeQuotientRank.kerCore_holds</code> (19 621 lignes
+propres), qui passe à un corps commun par clôture normale et descente
+galoisienne, à partir de la stabilité de <code>NumGood</code> par
+plongement. La reconstruction est maintenant énoncée sur ce corps
+commun.</li>
+<li><strong>le rôle de <code>NoRel</code></strong>, une deuxième étude
+de cas complète. Première lecture : la densité de Behrend et la
+propriété de fenêtre, démontrées par
+<code>dropping_proposition_holds</code>, servent aux gains, puisque
+l’index inverse les place sur le chemin
+<code>field_lemmas_except_seven</code> → <code>linkG_fam_noKer</code>.
+Test : on suit les projections dans les deux consommateurs du paquet ;
+ils n’en extraient que deux autres clauses, et la clause de Behrend
+n’est jamais lue. Correction : la propriété utile est portée par un
+champ de l’hôte, <code>Host.second_set_no_relation</code>, et sert, par
+des grappes d’au plus deux lettres épaisses, le lien côté Galois
+<code>LinkN</code>, non <code>LinkG</code> (carnet, E12 → E13). Cette
+correction a motivé l’analyse systématique des clauses inertes (§
+8).</li>
+</ul>
+<p>Aucune de ces erreurs n’aurait été détectée par la seule cohérence du
+récit. Toutes l’ont été par un retour à l’énoncé exact.</p>
+<hr />
+<h2 id="branches-mortes-portées-remplaçables">8. Branches mortes,
+portées, remplaçables</h2>
+<p>Une preuve de dix-sept millions de lignes produite avec l’IA n’a
+aucune raison d’être économe. Mais « non exploité » a trois sens, qui ne
+se vérifient pas de la même façon.</p>
+<figure>
+<img src="fig/branches.svg" style="width:62.0%"
+alt="Trois sens de « non exploité », et ce qu’il faut établir pour passer de l’un à l’autre." />
+<figcaption aria-hidden="true">Trois sens de « non exploité », et ce
+qu’il faut établir pour passer de l’un à l’autre.</figcaption>
+</figure>
+<p><strong>Des branches jamais atteintes.</strong> Une partie du projet
+n’est pas dans la fermeture. Lipponen [Li] compte 146 437 modules du
+projet utilisés sur 175 187 : environ 16 % des modules source ne servent
+pas aux énoncés de <code>Main</code>. Ce décompte porte sur les modules
+; au niveau des déclarations, l’export ne contient que les constantes
+utilisées, et quatre seulement y sont hors de toute fermeture (§ 4.1).
+L’échafaudage « littérature » du § 5.1 en fait partie. Ce sont des
+branches mortes au sens strict, pour cet artefact et ces cibles ; les
+retirer du source demanderait encore de contrôler les imports, la
+compilation et les métaprogrammes.</p>
+<p><strong>Des branches atteintes mais seulement portées.</strong> Une
+déclaration peut être dans la fermeture parce qu’un énoncé la mentionne,
+sans que son contenu serve. Rubinstein [R2, III.13] recense 195
+déclarations et signale des champs de structures qu’aucune projection ne
+semble lire, ainsi qu’un champ de type <code>True</code> ; jae-63 [B]
+relève que 191 théorèmes <code>*_of_literature</code> sur 195
+n’utilisent jamais leur paquet d’hypothèses (sur l’espace de noms
+<code>UpperTheory.LiteratureTheorems</code>, nous comptons 4
+déclarations sur 259 qui en lisent un champ : les populations diffèrent)
+; [G] trouve dix définitions de corps <code>True</code>, dont neuf dans
+la fourniture de <code>HypsAlt</code>. Notre propre test est plus
+prudent : chacun des 46 champs de <code>HypsAlt</code> est lu par une
+projection (§ 5.8). Une projection lue ne suffit pourtant pas ; il faut
+savoir si la valeur projetée sert. Nous avons fait cette analyse pour
+les conclusions conjonctives. Pour chaque théorème du projet dont la
+conclusion est une conjonction (après les quantificateurs),
+<code>inertes.py</code> suit dans tous ses référents les projections
+effectivement appliquées. Il traite les éliminateurs, les β-rédex et la
+transmission aux paramètres des théorèmes appelés, sur huit niveaux au
+plus. L’analyse se veut conservatrice : tout usage non suivi (fonction
+non analysée, budget de huit niveaux épuisé, cas inconnu) compte comme
+une lecture. C’est une propriété de conception, non un théorème, et elle
+était fausse dans deux cas : un théorème passé comme argument
+fonctionnel à un éliminateur (<code>And.elim f h</code>), ou un
+éliminateur appliqué à plus d’arguments que prévu, perdait sa trace. Le
+défaut a été trouvé en préparant la transformation décrite plus bas
+(carnet, E22) et corrigé ; les chiffres ci-dessus sont ceux de l’outil
+corrigé, qui retire 18 cas sur l’original et 13 sur l’édition compacte
+de la preuve courte. Le script n’a pas été audité indépendamment. Neuf
+candidats restent non résolus. Sur 89 056 candidats, <strong>5 729
+théorèmes (6,43 %) livrent au moins une conclusion que personne ne
+lit</strong> ; ces théorèmes totalisent 19 107 composantes, dont 8 525
+inertes (une proportion de 44,6 %, propre à ces seuls théorèmes, non un
+taux global), et 707 sont entièrement inertes. Le cas le plus lourd,
+<code>member_exists_baseLattice_alt</code> (48,8 M lignes dominées), ne
+voit jamais lue sa clause <code>ExBL</code>. Le paquet de densité de
+Behrend (<code>field_lemmas_except_seven</code>) est démontré, puis
+déstructuré par ses deux consommateurs, qui n’en projettent que d’autres
+clauses. Les théorèmes qui ne servent qu’à une composante inerte pèsent
+au moins 1,45 M lignes, soit 0,14 % de l’export. C’est une borne
+inférieure, parce que ces preuves passent souvent par des sous-paquets
+partagés, et c’est un volume attribué, non un gain obtenu après une
+transformation recertifiée. Les 48,8 M lignes dominées par
+<code>member_exists_baseLattice_alt</code> ne sont pas le poids de sa
+clause <code>ExBL</code>.</p>
+<p><strong>Une géométrie vide.</strong> Nielsen a relevé des anomalies
+réelles : un prédicat <code>anyGeometry</code> défini par
+<code>fun _ _ _ =&gt; True</code>, un modèle géométrique dégénéré dont
+une application est nulle, des identifications de réseaux par
+<code>rfl</code>, et une « hauteur » définie par la quantité à laquelle
+on la compare. Les treize objets signalés (liste de Zeng [Z]) sont tous
+dans la fermeture. Deux critères, calculés sur l’export, en précisent le
+statut.</p>
+<ul>
+<li><strong>Les projections.</strong> Le prédicat Γ est rangé dans un
+champ <code>geo</code>, rempli par <code>trivial</code>, puis relevé et
+recopié. Ses deux seuls lecteurs servent à reconstruire la structure ;
+le seul consommateur de contenu ne lit que l’autre champ.</li>
+<li><strong>La frontière en données.</strong> On remonte depuis les
+treize objets en ne traversant que des définitions. On atteint 21
+définitions, toutes internes ou à valeurs propositionnelles, et 52
+théorèmes. Toutes les sorties sont des propositions (<code>∃</code>,
+<code>Nonempty</code>), sauf Γ, qui est porté sans être lu. Un
+consommateur n’accède au témoin d’un <code>∃</code> que par élimination
+vers une proposition ou par <code>Classical.choose</code>, qui est
+opaque : dans les deux cas, il n’en connaît que les propriétés énoncées.
+Celles-ci disent seulement que le témoin recopie les données de lignes.
+La frontière en données est un résultat syntaxique, non un théorème de
+non-interférence.</li>
+</ul>
+<p>La hauteur est une expression explicite, et la borne utile
+(<code>hExpl6_lower</code>) en élimine le seul terme géométrique. Pour
+les inégalités centrales, nous avons calculé exactement ceci : la
+fermeture de <code>divClausesR_of</code> ne contient aucun des treize
+objets examinés (<code>revindex.py path</code>, selon nos conventions
+d’extraction), ce qui confirme [Z]. C’est une absence de dépendance
+syntaxique, non une indépendance sémantique générale ; les réserves sur
+le choix classique et les types dépendants demeurent. L’ensemble pèse
+0,02 % des lignes. Ces objets sont des branches <strong>portées</strong>
+(Γ, un champ jamais lu) ou <strong>vides</strong> (un témoin d’existence
+sans contenu), non des failles ; ici « mort » est réservé à ce qui est
+hors de la fermeture. Remplacer ces objets par une structure minimale et
+recertifier reste une expérience à faire. Une dépendance partagée peut
+d’ailleurs être indispensable : que l’ouverture de <code>CM.DegSt</code>
+change à peine la fermeture accessible (§ 6.4) traduit un partage de
+dépendances, non une inactivité.</p>
+<p><strong>Des branches utilisées mais remplaçables.</strong> C’est le
+sens fort du <strong>court-circuit</strong> : réaliser la même interface
+par un chemin plus court ou plus clair. Plusieurs candidats sont
+proposés dans la littérature :</p>
+<ul>
+<li>le remplacement de Landau en fenêtres par un théorème d’oscillation
+de Kaczorowski–Pintz [H] ;</li>
+<li>une variante de Behrend <strong>en dimension fixe</strong> [R2,
+III.3], qui suffit si les clients de <code>hostThickExists</code>
+n’exigent qu’une densité de type <span
+class="math inline">\(x^{-\varepsilon}\)</span> ;</li>
+<li>une preuve de l’inégalité de pente moyenne par <strong>propagation
+des pentes</strong> [R2, proposition M4], distincte du chemin Lean
+<code>TheoremF</code>, qui relit le rôle du théorème S comme un contrôle
+de rang des images ;</li>
+<li>des hypothèses qui ne servent que sommées ou en moyenne [R2, H2,
+H7].</li>
+</ul>
+<p>Aucun de ces candidats n’est un court-circuit tant qu’il n’a pas été
+substitué dans la preuve formelle et recertifié : il faut vérifier les
+types exacts et tous les consommateurs, exclure toute circularité, et
+mesurer la fermeture réellement remplacée. Ces indices suggèrent des
+détours ; seule une substitution recertifiée l’établirait.</p>
+<p><strong>Une substitution recertifiée existe.</strong> Le 25/11/2026,
+L. Sernau a publié une réécriture complète [Se], démontrant les cinq
+mêmes énoncés, textuellement identiques, et vérifiée par plusieurs
+noyaux [Su2, R3]. Nous avons passé l’export de son édition lisible (574
+Mo, empreinte conforme à celle publiée) dans nos outils : 17 s
+d’extraction, une minute pour la fermeture et les dominateurs.</p>
+<ul>
+<li><strong>La taille.</strong> La fermeture de
+<code>riemannHypothesis</code> compte 216 559 déclarations, contre 1 468
+390, soit 6,8 fois moins ; celle des cinq énoncés, 216 567 contre 1 468
+414. Elle a 80,7 M enregistrements d’expressions contre 1 065 M ; ce
+rapport de 13 est indicatif, l’édition compacte, au source quatre fois
+plus court, en ayant 93,3 M.</li>
+<li><strong>Les noms.</strong> Aucune déclaration du projet d’origine ne
+survit sous son nom complet, hors des énoncés.</li>
+<li><strong>Les concepts.</strong> On les cherche par le dernier
+composant du nom. Les noms de tout ce que nos contrôles désignaient
+comme inerte, porté ou vide n’y sont pas retrouvés :
+<code>anyGeometry</code>, le modèle dégénéré, le paquet de Behrend,
+<code>ExBL</code>, <code>hExpl6</code>. Ni ceux de <code>LPprime</code>,
+du Théorème B des arcs (modules de Wach) et de
+<code>divClausesR_of</code>. La route courte peut remplacer ou
+internaliser les propriétés correspondantes : une absence de nom n’est
+pas une absence de concept. Siegel–Weil, Selmer et les représentations
+galoisiennes restent ; la sélection des places éparses y utilise
+directement la construction de Behrend de Mathlib
+(<code>Behrend.map</code>), que la preuve d’origine utilisait
+aussi.</li>
+<li><strong>Les clauses inertes.</strong> La même analyse
+(<code>inertes.py</code> corrigé, 769 s, avec le filtre « projet »
+<code>New.*</code>) trouve 106 théorèmes concernés sur 2 354 candidats
+(4,50 %, contre 6,43 %) et 165 composantes inertes, contre 8 525 : le
+nombre absolu baisse d’un facteur 52, la fréquence beaucoup moins.
+L’inertie mesurée n’explique pas la compression globale.</li>
+<li><strong>La structure.</strong> L’épine dorsale est lisible :
+<code>New.grh</code> → <code>star_inequality</code> (l’inégalité
+principale <span class="math inline">\(m\cdot\mathrm{rem}\le
+fa\log^5b\)</span>, 72 % des déclarations) →
+<code>integral_forms_long</code> (une borne inférieure de covolume plus
+indice, 45 %) → bornes de dénominateurs de Selmer → construction de
+représentations galoisiennes (19 %).</li>
+</ul>
+<p><strong>Une transformation locale, recertifiée.</strong> Sur
+l’édition compacte, compilée localement (2 h 15, 6,6 Go, axiomes
+standard), nous avons retiré du Théorème B court
+(<code>Data.enough_forms</code>) ses deux clauses de positivité, que son
+unique consommateur ignore. Le projet recompile (5 min), les axiomes
+sont inchangés, et les fichiers d’énoncés sont identiques ; le
+comparateur officiel, qui demande 64 Go, n’a pas été lancé. Le gain net
+est nul, parce que les preuves retirées servent ailleurs. C’est le cas
+d’école de la distinction entre clause inerte et preuve morte : une
+clause inerte ne raccourcit la preuve que si sa démonstration n’est pas
+partagée (carnet, E22).</p>
+<p>Une réécriture établit qu’on peut se passer d’un ingrédient, non que
+cet ingrédient était vide dans l’original : le Théorème B des arcs y est
+remplacé par d’autres arguments, et sa disparition ne dit rien de son
+rôle dans la route d’origine. Chercher les courts-circuits de cette
+route et comprendre ce qu’ils révèlent est l’objet d’un travail
+distinct, en préparation.</p>
+<hr />
+<h2 id="discussion">9. Discussion</h2>
+<h3 id="ce-que-le-graphe-ne-peut-pas-décider">9.1 Ce que le graphe ne
+peut pas décider</h3>
+<p>Un graphe de dépendances « ne peut pas décider » de la validité d’un
+argument [G] ; il ne décide pas davantage de son sens. Nos mesures ont
+trois limites structurelles. Le graphe <strong>sur-approxime</strong>
+l’usage, puisque toute constante citée dans un terme de preuve compte.
+La mesure en <strong>lignes</strong> dépend de l’ordre de sérialisation.
+Et trois étapes restent <strong>humaines</strong> : le choix des
+prédicats d’interface, le regroupement en composantes, la traduction. Ce
+que l’on peut garantir, c’est la séparation : chaque affirmation de cet
+article est soit un calcul reproductible sur l’export, soit une lecture
+d’énoncé citée, soit une interprétation marquée ⟦I⟧.</p>
+<p>Les conclusions négatives demandent une précaution particulière. « X
+n’est pas utilisé » est une assertion sur cet artefact, cette convention
+d’extraction et ces racines ; elle ne dit rien d’une nécessité logique,
+ni de toute autre formalisation de la même mathématique.</p>
+<h3 id="vers-un-graphe-dinférences">9.2 Vers un graphe d’inférences</h3>
+<p>Un graphe de dépendances ne code pas une conjonction. Un théorème qui
+demande à la fois A, B et C se représente mieux par un nœud d’inférence
+à trois entrées, ce qui est le cas de <code>linkCore</code> avec ses
+quatorze interfaces. Encore faut-il garder les paramètres : des preuves
+indépendantes de <span class="math inline">\(\exists x\,P(x)\)</span> et
+de <span class="math inline">\(\exists x\,Q(x)\)</span> ne donnent pas
+<span class="math inline">\(\exists x\,(P(x)\land Q(x))\)</span>. Un tel
+graphe ferait apparaître l’une des vraies difficultés de la preuve, qui
+est de satisfaire <strong>simultanément</strong>, sur les mêmes objets,
+des exigences presque contradictoires. C’est précisément ce que fait
+<code>HypsAlt</code>, et c’est pourquoi la fabrication ne se remplace
+pas par un inventaire d’analogies locales.</p>
+<p><strong>Découper, raccorder, transformer.</strong> La méthode a
+désormais trois temps. <strong>Découper</strong> : dominateurs,
+interfaces et frontières délimitent les composantes et mesurent leur
+poids. <strong>Raccorder</strong> : le graphe des applications suit les
+objets à travers les termes de preuve, et établit ou réfute l’identité
+de ce que plusieurs énoncés supposent. <strong>Transformer</strong> :
+chercher des preuves plus courtes ou plus claires des mêmes interfaces,
+ce qui est l’objet du travail sur les courts-circuits (§ 8). Le deuxième
+temps était le moins outillé ; il a suffi à régler deux raccords que la
+lecture des énoncés laissait ouverts, celui des trois cartes et celui de
+la moyenne sur les colonnes.</p>
+<h3 id="travaux-connexes">9.3 Travaux connexes</h3>
+<p>Plusieurs travaux ont paru dans les jours qui ont suivi l’annonce ;
+les descriptions qui suivent reprennent ce que chacun dit de lui-même,
+consulté le 24/11/2026.</p>
+<p><strong>Vérifications de l’artefact.</strong> Sutherland [Su] publie
+l’export et ses rejeux par plusieurs noyaux. Rubinstein [R] et Lipponen
+[Li] recompilent l’archive et en auditent les axiomes et les
+dépendances. Ces travaux certifient ; ils ne cherchent pas à
+expliquer.</p>
+<p><strong>Reconstructions mathématiques.</strong> La version 2 du texte
+de Rubinstein [R2] (265 pages, écrite avec plusieurs modèles d’IA)
+explique la preuve dans le cas de ζ en <strong>redémontrant</strong> des
+implications : l’inégalité principale découle d’hypothèses H0–H11,
+l’application globale demande H12, et la construction de données
+satisfaisant simultanément ces contrats n’est pas reconstruite.
+Slijepčević [S] donne une esquisse complète, comparée au source ;
+Adriazola [Ad] remonte depuis <code>riemannHypothesis</code> et réécrit
+chaque mécanisme en mathématiques usuelles, en listant les énoncés
+internes encore admis. Ces textes sont plus complets que le nôtre sur le
+contenu ; ils suivent l’ordre déductif ou celui du code source.</p>
+<p><strong>Analyses du graphe.</strong> Le « blueprint » de jae-63 [B]
+indexe le source et dessine les déclarations à profondeur au plus 4 de
+l’énoncé. Le dépôt de sounkou-bioinfo [G] lit l’export avec un outil en
+C, comme nous, pour tester une objection de vacuité : seules 85
+déclarations dépendent des quatre témoins incriminés. Ces analyses
+mesurent et localisent ; elles ne traduisent pas les interfaces.</p>
+<p><strong>Depuis le 24/11.</strong> Les lectures se sont
+multipliées.</p>
+<ul>
+<li><strong>Des expositions.</strong> Le classeur d’exercices dirigé par
+Nelson [Ne] expose la preuve en fiches ; il suit la réécriture de
+Sernau, et un instantané figé suit la route d’origine en citant ses
+déclarations [Ne0]. Le manuscrit de [M] est une autre exposition de la
+réécriture.</li>
+<li><strong>Une objection et sa contre-expertise.</strong> Nielsen a
+objecté que la géométrie de la preuve est vide ; Zeng [Z] a montré, par
+le graphe de dépendances, que les inégalités centrales n’en dépendent
+pas (§ 8).</li>
+<li><strong>Une preuve courte.</strong> Sernau a publié une réécriture
+[Se], vérifiée par Sutherland [Su2] et Rubinstein [R3].</li>
+</ul>
+<p>Le passage de la validité à la compréhension est désormais un travail
+collectif. Il se fait par des lectures partielles, dont celle-ci, et par
+des réécritures.</p>
+<p><strong>Notre position.</strong> Cet article part du graphe calculé
+sur l’export, comme [G], mais cherche, comme [S] et [Ad], le sens
+mathématique, en se limitant aux interfaces entre composantes. Ce qu’il
+apporte en propre tient aux six contributions du § 1. Nous ne
+revendiquons pas la nouveauté de la méthode en général : une comparaison
+avec la littérature sur la reconstruction et l’explicabilité des preuves
+formelles, et sur leur compression, reste à faire.</p>
+<h3 id="trois-lectures-dune-même-preuve">9.4 Trois lectures d’une même
+preuve</h3>
+<p>Il y a désormais trois manières de tenir cette preuve. La première
+est l’artefact : dix-sept millions de lignes que Lean certifie. La
+deuxième est sa structure : quatorze interfaces dans
+<code>linkCore</code>, quelques grandes composantes, un arbre des
+dominateurs, des frontières. La troisième est un récit : une
+multiplicité de Stepanov devenue divisibilité, des couches empilées par
+des relèvements thêta, une pente plafonnée par des tailles exactes, un
+terme principal qui se compense, un équilibre qui donne ½. Passer de la
+première à la deuxième est un calcul ; cet article l’a fait. Passer de
+la deuxième à la troisième est une lecture ; la synthèse l’a tentée.</p>
+<p>Ce passage n’est pas à sens unique. Chaque lecture est confrontée aux
+énoncés et à des contre-exemples, et la structure est réinterprétée
+quand une lecture tombe (§ 7.3). La dernière étape de la figure
+ci-dessous est un objectif : aucune relecture extérieure n’a encore eu
+lieu. Le récit ne remplace pas les conditions dont dépend la validité du
+mécanisme, et trois articulations restent à comprendre. Mais la méthode
+dit déjà où elles sont, ce qu’elles pèsent, et ce qu’il faudrait lire
+pour les franchir.</p>
+<figure>
+<img src="fig/reconstruction_iterative.svg" style="width:60.0%"
+alt="Une reconstruction itérative. Le repérage des interfaces se calcule ; leur regroupement, leur traduction et leur interprétation sont des opérations sémantiques." />
+<figcaption aria-hidden="true">Une reconstruction itérative. Le repérage
+des interfaces se calcule ; leur regroupement, leur traduction et leur
+interprétation sont des opérations sémantiques.</figcaption>
+</figure>
+<hr />
+<h2 id="annexe.-reproductibilité">Annexe. Reproductibilité</h2>
+<p><strong>Les données.</strong> L’export
+<code>solution.ndjson.zst</code> publié par Sutherland [Su] (7,7 Go, 62
+Go décompressés) a été lu en flux le 21/11/2026, sans être décompressé
+sur disque. Nous n’en avons pas conservé d’empreinte, et nous ne lui
+substituons pas celle d’une version ultérieure. La passe d’extraction se
+lance par
+<code>zstd -dc --long=30 solution.ndjson.zst | tools/deps OUT</code>
+(environ 13 Go de sortie, quelques heures sur un portable) ; tout le
+reste se calcule sur <code>OUT</code>. L’empreinte SHA-256 de
+<code>challenge.ndjson.zst</code> (les énoncés) commence par
+<code>c24ef99d</code>, et celle de l’arbre des dominateurs publié
+(<code>decl_domtree.tsv.gz</code>) par <code>3f73fa59</code>. Ce que
+nous décrivons est la preuve contenue dans cet export, rejoué par trois
+noyaux. Son lien avec les fichiers <code>.lean</code> repose sur la
+chaîne d’export de Sutherland, et aucune ré-exportation indépendante, en
+bac à sable, n’en a encore confirmé l’empreinte. L’export de l’édition
+lisible de la preuve courte (<code>readable-solution.ndjson.zst</code>,
+[Su2]) a été vérifié en flux : l’empreinte SHA-256 du flux décompressé
+commence par <code>baf221c8</code>, comme celle publiée.</p>
+<p><strong>Les calculs.</strong> Le tableau suivant indique, pour chaque
+résultat, le script et les fichiers d’entrée.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Résultat</th>
+<th>Script</th>
+<th>Entrées et sorties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>graphe, fermetures, dominateurs</td>
+<td><code>deps.c</code>, <code>analyse_export.py</code></td>
+<td><code>OUT</code>, <code>decl_domtree.tsv.gz</code></td>
+</tr>
+<tr>
+<td>index inverse, référents (§ 2.3)</td>
+<td><code>revindex.py</code></td>
+<td><code>analysis/points_entree.txt</code></td>
+</tr>
+<tr>
+<td>énoncés réimprimés</td>
+<td><code>show.py</code></td>
+<td><code>analysis/extraits/</code></td>
+</tr>
+<tr>
+<td>interfaces (§§ 3.3, 5.4)</td>
+<td><code>interfaces.py</code>, <code>organes.py</code></td>
+<td><code>analysis/interfaces.tsv</code>, <code>organes.tsv</code></td>
+</tr>
+<tr>
+<td>trois pondérations, mécanisme (§ 4)</td>
+<td><code>poids.py</code>, <code>fig_poids.py</code></td>
+<td><code>composantes.txt</code>, <code>mecanisme.txt</code>,
+<code>poids_*.csv</code></td>
+</tr>
+<tr>
+<td>frontières (§ 6)</td>
+<td><code>frontiere.py</code>, <code>fig_frontieres.py</code></td>
+<td><code>frontieres.txt</code>,
+<code>frontieres_resultats*.txt</code></td>
+</tr>
+<tr>
+<td>schémas réels (§§ 2.3, 3, 5.7)</td>
+<td><code>fig_schemas.py</code></td>
+<td><code>decl_spine.txt</code>, <code>interfaces.tsv</code>,
+<code>points_entree.txt</code></td>
+</tr>
+<tr>
+<td>applications instanciées (§§ 3.4, 5)</td>
+<td><code>trace_app.py</code>, <code>lexpr.py</code></td>
+<td><code>analysis/raccords.md</code></td>
+</tr>
+<tr>
+<td>clauses inertes (§ 8)</td>
+<td><code>inertes.py</code></td>
+<td><code>analysis/inertes.tsv</code> (22 h sur un M1 de 16 Go)</td>
+</tr>
+<tr>
+<td>objets de Nielsen, frontière en données (§ 8)</td>
+<td><code>occ.py</code>, <code>frontiere_donnees.py</code>,
+<code>poids.py</code></td>
+<td><code>analysis/nielsen_objets.txt</code>, <code>raccords.md</code>
+(E16)</td>
+</tr>
+<tr>
+<td>preuve courte (§ 8)</td>
+<td><code>deps.c</code>, <code>analyse_export.py</code>,
+<code>query.py</code></td>
+<td><code>export_short/out_read</code>, <code>raccords.md</code>
+(E18)</td>
+</tr>
+</tbody>
+</table>
+<p>L’exemple de descente du § 5.3 montre l’usage de
+<code>show.py</code>, <code>query.py</code> et
+<code>revindex.py</code>.</p>
+<p><strong>Instantané et tests.</strong> Les scripts, listes et
+résultats cités dans cette version sont figés dans
+<code>analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz</code>
+(archive déterministe, empreinte SHA-256 commençant par
+<code>97b1c6b1</code>, manifeste fichier par fichier). Les archives
+<code>v1.0-2026-11-25</code> et <code>v1.1-2026-11-26</code> ont été
+régénérées au fil des mises à jour et ne doivent pas être prises pour
+l’état de leur date ; <code>tools/tests.py</code> en vérifie le
+fonctionnement sans l’export, notamment en recalculant les poids publiés
+à partir de l’arbre des dominateurs. Le dossier <code>analysis/</code>
+contient aussi les empreintes des fichiers analysés
+(<code>checksums.sha256</code>).</p>
+<h2 id="outils-et-déclaration-dusage-de-lia">Outils et déclaration
+d’usage de l’IA</h2>
+<p><strong>Outils.</strong> L’export a été lu en flux par <a
+href="tools/deps.c"><code>tools/deps.c</code></a>. Le graphe des
+déclarations, les dominateurs et l’index inverse sont calculés par <a
+href="tools/analyse_export.py"><code>analyse_export.py</code></a>, <a
+href="tools/revindex.py"><code>revindex.py</code></a> et <a
+href="tools/query.py"><code>query.py</code></a>. Les énoncés sont
+réimprimés par <a href="tools/show.py"><code>show.py</code></a>, et le
+graphe des interfaces est extrait par <a
+href="tools/interfaces.py"><code>interfaces.py</code></a> et <a
+href="tools/organes.py"><code>organes.py</code></a>. Les trois
+pondérations et l’union du mécanisme sont calculées par <a
+href="tools/poids.py"><code>poids.py</code></a>, les frontières de
+lecture par <a href="tools/frontiere.py"><code>frontiere.py</code></a>,
+et les figures par <a
+href="tools/fig_poids.py"><code>fig_poids.py</code></a>, <a
+href="tools/fig_frontieres.py"><code>fig_frontieres.py</code></a> et <a
+href="tools/fig_schemas.py"><code>fig_schemas.py</code></a>. Le graphe
+des applications instanciées est extrait par <a
+href="tools/trace_app.py"><code>trace_app.py</code></a>, qui s’appuie
+sur <a href="tools/lexpr.py"><code>lexpr.py</code></a>. Des tests de
+non-régression (<a href="tools/tests.py"><code>tests.py</code></a>) et
+un instantané reproductible (<a
+href="tools/instantane.py"><code>instantane.py</code></a>) accompagnent
+cette version. Tous les scripts Python utilisent la seule bibliothèque
+standard. Les affirmations d’absence de dépendance sont vérifiées sur le
+graphe extrait, et non par recherche textuelle.</p>
+<p><strong>Licence.</strong> Textes, outils et données : <a
+href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr">CC BY-NC
+4.0</a>, soit reproduction et adaptation libres avec attribution, sans
+usage commercial. Les sources Lean de L. Sernau, utilisées pour
+l’expérience E22, restent sous leur propre licence (Apache-2.0).</p>
+<p><strong>Usage de l’IA.</strong> Claude (Anthropic) a écrit les
+outils, lu les énoncés de l’export et rédigé le texte, sous la direction
+de l’auteur, qui a fixé les questions, l’organisation et les exigences
+de rigueur, et relu chaque version. ChatGPT (OpenAI) a relu les versions
+successives et proposé des corrections ; chacune a été vérifiée sur
+l’export ou sur les sources avant d’être adoptée. Les erreurs trouvées
+en cours de route sont consignées au § 7.4. Les critères de vérification
+sont ceux de l’échelle du § 7.1. Aucun énoncé n’a été vérifié
+indépendamment par un spécialiste à ce jour.</p>
+<h2 id="références">Références</h2>
+<ul>
+<li>[A] L. Alpöge, note d’annonce, 20/11/2026 : <a
+href="https://alpo.ge/remark.pdf"
+class="uri">https://alpo.ge/remark.pdf</a></li>
+<li>[Su] A. Sutherland, vérification et export de la preuve : <a
+href="https://math.mit.edu/~drew/grh/"
+class="uri">https://math.mit.edu/~drew/grh/</a></li>
+<li>[R] M. Rubinstein, page du projet et vérification Lean, 2026 : <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/</a></li>
+<li>[R2] M. Rubinstein, avec l’aide de plusieurs modèles d’IA, <em>The
+Alpöge–Claude proof of the Riemann hypothesis explained for the Riemann
+zeta function</em>, version 2, 22 novembre 2026, 265 p. : <a
+href="https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf"
+class="uri">https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/zeta-paper_v2.pdf</a></li>
+<li>[S] S. Slijepčević, <em>Outline of Alpöge’s proof of the generalised
+Riemann hypothesis</em>, hexagon:2611.00812.</li>
+<li>[H] twinheterodox, <em>Three simplifications in the Alpöge–Claude
+argument for Dirichlet GRH</em>, hexagon:2611.00828.</li>
+<li>[Li] A. Lipponen, <em>Independent check of Alpöge’s Lean
+formalization of RH/GRH, run on the LUMI supercomputer</em>, 2026 : <a
+href="https://github.com/aapolipponen/rh-lean-check-lumi"
+class="uri">https://github.com/aapolipponen/rh-lean-check-lumi</a></li>
+<li>[Ad] J. Adriazola, <em>RH-Alpoge-Reconstruction</em>, 2026 : <a
+href="https://github.com/jimjamzola/RH-Alpoge-Reconstruction"
+class="uri">https://github.com/jimjamzola/RH-Alpoge-Reconstruction</a></li>
+<li>[Ne] P. D. Nelson (dir.), <em>GRH via exercises</em>, 26/11/2026 :
+<a href="https://ultronozm.github.io/grh-workbook/"
+class="uri">https://ultronozm.github.io/grh-workbook/</a></li>
+<li>[Ne0] P. D. Nelson (dir.), <em>GRH via exercises</em>, instantané «
+original-route » du 25/11/2026 : <a
+href="https://ultronozm.github.io/grh-workbook/original-route/"
+class="uri">https://ultronozm.github.io/grh-workbook/original-route/</a></li>
+<li>[M] mjtb49, <em>The Alpöge–Claude argument for Dirichlet GRH</em>,
+2026 : <a href="https://github.com/mjtb49/GRH"
+class="uri">https://github.com/mjtb49/GRH</a></li>
+<li>[Se] L. Sernau (avec Anthropic et Claude), <em>A short Lean 4 proof
+of the Generalized Riemann Hypothesis</em>, commit <code>72fead1</code>,
+25/11/2026 : <a href="https://github.com/lsernau/grh-lean"
+class="uri">https://github.com/lsernau/grh-lean</a></li>
+<li>[Su2] A. Sutherland, vérification de la preuve courte et exports :
+<a href="https://math.mit.edu/~drew/shortgrh/"
+class="uri">https://math.mit.edu/~drew/shortgrh/</a></li>
+<li>[R3] M. Rubinstein, contrôle de l’édition compacte : <a
+href="https://mrubinst.github.io/grh-lean-compact-check/"
+class="uri">https://mrubinst.github.io/grh-lean-compact-check/</a></li>
+<li>[Z] Z. Zeng, <em>The Invalidity of “The Invalidity of Alpöge’s Proof
+of the Riemann Hypothesis”</em>, 23–24/11/2026 : <a
+href="https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing"
+class="uri">https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing</a></li>
+<li>[B] jae-63, <em>Human-readable blueprint of the Alpöge RH Lean
+formalization</em>, 2026 : <a
+href="https://github.com/jae-63/rh-alpoge-blueprint"
+class="uri">https://github.com/jae-63/rh-alpoge-blueprint</a></li>
+<li>[G] sounkou-bioinfo, <em>Dependency graph of the compiled Lean proof
+of the Riemann Hypothesis</em>, 2026 : <a
+href="https://github.com/sounkou-bioinfo/rh-claude-alpoge-graphs"
+class="uri">https://github.com/sounkou-bioinfo/rh-claude-alpoge-graphs</a></li>
+<li>[CHK] K. D. Cooper, T. J. Harvey, K. Kennedy, <em>A Simple, Fast
+Dominance Algorithm</em>, Rice University, Computer Science, rapport
+technique TR06-33870, 2006 (texte diffusé dès 2002) : <a
+href="https://hdl.handle.net/1911/96345"
+class="uri">https://hdl.handle.net/1911/96345</a>. L’attribution
+fréquente à <em>Software Practice and Experience</em> (2001) n’a pas pu
+être vérifiée.</li>
+<li>[Syn] G. Rozsavolgyi, avec Claude (Anthropic), <em>Comprendre la
+preuve formelle d’Alpöge de l’hypothèse de Riemann généralisée — une
+exposition en cinq questions</em>, version 4.4, 26 novembre 2026 : <a
+href="synthese.html">synthèse</a>.</li>
+</ul>
+</body>
+</html>

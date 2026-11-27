@@ -1,0 +1,27 @@
+# « Mécanisme » : les nœuds des lignes §§ 1 à 5 (hors théorème S et covolume) du tableau de la partie II
+# § 1 Landau sur fenêtres
+zeroFreeOn_of_tiedWin_cyc
+level_gm_le_on_family_scales
+# § 3.4 hôte, paires en moyenne
+supplyChi
+pair_share
+QH.bad_share
+# § 3 Théorème A, Dwork
+thmAGauss
+theorem_A_one_monomial_log_loss
+lemmaS
+sx_dwork
+# § 4 chaîne et gains
+LowTermBound
+Formalism.MainNotions.ColumnSystems.PointsLemma
+LinkG_at
+# § 5 division, pentes, bilan
+divClausesR_of
+DivIntoDualShift
+mu_diff
+Frame_at
+Deduction.ch_top
+ch_balance
+key_identity5
+linkCore
+core_ineq

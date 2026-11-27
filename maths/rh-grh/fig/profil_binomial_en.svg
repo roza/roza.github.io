@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="260" font-family="Helvetica,Arial,sans-serif" font-size="12">
+<rect width="640" height="260" fill="white"/>
+<rect x="333.0" y="175.0" width="287.0" height="45.0" fill="#f4d9b0"/>
+<line x1="46" x2="620" y1="175.0" y2="175.0" stroke="#ddd"/>
+<text x="38" y="179.0" text-anchor="end">1</text>
+<line x1="46" x2="620" y1="130.0" y2="130.0" stroke="#ddd"/>
+<text x="38" y="134.0" text-anchor="end">2</text>
+<line x1="46" x2="620" y1="85.0" y2="85.0" stroke="#ddd"/>
+<text x="38" y="89.0" text-anchor="end">3</text>
+<line x1="46" x2="620" y1="40.0" y2="40.0" stroke="#ddd"/>
+<text x="38" y="44.0" text-anchor="end">4</text>
+<rect x="53.6" y="40.0" width="4" height="180.0" fill="#b0413e"/>
+<rect x="58.4" y="130.0" width="4" height="90.0" fill="#b0413e"/>
+<circle cx="69.9" cy="220.0" r="2" fill="#999"/>
+<rect x="77.5" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<circle cx="98.6" cy="220.0" r="2" fill="#999"/>
+<rect x="106.2" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<rect x="125.3" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<circle cx="136.9" cy="220.0" r="2" fill="#999"/>
+<rect x="154.0" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<circle cx="184.7" cy="220.0" r="2" fill="#999"/>
+<rect x="192.3" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<rect x="221.0" y="175.0" width="4" height="45.0" fill="#b0413e"/>
+<circle cx="242.1" cy="220.0" r="2" fill="#999"/>
+<circle cx="251.7" cy="220.0" r="2" fill="#999"/>
+<circle cx="270.8" cy="220.0" r="2" fill="#999"/>
+<circle cx="299.5" cy="220.0" r="2" fill="#999"/>
+<circle cx="328.2" cy="220.0" r="2" fill="#999"/>
+<rect x="335.8" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="364.5" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="383.6" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="393.2" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="421.9" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="441.0" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="469.7" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="508.0" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="527.1" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="536.7" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="555.8" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="565.4" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<rect x="584.5" y="175.0" width="4" height="45.0" fill="#2b5c8a"/>
+<line x1="46" x2="620" y1="220.0" y2="220.0" stroke="black"/>
+<text x="46.0" y="236" text-anchor="middle">0</text>
+<text x="189.5" y="236" text-anchor="middle">30</text>
+<text x="333.0" y="236" text-anchor="middle">60</text>
+<text x="476.5" y="236" text-anchor="middle">90</text>
+<text x="620.0" y="236" text-anchor="middle">120</text>
+<text x="333.0" y="254" text-anchor="middle">p (prime)</text>
+<text x="14" y="130.0" transform="rotate(-90 14 130.0)" text-anchor="middle">v_p(C(120,60))</text>
+<text x="476.5" y="167.0" text-anchor="middle" fill="#8a5a1a">target: indicator of (n, 2n]</text>
+<text x="106" y="18" fill="#b0413e">red: “parasitic” primes (p ≤ n)</text>
+<text x="376" y="18" fill="#2b5c8a">blue: target primes</text>
+</svg>

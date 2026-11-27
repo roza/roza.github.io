@@ -1,0 +1,5 @@
+### Formalism.HC.ChebyshevInequalityAtWindowScale  [def]
+∀ {Fam : Real → Type 1} , (∀ {eps : Real} , Fam eps → Formalism.MainNotions.FamCore eps) → (∀ {eps : Real} , Fam eps → Real → Real → Real → Real → Real → Real → Real → Prop) → Real → Formalism.HC.Level → Prop
+  :=
+fun {Fam : Real → Type 1} (core : ∀ {eps : Real} , Fam eps → Formalism.MainNotions.FamCore eps) (Tied : ∀ {eps : Real} , Fam eps → Real → Real → Real → Real → Real → Real → Real → Prop) (la : Real) (Λ : Formalism.HC.Level) => ∃ eD, ∃ eL, ∃ ε₁, (0 < ε₁) ∧ (∀ (eps : Real) , 0 < eps → eps < ε₁ → ∃ Fm, Formalism.HC.EFamC Λ (core eps Fm) ∧ (Formalism.MainNotions.FamCore.Windows (core eps Fm) la ∧ Formalism.HC.ChebyshevInequalityOnFamilyWindows core Tied Fm eD eL))
+

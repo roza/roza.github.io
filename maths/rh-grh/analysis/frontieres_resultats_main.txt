@@ -1,0 +1,13 @@
+racine riemannHypothesis,riemannZeta_eq_zero_re,LFunction_ne_zero_of_half_lt_re,LFunction_eq_zero_re,LFunction_eq_zero_re_of_isPrimitive : 1468414 décl., 1065214329 lignes, 2584515658 nœuds
+configuration                       |B|    G_B : reste à lire (décl. lignes nœuds)              suppression   ∪ dominés
+0. sans frontière                     0                    100.00% 100.00% 100.00%                 100.00%      0.00%   biblio 110495 / projet 1357919
+    exact : |R_cut| = 1468414, |R_cut ∩ B| = 0, |(R_cut \ B) \ R_del| = 0, |R \ R_cut| = 0, |R_del| = 1468414, |∪ dominés| = 0
+1. cœur automorphe admis              1                     63.00%  58.55%  56.63%                  63.00%     37.00%   biblio 107340 / projet 817750
+    exact : |R_cut| = 925090, |R_cut ∩ B| = 1, |(R_cut \ B) \ R_del| = 0, |R \ R_cut| = 543324, |R_del| = 925089, |∪ dominés| = 543325
+2. grandes théories admises           7                     45.72%  36.75%  34.95%                  45.72%     49.09%   biblio 101246 / projet 570126
+    exact : |R_cut| = 671372, |R_cut ∩ B| = 5, |(R_cut \ B) \ R_del| = 3, |R \ R_cut| = 797042, |R_del| = 671364, |∪ dominés| = 720807
+3. 2 + gains, division, Ш-lien       11                     45.56%  36.54%  34.79%                  45.56%     49.22%   biblio 101234 / projet 567824
+    exact : |R_cut| = 669058, |R_cut ∩ B| = 8, |(R_cut \ B) \ R_del| = 5, |R \ R_cut| = 799356, |R_del| = 669045, |∪ dominés| = 722697
+4. 3 sans CM (formule CM ouverte)    10                     45.56%  36.54%  34.79%                  45.56%     49.21%   biblio 101234 / projet 567824
+    exact : |R_cut| = 669058, |R_cut ∩ B| = 8, |(R_cut \ B) \ R_del| = 5, |R \ R_cut| = 799356, |R_del| = 669045, |∪ dominés| = 722622
+python3 -I tools/frontiere.py export/out_sol  analysis/frontieres.txt  121,80s user 0,89s system 99% cpu 2:02,93 total

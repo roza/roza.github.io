@@ -224,6 +224,9 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Outils d&#x27;analyse de l&#x27;export Lean de la preuve RH/GRH">
   <meta name="twitter:description" content="Outils pour lire en flux l&#x27;export Lean de la preuve RH/GRH d&#x27;Alpöge : dépendances par déclaration, fermeture, arbre des dominateurs, réimpression des énoncés.">
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
 </head>
 <body>
 <nav style="font-family:system-ui,sans-serif;font-size:.85em;margin-bottom:1.2em"><a href="/">Accueil</a> › <a href="/maths/">Maths</a> › <a href="/maths/rh-grh/">RH/GRH</a></nav>
@@ -272,9 +275,140 @@ dominateurs (Cooper–Harvey–Kennedy), poids dominés, composition,
 fermeture.</td>
 </tr>
 <tr>
+<td><code>interfaces.py OUT [REGEX]</code></td>
+<td>Graphe des <strong>interfaces</strong> : pour chaque théorème, les
+prédicats <code>Prop</code> (par défaut ceux de
+<code>Formalism.MainNotions</code>) pris en hypothèse et conclus. Sortie
+TSV (<code>analysis/interfaces.tsv</code>).</td>
+</tr>
+<tr>
+<td><code>organes.py OUT interfaces.tsv LAB=nom …</code></td>
+<td>Pour chaque organe, les producteurs d’interfaces qui l’utilisent
+transitivement (par l’index inverse).</td>
+</tr>
+<tr>
+<td><code>modeles.py</code></td>
+<td>Calculs des modèles réduits de la synthèse (Tchebychev, <span
+class="math inline">\(y^2=x^3-x\)</span>, Stepanov, masses, fluctuations
+de <span class="math inline">\(G\)</span>) et figures SVG. Bibliothèque
+standard seule.</td>
+</tr>
+<tr>
 <td><code>revindex.py OUT build \| up NOM \| refs NOM… \| path SOURCE CIBLE…</code></td>
 <td>Index inverse ; <code>path</code> dit si SOURCE utilise
 transitivement CIBLE et donne la chaîne.</td>
+</tr>
+<tr>
+<td><code>poids.py [DOMTREE] [--set FICHIER] [--csv SORTIE] [--max SORTIE]</code></td>
+<td>Poids dominés selon trois pondérations (déclarations, lignes de
+l’export, nœuds d’expression par déclaration) et union reproductible
+d’un ensemble de nœuds (éléments maximaux pour la domination). Listes
+utilisées : <code>analysis/composantes.txt</code>,
+<code>analysis/mecanisme.txt</code>.</td>
+</tr>
+<tr>
+<td><code>fig_poids.py CSV DOSSIER</code></td>
+<td>Figure SVG des poids dominés selon les trois pondérations (FR et
+EN), à partir de <code>analysis/poids_composantes.csv</code>.</td>
+</tr>
+<tr>
+<td><code>frontiere.py OUT RACINE CONFIG [--test]</code></td>
+<td>Frontières de lecture : ce qui reste à lire quand on admet des
+théorèmes (on garde leur énoncé, on coupe leur preuve), comparé à la
+suppression des sommets et à l’union des poids dominés ; trois
+pondérations, et composition bibliothèques/projet. Configurations :
+<code>analysis/frontieres.txt</code>.</td>
+</tr>
+<tr>
+<td><code>tests.py [--rapide]</code></td>
+<td>Tests de non-régression sans l’export : losange de
+<code>frontiere.py</code>, lemniscate, modèles réduits (table du § 6.2,
+masses de Siegel, ϖ), poids publiés retrouvés depuis l’arbre des
+dominateurs, empreintes de <code>analysis/checksums.sha256</code>.</td>
+</tr>
+<tr>
+<td><code>instantane.py ÉTIQUETTE</code></td>
+<td>Instantané figé et reproductible (archive déterministe et manifeste
+SHA-256) dans <code>analysis/instantanes/</code>.</td>
+</tr>
+<tr>
+<td><code>fig_frontieres.py RÉSULTATS DOSSIER</code></td>
+<td>Figure SVG des frontières de lecture (FR et EN), à partir de
+<code>analysis/frontieres_resultats.txt</code>.</td>
+</tr>
+<tr>
+<td><code>fig_schemas.py DOSSIER</code></td>
+<td>Quatre schémas réels en Graphviz (FR et EN) : sommet du graphe de la
+preuve, haut de l’arbre des dominateurs, dépendances autour de
+<code>ch_balance</code>, voisinage de <code>linkCore</code> dans le
+graphe des interfaces. Noms et chiffres lus sur l’export.</td>
+</tr>
+<tr>
+<td><code>fiche.py OUT STRUCT</code></td>
+<td>Fiche d’une structure : paramètres, champs nommés et types
+(télescope du constructeur).</td>
+</tr>
+<tr>
+<td><code>inertes.py OUT [--only NOM] [--budget N]</code></td>
+<td>Clauses inertes : pour chaque théorème dont la conclusion est une
+conjonction, suit les projections dans tous ses référents (éliminateurs,
+β-rédex, transmission interprocédurale sur 8 niveaux) ; analyse
+conservatrice. Lit <code>OUT/domtree.tsv</code> s’il existe, sinon
+<code>analysis/decl_domtree.tsv.gz</code>, et <code>decl2mod.tsv</code>
+à côté de <code>OUT</code>. Sortie : <code>analysis/inertes.tsv</code>
+(E15).</td>
+</tr>
+<tr>
+<td><code>occ.py OUT DECL CIBLE…</code></td>
+<td>Pour une preuve, où apparaissent les constantes cherchées, avec
+l’application qui les englobe (parcours complet du DAG, sans
+troncature).</td>
+</tr>
+<tr>
+<td><code>frontiere_donnees.py OUT FICHIER</code></td>
+<td>Remonte depuis une liste d’objets en ne traversant que des
+définitions ; liste les définitions atteintes et les théorèmes de
+frontière avec leur énoncé (E16 :
+<code>analysis/nielsen_objets.txt</code>).</td>
+</tr>
+<tr>
+<td><code>modmap_src.py SRC DOMTREE SORTIE</code></td>
+<td>Rattache les déclarations d’un export à leurs fichiers source en
+lisant le texte des <code>.lean</code> (espaces de noms, déclarations,
+noms privés), sans compiler ni exécuter ; poids par dossier sur stderr
+(E18).</td>
+</tr>
+<tr>
+<td><code>lexpr.py</code></td>
+<td>Bibliothèque : lecture du DAG d’expressions de <code>deps.c</code>
+et impression lisible (le code de <code>show.py</code> sous forme
+importable).</td>
+</tr>
+<tr>
+<td><code>trace_app.py OUT DECL [--callee RE] [--types] [--implicit] [--all] [--json F] [--dot F]</code></td>
+<td><strong>Graphe des applications instanciées</strong> : dans le terme
+de preuve de DECL, chaque application de théorème ou de constructeur,
+son contexte de lieurs, ses arguments alignés sur le télescope de
+l’appelé, la provenance de chaque argument (locale,
+<code>have</code>/<code>let</code>, projection, autre occurrence) et,
+avec <code>--types</code>, les types instanciés à l’affichage ;
+<code>--outline</code> donne le squelette de la preuve (suite des
+<code>have</code>/<code>let</code> avec leur énoncé et le lemme qui les
+justifie), <code>--reading</code> la liste de lecture (lemmes dominés
+par la cible, à lire en preuve ; lemmes extérieurs, à lire en énoncé).
+Les alias (valeur réduite à une constante) sont suivis.
+<code>--slice CALLEE:PARAM [--depth N]</code> fait un <strong>tranchage
+arrière</strong> (<em>backward slicing</em>) : il remonte la provenance
+d’un seul argument (variables → lieurs,
+<code>let</code>/<code>have</code> → valeur, applications → arguments
+explicites, projections → structure) jusqu’aux lieurs de la déclaration.
+Pas de vérification de convertibilité. Résultats :
+<code>analysis/raccords.md</code>.</td>
+</tr>
+<tr>
+<td><code>fig_landau.py DOSSIER</code></td>
+<td>Figure SVG du noyau gamma qui localise Landau dans une fenêtre
+d’échelles (FR et EN).</td>
 </tr>
 </tbody>
 </table>
@@ -287,5 +421,14 @@ côté de <code>tools/</code>.</p>
 <p>Toute conclusion négative (« X n’est pas utilisé ») doit être établie
 avec ces outils sur l’export, et non par recherche textuelle dans le
 source : celle-ci rate les constructions anonymes.</p>
+<p><strong>Instantané figé.</strong> La version citée par l’article 1.3
+est
+<code>analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz</code>
+(les archives <code>v1.0-2026-11-25</code> et
+<code>v1.1-2026-11-26</code> ont été régénérées et ne reflètent plus
+l’état de leur date) ; son manifeste donne l’empreinte de chaque fichier
+et celle de l’archive.
+<code>python3 -I tools/instantane.py v1.2-2026-11-27</code> la
+reconstruit à l’identique tant que les fichiers n’ont pas changé.</p>
 </body>
 </html>

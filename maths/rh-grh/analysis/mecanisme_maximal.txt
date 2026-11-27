@@ -1,0 +1,14 @@
+# Sous-arbres maximaux : nœuds de la liste qu'aucun autre nœud de la liste ne domine
+Formalism.HC.zeroFreeOn_of_tiedWin_cyc
+UpperTheory.Comparison₂.level_gm_le_on_family_scales
+UpperTheory.Top.supplyChi
+Formalism.DworkPowerSeriesWeights.thmAGauss
+Formalism.DworkPowerSeriesWeights.lemmaS
+Formalism.MainNotions.FormalGroupSystem.Pf.sx_dwork
+Formalism.MainNotions.FormalGroupSystem.LowTermBound
+Formalism.MainNotions.ColumnSystems.PointsLemma
+Formalism.MainNotions.LinkG_at
+Formalism.L2.DIV.divClausesR_of
+Formalism.MainNotions.J.mu_diff
+Formalism.MainNotions.Lnk.Frame_at
+Formalism.MainNotions.Lnk.linkCore

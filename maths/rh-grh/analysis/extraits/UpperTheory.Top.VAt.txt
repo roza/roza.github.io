@@ -1,0 +1,5 @@
+### UpperTheory.Top.VAt  [def]
+Formalism.HC.PChar → Real → Real → Nat → Nat → Nat → Real → Prop
+  :=
+fun (ψ : Formalism.HC.PChar) (eps : Real) (Ct : Real) (q : Nat) (d : Nat) (e : Nat) (x : Real) => ∀ (E : Type) [Field E] [NumberField E] , UpperTheory.Top.IsChiField ψ e q d E → UpperTheory.Top.VVle E (Nat.floor (x ^ Ct)) (Real.sqrt (Real.exp (x ^ eps)))
+

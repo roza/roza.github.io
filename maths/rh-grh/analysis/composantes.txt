@@ -1,0 +1,9 @@
+# Composantes du tableau de la partie II de la synthèse (une ligne par déclaration)
+allChi
+every_character_of_theta_integrals_local_matching
+nonempty_hyps_definite_side_of_closed_bound
+vwin_of_row
+galoisLocalGlobalStrong_recParameter
+topCovolSlim2_use_alt_alt
+GlobalTheory.CarrierGap.offDiag
+recTExists

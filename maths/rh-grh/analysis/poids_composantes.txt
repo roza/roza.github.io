@@ -1,0 +1,11 @@
+total : 1468414 décl., 1065214329 lignes, 2584515658 nœuds
+                                                        décl.   lignes    nœuds
+allChi                                                95.992%  99.307%  99.415%
+UpperTheory.Lit.every_character_of_theta_integrals_l  37.001%  41.453%  43.368%
+UpperTheory.Lit.nonempty_hyps_definite_side_of_close  30.755%  35.780%  37.953%
+UpperTheory.One.vwin_of_row                            6.313%   8.212%   8.129%
+UpperTheory.Gal.Int.galoisLocalGlobalStrong_recParam   6.477%   6.312%   5.986%
+SelfIntersectionVolumeEstimates.topCovolSlim2_use_al   5.497%   7.054%   7.037%
+GlobalTheory.CarrierGap.offDiag                        1.510%   1.425%   1.494%
+UpperTheory.Zero.LLC.recTExists                        0.041%   0.048%   0.050%
+UNION (1 sous-arbres maximaux)                        95.992%  99.307%  99.415%

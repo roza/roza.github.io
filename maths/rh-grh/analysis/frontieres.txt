@@ -1,0 +1,6 @@
+# Configurations de frontière (théorèmes admis provisoirement). Racine : riemannHypothesis.
+0. sans frontière :
+1. cœur automorphe admis : every_character_of_theta_integrals_local_matching
+2. grandes théories admises : nonempty_hyps_definite_side_of_closed_bound vwin_of_row galoisLocalGlobalStrong_recParameter topCovolSlim2_use_alt_alt GlobalTheory.CarrierGap.offDiag recTExists GlobalTheory.CM.PureDeg.degSt
+3. 2 + gains, division, Ш-lien : nonempty_hyps_definite_side_of_closed_bound vwin_of_row galoisLocalGlobalStrong_recParameter topCovolSlim2_use_alt_alt GlobalTheory.CarrierGap.offDiag recTExists GlobalTheory.CM.PureDeg.degSt linkG_fam_noKer linkDIVt_of_rowsF linkN_of_twGood_galoisPreconditions thmAGauss
+4. 3 sans CM (formule CM ouverte) : nonempty_hyps_definite_side_of_closed_bound vwin_of_row galoisLocalGlobalStrong_recParameter topCovolSlim2_use_alt_alt GlobalTheory.CarrierGap.offDiag recTExists linkG_fam_noKer linkDIVt_of_rowsF linkN_of_twGood_galoisPreconditions thmAGauss

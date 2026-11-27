@@ -231,8 +231,14 @@
 <h1 class="title">La preuve RH/GRH d’Alpöge : une lecture
 structurelle</h1>
 </header>
-<p><em>Document de travail, version 1.0 du 23 novembre 2026. Rédigé avec
-l’assistance de Claude (Anthropic).</em></p>
+<p><em>Documents de travail : article 1.3 et synthèse 4.4, 26 novembre
+2026. Rédigés par Gérard Rozsavolgyi avec Claude (Anthropic) ; relecture
+: ChatGPT (OpenAI). Les relectures par des modèles ne constituent pas
+une certification indépendante.</em></p>
+<p><em>Licence : <a
+href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr">CC BY-NC
+4.0</a> (textes, outils et données) : reproduction et adaptation libres
+avec attribution, sans usage commercial.</em></p>
 <p>En novembre 2026, L. Alpöge a annoncé une preuve formelle en Lean,
 trouvée avec Claude, de l’hypothèse de Riemann et de l’hypothèse de
 Riemann généralisée pour les fonctions L de Dirichlet. Sa validité
@@ -241,8 +247,15 @@ standard, rejeu par plusieurs noyaux). Ces pages cherchent à
 <strong>comprendre</strong> la preuve. Elles s’appuient sur une analyse
 de l’export de la preuve <strong>au niveau des déclarations</strong> :
 fermeture exacte des dépendances, arbre des dominateurs, poids de chaque
-étape.</p>
-<h2 id="synthèse">Synthèse</h2>
+étape, graphe des applications instanciées, clauses inertes. Elles
+comparent aussi la preuve d’origine à sa réécriture courte par L.
+Sernau.</p>
+<h2 id="synthèse-comprendre-la-preuve-formelle-dalpöge">Synthèse : «
+Comprendre la preuve formelle d’Alpöge »</h2>
+<p>L’exposition mathématique : la réduction à une inégalité sur les
+nombres premiers, la divisibilité par les dérivées thêta, la chaîne de
+relèvements, le contrat de comptabilité et ses compensations,
+l’équilibre en racine carrée, et ce qui reste opaque.</p>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -273,8 +286,49 @@ fermeture exacte des dépendances, arbre des dominateurs, poids de chaque
 </tr>
 </tbody>
 </table>
+<h2 id="article-dexposition-descendre-le-graphe">Article d’exposition :
+« Descendre le graphe »</h2>
+<p>L’article de méthode : que peut-on comprendre d’une preuve formelle
+de dix-sept millions de lignes, et comment le mesurer ? Quatre graphes
+(dépendances, dominateurs, interfaces, applications instanciées), des
+frontières de lecture, la provenance des arguments, une analyse des
+clauses inertes, trois études de cas et une comparaison avec la preuve
+courte.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>HTML</th>
+<th>PDF</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Français</td>
+<td><a href="article.html">article.html</a></td>
+<td><a href="article.pdf">article.pdf</a></td>
+<td><a href="article.md">article.md</a></td>
+</tr>
+<tr>
+<td>English</td>
+<td>traduction de la version 1.3 en préparation</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="notes-de-travail-et-outils">Notes de travail et outils</h2>
 <ul>
+<li><a href="analysis/raccords.md">Carnet des lectures et contrôles</a>
+(E1–E21) : chaque résultat avec la commande qui le reproduit, les
+lectures réfutées et leurs corrections.</li>
 <li><a href="carte.html">Carte de la preuve</a> (<a
 href="carte.md">source</a>) : notes de travail détaillées, avec les noms
 des déclarations Lean (en français). Certaines lectures y ont été

@@ -1,0 +1,24 @@
+total : 1468414 décl., 1065214329 lignes, 2584515658 nœuds
+                                                        décl.   lignes    nœuds
+Formalism.HC.zeroFreeOn_of_tiedWin_cyc                 0.001%   0.000%   0.000%
+UpperTheory.Comparison₂.level_gm_le_on_family_scales   0.023%   0.036%   0.023%
+UpperTheory.Top.supplyChi                              0.183%   0.230%   0.196%
+QH.pair_share                                          0.082%   0.126%   0.106%
+QH.bad_share                                           0.001%   0.002%   0.002%
+Formalism.DworkPowerSeriesWeights.thmAGauss            0.016%   0.020%   0.015%
+Formalism.DworkPowerSeriesWeights.theorem_A_one_mono   0.009%   0.011%   0.008%
+Formalism.DworkPowerSeriesWeights.lemmaS               0.012%   0.009%   0.007%
+Formalism.MainNotions.FormalGroupSystem.Pf.sx_dwork    0.000%   0.000%   0.000%
+Formalism.MainNotions.FormalGroupSystem.LowTermBound   0.000%   0.000%   0.000%
+Formalism.MainNotions.ColumnSystems.PointsLemma        0.000%   0.000%   0.000%
+Formalism.MainNotions.LinkG_at                         0.000%   0.000%   0.000%
+Formalism.L2.DIV.divClausesR_of                        0.032%   0.034%   0.026%
+Formalism.DivisionValues.DivIntoDualShift              0.000%   0.000%   0.000%
+Formalism.MainNotions.J.mu_diff                        0.000%   0.001%   0.001%
+Formalism.MainNotions.Lnk.Frame_at                     0.000%   0.000%   0.000%
+Deduction.ch_top                                       0.003%   0.012%   0.007%
+Deduction.ch_balance                                   0.004%   0.003%   0.002%
+Formalism.LFunctionChainParameters.WeightedSlopeBoun   0.000%   0.001%   0.000%
+Formalism.MainNotions.Lnk.linkCore                     0.009%   0.009%   0.005%
+Formalism.LFunctionChainParameters.LErr.core_ineq      0.000%   0.004%   0.002%
+UNION (13 sous-arbres maximaux)                        0.277%   0.340%   0.274%

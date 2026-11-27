@@ -1,0 +1,5 @@
+### Formalism.FrobeniusOrbits.NoRel  [def]
+Finset Nat → Nat → Prop
+  :=
+fun (T : Finset Nat) (L : Nat) => ∀ (s₁ : Nat) , Membership.mem T s₁ → ∀ (s₂ : Nat) , Membership.mem T s₂ → ∀ (s₃ : Nat) , Membership.mem T s₃ → s₁ ≠ s₂ → s₁ ≠ s₃ → s₂ ≠ s₃ → ∀ (i : Int) (j : Int) , 0 < abs i → abs i ≤ Nat.cast L → 0 < abs j → abs j ≤ Nat.cast L → i ≠ j → (j * (Nat.cast s₂ - Nat.cast s₁)) ≠ (i * (Nat.cast s₃ - Nat.cast s₁))
+

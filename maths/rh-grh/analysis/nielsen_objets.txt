@@ -1,0 +1,13 @@
+GlobalTheory.Mem.Top.Bl.anyGeometry
+Formalism.L2.Geo.geoDegenerate
+Formalism.L2.Geo.algDegenerate
+Formalism.L2.Geo.padDegenerate
+Formalism.L2.Geo.mdlJunk
+Formalism.L2.Geo.cxJunk
+Formalism.L2.Geo.divXFl
+GlobalTheory.Mem.Top.DivRec.geoOver_stages
+Formalism.BasicNotions.Examples₂.geoExample
+GlobalTheory.PointGeometry.pointGeo
+GlobalTheory.Mem.Top.DivRec.x0
+GlobalTheory.provisionalDivX
+GlobalTheory.GeoGraft.graft
