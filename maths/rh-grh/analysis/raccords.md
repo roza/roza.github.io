@@ -28,7 +28,7 @@ Les expériences E15 à E18 sont des **contrôles** plus que des raccords. Elles
 | E19 | bilan original exact | la pente cible se compense ; `ErrX5at` est la somme des erreurs des entrées |
 | E20 | bilan court exact | `star_inequality` est le modèle à trois réels de l'Atelier 6, nom pour nom |
 | E21 | divergence | même rôle (covolume cible), deux producteurs : Arakelov contre déterminant de chaîne et Selmer |
-| E22 | transformation recertifiée | `Data.enough_forms` allégé de deux clauses inertes, recompilé ; défaut de `inertes.py` corrigé |
+| E22 | transformation recompilée | `Data.enough_forms` allégé de deux clauses inertes, recompilé par `lake` ; défaut de `inertes.py` corrigé |
 
 Le tableau « Synthèse », en fin de document, donne le niveau atteint pour chaque raccord.
 
@@ -539,7 +539,7 @@ Les deux exports. `show.py` sur `SelfIntersectionVolumeEstimates.topCovolSlim2_u
 
 **Limites.** Le comptage par motif de nom est indicatif (statut N0 pour les noms, N1 pour les rôles) : un concept peut être présent sous un autre nom. Les deux énoncés ne portent pas sur les mêmes objets, et nous n'avons pas démontré d'implication entre eux (N3). Le lien exact entre la pente de (A4) et le couple covolume–indice du Théorème C reste à écrire.
 
-## E22. Une transformation recertifiée : deux clauses inertes retirées du Théorème B court (niveau 4)
+## E22. Une transformation recompilée : deux clauses inertes retirées du Théorème B court (niveau 4)
 
 Édition compacte de `lsernau/grh-lean` (commit `72fead1`), compilée localement : la contrainte « ne rien exécuter qui vienne de l'archive » a été levée par l'auteur pour ce seul projet, dans `export_short/build_sernau/`. Lean v4.35.0, Mathlib `56a00585` (cache officiel). Patch : `analysis/patches/patch_enough_forms.py`, diff dans `analysis/patches/enough_forms.diff`.
 
@@ -550,15 +550,15 @@ Les deux exports. `show.py` sur `SelfIntersectionVolumeEstimates.topCovolSlim2_u
 
 **Le patch.** L'énoncé de `Data.enough_forms` devient la seule clause $\exists t,\dots$ ; sa preuve perd les deux preuves de positivité ; le motif du consommateur devient `t, ht, big`. Deux fichiers, sept lignes changées.
 
-**La recertification.**
+**La vérification.** Ce qui a été fait est une **recompilation** : `lake build` fait vérifier chaque déclaration par le noyau de Lean. Aucun noyau indépendant (`leanchecker`, `nanoda`, `lean4lean`) n'a rejoué la preuve modifiée, et le comparateur n'a pas été lancé ; ce n'est donc pas une recertification au sens des vérifications de Sutherland et de Rubinstein.
 
 - Référence non modifiée : `lake build` réussit (9 843 tâches, 2 h 15, pic de 6,6 Go sur un Mac M1 de 16 Go), et `#print axioms` donne `propext`, `Classical.choice`, `Quot.sound` pour les cinq théorèmes. Le résultat de Sutherland et de Rubinstein est reproduit en local.
 - Projet patché : recompilation incrémentale réussie en 5 min 23 s (quatre modules refaits : `New.Endgame.ShortAndEnough`, `New.Endgame.LongForms`, `New.Main`, `Main`), mêmes axiomes.
 - `Statements.lean` et `Main.lean` sont identiques à l'original, octet pour octet : les cinq énoncés n'ont pas changé. Le comparateur officiel (`comparator.json`), qui demande Linux et environ 64 Go, n'a pas été lancé.
 
-**Le gain net.** Il est à peu près nul, et c'est attendu. `finrank_rows_ne_zero` reste utilisé par `star_inequality` et `exists_comparison_forms`, et le caractère non trivial des colonnes par d'autres preuves : aucune déclaration ne sort de la fermeture. Le gain se limite au terme de preuve de `Data.enough_forms` et à son énoncé, plus simple. La leçon : une clause inerte ne raccourcit la preuve que si sa démonstration n'est pas partagée. C'est la distinction de *Démêler la preuve* (§ 11) entre clause inerte, preuve morte et gain de fermeture.
+**Le gain net.** Il est à peu près nul, et c'est attendu. Aucun nouvel export n'a été produit après la modification : ce qui suit est une **prévision** tirée des dépendances de l'export d'origine, non une mesure. `finrank_rows_ne_zero` reste utilisé par `star_inequality` et `exists_comparison_forms`, et le caractère non trivial des colonnes par d'autres preuves : aucune déclaration ne devrait sortir de la fermeture. Il faut distinguer la taille du source (sept lignes changées), la taille du terme élaboré de `Data.enough_forms` (réduite), le nombre de déclarations de la fermeture (inchangé, selon cette prévision) et le temps de vérification (non mesuré à part). Le gain se limite au terme de preuve de `Data.enough_forms` et à son énoncé, plus simple. La leçon : une clause inerte ne raccourcit la preuve que si sa démonstration n'est pas partagée. C'est la distinction de *Démêler la preuve* (§ 11) entre clause inerte, preuve morte et gain de fermeture.
 
-**Un défaut corrigé dans `inertes.py`.** En cherchant ce candidat, nous avons trouvé un faux positif : `exists_lie_exponential` était déclaré entièrement inerte, alors que son consommateur utilise ses six composantes. Le théorème y est passé **comme argument fonctionnel** à `And.elim`, dont le résultat, une fonction, est ensuite appliqué à d'autres arguments. L'outil jetait le résultat dans ces deux situations : la conclusion d'une fonction non λ appliquée par un éliminateur (`lams`), et le résultat d'un éliminateur appliqué à plus d'arguments que prévu (sept branches). Il n'était donc **pas conservateur**. Corrigé le 27/11 : les analyses de E15 et E18 ont été refaites, voir E15.
+**Un défaut corrigé dans `inertes.py`.** En cherchant ce candidat, nous avons trouvé un faux positif : `exists_lie_exponential` était déclaré entièrement inerte, alors que son consommateur utilise ses six composantes. Le théorème y est passé **comme argument fonctionnel** à `And.elim`, dont le résultat, une fonction, est ensuite appliqué à d'autres arguments. L'outil jetait le résultat dans ces deux situations : la conclusion d'une fonction non λ appliquée par un éliminateur (`lams`), et le résultat d'un éliminateur appliqué à plus d'arguments que prévu (sept branches). Il n'était donc **pas conservateur** dans ces cas : le caractère conservateur de l'outil est un objectif de conception (tout usage non suivi compte comme une lecture), non une garantie démontrée. Corrigé le 27/11, et les analyses de E15 et E18 ont été refaites (voir E15). **Cas de non-régression**, sur l'édition compacte : `exists_lie_exponential` ne doit plus être déclaré inerte (ses six composantes sont lues), et `map_restrict_haar_eq` doit le rester (sa clause d'égalité n'est lue que dans sa propre preuve). La commande `inertes.py export_short/comp_run/out_comp --only NOM` les vérifie ; elle demande l'export de Sernau, et n'est donc pas dans `tests.py`.
 
 ## Synthèse
 
@@ -575,7 +575,7 @@ Les deux exports. `show.py` sur `SelfIntersectionVolumeEstimates.topCovolSlim2_u
 | bilan original exact (E19) | `Ga_bound5` : $\mu_R$ se compense entre `s_lower5` et `SlopeIneq` ; `ErrX5at` = somme des erreurs, certificat $(1,1,1,1,1,A,1)$ | 3–4 |
 | bilan court exact (E20) | `star_inequality` = modèle à trois réels : $H$ = `mainAmount`, $F=fa\log^4b$, $\rho=m\,\mathrm{rem}$, $I=10\log(1+2b^2)\,fa\log^3b$ | 4 |
 | divergence (E21) | minoration du covolume cible : Arakelov sur Shimura (original, 75 M lignes) contre déterminant de chaîne et Selmer (court, 36 M) | 2–3 |
-| transformation recertifiée (E22) | deux clauses inertes du Théorème B court retirées ; recompilation et axiomes contrôlés ; gain net nul (preuves partagées) | 4 |
+| transformation recompilée (E22) | deux clauses inertes du Théorème B court retirées ; recompilation et axiomes contrôlés ; gain net nul (preuves partagées) | 4 |
 | objections de Nielsen (E16) | Γ = champ porté, jamais lu ; modèle dégénéré = témoin d'un `∃` recopiant $Z$ ; hauteur = expression explicite ; aucune dépendance de `divClausesR_of` | 3 |
 | pages (E6) | étages de la chaîne ; étape « tuer, détecter » reconstruite (proposition) | 4 |
 | Ш → `LinkN` (E7) | défaut = module de congruences (4) ; borne locale et multiplicité `dZ0(j)` = dimension (3) ; mécanisme par Hodge p-adique (1–2) | 3 |

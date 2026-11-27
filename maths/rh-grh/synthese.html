@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Gérard Rozsavolgyi, avec Claude (Anthropic)" />
   <meta name="author" content="Refonte narrative et relecture : ChatGPT (OpenAI)" />
-  <title>La preuve de l'hypothèse de Riemann d'Alpöge : une lecture
-structurelle (Lean)</title>
+  <title>Comprendre la preuve formelle d'Alpöge de l'hypothèse de
+Riemann généralisée — une exposition en cinq questions</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -223,13 +223,13 @@ structurelle (Lean)</title>
   <link rel="alternate" hreflang="x-default" href="https://roza.github.io/maths/rh-grh/synthese_en.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Gérard Rozsavolgyi">
-  <meta property="og:title" content="La preuve de l&#x27;hypothèse de Riemann d&#x27;Alpöge : une lecture structurelle (Lean)">
+  <meta property="og:title" content="Comprendre la preuve formelle d&#x27;Alpöge de l&#x27;hypothèse de Riemann généralisée — une exposition en cinq questions">
   <meta property="og:description" content="Synthèse de la preuve Lean de RH et GRH d&#x27;Alpöge : critère de Landau, divisibilité p-adique de relèvements thêta, pentes de Bost, carte du code établie sur l&#x27;export.">
   <meta property="og:url" content="https://roza.github.io/maths/rh-grh/synthese.html">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="La preuve de l&#x27;hypothèse de Riemann d&#x27;Alpöge : une lecture structurelle (Lean)">
+  <meta name="twitter:title" content="Comprendre la preuve formelle d&#x27;Alpöge de l&#x27;hypothèse de Riemann généralisée — une exposition en cinq questions">
   <meta name="twitter:description" content="Synthèse de la preuve Lean de RH et GRH d&#x27;Alpöge : critère de Landau, divisibilité p-adique de relèvements thêta, pentes de Bost, carte du code établie sur l&#x27;export.">
   <script defer=""
   src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
@@ -242,7 +242,7 @@ structurelle (Lean)</title>
 de Riemann généralisée — une exposition en cinq questions</h1>
 <p class="author">Gérard Rozsavolgyi, avec Claude (Anthropic)</p>
 <p class="author">Refonte narrative et relecture : ChatGPT (OpenAI)</p>
-<p class="date">Version 4.4, 26 novembre 2026</p>
+<p class="date">Version 4.4.1, 27 novembre 2026</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -583,17 +583,19 @@ Mertens dans les progressions arithmétiques donne <span
 class="math inline">\(\sum_{p\le n,\,p\equiv3\,(4)}\log p/p=\tfrac12\log
 n+O(1)\)</span>. Comme <span class="math inline">\(\log|A_n|=n\log
 n+O(n)\)</span> par l’asymptotique précédente, <span
-class="math inline">\(I(n)/\log|A_n|\to\tfrac12\)</span> : ces premiers
-forment la moitié des premiers, et chacun ne fournit que ses couches
-impaires. C’est un énoncé sur le profil, non sur la factorisation
-effective, que le calcul à l’ordre 401 illustre sans la démontrer ; la
-convergence est lente, car les termes en <span
-class="math inline">\(O(n)\)</span> ne sont petits devant <span
-class="math inline">\(n\log n\)</span> qu’à une échelle logarithmique.
-Un facteur 2 au terme dominant rend l’inégalité inutilisable pour une
-estimation fine. De plus, le caractère qui découpe ces premiers, <span
-class="math inline">\(\chi_{-4}\)</span>, est fixé une fois pour toutes
-: contrôler sa somme tordue serait GRH pour <span
+class="math inline">\(I(n)/\log|A_n|\to\tfrac12\)</span> quand <span
+class="math inline">\(n\to\infty\)</span> avec <span
+class="math inline">\(n\equiv1\pmod4\)</span> (hors de cette sous-suite,
+<span class="math inline">\(A_n=0\)</span>) : ces premiers forment la
+moitié des premiers, et chacun ne fournit que ses couches impaires.
+C’est un énoncé sur le profil, non sur la factorisation effective, que
+le calcul à l’ordre 401 illustre sans la démontrer ; la convergence est
+lente, car les termes en <span class="math inline">\(O(n)\)</span> ne
+sont petits devant <span class="math inline">\(n\log n\)</span> qu’à une
+échelle logarithmique. Un facteur 2 au terme dominant rend l’inégalité
+inutilisable pour une estimation fine. De plus, le caractère qui découpe
+ces premiers, <span class="math inline">\(\chi_{-4}\)</span>, est fixé
+une fois pour toutes : contrôler sa somme tordue serait GRH pour <span
 class="math inline">\(\chi_{-4}\)</span>. Le modèle a la bonne
 <strong>forme</strong> de divisibilité, mais un seul objet, attaché à un
 seul corps, ne peut ni combler l’écart de taille ni échapper à son
@@ -736,10 +738,13 @@ class="math inline">\(\frac{T}{2\pi}\log\frac{NT}{2\pi}\)</span> de
 hauteur <span class="math inline">\(0&lt;\gamma\le T\)</span>. Par
 l’équation fonctionnelle et la conjugaison (<span
 class="math inline">\(\overline{L(\bar s,\chi)}=L(s,\bar\chi)\)</span>),
-si ρ est un zéro de <span class="math inline">\(L(s,\chi)\)</span>,
-alors <span class="math inline">\(1-\bar\rho\)</span> en est un aussi :
-l’ensemble des zéros non triviaux est <strong>symétrique par rapport à
-la droite critique</strong> <span
+si ρ est un zéro <strong>non trivial</strong> de <span
+class="math inline">\(L(s,\chi)\)</span>, alors <span
+class="math inline">\(1-\bar\rho\)</span> en est un aussi (la
+restriction est nécessaire : <span class="math inline">\(-2\)</span> est
+un zéro de ζ, mais <span class="math inline">\(3\)</span> n’en est pas
+un) : l’ensemble des zéros non triviaux est <strong>symétrique par
+rapport à la droite critique</strong> <span
 class="math inline">\(\operatorname{Re}s=\tfrac12\)</span>.</p></li>
 <li><p><strong>Caractères non primitifs.</strong> Si χ est induit par
 <span class="math inline">\(\chi^\ast\)</span>, <span
@@ -2188,7 +2193,7 @@ récurrence <span
 class="math inline">\(a_{p^{k+1}}=a_pa_{p^k}-p\,a_{p^{k-1}}\)</span>
 donne alors <span class="math inline">\(a_{p^{2e}}=(-p)^e\)</span> et
 <span class="math inline">\(a_{p^{2e+1}}=0\)</span>. Un théorème de
-Honda (1968) dit que le groupe formel de <span
+Honda (1968 [Ho] ; voir aussi [Haz]) dit que le groupe formel de <span
 class="math inline">\(E\)</span> est strictement isomorphe sur ℤ à celui
 dont le logarithme est <span
 class="math inline">\(\sum_na_n\,t^n/n\)</span> : le calcul qui suit
@@ -4000,8 +4005,8 @@ class="math inline">\(2\varpi\)</span>, et ϖ pour la différentielle
 invariante usuelle <span class="math inline">\(dx/2y\)</span>. La
 quantité normalisée de <code>CM.DegSt</code> demande encore d’autres
 conventions : ϖ n’est pas directement Ω. La <strong>formule de
-Chowla–Selberg</strong> généralise ce calcul. La taille archimédienne
-d’un objet CM est un produit de valeurs <span
+Chowla–Selberg</strong> [CS] généralise ce calcul. La taille
+archimédienne d’un objet CM est un produit de valeurs <span
 class="math inline">\(\Gamma(a/d)^{\pm1}\)</span>, avec des exposants
 donnés par le caractère <span class="math inline">\(\chi_{-d}\)</span>
 du corps CM.</p>
@@ -4881,24 +4886,35 @@ formes du lemme numériquement bonnes, pour les mêmes <span
 class="math inline">\(\mathfrak b\)</span>, <span
 class="math inline">\(C_{\rm arch}\)</span> et <span
 class="math inline">\(B_{\rm deg}\)</span>, les degrés étant normalisés
-par <span class="math inline">\(\delta_L=[L:\mathbb Q]\)</span>. Alors,
-pour toute famille <span class="math inline">\(t_1,\dots,t_\rho\in
-M\)</span> dont les images engendrent <span
-class="math inline">\(V/W\)</span>, le quotient <span
-class="math inline">\(Q/\langle t_i\rangle\)</span> a des longueurs
-locales <span class="math inline">\(\ell_\lambda\le
-n(\lambda)+\rho\,b(\lambda)\)</span>, avec <span
-class="math display">\[\frac1{\delta_L}\sum_{\lambda&#39;}n(\lambda&#39;)\log
-N\lambda&#39;\;\le\;\sum_{i=1}^\rho\Big(\mathrm{meanLogSup}(t_i)+C_{\rm
-arch}+B_{\rm deg}+\tfrac12\log\rho\Big),\]</span> la somme portant sur
-les places finies <span class="math inline">\(\lambda&#39;\)</span> de
-<span class="math inline">\(L\)</span>.</p>
+par <span class="math inline">\(\delta_L=[L:\mathbb Q]\)</span>. Notons
+<span class="math inline">\(Q_L=\mathcal O_L\otimes_{\mathcal
+O_K}Q\)</span> le réseau étendu, distinct du quotient vectoriel <span
+class="math inline">\(V/W\)</span> et de son extension <span
+class="math inline">\(L\otimes_K(V/W)\)</span>, et <span
+class="math inline">\(b(\mathfrak P)=e_{\mathfrak P/\mathfrak
+p}\,b(\mathfrak p)\)</span> l’exposant étendu de l’idéal des
+dénominateurs, pour <span class="math inline">\(\mathfrak P\mid\mathfrak
+p\)</span>. Alors, pour toute famille <span
+class="math inline">\(t_1,\dots,t_\rho\in M\)</span> dont les images
+engendrent <span class="math inline">\(V/W\)</span>, le quotient <span
+class="math inline">\(Q_L/\sum_i\mathcal O_Lt_i\)</span> a des longueurs
+locales <span class="math inline">\(\ell_{\mathfrak P}\le n(\mathfrak
+P)+\rho\,b(\mathfrak P)\)</span> aux places <span
+class="math inline">\(\mathfrak P\)</span> de <span
+class="math inline">\(L\)</span>, avec <span
+class="math display">\[\frac1{\delta_L}\sum_{\mathfrak P}n(\mathfrak
+P)\log N\mathfrak
+P\;\le\;\sum_{i=1}^\rho\Big(\mathrm{meanLogSup}(t_i)+C_{\rm arch}+B_{\rm
+deg}+\tfrac12\log\rho\Big),\]</span> la somme portant sur les places
+finies <span class="math inline">\(\mathfrak P\)</span> de <span
+class="math inline">\(L\)</span>.</p>
 </blockquote>
 <p><em>Démonstration.</em> Soient <span
 class="math inline">\(\varphi_1,\dots,\varphi_\rho\)</span> les formes
 du lemme. L’application <span
 class="math inline">\(\Phi=(\varphi_k)\)</span> est injective sur <span
-class="math inline">\(L\otimes Q\)</span>, et la matrice <span
+class="math inline">\(L\otimes_K(V/W)\)</span>, donc sur <span
+class="math inline">\(Q_L\)</span>, et la matrice <span
 class="math inline">\(A=(\varphi_k(t_i))\)</span> est inversible. Son
 déterminant <span class="math inline">\(\Delta\)</span> est une section
 non nulle de la droite <span
@@ -4908,19 +4924,19 @@ class="math inline">\(\le\rho B_{\rm deg}\)</span>. Aux places finies,
 <span class="math inline">\(\Phi(Q)\subset\bigoplus_k\mathfrak
 b^{-1}I_{N_k}\)</span> : la longueur de <span
 class="math inline">\(Q/\langle t\rangle\)</span> en <span
-class="math inline">\(\lambda&#39;\)</span> est au plus <span
-class="math inline">\(\mathrm{ord}_{\lambda&#39;}\Delta-\mathrm{ord}_{\lambda&#39;}\big(\bigotimes
-I_{N_k}\big)+\rho\,b(\lambda&#39;)\)</span>, et l’on note <span
-class="math inline">\(n(\lambda&#39;)\)</span> la somme des deux
-premiers termes. <span class="math inline">\(n(\lambda&#39;)\)</span>
-peut être négatif, mais <span
-class="math inline">\(n(\lambda&#39;)+\rho\,b(\lambda&#39;)\)</span>,
-qui majore une longueur, ne l’est pas ; on ne remplace pas <span
-class="math inline">\(n\)</span> par sa partie positive, ce qui
-fausserait la formule du produit. La formule du produit sur <span
-class="math inline">\(L\)</span> donne <span
-class="math inline">\(\frac1{\delta_L}\sum_{\lambda&#39;}n(\lambda&#39;)\log
-N\lambda&#39;=\widehat{\deg}_n\big(\bigotimes
+class="math inline">\(\mathfrak P\)</span> est au plus <span
+class="math inline">\(\mathrm{ord}_{\mathfrak
+P}\Delta-\mathrm{ord}_{\mathfrak P}\big(\bigotimes
+I_{N_k}\big)+\rho\,b(\mathfrak P)\)</span>, et l’on note <span
+class="math inline">\(n(\mathfrak P)\)</span> la somme des deux premiers
+termes. <span class="math inline">\(n(\mathfrak P)\)</span> peut être
+négatif, mais <span class="math inline">\(n(\mathfrak
+P)+\rho\,b(\mathfrak P)\)</span>, qui majore une longueur, ne l’est pas
+; on ne remplace pas <span class="math inline">\(n\)</span> par sa
+partie positive, ce qui fausserait la formule du produit. La formule du
+produit sur <span class="math inline">\(L\)</span> donne <span
+class="math inline">\(\frac1{\delta_L}\sum_{\mathfrak P}n(\mathfrak
+P)\log N\mathfrak P=\widehat{\deg}_n\big(\bigotimes
 N_k\big)+\frac1{\delta_L}\sum_\sigma\log\|\Delta\|_\sigma\)</span>. Le
 premier terme est <span class="math inline">\(\le\rho B_{\rm
 deg}\)</span>. Pour le second, l’inégalité de Hadamard majore <span
@@ -4932,11 +4948,18 @@ class="math inline">\(\square\)</span></p>
 <p><em>Pourquoi changer de corps ne coûte rien.</em> Une extension de
 DVR de ramification <span class="math inline">\(e_{\mathfrak P/\mathfrak
 p}\)</span> multiplie la longueur d’un module fini par <span
-class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span>. Comme <span
-class="math inline">\(\log N\mathfrak P=f_{\mathfrak P/\mathfrak p}\log
-N\mathfrak p\)</span> et <span class="math inline">\(\sum_{\mathfrak
-P\mid\mathfrak p}e_{\mathfrak P/\mathfrak p}f_{\mathfrak P/\mathfrak
-p}=[L:K]\)</span>, la somme pondérée et normalisée <span
+class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span> : la longueur
+de <span class="math inline">\(Q_L/\sum_i\mathcal O_Lt_i\)</span> en
+<span class="math inline">\(\mathfrak P\)</span> est <span
+class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span> fois celle de
+<span class="math inline">\(Q/\langle t_i\rangle\)</span> en <span
+class="math inline">\(\mathfrak p\)</span>, comme <span
+class="math inline">\(b(\mathfrak P)=e_{\mathfrak P/\mathfrak
+p}b(\mathfrak p)\)</span>. Comme <span class="math inline">\(\log
+N\mathfrak P=f_{\mathfrak P/\mathfrak p}\log N\mathfrak p\)</span> et
+<span class="math inline">\(\sum_{\mathfrak P\mid\mathfrak
+p}e_{\mathfrak P/\mathfrak p}f_{\mathfrak P/\mathfrak p}=[L:K]\)</span>,
+la somme pondérée et normalisée <span
 class="math inline">\(\frac1{[L:\mathbb Q]}\sum_{\mathfrak
 P}\ell_{\mathfrak P}\log N\mathfrak P\)</span> est égale à la somme
 correspondante sur <span class="math inline">\(K\)</span>. La borne
@@ -5422,8 +5445,10 @@ class="math inline">\(m\)</span>, <span
 class="math inline">\(k/n^2\)</span> soit au plus <span
 class="math inline">\(x^\theta\)</span> : <span
 class="math display">\[1-\alpha\le\theta,\qquad1+\alpha-\kappa\le\theta,\qquad\alpha\le\theta,\qquad\kappa-2\nu\le\theta.\]</span>
-Pour <span class="math inline">\(\theta=\tfrac12\)</span>, les deux
-premières bornes sur α imposent <span
+Pour <span class="math inline">\(\theta=\tfrac12\)</span>, la première
+et la troisième contrainte (<span
+class="math inline">\(1-\alpha\le\theta\)</span> et <span
+class="math inline">\(\alpha\le\theta\)</span>) imposent <span
 class="math inline">\(\alpha=\tfrac12\)</span>, puis <span
 class="math inline">\(1\le\kappa\le2\nu+\tfrac12\)</span> : le modèle
 seul se contente de <span class="math inline">\(\nu\ge\tfrac14\)</span>.
@@ -6004,7 +6029,7 @@ class="math inline">\(B_{\rm arcs}\)</span> pour le distinguer du
 Théorème B de la réécriture de Sernau. Il est lu au niveau de l’énoncé
 et du mécanisme. Une lettre est <em>épaisse</em> si sa taille tombe dans
 une bande <span class="math inline">\([b,b+\eta]\)</span>. Pour un
-morphisme de réseaux cristallins (modules de Wach), l’exposant du
+morphisme de réseaux cristallins (modules de Wach [Wa]), l’exposant du
 morphisme est borné par <span
 class="math inline">\(C(n+1)\,r\,(h/l^2+(w+\eta)/l+S+1+\log_l(2h)+\eta\cdot\text{bande})+C\,n\,m\,e&#39;\)</span>
 sous l’une de deux hypothèses : soit les orientations alternent et il
@@ -6976,7 +7001,7 @@ des énoncés d’existence, dont les consommateurs ne connaissent que les
 propriétés énoncées, et ces propriétés disent seulement que le témoin
 recopie d’autres données. La « hauteur géométrique » n’est qu’un nom
 pour une expression explicite. Les inégalités centrales n’en dépendent
-pas, ce que confirme la contre-expertise de Zeng [Z].</li>
+pas, ce que confirme la contre-expertise de Zeng [Ze].</li>
 <li><strong>Une preuve compressée.</strong> L. Sernau a publié une
 réécriture de la preuve [Se], vérifiée par Sutherland et par Rubinstein
 [Su2, R3]. Son édition lisible compte environ 300 000 lignes de source
@@ -7002,6 +7027,15 @@ d’Arakelov sur les variétés de Shimura de l’original (Hilbert–Samuel,
 Moriwaki) n’apparaît plus dans la route courte, qui obtient la borne par
 le déterminant d’une chaîne de relèvements et des bornes de Selmer
 (carnet, E21).</p>
+<figure>
+<img src="fig/comparaison_routes.svg" style="width:80.0%"
+alt="Carte comparative des deux routes. C’est un rapprochement fonctionnel, appuyé sur les expériences E17 à E21 du carnet, et non un graphe extrait des termes Lean ni une preuve d’équivalence entre les interfaces ; Démêler la preuve en fait un programme de recherche." />
+<figcaption aria-hidden="true">Carte comparative des deux routes. C’est
+un rapprochement fonctionnel, appuyé sur les expériences E17 à E21 du
+carnet, et non un graphe extrait des termes Lean ni une preuve
+d’équivalence entre les interfaces ; <em>Démêler la preuve</em> en fait
+un programme de recherche.</figcaption>
+</figure>
 <h2 id="état-de-la-compréhension">État de la compréhension</h2>
 <table>
 <colgroup>
@@ -7502,21 +7536,32 @@ class="math inline">\(\gcd(a,q)=1\)</span>, <span
 class="math inline">\(\pi(x;q,a)=\dfrac{\operatorname{li}(x)}{\varphi(q)}+O\big(\sqrt
 x\,\log(qx)\big)\)</span>, uniformément en <span
 class="math inline">\(q\le x\)</span> (Davenport, ch. 20).</li>
-<li><strong>Plus petit premier dans une progression</strong> : <span
-class="math inline">\(p(q,a)\ll(\varphi(q)\log q)^2\)</span> pour <span
-class="math inline">\(\gcd(a,q)=1\)</span> : l’<strong>exposant de
-Linnik</strong> vaut 2, à des facteurs logarithmiques près
-(Bach–Sorenson ; constantes et hypothèses à vérifier dans la
-source).</li>
-<li><strong>Plus petit non-résidu quadratique</strong> : <span
-class="math inline">\(n_p&lt;2(\log p)^2\)</span> (Ankeny, Bach). On
-trouve aussi des racines primitives petites (Shoup).</li>
+<li><strong>Plus petit premier dans une progression</strong> : pour
+<span class="math inline">\(\gcd(a,q)=1\)</span>, le plus petit premier
+<span class="math inline">\(p\equiv a\pmod q\)</span> est, sous GRH, de
+l’ordre de <span class="math inline">\((\varphi(q)\log q)^2\)</span> :
+l’<strong>exposant de Linnik</strong> vaut 2, à des facteurs
+logarithmiques près. Bach et Sorenson en donnent des bornes explicites
+[BS] ; leur énoncé exact (constantes, forme asymptotique, conditions sur
+<span class="math inline">\(q\)</span>) n’a pas été vérifié ici, et nous
+ne le transcrivons pas.</li>
+<li><strong>Plus petit non-résidu quadratique</strong> modulo un premier
+<strong>impair</strong> <span class="math inline">\(p\)</span> : sous
+GRH, il est <span class="math inline">\(O((\log p)^2)\)</span> (Ankeny),
+et Bach donne une constante explicite, de l’ordre de <span
+class="math inline">\(2(\log p)^2\)</span> [Ba] (constante à vérifier
+dans la source). On trouve aussi des racines primitives petites
+(Shoup).</li>
 <li><strong>Algorithmes déterministes</strong> :
 <ul>
-<li><strong>test de primalité de Miller</strong> : sous GRH, il suffit
-de tester les bases <span class="math inline">\(\le 2(\log n)^2\)</span>
-(Bach), d’où un test déterministe en temps polynomial. AKS l’était déjà
-inconditionnellement, avec une complexité théorique plus élevée ;</li>
+<li><strong>test de primalité de Miller</strong> : sous GRH, tout entier
+<strong>impair composé</strong> <span class="math inline">\(n\)</span>
+admet un témoin de composition inférieur à une borne en <span
+class="math inline">\(O((\log n)^2)\)</span>, que Bach rend explicite,
+de l’ordre de <span class="math inline">\(2(\log n)^2\)</span> [Ba]
+(constante à vérifier dans la source) ; d’où un test déterministe en
+temps polynomial. AKS l’était déjà inconditionnellement, avec une
+complexité théorique plus élevée ;</li>
 <li>calcul déterministe de racines carrées modulo <span
 class="math inline">\(p\)</span>, et d’autres algorithmes qui
 dépendaient de GRH.</li>
@@ -7768,8 +7813,22 @@ class="uri">https://math.mit.edu/~drew/shortgrh/</a></li>
 <li>[R3] M. Rubinstein, contrôle de l’édition compacte : <a
 href="https://mrubinst.github.io/grh-lean-compact-check/"
 class="uri">https://mrubinst.github.io/grh-lean-compact-check/</a></li>
-<li>[Z] Z. Zeng, <em>The Invalidity of “The Invalidity of Alpöge’s Proof
-of the Riemann Hypothesis”</em>, 23–24/11/2026 : <a
+<li>[BS] E. Bach, J. Sorenson, <em>Explicit bounds for primes in residue
+classes</em>, Mathematics of Computation 65 (1996), 1717–1735.</li>
+<li>[Ba] E. Bach, <em>Explicit bounds for primality testing and related
+problems</em>, Mathematics of Computation 55 (1990), 355–380.</li>
+<li>[Ho] T. Honda, <em>Formal groups and zeta-functions</em>, Osaka
+Journal of Mathematics 5 (1968), 199–213.</li>
+<li>[Haz] M. Hazewinkel, <em>Formal Groups and Applications</em>,
+Academic Press, 1978.</li>
+<li>[CS] S. Chowla, A. Selberg, <em>On Epstein’s zeta-function</em>,
+Journal für die reine und angewandte Mathematik 227 (1967), 86–110.</li>
+<li>[Wa] N. Wach, <em>Représentations p-adiques potentiellement
+cristallines</em>, Bulletin de la Société mathématique de France 124
+(1996), 375–400 ; voir aussi L. Berger, <em>Limites de représentations
+cristallines</em>, Compositio Mathematica 140 (2004), 1473–1498.</li>
+<li>[Ze] Z. Zeng, <em>The Invalidity of “The Invalidity of Alpöge’s
+Proof of the Riemann Hypothesis”</em>, 23–24/11/2026 : <a
 href="https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing"
 class="uri">https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing</a></li>
 <li>[R2] M. Rubinstein (avec Claude, Codex et Gemini), <em>The
@@ -7814,6 +7873,19 @@ Stepanov) », Séminaire Bourbaki, exposé 430, 1973.</li>
 </ul>
 <h2 id="historique-des-versions">Historique des versions</h2>
 <ul>
+<li><strong>4.4.1</strong> (27/11/2026) : correctifs de maintenance
+(<code>correctifs-1.md</code>). Lemniscate : limite prise le long de
+<span class="math inline">\(n\equiv1\pmod4\)</span> ; symétrie des zéros
+énoncée pour les zéros non triviaux ; § 5.5 : réseau étendu <span
+class="math inline">\(Q_L\)</span> et exposant étendu <span
+class="math inline">\(b(\mathfrak P)=e\,b(\mathfrak p)\)</span>
+distingués du quotient vectoriel ; § 6.2 : ce sont la première et la
+troisième contrainte qui imposent <span
+class="math inline">\(\alpha=\frac12\)</span> ; annexe C : références
+précises (Bach–Sorenson, Bach), conditions du test de Miller et du
+non-résidu, constantes non vérifiées signalées ; références sur Honda,
+les groupes formels, Chowla–Selberg et les modules de Wach ; carte
+comparative des deux routes ; clé [Ze] pour Zeng.</li>
 <li><strong>4.4</strong> (26/11/2026) : relecture
 <code>synthes10.md</code> (note de stabilisation nº 10). § 5.5 réécrit
 en un lemme de séparation (descente galoisienne) suivi de la borne de

@@ -1,5 +1,5 @@
 # Instantané v1.2-2026-11-27 : 58 fichiers. Vérification : shasum -a 256 -c (depuis la racine du projet)
-c49bb20efd2ec11d6ba36752d28ba2680deed75ff66ebc251832fa82ca714283  tools/README.md
+ec3a4c0e3c489cc3b990db43867e8e41a387cb8b9d56508879e6251847486d62  tools/README.md
 8d0c99115656a5cf09e08d7cbc53a4f7c369c6fb9dac2f1322f645c69d610dc1  tools/analyse_export.py
 43276abdebd09557b9c029bb5dd9944e91d204976477d2452eaf6aa9c5faae67  tools/deps.c
 5e71852a721dcc18f2611144055ae37ce24ef7459f384d23cbde2bf4acb352e6  tools/fiche.py
@@ -44,7 +44,7 @@ e0ba7f18e0081c00493fabf70f275df3da3b5a995ac01d44aa3e2368805eecc0  analysis/niels
 aaf70a6e119f272e1c1d4519440e9f4c49768949f6bbde267b2385e1bddf3a40  analysis/poids_mecanisme.csv
 48fdce1755307dc2b1b9e1c29219c348a4cd7a1967b43118c9acdb1cc1db3aaf  analysis/poids_mecanisme.txt
 a4f50d9b7407c5d72397e59321890d6e7922b3f17ecd061f2aa151d80f60801e  analysis/points_entree.txt
-2aea0d8c19296b835ded795ba537c93297718ecc6755e50675ccff5731dc1785  analysis/raccords.md
+a63c4a8b868ce92ee78a2d2fd9f6c82516ab585f3d38ed899868435c32d043ea  analysis/raccords.md
 39f84662f34f2798d5e34fdb43a18a2d53bf6d74c7d97ccfdc65b52ecdefe8fd  analysis/extraits/Deduction.CH.HostFactsS.mk.txt
 e993ffc93c89cc02d26bebfc3336d5963c0673fc0f042288b3c4e337fd4db2c6  analysis/extraits/Deduction.ch_balance.txt
 569a976d877770f726d7a00594655c322a8741ac543cd6951c01985334a5b3d7  analysis/extraits/Formalism.FrobeniusOrbits.NoRel.txt
@@ -59,4 +59,4 @@ f0af93ae8a3f6160a16c3f4bbd1f19ff856b545798ff8188645fcb41a3d54659  analysis/extra
 47b1ca25013c5ff444996ed942214388db565bb6947b7e268e1bbd812ebddc83  analysis/extraits/UpperTheory.Top.VAt.txt
 3f73fa5917627b00baa809b46fb59f6db4d3582b0366936d376b5fa11768ecaf  analysis/decl_domtree.tsv.gz
 # archive
-# f17bf343a6994bb5ab46b6228b1ba60cc4b790271abfc44f4c04cbe29c27c4ae  analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz
+# 7573002fbb88efd5bf23e254c50ba91535b4767f01bacb4724af044c1daf21ff  analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz

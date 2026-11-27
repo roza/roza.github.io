@@ -1,0 +1,15 @@
+== ven. 27 nov. 2026 01:19:50 CET build
+ℹ [9838/9843] Built New.Endgame.ShortAndEnough (69s)
+✔ [9839/9843] Built New.Endgame.LongForms (72s)
+✔ [9840/9843] Built New.Main (86s)
+✔ [9842/9843] Built Main (83s)
+Build completed successfully (9843 jobs).
+      322,66 real        70,83 user        65,65 sys
+          5169659904  maximum resident set size
+== ven. 27 nov. 2026 01:25:12 CET axiomes
+'riemannHypothesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'riemannZeta_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_ne_zero_of_half_lt_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LFunction_eq_zero_re_of_isPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+== ven. 27 nov. 2026 01:26:49 CET fin

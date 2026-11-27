@@ -231,14 +231,26 @@
 <h1 class="title">La preuve RH/GRH d’Alpöge : une lecture
 structurelle</h1>
 </header>
-<p><em>Documents de travail : article 1.3 et synthèse 4.4, 26 novembre
-2026. Rédigés par Gérard Rozsavolgyi avec Claude (Anthropic) ; relecture
-: ChatGPT (OpenAI). Les relectures par des modèles ne constituent pas
-une certification indépendante.</em></p>
-<p><em>Licence : <a
+<p><em>Documents de travail : article 1.3.1 et synthèse 4.4.1, 27
+novembre 2026 (mise à jour du site : 27 novembre 2026). Rédigés par
+Gérard Rozsavolgyi avec Claude (Anthropic) ; relecture : ChatGPT
+(OpenAI). Les relectures par des modèles ne constituent pas une
+certification indépendante.</em></p>
+<p><em>Licences : textes, figures et données sous <a
 href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr">CC BY-NC
-4.0</a> (textes, outils et données) : reproduction et adaptation libres
-avec attribution, sans usage commercial.</em></p>
+4.0</a> (reproduction et adaptation libres avec attribution, sans usage
+commercial) ; outils de <code>tools/</code> sous <a
+href="tools/LICENSE">MIT</a> ; les éléments de tiers gardent leur
+licence (<a href="LICENCE.md">détail</a>).</em></p>
+<p><em>Citer :</em> G. Rozsavolgyi, avec Claude (Anthropic),
+<em>Descendre le graphe : comment lire une preuve formelle de dix-sept
+millions de lignes</em>, article de méthode, version 1.3.1, 27 novembre
+2026, <a href="https://roza.github.io/maths/rh-grh/article.html"
+class="uri">https://roza.github.io/maths/rh-grh/article.html</a> (<a
+href="CITATION.cff">CITATION.cff</a>). <em>Signaler une erreur ou
+proposer une correction :</em> <a
+href="https://github.com/roza/roza.github.io/issues">tickets du
+dépôt</a>.</p>
 <p>En novembre 2026, L. Alpöge a annoncé une preuve formelle en Lean,
 trouvée avec Claude, de l’hypothèse de Riemann et de l’hypothèse de
 Riemann généralisée pour les fonctions L de Dirichlet. Sa validité
@@ -250,6 +262,62 @@ fermeture exacte des dépendances, arbre des dominateurs, poids de chaque
 étape, graphe des applications instanciées, clauses inertes. Elles
 comparent aussi la preuve d’origine à sa réécriture courte par L.
 Sernau.</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr>
+<th>Indicateur</th>
+<th style="text-align: right;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lignes de source Lean (preuve originale)</td>
+<td style="text-align: right;">17,4 millions</td>
+</tr>
+<tr>
+<td>Déclarations dans la fermeture des cinq énoncés</td>
+<td style="text-align: right;">1 468 414</td>
+</tr>
+<tr>
+<td>Graphes utilisés (dépendances, dominateurs, interfaces,
+applications)</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Expériences numérotées dans le carnet</td>
+<td style="text-align: right;">22</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trois entrées de lecture.</strong></p>
+<ul>
+<li><strong>Comprendre les mathématiques</strong> : la <a
+href="synthese.html">synthèse</a>.</li>
+<li><strong>Comprendre la méthode</strong> : l’<a
+href="article.html">article</a>.</li>
+<li><strong>Reproduire les expériences</strong> : le <a
+href="analysis/raccords.md">carnet</a>, les <a href="tools/">outils</a>
+et les <a href="analysis/">données</a>.</li>
+</ul>
+<p><strong>Dernière expérience (E22).</strong> Deux clauses inutilisées
+du Théorème B de la réécriture courte de L. Sernau ont été retirées, et
+le projet a été <strong>recompilé</strong> avec succès (vérification par
+le noyau de Lean, axiomes inchangés). Ce n’est pas une recertification
+par un noyau indépendant, et le gain est nul : les preuves retirées
+servent ailleurs. L’expérience a surtout révélé, puis permis de
+corriger, des faux positifs de l’analyseur de clauses inertes.</p>
+<p><em>In English.</em> These pages try to <strong>understand</strong>,
+not re-verify, L. Alpöge’s Lean proof of the Riemann hypothesis and of
+GRH for Dirichlet L-functions, by reading its export at the level of
+declarations: dependency closure, dominator tree, interfaces between
+components, instantiated applications, and inert clauses. They also
+compare it with L. Sernau’s short rewriting. The mathematical synthesis
+is available in English; the methods article is in French, with an
+English translation in preparation.</p>
 <h2 id="synthèse-comprendre-la-preuve-formelle-dalpöge">Synthèse : «
 Comprendre la preuve formelle d’Alpöge »</h2>
 <p>L’exposition mathématique : la réduction à une inégalité sur les
@@ -327,7 +395,7 @@ courte.</p>
 <h2 id="notes-de-travail-et-outils">Notes de travail et outils</h2>
 <ul>
 <li><a href="analysis/raccords.md">Carnet des lectures et contrôles</a>
-(E1–E21) : chaque résultat avec la commande qui le reproduit, les
+(E1–E22) : chaque résultat avec la commande qui le reproduit, les
 lectures réfutées et leurs corrections.</li>
 <li><a href="carte.html">Carte de la preuve</a> (<a
 href="carte.md">source</a>) : notes de travail détaillées, avec les noms

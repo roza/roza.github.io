@@ -33,4 +33,20 @@ Sans refaire la passe 1, `query.py OUT spine` et `query.py OUT cl NOM` fonctionn
 Toute conclusion négative (« X n'est pas utilisé ») doit être établie avec ces outils sur l'export, et non par recherche textuelle dans le source : celle-ci rate les constructions anonymes.
 
 
-**Instantané figé.** La version citée par l'article 1.3 est `analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz` (les archives `v1.0-2026-11-25` et `v1.1-2026-11-26` ont été régénérées et ne reflètent plus l'état de leur date) ; son manifeste donne l'empreinte de chaque fichier et celle de l'archive. `python3 -I tools/instantane.py v1.2-2026-11-27` la reconstruit à l'identique tant que les fichiers n'ont pas changé.
+**Instantané figé.** La version citée par l’article 1.3.1 est `analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz` (les archives `v1.0-2026-11-25` et `v1.1-2026-11-26` ont été régénérées et ne reflètent plus l'état de leur date) ; son manifeste donne l'empreinte de chaque fichier et celle de l'archive. `python3 -I tools/instantane.py v1.2-2026-11-27` la reconstruit à l'identique tant que les fichiers n'ont pas changé.
+
+## Tests, limites et version
+
+**Version.** Les outils cités par l’article 1.3.1 sont ceux de l'instantané `v1.2-2026-11-27` ; son manifeste donne l'empreinte de chaque fichier. `inertes.py` y est dans sa version corrigée du 27/11/2026.
+
+**Tests.** `python3 -I tools/tests.py` vérifie, sans l'export : la frontière sur un exemple (`frontiere.py --test`), les modèles numériques (`lemniscate.py`, `modeles.py`), les poids publiés recalculés à partir de l'arbre des dominateurs (`poids.py`), et les empreintes de `analysis/checksums.sha256`. Si l'extraction de l'export est présente, il rejoue aussi `trace_app.py` sur `everyCharacter_of_row`.
+
+**Limites des analyseurs.**
+
+- *Graphe de dépendances* (`deps.c`, `analyse_export.py`, `revindex.py`) : il sur-approxime l'usage, toute constante citée dans un terme comptant comme une dépendance. Une absence de chemin est un résultat syntaxique sur cet export et ces conventions, non une indépendance sémantique.
+- *Graphe des applications* (`trace_app.py`) : il ne vérifie aucune conversion définitionnelle ; une expression ouverte se lit avec son contexte.
+- *Clauses inertes* (`inertes.py`) : l'analyse se veut conservatrice (tout usage non suivi compte comme une lecture), mais c'est un objectif de conception, non une garantie démontrée. Deux défauts ont été trouvés et corrigés le 27/11/2026 : un théorème passé comme argument fonctionnel à un éliminateur (`And.elim f h`), ou un éliminateur appliqué à plus d'arguments que prévu, perdait sa trace, d'où des faux positifs (carnet, E22). Cas de non-régression, sur l'édition compacte de la preuve de Sernau : `exists_lie_exponential` n'est pas inerte, `map_restrict_haar_eq` l'est. Ils demandent l'export de Sernau et ne sont pas dans `tests.py`. Une clause inerte n'est pas une preuve morte : sa démonstration peut servir ailleurs, ou à démontrer une autre clause.
+- *Frontière en données* (`frontiere_donnees.py`) : résultat syntaxique, non un théorème de non-interférence ; `Classical.choose` donne accès au témoin d'un `∃`, même s'il reste opaque.
+- *Rattachement aux fichiers* (`modmap_src.py`) : lecture du texte des `.lean`, sans compilation ; les déclarations auxiliaires anonymes (instances) ne sont pas toutes rattachées.
+
+**Licence.** Les outils de ce répertoire sont sous licence MIT (voir `LICENSE`). Les textes, figures et données du projet sont sous CC BY-NC 4.0.

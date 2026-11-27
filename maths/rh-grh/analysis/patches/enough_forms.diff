@@ -1,0 +1,32 @@
+--- base/src/New/Endgame/ShortAndEnough.lean	2026-11-26 22:57:32
++++ patched/src/New/Endgame/ShortAndEnough.lean	2026-11-27 01:19:35
+@@ -167,12 +167,12 @@
+     grw [← k, ← le_log_iff_exp_le] <;> simp [NeZero.pos]
+     linarith [mul_le_mul_of_nonneg_right a.1 (mul_nonneg (#t).cast_nonneg (log_natCast_nonneg l))]
+ 
+-/-- Enough forms: columns and rows are non-zero, and for some set t ⊂ 𝖦 with #t·dim(columns) ≤
+-5D log(1 + b²), D = dim(rows), the images of the maps `Data.projectedPoincare` s, s ∈ t, span
+-dimension at least (1 − 4/b²)D. -/
+-lemma Data.enough_forms : 0 < finrank ℂ D.Column ∧ 0 < D.rowDim ∧
++/-- Enough forms: for some set t ⊂ 𝖦 with #t·dim(columns) ≤ 5D log(1 + b²), D = dim(rows), the
++images of the maps `Data.projectedPoincare` s, s ∈ t, span dimension at least (1 − 4/b²)D.
++(Patched 2026-11-27: the two positivity clauses, never read by the only consumer, are removed.) -/
++lemma Data.enough_forms :
+   ∃ t, #t * finrank ℂ D.Column ≤ 5 * D.rowDim * log (1 + D.b ^ 2) ∧ (1 - 4 / D.b ^ 2) * D.rowDim ≤
+   finrank ℂ ↥(⨆ s ∈ t, (D.projectedPoincare s).range) := have := D.columnCoords.nontrivial
+-  ⟨finrank_pos, D.finrank_rows_ne_zero.pos, (exists_few_translates (W :=
++  (exists_few_translates (W :=
+     D.rows) (HasLogBound.pos D) (D.ramifiedColumns_fill_rows _)).imp fun _ ↦ .imp (by simp)
+-    (·.trans (mod_cast finrank_mono (iSup₂_mono fun _ _ _ ⟨φ, e⟩ ↦ ⟨⟨_, φ, rfl⟩, e⟩)))⟩
++    (·.trans (mod_cast finrank_mono (iSup₂_mono fun _ _ _ ⟨φ, e⟩ ↦ ⟨⟨_, φ, rfl⟩, e⟩)))
+--- base/src/New/Endgame/LongForms.lean	2026-11-26 22:57:32
++++ patched/src/New/Endgame/LongForms.lean	2026-11-27 01:19:35
+@@ -79,7 +79,7 @@
+     (1 - 4 / D.b ^ 2) * D.rowDim ≤ n ∧
+   (∃ δ ≤ 5 * D.rowDim * log (1 + D.b ^ 2) * D.budget, D.IndexLe y δ) ∧ ∀ σ,
+   covolumeSq (D.Θ 1 ∘ y) σ ≤ exp (n * (D.mainHeight - D.m * D.remainder + D.logB * D.budget)) := by
+-  obtain ⟨⟨q, q0, B, hB, ⟨S, hS, sp, size⟩, index⟩, -, -, t, ht, big⟩ :=
++  obtain ⟨⟨q, q0, B, hB, ⟨S, hS, sp, size⟩, index⟩, t, ht, big⟩ :=
+     D.short_forms, D.enough_forms
+   -- the family: a basis among the translates
+   let Y := Set.image2 (B ·) t S

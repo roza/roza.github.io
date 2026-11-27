@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Maths"
-description: "Lectures mathématiques : la preuve Lean de l'hypothèse de Riemann et de GRH (Dirichlet) d'Alpöge, lue au niveau des déclarations (synthèse, carte, outils)."
+description: "Lectures mathématiques : la preuve Lean de l'hypothèse de Riemann et de GRH (Dirichlet) d'Alpöge, lue au niveau des déclarations (synthèse, article de méthode, carnet, outils)."
 permalink: /maths/
 ---
 
@@ -12,3 +12,5 @@ En novembre 2026, L. Alpöge a annoncé une preuve formelle en Lean, trouvée av
 - [Page du projet](/maths/rh-grh/) : synthèse, carte de la preuve, outils, données, autres synthèses publiées
 - Synthèse en français : [HTML](/maths/rh-grh/synthese.html) · [PDF](/maths/rh-grh/synthese.pdf)
 - Synthesis in English: [HTML](/maths/rh-grh/synthese_en.html) · [PDF](/maths/rh-grh/synthese_en.pdf)
+- Article de méthode, *Descendre le graphe : comment lire une preuve formelle de dix-sept millions de lignes* : [HTML](/maths/rh-grh/article.html) · [PDF](/maths/rh-grh/article.pdf)
+- Carnet des lectures et contrôles (expériences reproductibles) : [raccords.md](/maths/rh-grh/analysis/raccords.md)

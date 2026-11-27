@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Si vous utilisez ces documents ou ces outils, merci de les citer ainsi."
+title: "Descendre le graphe : comment lire une preuve formelle de dix-sept millions de lignes (article 1.3.1), avec la synthèse 4.4.1 et les outils d'analyse de l'export"
+authors:
+  - family-names: Rozsavolgyi
+    given-names: Gérard
+version: "1.3.1"
+date-released: "2026-11-27"
+license:
+  - "CC-BY-NC-4.0"   # textes, figures, données
+  - "MIT"            # outils de tools/
+url: "https://roza.github.io/maths/rh-grh/"
+keywords: ["Lean", "formal proof", "Riemann hypothesis", "dependency graph", "dominator tree", "proof comprehension"]
+notes: >
+  Rédigé avec Claude (Anthropic), qui a écrit les scripts d'analyse, lu l'export et rédigé sous la direction de l'auteur ;
+  relecture par ChatGPT (OpenAI). Ces relectures par des modèles ne constituent pas une certification indépendante.

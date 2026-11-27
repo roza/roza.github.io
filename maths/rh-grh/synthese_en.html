@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Gérard Rozsavolgyi, with Claude (Anthropic)" />
   <meta name="author" content="Narrative rewrite and review: ChatGPT (OpenAI)" />
-  <title>Alpöge's proof of the Riemann hypothesis: a structural reading
-(Lean)</title>
+  <title>Understanding Alpöge's Formal Proof of the Generalized Riemann
+Hypothesis — A Companion Exposition in Five Questions</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -223,13 +223,13 @@
   <link rel="alternate" hreflang="x-default" href="https://roza.github.io/maths/rh-grh/synthese_en.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Gérard Rozsavolgyi">
-  <meta property="og:title" content="Alpöge&#x27;s proof of the Riemann hypothesis: a structural reading (Lean)">
+  <meta property="og:title" content="Understanding Alpöge&#x27;s Formal Proof of the Generalized Riemann Hypothesis — A Companion Exposition in Five Questions">
   <meta property="og:description" content="A structural reading of Alpöge&#x27;s Lean proof of RH and GRH: Landau criterion, p-adic divisibility of theta lifts, Bost slopes, and a code map built from the proof export.">
   <meta property="og:url" content="https://roza.github.io/maths/rh-grh/synthese_en.html">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="fr_FR">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Alpöge&#x27;s proof of the Riemann hypothesis: a structural reading (Lean)">
+  <meta name="twitter:title" content="Understanding Alpöge&#x27;s Formal Proof of the Generalized Riemann Hypothesis — A Companion Exposition in Five Questions">
   <meta name="twitter:description" content="A structural reading of Alpöge&#x27;s Lean proof of RH and GRH: Landau criterion, p-adic divisibility of theta lifts, Bost slopes, and a code map built from the proof export.">
   <script defer=""
   src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
@@ -242,7 +242,7 @@
 Riemann Hypothesis — A Companion Exposition in Five Questions</h1>
 <p class="author">Gérard Rozsavolgyi, with Claude (Anthropic)</p>
 <p class="author">Narrative rewrite and review: ChatGPT (OpenAI)</p>
-<p class="date">Version 4.4, 26 November 2026</p>
+<p class="date">Version 4.4.1, 27 November 2026</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -570,11 +570,14 @@ by Chebyshev; and Mertens’ theorem in arithmetic progressions gives
 p/p=\tfrac12\log n+O(1)\)</span>. Since <span
 class="math inline">\(\log|A_n|=n\log n+O(n)\)</span> by the previous
 asymptotics, <span
-class="math inline">\(I(n)/\log|A_n|\to\tfrac12\)</span>: these primes
-are half of all primes, and each provides only its odd layers. This is a
-statement about the profile, not about the actual factorization, which
-the computation at order 401 illustrates without proving it; convergence
-is slow, since the <span class="math inline">\(O(n)\)</span> terms are
+class="math inline">\(I(n)/\log|A_n|\to\tfrac12\)</span> as <span
+class="math inline">\(n\to\infty\)</span> with <span
+class="math inline">\(n\equiv1\pmod4\)</span> (outside this subsequence,
+<span class="math inline">\(A_n=0\)</span>): these primes are half of
+all primes, and each provides only its odd layers. This is a statement
+about the profile, not about the actual factorization, which the
+computation at order 401 illustrates without proving it; convergence is
+slow, since the <span class="math inline">\(O(n)\)</span> terms are
 small compared with <span class="math inline">\(n\log n\)</span> only on
 a logarithmic scale. A factor 2 in the leading term makes the inequality
 useless for a fine estimate. Moreover, the character cutting out these
@@ -718,10 +721,12 @@ class="math inline">\(\frac{T}{2\pi}\log\frac{NT}{2\pi}\)</span> with
 height <span class="math inline">\(0&lt;\gamma\le T\)</span>. By the
 functional equation and conjugation (<span
 class="math inline">\(\overline{L(\bar s,\chi)}=L(s,\bar\chi)\)</span>),
-if ρ is a zero of <span class="math inline">\(L(s,\chi)\)</span> then so
-is <span class="math inline">\(1-\bar\rho\)</span>: the set of
-non-trivial zeros is <strong>symmetric about the critical line</strong>
-<span
+if ρ is a <strong>non-trivial</strong> zero of <span
+class="math inline">\(L(s,\chi)\)</span> then so is <span
+class="math inline">\(1-\bar\rho\)</span> (the restriction is needed:
+<span class="math inline">\(-2\)</span> is a zero of ζ, but <span
+class="math inline">\(3\)</span> is not): the set of non-trivial zeros
+is <strong>symmetric about the critical line</strong> <span
 class="math inline">\(\operatorname{Re}s=\tfrac12\)</span>.</p></li>
 <li><p><strong>Non-primitive characters.</strong> If χ is induced by
 <span class="math inline">\(\chi^\ast\)</span>, <span
@@ -2137,7 +2142,7 @@ recursion <span
 class="math inline">\(a_{p^{k+1}}=a_pa_{p^k}-p\,a_{p^{k-1}}\)</span>
 then gives <span class="math inline">\(a_{p^{2e}}=(-p)^e\)</span> and
 <span class="math inline">\(a_{p^{2e+1}}=0\)</span>. A theorem of Honda
-(1968) says that the formal group of <span
+(1968 [Ho]; see also [Haz]) says that the formal group of <span
 class="math inline">\(E\)</span> is strictly isomorphic over ℤ to the
 one whose logarithm is <span
 class="math inline">\(\sum_na_n\,t^n/n\)</span>: the computation that
@@ -3899,11 +3904,11 @@ class="math inline">\(dx/y\)</span> is <span
 class="math inline">\(2\varpi\)</span>, and ϖ for the usual invariant
 differential <span class="math inline">\(dx/2y\)</span>. The normalized
 quantity of <code>CM.DegSt</code> requires further conventions: ϖ is not
-directly Ω. The <strong>Chowla–Selberg formula</strong> generalizes this
-computation. The archimedean size of a CM object is a product of values
-<span class="math inline">\(\Gamma(a/d)^{\pm1}\)</span>, with exponents
-given by the character <span class="math inline">\(\chi_{-d}\)</span> of
-the CM field.</p>
+directly Ω. The <strong>Chowla–Selberg formula</strong> [CS] generalizes
+this computation. The archimedean size of a CM object is a product of
+values <span class="math inline">\(\Gamma(a/d)^{\pm1}\)</span>, with
+exponents given by the character <span
+class="math inline">\(\chi_{-d}\)</span> of the CM field.</p>
 <p><strong>(c) The norm of a theta lift.</strong> The <strong>Rallis
 formula</strong> expresses the norm <span
 class="math inline">\(\langle\theta(\varphi),\theta(\varphi)\rangle\)</span>
@@ -4760,23 +4765,35 @@ the lemma are numerically good, for the same <span
 class="math inline">\(\mathfrak b\)</span>, <span
 class="math inline">\(C_{\rm arch}\)</span> and <span
 class="math inline">\(B_{\rm deg}\)</span>, degrees being normalized by
-<span class="math inline">\(\delta_L=[L:\mathbb Q]\)</span>. Then, for
-every family <span class="math inline">\(t_1,\dots,t_\rho\in M\)</span>
-whose images span <span class="math inline">\(V/W\)</span>, the quotient
-<span class="math inline">\(Q/\langle t_i\rangle\)</span> has local
-lengths <span class="math inline">\(\ell_\lambda\le
-n(\lambda)+\rho\,b(\lambda)\)</span>, with <span
-class="math display">\[\frac1{\delta_L}\sum_{\lambda&#39;}n(\lambda&#39;)\log
-N\lambda&#39;\;\le\;\sum_{i=1}^\rho\Big(\mathrm{meanLogSup}(t_i)+C_{\rm
-arch}+B_{\rm deg}+\tfrac12\log\rho\Big),\]</span> the sum running over
-the finite places <span class="math inline">\(\lambda&#39;\)</span> of
-<span class="math inline">\(L\)</span>.</p>
+<span class="math inline">\(\delta_L=[L:\mathbb Q]\)</span>. Write <span
+class="math inline">\(Q_L=\mathcal O_L\otimes_{\mathcal O_K}Q\)</span>
+for the extended lattice, distinct from the vector quotient <span
+class="math inline">\(V/W\)</span> and from its extension <span
+class="math inline">\(L\otimes_K(V/W)\)</span>, and <span
+class="math inline">\(b(\mathfrak P)=e_{\mathfrak P/\mathfrak
+p}\,b(\mathfrak p)\)</span> for the extended exponent of the denominator
+ideal, for <span class="math inline">\(\mathfrak P\mid\mathfrak
+p\)</span>. Then, for every family <span
+class="math inline">\(t_1,\dots,t_\rho\in M\)</span> whose images span
+<span class="math inline">\(V/W\)</span>, the quotient <span
+class="math inline">\(Q_L/\sum_i\mathcal O_Lt_i\)</span> has local
+lengths <span class="math inline">\(\ell_{\mathfrak P}\le n(\mathfrak
+P)+\rho\,b(\mathfrak P)\)</span> at the places <span
+class="math inline">\(\mathfrak P\)</span> of <span
+class="math inline">\(L\)</span>, with <span
+class="math display">\[\frac1{\delta_L}\sum_{\mathfrak P}n(\mathfrak
+P)\log N\mathfrak
+P\;\le\;\sum_{i=1}^\rho\Big(\mathrm{meanLogSup}(t_i)+C_{\rm arch}+B_{\rm
+deg}+\tfrac12\log\rho\Big),\]</span> the sum running over the finite
+places <span class="math inline">\(\mathfrak P\)</span> of <span
+class="math inline">\(L\)</span>.</p>
 </blockquote>
 <p><em>Proof.</em> Let <span
 class="math inline">\(\varphi_1,\dots,\varphi_\rho\)</span> be the forms
 of the lemma. The map <span
 class="math inline">\(\Phi=(\varphi_k)\)</span> is injective on <span
-class="math inline">\(L\otimes Q\)</span>, and the matrix <span
+class="math inline">\(L\otimes_K(V/W)\)</span>, hence on <span
+class="math inline">\(Q_L\)</span>, and the matrix <span
 class="math inline">\(A=(\varphi_k(t_i))\)</span> is invertible. Its
 determinant <span class="math inline">\(\Delta\)</span> is a non-zero
 section of the line <span class="math inline">\(\bigotimes_kN_k\)</span>
@@ -4785,19 +4802,19 @@ class="math inline">\(\le\rho B_{\rm deg}\)</span>. At the finite
 places, <span class="math inline">\(\Phi(Q)\subset\bigoplus_k\mathfrak
 b^{-1}I_{N_k}\)</span>: the length of <span
 class="math inline">\(Q/\langle t\rangle\)</span> at <span
-class="math inline">\(\lambda&#39;\)</span> is at most <span
-class="math inline">\(\mathrm{ord}_{\lambda&#39;}\Delta-\mathrm{ord}_{\lambda&#39;}\big(\bigotimes
-I_{N_k}\big)+\rho\,b(\lambda&#39;)\)</span>, and we write <span
-class="math inline">\(n(\lambda&#39;)\)</span> for the sum of the first
-two terms. <span class="math inline">\(n(\lambda&#39;)\)</span> may be
-negative, but <span
-class="math inline">\(n(\lambda&#39;)+\rho\,b(\lambda&#39;)\)</span>,
-which bounds a length, is not; one does not replace <span
-class="math inline">\(n\)</span> by its positive part, which would break
-the product formula. The product formula over <span
-class="math inline">\(L\)</span> gives <span
-class="math inline">\(\frac1{\delta_L}\sum_{\lambda&#39;}n(\lambda&#39;)\log
-N\lambda&#39;=\widehat{\deg}_n\big(\bigotimes
+class="math inline">\(\mathfrak P\)</span> is at most <span
+class="math inline">\(\mathrm{ord}_{\mathfrak
+P}\Delta-\mathrm{ord}_{\mathfrak P}\big(\bigotimes
+I_{N_k}\big)+\rho\,b(\mathfrak P)\)</span>, and we write <span
+class="math inline">\(n(\mathfrak P)\)</span> for the sum of the first
+two terms. <span class="math inline">\(n(\mathfrak P)\)</span> may be
+negative, but <span class="math inline">\(n(\mathfrak
+P)+\rho\,b(\mathfrak P)\)</span>, which bounds a length, is not; one
+does not replace <span class="math inline">\(n\)</span> by its positive
+part, which would break the product formula. The product formula over
+<span class="math inline">\(L\)</span> gives <span
+class="math inline">\(\frac1{\delta_L}\sum_{\mathfrak P}n(\mathfrak
+P)\log N\mathfrak P=\widehat{\deg}_n\big(\bigotimes
 N_k\big)+\frac1{\delta_L}\sum_\sigma\log\|\Delta\|_\sigma\)</span>. The
 first term is <span class="math inline">\(\le\rho B_{\rm deg}\)</span>.
 For the second, Hadamard’s inequality bounds <span
@@ -4809,11 +4826,18 @@ class="math inline">\(\square\)</span></p>
 <p><em>Why changing the field costs nothing.</em> An extension of DVRs
 with ramification <span class="math inline">\(e_{\mathfrak P/\mathfrak
 p}\)</span> multiplies the length of a finite module by <span
-class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span>. Since <span
-class="math inline">\(\log N\mathfrak P=f_{\mathfrak P/\mathfrak p}\log
-N\mathfrak p\)</span> and <span class="math inline">\(\sum_{\mathfrak
-P\mid\mathfrak p}e_{\mathfrak P/\mathfrak p}f_{\mathfrak P/\mathfrak
-p}=[L:K]\)</span>, the weighted normalized sum <span
+class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span>: the length
+of <span class="math inline">\(Q_L/\sum_i\mathcal O_Lt_i\)</span> at
+<span class="math inline">\(\mathfrak P\)</span> is <span
+class="math inline">\(e_{\mathfrak P/\mathfrak p}\)</span> times that of
+<span class="math inline">\(Q/\langle t_i\rangle\)</span> at <span
+class="math inline">\(\mathfrak p\)</span>, as is <span
+class="math inline">\(b(\mathfrak P)=e_{\mathfrak P/\mathfrak
+p}b(\mathfrak p)\)</span>. Since <span class="math inline">\(\log
+N\mathfrak P=f_{\mathfrak P/\mathfrak p}\log N\mathfrak p\)</span> and
+<span class="math inline">\(\sum_{\mathfrak P\mid\mathfrak
+p}e_{\mathfrak P/\mathfrak p}f_{\mathfrak P/\mathfrak p}=[L:K]\)</span>,
+the weighted normalized sum <span
 class="math inline">\(\frac1{[L:\mathbb Q]}\sum_{\mathfrak
 P}\ell_{\mathfrak P}\log N\mathfrak P\)</span> equals the corresponding
 sum over <span class="math inline">\(K\)</span>. The bound obtained over
@@ -5294,10 +5318,13 @@ class="math inline">\(m\)</span>, <span
 class="math inline">\(k/n^2\)</span> to be at most <span
 class="math inline">\(x^\theta\)</span>: <span
 class="math display">\[1-\alpha\le\theta,\qquad1+\alpha-\kappa\le\theta,\qquad\alpha\le\theta,\qquad\kappa-2\nu\le\theta.\]</span>
-For <span class="math inline">\(\theta=\tfrac12\)</span>, the two bounds
-on α force <span class="math inline">\(\alpha=\tfrac12\)</span>, then
-<span class="math inline">\(1\le\kappa\le2\nu+\tfrac12\)</span>: the
-model alone is content with <span
+For <span class="math inline">\(\theta=\tfrac12\)</span>, the first and
+the third constraints (<span
+class="math inline">\(1-\alpha\le\theta\)</span> and <span
+class="math inline">\(\alpha\le\theta\)</span>) force <span
+class="math inline">\(\alpha=\tfrac12\)</span>, then <span
+class="math inline">\(1\le\kappa\le2\nu+\tfrac12\)</span>: the model
+alone is content with <span
 class="math inline">\(\nu\ge\tfrac14\)</span>. But the effective window
 <span class="math inline">\(xm\le k\le n^2x^{1/2-\varepsilon}\)</span>
 forces <span class="math inline">\(\kappa\ge\tfrac32\)</span>, hence
@@ -5849,8 +5876,8 @@ class="math inline">\(B_{\rm arcs}\)</span> to distinguish it from the
 Theorem B of Sernau’s rewriting. It is read at the level of its
 statement and mechanism. A letter is <em>thick</em> if its size falls in
 a band <span class="math inline">\([b,b+\eta]\)</span>. For a morphism
-of crystalline lattices (Wach modules), the exponent of the morphism is
-bounded by <span
+of crystalline lattices (Wach modules [Wa]), the exponent of the
+morphism is bounded by <span
 class="math inline">\(C(n+1)\,r\,(h/l^2+(w+\eta)/l+S+1+\log_l(2h)+\eta\cdot\text{band})+C\,n\,m\,e&#39;\)</span>
 under one of two hypotheses: either the orientations alternate and there
 are never three consecutive thick letters; or the orientation is
@@ -6796,7 +6823,7 @@ a syntactic criterion, they leave it only behind existence statements,
 whose consumers know only the stated properties, and these properties
 only say that the witness copies other data. The “geometric height” is
 only a name for an explicit expression. The central inequalities do not
-depend on them, as Zeng’s counter-audit confirms [Z].</li>
+depend on them, as Zeng’s counter-audit confirms [Ze].</li>
 <li><strong>A compressed proof.</strong> L. Sernau has published a
 rewriting of the proof [Se], verified by Sutherland and by Rubinstein
 [Su2, R3]. Its readable edition has about 300,000 source lines and
@@ -6820,6 +6847,15 @@ on the target covolume: the original’s Arakelov geometry on Shimura
 varieties (Hilbert–Samuel, Moriwaki) no longer appears in the short
 route, which obtains the bound through the determinant of a chain of
 lifts and Selmer bounds (notebook, E21).</p>
+<figure>
+<img src="fig/comparaison_routes_en.svg" style="width:80.0%"
+alt="Comparative map of the two routes. This is a functional comparison, based on experiments E17 to E21 of the notebook, not a graph extracted from the Lean terms nor a proof of equivalence between the interfaces; Démêler la preuve turns it into a research programme." />
+<figcaption aria-hidden="true">Comparative map of the two routes. This
+is a functional comparison, based on experiments E17 to E21 of the
+notebook, not a graph extracted from the Lean terms nor a proof of
+equivalence between the interfaces; <em>Démêler la preuve</em> turns it
+into a research programme.</figcaption>
+</figure>
 <h2 id="state-of-understanding">State of understanding</h2>
 <table>
 <colgroup>
@@ -7308,20 +7344,31 @@ class="math inline">\(\gcd(a,q)=1\)</span>, <span
 class="math inline">\(\pi(x;q,a)=\dfrac{\operatorname{li}(x)}{\varphi(q)}+O\big(\sqrt
 x\,\log(qx)\big)\)</span>, uniformly in <span class="math inline">\(q\le
 x\)</span> (Davenport, ch. 20).</li>
-<li><strong>Least prime in a progression</strong>: <span
-class="math inline">\(p(q,a)\ll(\varphi(q)\log q)^2\)</span> for <span
-class="math inline">\(\gcd(a,q)=1\)</span>: <strong>Linnik’s
-exponent</strong> is 2, up to logarithmic factors (Bach–Sorenson;
-constants and hypotheses to be checked in the source).</li>
-<li><strong>Least quadratic non-residue</strong>: <span
-class="math inline">\(n_p&lt;2(\log p)^2\)</span> (Ankeny, Bach). Small
-primitive roots also follow (Shoup).</li>
+<li><strong>Least prime in a progression</strong>: for <span
+class="math inline">\(\gcd(a,q)=1\)</span>, the least prime <span
+class="math inline">\(p\equiv a\pmod q\)</span> is, under GRH, of order
+<span class="math inline">\((\varphi(q)\log q)^2\)</span>:
+<strong>Linnik’s exponent</strong> is 2, up to logarithmic factors. Bach
+and Sorenson give explicit bounds [BS]; their exact statement
+(constants, asymptotic form, conditions on <span
+class="math inline">\(q\)</span>) has not been checked here, and we do
+not transcribe it.</li>
+<li><strong>Least quadratic non-residue</strong> modulo an
+<strong>odd</strong> prime <span class="math inline">\(p\)</span>: under
+GRH, it is <span class="math inline">\(O((\log p)^2)\)</span> (Ankeny),
+and Bach gives an explicit constant, of the order of <span
+class="math inline">\(2(\log p)^2\)</span> [Ba] (constant to be checked
+in the source). Small primitive roots also follow (Shoup).</li>
 <li><strong>Deterministic algorithms</strong>:
 <ul>
-<li><strong>Miller’s primality test</strong>: under GRH, it suffices to
-test bases <span class="math inline">\(\le 2(\log n)^2\)</span> (Bach),
-giving a deterministic polynomial-time test. AKS already was one
-unconditionally, with a higher theoretical complexity;</li>
+<li><strong>Miller’s primality test</strong>: under GRH, every
+<strong>odd composite</strong> <span class="math inline">\(n\)</span>
+has a witness of compositeness below a bound in <span
+class="math inline">\(O((\log n)^2)\)</span>, which Bach makes explicit,
+of the order of <span class="math inline">\(2(\log n)^2\)</span> [Ba]
+(constant to be checked in the source); this gives a deterministic
+polynomial-time test. AKS already was one unconditionally, with a higher
+theoretical complexity;</li>
 <li>deterministic computation of square roots mod <span
 class="math inline">\(p\)</span>, and other algorithms that depended on
 GRH.</li>
@@ -7566,8 +7613,22 @@ class="uri">https://math.mit.edu/~drew/shortgrh/</a></li>
 <li>[R3] M. Rubinstein, check of the compact edition: <a
 href="https://mrubinst.github.io/grh-lean-compact-check/"
 class="uri">https://mrubinst.github.io/grh-lean-compact-check/</a></li>
-<li>[Z] Z. Zeng, <em>The Invalidity of “The Invalidity of Alpöge’s Proof
-of the Riemann Hypothesis”</em>, 23–24/11/2026: <a
+<li>[BS] E. Bach, J. Sorenson, <em>Explicit bounds for primes in residue
+classes</em>, Mathematics of Computation 65 (1996), 1717–1735.</li>
+<li>[Ba] E. Bach, <em>Explicit bounds for primality testing and related
+problems</em>, Mathematics of Computation 55 (1990), 355–380.</li>
+<li>[Ho] T. Honda, <em>Formal groups and zeta-functions</em>, Osaka
+Journal of Mathematics 5 (1968), 199–213.</li>
+<li>[Haz] M. Hazewinkel, <em>Formal Groups and Applications</em>,
+Academic Press, 1978.</li>
+<li>[CS] S. Chowla, A. Selberg, <em>On Epstein’s zeta-function</em>,
+Journal für die reine und angewandte Mathematik 227 (1967), 86–110.</li>
+<li>[Wa] N. Wach, <em>Représentations p-adiques potentiellement
+cristallines</em>, Bulletin de la Société mathématique de France 124
+(1996), 375–400; see also L. Berger, <em>Limites de représentations
+cristallines</em>, Compositio Mathematica 140 (2004), 1473–1498.</li>
+<li>[Ze] Z. Zeng, <em>The Invalidity of “The Invalidity of Alpöge’s
+Proof of the Riemann Hypothesis”</em>, 23–24/11/2026: <a
 href="https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing"
 class="uri">https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing</a></li>
 <li>[R2] M. Rubinstein (with Claude, Codex and Gemini), <em>The
@@ -7612,6 +7673,19 @@ Stepanov)”, Séminaire Bourbaki, exp. 430, 1973.</li>
 </ul>
 <h2 id="version-history">Version history</h2>
 <ul>
+<li><strong>4.4.1</strong> (27/11/2026): maintenance fixes
+(<code>correctifs-1.md</code>). Lemniscate: limit taken along <span
+class="math inline">\(n\equiv1\pmod4\)</span>; symmetry of zeros stated
+for non-trivial zeros; § 5.5: extended lattice <span
+class="math inline">\(Q_L\)</span> and extended exponent <span
+class="math inline">\(b(\mathfrak P)=e\,b(\mathfrak p)\)</span>
+distinguished from the vector quotient; § 6.2: it is the first and third
+constraints that force <span
+class="math inline">\(\alpha=\frac12\)</span>; appendix C: precise
+references (Bach–Sorenson, Bach), conditions of Miller’s test and of the
+non-residue, unverified constants flagged; references on Honda, formal
+groups, Chowla–Selberg and Wach modules; comparative map of the two
+routes; key [Ze] for Zeng.</li>
 <li><strong>4.4</strong> (26/11/2026): review of
 <code>synthes10.md</code> (stabilization note no. 10). § 5.5 rewritten
 as a separation lemma (Galois descent) followed by the quotient bound

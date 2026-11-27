@@ -251,7 +251,7 @@ de dix-sept millions de lignes</h1>
 Riemann généralisée</p>
 <p class="author">Gérard Rozsavolgyi, avec Claude (Anthropic)</p>
 <p class="author">Relecture : ChatGPT (OpenAI)</p>
-<p class="date">Article de méthode, version 1.3, 26 novembre 2026</p>
+<p class="date">Article de méthode, version 1.3.1, 27 novembre 2026</p>
 <div class="abstract">
 <div class="abstract-title">Résumé</div>
 <p>En novembre 2026, L. Alpöge a publié une preuve formelle, en Lean, de
@@ -1770,6 +1770,18 @@ l’outil ne fait pas), <strong>reconstruction</strong> (la déduction est
 lui), <strong>transformation</strong> (une alternative est démontrée et
 recertifiée). Les sept raccords étudiés au § 5 atteignent les niveaux 2
 à 4 de cette échelle (<code>analysis/raccords.md</code>).</p>
+<p>Au-delà de la reconstruction, deux critères complètent ces échelles
+sans en créer une nouvelle. <strong>Expliquer les contraintes</strong>,
+c’est dire pourquoi une hypothèse est nécessaire au mécanisme, par un
+contre-exemple ou un calcul de coût : la condition <span
+class="math inline">\(H+F\ge0\)</span> du bilan court, ou l’unicité du
+certificat de comptabilité dans le modèle relaxé (<em>Démêler la
+preuve</em>, § 10.7), en sont des exemples. <strong>Transformer de façon
+vérifiée</strong>, c’est modifier la preuve formelle et la faire
+revérifier ; l’expérience E22 (§ 8) en est un premier exemple, modeste.
+Une transformation réussie ne démontre pas à elle seule une
+compréhension complète : elle établit seulement qu’un fragment peut être
+modifié sans casser la preuve.</p>
 <h3 id="le-squelette-annoté">7.2 Le squelette annoté</h3>
 <p>Si l’on ne devait garder qu’une poignée d’énoncés pour raconter la
 preuve, ce seraient ceux-ci.</p>
@@ -2177,17 +2189,20 @@ fa\log^5b\)</span>, 72 % des déclarations) →
 indice, 45 %) → bornes de dénominateurs de Selmer → construction de
 représentations galoisiennes (19 %).</li>
 </ul>
-<p><strong>Une transformation locale, recertifiée.</strong> Sur
-l’édition compacte, compilée localement (2 h 15, 6,6 Go, axiomes
-standard), nous avons retiré du Théorème B court
-(<code>Data.enough_forms</code>) ses deux clauses de positivité, que son
-unique consommateur ignore. Le projet recompile (5 min), les axiomes
-sont inchangés, et les fichiers d’énoncés sont identiques ; le
-comparateur officiel, qui demande 64 Go, n’a pas été lancé. Le gain net
-est nul, parce que les preuves retirées servent ailleurs. C’est le cas
-d’école de la distinction entre clause inerte et preuve morte : une
-clause inerte ne raccourcit la preuve que si sa démonstration n’est pas
-partagée (carnet, E22).</p>
+<p><strong>Une transformation locale, recompilée.</strong> Sur l’édition
+compacte, compilée localement (2 h 15, 6,6 Go, axiomes standard), nous
+avons retiré du Théorème B court (<code>Data.enough_forms</code>) ses
+deux clauses de positivité, que son unique consommateur ignore. Le
+projet recompile (5 min), ce qui fait vérifier chaque déclaration par le
+noyau de Lean ; les axiomes sont inchangés et les fichiers d’énoncés
+identiques. Ce n’est pas une recertification au sens de [Su2, R3] :
+aucun noyau indépendant n’a rejoué la preuve modifiée, et le comparateur
+officiel, qui demande 64 Go, n’a pas été lancé. Le gain net est nul
+selon l’analyse des dépendances de l’export d’origine (aucun nouvel
+export n’a été produit), parce que les preuves retirées servent
+ailleurs. C’est le cas d’école de la distinction entre clause inerte et
+preuve morte : une clause inerte ne raccourcit la preuve que si sa
+démonstration n’est pas partagée (carnet, E22).</p>
 <p>Une réécriture établit qu’on peut se passer d’un ingrédient, non que
 cet ingrédient était vide dans l’original : le Théorème B des arcs y est
 remplacé par d’autres arguments, et sa disparition ne dit rien de son
@@ -2335,6 +2350,79 @@ bac à sable, n’en a encore confirmé l’empreinte. L’export de l’éditio
 lisible de la preuve courte (<code>readable-solution.ndjson.zst</code>,
 [Su2]) a été vérifié en flux : l’empreinte SHA-256 du flux décompressé
 commence par <code>baf221c8</code>, comme celle publiée.</p>
+<p><strong>Les empreintes SHA-256.</strong> « Vérifiée » signifie
+recalculée par nous sur le fichier lu ; « publiée » signifie relevée
+dans la liste de Sutherland, sans recalcul de notre part.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artefact</th>
+<th>SHA-256</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>solution.ndjson.zst</code> (preuve originale, lue en flux le
+21/11)</td>
+<td><code>61a8938ad5f5e57397c1c0e3b954916af546d9004ade01c3555744a681b05381</code></td>
+<td>publiée ; <strong>la nôtre n’a pas été conservée</strong></td>
+</tr>
+<tr>
+<td><code>solution.ndjson</code> (décompressé)</td>
+<td><code>5ea74b912147c5c93cc2b6d70cc727cf908df2f62ac6a20480a3fa02f6be244e</code></td>
+<td>publiée</td>
+</tr>
+<tr>
+<td><code>challenge.ndjson.zst</code> (énoncés, original)</td>
+<td><code>c24ef99dab3556a52c7fb886e03cf22a242f3b96f82ae4cc40539e5d2f678ac6</code></td>
+<td>vérifiée, identique à la publiée</td>
+</tr>
+<tr>
+<td><code>challenge.ndjson</code> (décompressé)</td>
+<td><code>bd484ac9886a96f26b1d9a7a59ebd45b7a70d102c015d4f31f9302bbdd6ab2b9</code></td>
+<td>publiée</td>
+</tr>
+<tr>
+<td><code>decl_domtree.tsv.gz</code> (arbre des dominateurs, notre
+sortie)</td>
+<td><code>3f73fa5917627b00baa809b46fb59f6db4d3582b0366936d376b5fa11768ecaf</code></td>
+<td>vérifiée</td>
+</tr>
+<tr>
+<td><code>readable-solution.ndjson.zst</code> (Sernau, lisible)</td>
+<td><code>7e99e474ecb7351f8ae2dbca76acab33eb5bfe5e626af34a4f298306762ac09d</code></td>
+<td>vérifiée ; flux décompressé
+<code>baf221c81749bf4bcbd6cd56238adfb4e8e780c38ef92d6a7ab458d57df36fc1</code>,
+identique au publié</td>
+</tr>
+<tr>
+<td><code>compact-solution.ndjson.zst</code> (Sernau, compacte)</td>
+<td><code>d558294b0c2c659b76118cc8af8aa24c42464a22e1c0180440fa46997a4518c3</code></td>
+<td>vérifiée ; flux décompressé
+<code>ab7b4223b9bd748a1aa68bdb63afb6d6264121fc834aadba7ba3d3796c32115b</code>,
+identique au publié</td>
+</tr>
+<tr>
+<td><code>challenge.ndjson.zst</code> (Sernau)</td>
+<td><code>ddc9f046c1f4f60954fad7e903075016488385fdccd3f571495a6250b7a15a05</code></td>
+<td>vérifiée ; flux décompressé
+<code>20eb99a04b40f6afe1b44931e7ee82b15208542517dc588ace9634acffc41694</code>,
+identique au publié</td>
+</tr>
+<tr>
+<td><code>rh-check-outils-v1.2-2026-11-27.tar.gz</code> (notre
+instantané)</td>
+<td><code>7573002fbb88efd5bf23e254c50ba91535b4767f01bacb4724af044c1daf21ff</code></td>
+<td>vérifiée ; manifeste fichier par fichier joint</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Les calculs.</strong> Le tableau suivant indique, pour chaque
 résultat, le script et les fichiers d’entrée.</p>
 <table>
@@ -2422,7 +2510,7 @@ résultat, le script et les fichiers d’entrée.</p>
 résultats cités dans cette version sont figés dans
 <code>analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz</code>
 (archive déterministe, empreinte SHA-256 commençant par
-<code>f17bf343</code>, manifeste fichier par fichier). Les archives
+<code>7573002f</code>, manifeste fichier par fichier). Les archives
 <code>v1.0-2026-11-25</code> et <code>v1.1-2026-11-26</code> ont été
 régénérées au fil des mises à jour et ne doivent pas être prises pour
 l’état de leur date ; <code>tools/tests.py</code> en vérifie le
@@ -2430,6 +2518,14 @@ fonctionnement sans l’export, notamment en recalculant les poids publiés
 à partir de l’arbre des dominateurs. Le dossier <code>analysis/</code>
 contient aussi les empreintes des fichiers analysés
 (<code>checksums.sha256</code>).</p>
+<p><strong>Historique des correctifs.</strong> 1.3 (26/11/2026) :
+version publiée. 1.3.1 (27/11/2026) : E22 décrite comme une
+transformation <strong>recompilée</strong> (non recertifiée par un noyau
+indépendant), gain de fermeture présenté comme une prévision ; caractère
+conservateur de <code>inertes.py</code> décrit comme un objectif de
+conception, faux positifs corrigés ; empreintes SHA-256 complètes des
+artefacts ; critères « expliquer les contraintes » et « transformer de
+façon vérifiée » au § 7.1.</p>
 <h2 id="outils-et-déclaration-dusage-de-lia">Outils et déclaration
 d’usage de l’IA</h2>
 <p><strong>Outils.</strong> L’export a été lu en flux par <a
@@ -2458,11 +2554,12 @@ href="tools/instantane.py"><code>instantane.py</code></a>) accompagnent
 cette version. Tous les scripts Python utilisent la seule bibliothèque
 standard. Les affirmations d’absence de dépendance sont vérifiées sur le
 graphe extrait, et non par recherche textuelle.</p>
-<p><strong>Licence.</strong> Textes, outils et données : <a
+<p><strong>Licences.</strong> Textes, figures et données : <a
 href="https://creativecommons.org/licenses/by-nc/4.0/deed.fr">CC BY-NC
 4.0</a>, soit reproduction et adaptation libres avec attribution, sans
-usage commercial. Les sources Lean de L. Sernau, utilisées pour
-l’expérience E22, restent sous leur propre licence (Apache-2.0).</p>
+usage commercial. Outils de <code>tools/</code> : licence MIT. Les
+sources Lean de L. Sernau, utilisées pour l’expérience E22, restent sous
+leur propre licence (Apache-2.0).</p>
 <p><strong>Usage de l’IA.</strong> Claude (Anthropic) a écrit les
 outils, lu les énoncés de l’export et rédigé le texte, sous la direction
 de l’auteur, qui a fixé les questions, l’organisation et les exigences
@@ -2540,7 +2637,7 @@ fréquente à <em>Software Practice and Experience</em> (2001) n’a pas pu
 être vérifiée.</li>
 <li>[Syn] G. Rozsavolgyi, avec Claude (Anthropic), <em>Comprendre la
 preuve formelle d’Alpöge de l’hypothèse de Riemann généralisée — une
-exposition en cinq questions</em>, version 4.4, 26 novembre 2026 : <a
+exposition en cinq questions</em>, version 4.4.1, 27 novembre 2026 : <a
 href="synthese.html">synthèse</a>.</li>
 </ul>
 </body>
