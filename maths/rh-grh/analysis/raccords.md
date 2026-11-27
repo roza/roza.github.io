@@ -1,4 +1,4 @@
-# Lectures et contrôles sur l'export (expériences E1–E18, 25–26/11/2026)
+# Lectures et contrôles sur l'export (expériences E1–E22, 25–27/11/2026)
 
 Outil : `tools/trace_app.py` (graphe des applications instanciées), sur la base `export/out_sol` extraite de l'export du 21/11/2026. Chaque résultat se reproduit par la commande indiquée. Niveaux de raccord : 1 localisation, 2 instanciation, 3 typage (identité syntaxique ou égalité explicite), 4 reconstruction écrite, 5 explication. Aucune conversion définitionnelle n'est vérifiée par l'outil ; les identités annoncées sont des identités de nœuds ou de champs.
 

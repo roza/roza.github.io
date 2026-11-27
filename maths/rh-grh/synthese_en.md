@@ -1,11 +1,3 @@
----
-title: "Understanding Alpöge's Formal Proof of the Generalized Riemann Hypothesis — A Companion Exposition in Five Questions"
-author:
-  - "Gérard Rozsavolgyi, with Claude (Anthropic)"
-  - "Narrative rewrite and review: ChatGPT (OpenAI)"
-lang: en
-date: "Version 4.4, 26 November 2026"
----
 *Working document: it will be corrected as the readings progress (history at the end). Translated from the French original: [version française](synthese.html). Companion expository article, in French (English translation in preparation): [Descending the Dependency Graph](article.html).*
 
 *Sources: the proof export published by A. Sutherland [Su] (`solution.ndjson.zst`: 1,468,418 declarations, 1,468,414 of them in the closure of the five statements of `Main`), the author's note [A], and the other published readings [Z], [S], [R2], [H], [G] (see References). More detailed working notes, with Lean names, in French: [map of the proof](carte.html). Analysis tools: [tools/](tools/). The roles of Claude and ChatGPT are set out in the method note at the end of the document.*

@@ -1,16 +1,3 @@
----
-title: "Descendre le graphe : comment lire une preuve formelle de dix-sept millions de lignes"
-subtitle: "Le cas de la preuve d'Alpöge de l'hypothèse de Riemann généralisée"
-author:
-  - "Gérard Rozsavolgyi, avec Claude (Anthropic)"
-  - "Relecture : ChatGPT (OpenAI)"
-lang: fr
-date: "Article de méthode, version 1.3, 26 novembre 2026"
-abstract: |
-  En novembre 2026, L. Alpöge a publié une preuve formelle, en Lean, de l'hypothèse de Riemann généralisée pour les fonctions L de Dirichlet : 17,4 millions de lignes de source, 1 468 414 déclarations dans la fermeture de ses énoncés, rejouées par plusieurs noyaux indépendants. Sa validité n'est pas en cause ; sa compréhension l'est. Nous demandons ce que l'on peut comprendre d'une preuve formelle produite avec l'aide d'un agent d'IA, à une échelle qui excède la lecture humaine ordinaire, et comment le mesurer.
-
-  La méthode combine quatre graphes : le graphe des dépendances, extrait de l'export ; l'arbre des dominateurs, qui attribue à chaque nœud un volume exclusif ; un graphe des interfaces entre composantes, extrait des types puis interprété ; et le graphe des applications instanciées, qui suit les objets à travers les termes de preuve. Trois résultats en sortent. Des **frontières de lecture** collectives : admettre sept grandes composantes masque environ 76 000 déclarations de plus que l'union de leurs sous-arbres dominés, et la fermeture encore accessible compte 45,7 % des déclarations. La **provenance des arguments** : le graphe des applications identifie une même donnée d'accouplement (`DivData.Bk`) au point où intégralité, hauteur et rang sont requis, et rattache les onze hypothèses du théorème de comptabilité de la preuve à leurs interfaces. Une **analyse des clauses inertes** : 5 729 théorèmes livrent au moins une conclusion qu'aucun consommateur ne lit. Selon notre sélection de composantes, le mécanisme propre pèse moins de 0,5 % de la fermeture, en volume exclusif. Une échelle de validation dit, nœud par nœud, ce qui est lu, interprété ou reconstruit ; trois études de cas montrent comment le graphe réfute une lecture, ou comment un contre-exemple oriente sa lecture. Nous distinguons enfin branches mortes, portées et remplaçables, et nous comparons la preuve à sa réécriture courte. Le contenu mathématique est exposé dans un texte compagnon.
----
 
 *English version: translation of version 1.3 in preparation. Texte compagnon, consacré au contenu mathématique : [synthèse](synthese.html). Outils : [tools/](tools/). Le rôle de chacun est précisé dans la déclaration d'usage de l'IA, en fin d'article.*
 
@@ -598,7 +585,7 @@ Ce passage n'est pas à sens unique. Chaque lecture est confrontée aux énoncé
 
 L'exemple de descente du § 5.3 montre l'usage de `show.py`, `query.py` et `revindex.py`.
 
-**Instantané et tests.** Les scripts, listes et résultats cités dans cette version sont figés dans `analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz` (archive déterministe, empreinte SHA-256 commençant par `97b1c6b1`, manifeste fichier par fichier). Les archives `v1.0-2026-11-25` et `v1.1-2026-11-26` ont été régénérées au fil des mises à jour et ne doivent pas être prises pour l'état de leur date ; `tools/tests.py` en vérifie le fonctionnement sans l'export, notamment en recalculant les poids publiés à partir de l'arbre des dominateurs. Le dossier `analysis/` contient aussi les empreintes des fichiers analysés (`checksums.sha256`).
+**Instantané et tests.** Les scripts, listes et résultats cités dans cette version sont figés dans `analysis/instantanes/rh-check-outils-v1.2-2026-11-27.tar.gz` (archive déterministe, empreinte SHA-256 commençant par `f17bf343`, manifeste fichier par fichier). Les archives `v1.0-2026-11-25` et `v1.1-2026-11-26` ont été régénérées au fil des mises à jour et ne doivent pas être prises pour l'état de leur date ; `tools/tests.py` en vérifie le fonctionnement sans l'export, notamment en recalculant les poids publiés à partir de l'arbre des dominateurs. Le dossier `analysis/` contient aussi les empreintes des fichiers analysés (`checksums.sha256`).
 
 ## Outils et déclaration d'usage de l'IA
 

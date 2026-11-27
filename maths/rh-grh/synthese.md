@@ -1,11 +1,3 @@
----
-title: "Comprendre la preuve formelle d'Alpöge de l'hypothèse de Riemann généralisée — une exposition en cinq questions"
-author:
-  - "Gérard Rozsavolgyi, avec Claude (Anthropic)"
-  - "Refonte narrative et relecture : ChatGPT (OpenAI)"
-lang: fr
-date: "Version 4.4, 26 novembre 2026"
----
 *Document de travail : il sera corrigé à mesure que les lectures avancent (historique en fin de document). [English version](synthese_en.html). Article d'exposition compagnon : [Descendre le graphe](article.html).*
 
 *Sources : l'export de la preuve publié par A. Sutherland [Su] (`solution.ndjson.zst` : 1 468 418 déclarations, dont 1 468 414 dans la fermeture des cinq énoncés de `Main`), la note de l'auteur [A], et les autres lectures publiées [Z], [S], [R2], [H], [G] (voir les Références). Notes de travail plus détaillées, avec les noms Lean : [carte de la preuve](carte.html). Outils d'analyse : [tools/](tools/). Le rôle de Claude et de ChatGPT est précisé dans la note de méthode, en fin de document.*
